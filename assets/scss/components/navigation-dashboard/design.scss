@@ -1,0 +1,126 @@
+aside.dashboard-navigation {
+    width: $dashboard-navigation-width;
+    height: 100vh;
+    padding: 0;
+    box-shadow: none;
+    background-color: #2e323a
+}
+
+aside.dashboard-navigation .header {
+    width: 100%;
+    background-color: #17191e;
+    color: #fff;
+    line-height: 3.25rem;
+    height: 3.25rem;
+    padding-left: .75rem
+}
+
+aside.dashboard-navigation .header .aside-close {
+    color: #fff
+}
+
+aside.dashboard-navigation .menu-list li a.has-submenu-icon {
+    padding-right: 3rem
+}
+
+aside.dashboard-navigation .menu-list li ul {
+    border-left: 0;
+    background-color: #2b2e36;
+    padding-left: 0;
+    margin: 0
+}
+
+aside.dashboard-navigation .menu-list li ul li a {
+    padding: .75rem 0 .75rem .75rem;
+    font-size: .95rem
+}
+
+aside.dashboard-navigation .menu-list li ul li a.is-active:not(:hover) {
+    background: transparent
+}
+
+aside.dashboard-navigation .menu-label {
+    padding: 0 .75rem;
+    margin-top: .75rem;
+    margin-bottom: .75rem
+}
+
+aside.dashboard-navigation .media {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem
+}
+
+aside.dashboard-navigation .media:first-child {
+    padding-top: 1.5rem
+}
+
+aside.dashboard-navigation .media:last-child {
+    padding-bottom: 1.5rem
+}
+
+@include touch {
+
+  aside.dashboard-navigation {
+    height: 100vh;
+  }
+
+  aside.dashboard-navigation .menu-label {
+    display: block
+  }
+
+  html.has-aside-mobile-expanded #app,
+  html.has-aside-mobile-expanded nav.navbar {
+    margin-left: $dashboard-navigation-width
+  }
+
+  html.has-aside-mobile-expanded aside.dashboard-navigation.is-placed-left {
+    left: 0
+  }
+
+  html.has-aside-mobile-expanded aside.dashboard-navigation.is-placed-left.is-secondary {
+    left: 1.5rem;
+    -webkit-box-shadow: -10px 0 10px #242424;
+    box-shadow: -10px 0 10px #242424
+  }
+
+}
+
+@include desktop {
+
+  aside.dashboard-navigation:not(.is-expanded) .menu-list li a.has-submenu-icon {
+    padding-right: 0
+  }
+
+  aside.dashboard-navigation:not(.is-expanded) .menu-list li a.has-submenu-icon .submenu-icon {
+    display: none
+  }
+
+  aside.dashboard-navigation:not(.is-expanded) .header {
+    padding-left: 0
+  }
+
+  aside.dashboard-navigation:not(.is-expanded) .header .header-label {
+    text-align: center
+  }
+
+  aside.dashboard-navigation.is-expanded {
+    width: $dashboard-navigation-width
+  }
+
+  aside.dashboard-navigation.is-expanded .menu-label {
+    display: block
+  }
+
+  aside.dashboard-navigation.is-expanded .menu-list .icon.has-update-mark:after {
+    right: .65rem
+  }
+
+  aside.dashboard-navigation.is-expanded .menu-list span.menu-item-label {
+    display: inline-block
+  }
+
+  aside.dashboard-navigation.is-expanded .menu-list li.is-active ul {
+    display: block
+  }
+
+}

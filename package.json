@@ -1,0 +1,24 @@
+{
+  "name": "Profil-Avril",
+  "version": "1.0.0",
+  "description": "My marvelous Nuxt.js project",
+  "author": "dmassiani",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "buefy": "^0.8.11",
+    "bulma": "^0.8.0",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.13.1",
+    "nuxt-sass-resources-loader": "^2.0.5",
+    "sass-loader": "^8.0.2",
+    "vue-style-loader": "^4.1.2"
+  }
+}
