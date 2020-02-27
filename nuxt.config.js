@@ -1,9 +1,29 @@
 
-export default {
-  mode: 'universal',
-  /*
-  ** Headers of the page
-  */
+module.exports = {
+  server: {
+    port: process.env.PORT || 3000,
+    host: '0.0.0.0',
+  },
+  build: {
+    postcss: {
+      preset: {
+        features: {
+          customProperties: false
+        }
+      }
+    },
+    extend (config, ctx) {}
+  },
+  buildDir: process.env.NUXT_BUILD_DIR,
+  css: [
+    { src: '~/assets/scss/app.scss', lang: 'scss' }
+  ],
+  env: {
+    clientToPhoenixUrl: process.env.CLIENT_TO_PHOENIX_URL,
+    serverToPhoenixUrl: process.env.SERVER_TO_PHOENIX_URL,
+    hotjarId: process.env.NUXT_HOTJAR_ID,
+    crispWebsiteId: process.env.NUXT_CRISP_WEBSITE_ID,
+  },
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -18,51 +38,43 @@ export default {
       class: 'has-aside-left has-aside-mobile-transition has-navbar-fixed-top'
     },
   },
-
-  /*
-  ** Customize the progress-bar color
-  */
   loading: { color: 'rgb(221, 209, 209)' },
-  /*
-  ** Global CSS
-  */
-  css: [
-    { src: '~/assets/scss/app.scss', lang: 'scss' }
-  ],
-  /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-    '~/plugins/buefy.js'
-  ],
-  /*
-  ** Nuxt.js dev-modules
-  */
-  buildModules: [
-  ],
-  /*
-  ** Nuxt.js modules
-  */
+  mode: 'universal',
   modules: [
-    // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    // '@nuxtjs/bulma',
-    // ['nuxt-sass-resources-loader', './assets/app.scss']
+    // 'nuxt-svg-loader',
+    '@nuxtjs/markdownit',
+    '@nuxtjs/google-analytics',
+    '@nuxtjs/sentry',
+    'cookie-universal-nuxt',
   ],
-  /*
-  ** Build configuration
-  */
-  build: {
-    postcss: {
-      preset: {
-        features: {
-          customProperties: false
-        }
-      }
+  plugins: [
+    '~/plugins/buefy.js',
+  //   '~/plugins/filters.js',
+  //   { src: '~/plugins/datepicker', mode: 'client' },
+  //   // '~/plugins/phoenixUrl.js',
+  //   '~/plugins/hotjar.js',
+  //   { src: '~/plugins/expandable-image', mode: 'client' },
+  //   // '~/plugins/crisp.js',
+  ],
+  router: {
+    base: process.env.NUXT_PROFIL_PATH,
+    // middleware: [
+    //   'autosave',
+    //   'store-current-path',
+    // ]
+  },
+  googleAnalytics: {
+    id: [
+      process.env.GA_API_KEY,
+      process.env.GA_PE_API_KEY,
+    ].filter(v => v),
+    dev: false,
+  },
+  sentry: {
+    dsn: process.env.NUXT_SENTRY_DSN,
+    config: {
+      environment: process.env.NODE_ENV,
+      release: process.env.HEROKU_SLUG_COMMIT,
     },
-    /*
-    ** You can extend webpack config here
-    */
-    extend (config, ctx) {
-    }
   }
 }

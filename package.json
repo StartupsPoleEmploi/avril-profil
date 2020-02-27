@@ -5,17 +5,23 @@
   "author": "dmassiani",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nodemon -r esm server/index.js --watch server",
     "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "start": "node -r esm server/index.js",
+    "generate": "nuxt generate",
+    "setup": "yarn install && yarn build && yarn start"
   },
   "dependencies": {
+    "@nuxtjs/google-analytics": "^2.2.2",
+    "@nuxtjs/markdownit": "^1.2.7",
+    "@nuxtjs/sentry": "^3.0.1",
     "buefy": "^0.8.11",
     "bulma": "^0.8.0",
+    "cookie-universal-nuxt": "^2.1.0",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
+    "nodemon": "^1.18.9",
     "node-sass": "^4.13.1",
     "nuxt-sass-resources-loader": "^2.0.5",
     "sass-loader": "^8.0.2",
