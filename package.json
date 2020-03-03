@@ -13,7 +13,8 @@
   "dependencies": {
     "buefy": "^0.8.11",
     "bulma": "^0.8.0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "nuxt-svg-loader": "^1.2.0"
   },
   "devDependencies": {
     "node-sass": "^4.13.1",

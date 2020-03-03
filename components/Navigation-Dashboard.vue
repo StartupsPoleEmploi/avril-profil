@@ -3,7 +3,7 @@
 
     <header class="dashboard-navigation-header">
       <div class="dashboard-navigation-tools-label">
-        <span>Avril</span>
+        <AvrilLogo/>
       </div>
     </header>
 
@@ -43,3 +43,19 @@
 
   </aside>
 </template>
+<script>
+import AvrilLogo from '~/assets/images/avril-logo.svg';
+
+export default {
+  components: {
+    AvrilLogo,
+  }
+}
+</script>
+
+<style scoped>
+.dashboard-navigation-header {
+  padding-left: 1rem;
+  padding-top: 1rem
+}
+</style>

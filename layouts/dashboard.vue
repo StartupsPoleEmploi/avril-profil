@@ -1,7 +1,7 @@
 <template>
   <div id="profil-avril">
-    <Header />
     <NavigationDashboard />
+    <Header />
     <nuxt />
   </div>
 </template>

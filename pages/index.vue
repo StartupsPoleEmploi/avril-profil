@@ -1,6 +1,8 @@
 <template>
-  <div>
-    all section
+  <div class="container">
+    <div class="avril-container">
+      container
+    </div>
   </div>
 </template>
 
@@ -11,3 +13,7 @@ export default {
   }
 }
 </script>
+
+<style>
+
+</style>

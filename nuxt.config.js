@@ -47,6 +47,7 @@ export default {
     // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
     // '@nuxtjs/bulma',
     // ['nuxt-sass-resources-loader', './assets/app.scss']
+    'nuxt-svg-loader'
   ],
   /*
   ** Build configuration
