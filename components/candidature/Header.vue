@@ -5,9 +5,7 @@
       <div class="level-left has-text-left">
         <div class="level-item">
           <div>
-            <a href="#back">
-              <span class="icon"><IconsArrowLeft/></span> retour
-            </a>
+            <BackButton/>
             <h1 class="title h1">TP Manager d’univers marchand</h1>
             <span>Équivalence CAP BEP</span>
           </div>
@@ -22,11 +20,11 @@
 </template>
 
 <script>
-import IconsArrowLeft from '~/components/icons/arrow-left.svg';
+import BackButton from '~/components/BackButton.vue';
 
 export default {
   components: {
-    IconsArrowLeft,
+    BackButton,
   }
 }
 </script>

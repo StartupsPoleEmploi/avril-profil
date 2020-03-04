@@ -7,39 +7,12 @@
       </div>
     </header>
 
-    <div class="dashboard-navigation-container">
-      <div class="menu is-menu-main">
-
-        <ul class="menu-list">
-          <li class="">
-            <a title="Login">
-              <span class="menu-item-label">Login</span>
-            </a>
-          </li>
-          <li class="">
-            <a title="Error v.1">
-              <span class="menu-item-label">Error v.1</span>
-            </a>
-          </li>
-          <li class="">
-            <a title="Error v.2">
-              <span class="menu-item-label">Error v.2</span>
-            </a>
-          </li>
-        </ul>
-
-      </div>
-    </div>
-
-    <div class="menu is-menu-bottom">
+    <aside class="menu">
       <ul class="menu-list">
-        <li class="">
-          <a title="Log out" exact-active-class="is-active" class="has-icon is-state-info is-hoverable"><span class="icon"><i class="mdi mdi-logout default"></i></span>
-            <span class="menu-item-label">Log out</span>
-          </a>
-        </li>
+        <li><a>Dashboard</a></li>
+        <li><a>Customers</a></li>
       </ul>
-    </div>
+    </aside>
 
   </aside>
 </template>

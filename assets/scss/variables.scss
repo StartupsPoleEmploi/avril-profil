@@ -1,1 +1,61 @@
 @import 'variables/navigation';
+
+// couleurs
+
+$white: white;
+$black: #46484e;
+$gray-bike: #8A8C92; // using by back button
+$blue-avril: #365460; // using by titles
+$palette: (
+  default: (
+    background: #f5f9fb,
+    text: #848f93,
+    title: #18495e,
+  ),
+  blue: (
+    background: #c7eeff,
+    text: #357692,
+    title: #18495e
+  ),
+  green: (
+    background: #d6ffed,
+    text: #69897b,
+    title: #445c51
+  ),
+  yellow: (
+    background: #ffffa5,
+    text: #41413c,
+    title: #41413c
+  )
+);
+@function palette($color: 'default', $type: 'text') {
+  @return map-get(map-get($palette, $color), $type);
+}
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+@import url('https://use.typekit.net/zip3jhj.css');
+$family-sans-serif: Nunito, sans-serif;
+$family-serif: ff-tisa-web-pro, serif;
+$title-family: $family-serif;
+$text-color: palette(default, text);
+$title-color: palette(default, title);
+$scheme-main: palette(default, background);
+$footer-background-color: $white;
+$navbar-background-color: transparent;
+// $navbar-breakpoint: $radius-rounded;
+$radius: 5px;
+@each $key, $value in $palette {
+  .is-#{$key} {
+    color: palette($key, text) !important;
+    background: palette($key, background) !important;
+    &.button {
+      background: palette($key, title) !important;
+      color: palette($key, background) !important;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+    .title {
+      color: palette($key, title) !important;
+    }
+  }
+}

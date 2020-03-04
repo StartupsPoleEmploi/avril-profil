@@ -13,7 +13,10 @@ $primary: #0e637e;
 $primary-invert: findColorInvert($primary);
 $colors: ('primary': ($primary, $primary-invert));
 
-// ... AND HERE
+$navbar-background-color: 'transparent';
+$navbar-height: 5.25rem;
+$navbar-padding-vertical: 1rem;
+$navbar-padding-horizontal: 2rem;
 
 // Import Bulma and Buefy styles
 @import '~bulma';
