@@ -1,6 +1,6 @@
 <template>
   <div class="candidature-detail">
-    
+
     <!-- prochaine étape -->
     <NextStep
       next="Prochaine étape conseillée"
@@ -14,19 +14,19 @@
     <div class="candidature-composants">
 
       <div class="columns">
-        <div class="column">
+        <div class="column has-equal-height">
           <!-- identité -->
           <Identite/>
           <!-- synthèse -->
           <Synthese/>
         </div>
-        <div class="column">
+        <div class="column has-equal-height">
           <!-- recevabilité -->
           <Recevabilite/>
           <!-- justificatifs -->
           <Justificatifs/>
         </div>
-        <div class="column">
+        <div class="column has-equal-height">
           <!-- certificateur -->
           <Certificateur/>
         </div>

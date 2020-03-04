@@ -6,15 +6,20 @@
     background: white;
     margin-bottom: 1rem;
     padding: 1rem;
-    // &.has-equal-height {
-    //   display: flex;
-    //   flex-direction: column;
-    //   height: 100%;
-    // }
-    // &.has-double-height {
-    //   display: flex;
-    //   flex-direction: column;
-    //   height: 200%;
-    // }
+    &.has-equal-height {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    &.has-double-height {
+      display: flex;
+      flex-direction: column;
+      height: 200%;
+    }
   }
+}
+.has-equal-height {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
 }
