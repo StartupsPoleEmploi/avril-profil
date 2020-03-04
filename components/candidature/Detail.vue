@@ -1,5 +1,6 @@
 <template>
   <div class="candidature-detail">
+    
     <!-- prochaine étape -->
     <NextStep
       next="Prochaine étape conseillée"
@@ -7,7 +8,7 @@
       title="Renseigner mon identité"
       paragraphe="Elle est obligatoire pour toute demande de recevabilité"
       illustration="man"
-      button="Renseigner mon identité"
+      button="Renseigner mon identité..."
     />
 
     <div class="candidature-composants">
@@ -35,6 +36,7 @@
 
   </div>
 </template>
+
 <script>
 import NextStep from '~/components/candidature/NextStep.vue';
 import Identite from '~/components/candidature/Identite.vue';

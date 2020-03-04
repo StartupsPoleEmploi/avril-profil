@@ -7,13 +7,13 @@
           <div>
             <BackButton/>
             <h1 class="title h1">TP Manager d’univers marchand</h1>
-            <span>Équivalence CAP BEP</span>
+            <div class="label-avril">Équivalence CAP BEP</div>
           </div>
         </div>
       </div>
 
       <div class="level-right">
-        à compléter
+        <span class="tag is-blue">à compléter</span>
       </div>
     </div>
   </header>

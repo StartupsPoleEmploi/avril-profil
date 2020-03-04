@@ -1,3 +1,12 @@
 .icon svg{
   stroke-width: inherit;
 }
+
+.level-item .title, .level-item .subtitle {
+  margin-bottom: 1rem;
+}
+
+.tag {
+  font-weight: 900;
+  text-transform: uppercase;
+}

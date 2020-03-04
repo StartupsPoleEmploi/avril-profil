@@ -2,11 +2,41 @@
 @import '~bulma/sass/utilities/initial-variables';
 @import '~bulma/sass/utilities/functions';
 
-// OVERRIDES GOES BETWEEN HERE...
+$white: white;
+$black: #46484e;
+$palette: (
+  default: (
+    background: #f5f9fb,
+    text: #6C787D,
+    title: #18495e,
+  ),
+  blue: (
+    background: #c7eeff,
+    text: #357692,
+    title: #18495e
+  ),
+  green: (
+    background: #d6ffed,
+    text: #69897b,
+    title: #445c51
+  ),
+  yellow: (
+    background: #ffffa5,
+    text: #41413c,
+    title: #41413c
+  )
+);
 
+@function palette($color: 'default', $type: 'text') {
+  @return map-get(map-get($palette, $color), $type);
+}
 // Fonts
+
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
-$family-sans-serif: 'Nunito', sans-serif;
+@import url('https://use.typekit.net/zip3jhj.css');
+$family-sans-serif: Nunito, sans-serif;
+$family-serif: ff-tisa-web-pro, serif;
+$text: #6C787D;
 
 // Bulma colors
 $primary: #0e637e;
@@ -17,6 +47,34 @@ $navbar-background-color: 'transparent';
 $navbar-height: 5.25rem;
 $navbar-padding-vertical: 1rem;
 $navbar-padding-horizontal: 2rem;
+
+$title-family: $family-serif;
+$text-color: palette(default, text);
+$title-color: palette(default, title);
+$scheme-main: palette(default, background);
+$footer-background-color: $white;
+$navbar-background-color: transparent;
+$navbar-breakpoint: $radius-rounded;
+$radius: 5px;
+
+
+@each $key, $value in $palette {
+  .is-#{$key} {
+    color: palette($key, text) !important;
+    background: palette($key, background) !important;
+    &.button {
+      background: palette($key, title) !important;
+      color: palette($key, background) !important;
+      transition: background .2s ease-in-out;
+      &:hover {
+        background: darken(palette($key, title), 10%) !important;
+      }
+    }
+    .title {
+      color: palette($key, title) !important;
+    }
+  }
+}
 
 // Import Bulma and Buefy styles
 @import '~bulma';
