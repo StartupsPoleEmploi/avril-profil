@@ -1,25 +1,26 @@
 .candidature {
   &-card {
+
     height: 100%;
     border: dashed 3px #E5E5E5;
     border-radius: 6px;
     background: white;
-    margin-bottom: 1rem;
     padding: 1rem;
-    &.has-equal-height {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
+
+    &:first-child {
+      margin-bottom: 1rem;
     }
-    &.has-double-height {
-      display: flex;
-      flex-direction: column;
-      height: 200%;
+    @include tablet {
+      margin-bottom: 1rem;
     }
+
   }
 }
+
 .has-equal-height {
-  display: flex;
-  flex-direction: column;
-  min-height: 400px;
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+  }
 }

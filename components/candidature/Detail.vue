@@ -56,10 +56,14 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
+@import '~bulma/sass/utilities/all';
 .candidature-detail {
   background: #fff;
   border-radius: 6px;
-  padding: 2rem
+  padding: .5rem;
+  @include tablet {
+    padding: 2rem;
+  }
 }
 </style>
