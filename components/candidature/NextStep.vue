@@ -6,24 +6,23 @@
           <p>{{next}} - {{time}}</p>
           <h2 class="title is-2">{{title}}</h2>
           <p>{{paragraphe}}</p>
+          <a href="#" class="button is-blue is-rounded">{{button}}</a>
         </div>
       </div>
     </div>
     <div class="level-right">
       <div class="level-item">
-        <div>
-          <a href="#" class="button is-blue is-rounded">{{button}}</a>
-          <img :src="`images/next-step/${illustration}.svg`" alt="">
-        </div>
+        <img :src="`images/next-step/${illustration}.svg`" alt="Illustration de la prochaine étape" class="illustration">
       </div>
     </div>
   </div>
 </template>
+
 <script>
 export default {
   props: {
     illustration: {
-      default: 'test',
+      default: 'man',
       type: String
     },
     next: {
@@ -57,8 +56,31 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+@import '~bulma/sass/utilities/all';
 .avril-next-step {
   padding: 2rem;
   border-radius: 6px;
+  position: relative;
+}
+.level-item {
+  @include desktop {
+    justify-content: flex-start;
+  }
+}
+.button {
+  margin-top: 1rem;
+}
+.illustration {
+  position: absolute;
+  @include until( $tablet + 10 ) {
+    display: none;
+  }
+  @include desktop {
+    top: -20px;
+    right: 30px;
+  }
+  @include until( $desktop + 100 ){
+    right: -30px;
+  }
 }
 </style>

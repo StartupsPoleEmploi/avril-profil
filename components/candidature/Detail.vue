@@ -1,5 +1,6 @@
 <template>
   <div class="candidature-detail">
+
     <!-- prochaine étape -->
     <NextStep
       next="Prochaine étape conseillée"
@@ -7,25 +8,25 @@
       title="Renseigner mon identité"
       paragraphe="Elle est obligatoire pour toute demande de recevabilité"
       illustration="man"
-      button="Renseigner mon identité"
+      button="Renseigner mon identité..."
     />
 
     <div class="candidature-composants">
 
       <div class="columns">
-        <div class="column">
+        <div class="column has-equal-height">
           <!-- identité -->
           <Identite/>
           <!-- synthèse -->
           <Synthese/>
         </div>
-        <div class="column">
+        <div class="column has-equal-height">
           <!-- recevabilité -->
           <Recevabilite/>
           <!-- justificatifs -->
           <Justificatifs/>
         </div>
-        <div class="column">
+        <div class="column has-equal-height">
           <!-- certificateur -->
           <Certificateur/>
         </div>
@@ -35,6 +36,7 @@
 
   </div>
 </template>
+
 <script>
 import NextStep from '~/components/candidature/NextStep.vue';
 import Identite from '~/components/candidature/Identite.vue';
@@ -54,10 +56,14 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
+@import '~bulma/sass/utilities/all';
 .candidature-detail {
   background: #fff;
   border-radius: 6px;
-  padding: 2rem
+  padding: .5rem;
+  @include tablet {
+    padding: 2rem;
+  }
 }
 </style>

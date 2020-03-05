@@ -8,16 +8,6 @@
     </a>
     <a class="navbar-item is-hidden-desktop"><span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span></a>
   </div>
-  <div class="navbar-brand is-right">
-    <a class="navbar-item navbar-item-menu-toggle is-hidden-desktop">
-      <span class="icon">
-        <i class="mdi mdi-bell default"></i>
-      </span>
-    </a>
-    <a class="navbar-item navbar-item-menu-toggle is-hidden-desktop">
-      <span class="icon"><i class="mdi mdi-dots-vertical default"></i></span>
-    </a>
-  </div>
   <div class="navbar-menu fadeIn animated faster">
     <div class="navbar-end">
       <div class="navbar-item has-dropdown has-dropdown-with-icons has-divider has-user-avatar">
