@@ -9,8 +9,16 @@
 
     <aside class="menu">
       <ul class="menu-list">
-        <li><a>Dashboard</a></li>
-        <li><a>Customers</a></li>
+        <li>
+          <nuxt-link to="/">
+            Accueil
+          </nuxt-link>
+        </li>
+        <li>
+          <nuxt-link to="/detail">
+            Détails
+          </nuxt-link>
+        </li>
       </ul>
     </aside>
 
