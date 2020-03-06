@@ -46,10 +46,6 @@ export default {
       type: String
     } ,
   },
-  data() {
-    return {
-    }
-  },
   mounted () {
     console.log(this.illustration)
   }

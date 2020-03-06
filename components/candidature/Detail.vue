@@ -18,13 +18,13 @@
           <!-- identité -->
           <Identite/>
           <!-- synthèse -->
-          <Synthese/>
+          <Synthese etat="locked"/>
         </div>
         <div class="column has-equal-height">
           <!-- recevabilité -->
           <Recevabilite/>
           <!-- justificatifs -->
-          <Justificatifs/>
+          <Justificatifs etat="locked"/>
         </div>
         <div class="column has-equal-height">
           <!-- certificateur -->
