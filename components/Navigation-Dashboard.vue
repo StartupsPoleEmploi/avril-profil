@@ -3,7 +3,7 @@
 
     <header class="dashboard-navigation-header">
       <div class="dashboard-navigation-tools-label">
-        <AvrilLogo/>
+        <a href="/"><AvrilLogo/></a>
       </div>
     </header>
 
