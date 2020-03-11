@@ -19,12 +19,12 @@
     "bulma": "^0.8.0",
     "cookie-universal-nuxt": "^2.1.0",
     "node-fetch": "^2.6.0",
+    "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
     "nuxt-svg-loader": "^1.2.0",
     "sass-loader": "^8.0.2"
   },
   "devDependencies": {
-    "node-sass": "^4.13.1",
     "nodemon": "^1.18.9",
     "nuxt-sass-resources-loader": "^2.0.5",
     "vue-style-loader": "^4.1.2"
