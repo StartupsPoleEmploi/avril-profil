@@ -1,27 +1,44 @@
 <template>
-  <div class="candidature-card card-certificateur">
-    <h4 class="title is-4">Mon identité <span v-if="etat=='locked'" class="icon"><IconLocked/></span></h4>
+  <div class="candidature-card card-identite" v-bind:class="{ 'card-filled': isFilled }">
+    <h4 class="title is-5">Mon identité</h4>
+    <a href="#" class="button is-avril"  v-if="!isFilled">Renseigner mon identité</a>
+    <p v-if="isFilled">Mon identité</p>
+    <!-- <a v-if="isFilled" href="#" class="button is-small card-edit is-text"><span class="icon is-small"><IconPencil/></span> Éditer</a> -->
+    <a v-if="isFilled" href="#" class="button is-small edit-button">
+      <span class="icon is-small">
+        <IconPencil/>
+      </span>
+      <span>Éditer</span>
+    </a>
   </div>
 </template>
 
 <script>
 import IconLocked from '~/components/icons/locked.svg';
+import IconPencil from '~/components/icons/pencil.svg';
 
 export default {
   components: {
     IconLocked,
+    IconPencil,
   },
   props: {
-    etat: {
-      default: 'locked',
-      type: String
+    isFilled: {
+      default: false,
+      type: Boolean
     },
   },
   mounted () {
-    console.log(this.etat)
   }
 }
 </script>
-<style>
 
+<style scoped lang="scss">
+.edit-button {
+  margin-top: auto;
+  margin-left: auto;
+}
+.card-edit{
+  margin-top: auto;
+}
 </style>

@@ -1,6 +1,8 @@
 <template>
-  <div class="candidature-card card-certificateur">
-    <h4 class="title is-4">Ma synthèse <span v-if="etat=='locked'" class="icon"><IconLocked/></span></h4>
+  <div class="candidature-card card-synthese" v-bind:class="{ 'card-filled': !isLocked }">
+    <h4 class="title is-5"><span class="icon" v-if="isLocked"><IconLocked/></span> Ma synthèse</h4>
+    <a href="#" class="button is-text" v-if="!isLocked">Télécharger</a>
+    <p class="help" v-if="isLocked">Pour débloquer votre synthèse, vous devez choisir votre <a href="#"><strong class="avril-tag">certificateur</strong></a>.</p>
   </div>
 </template>
 
@@ -12,16 +14,27 @@ export default {
     IconLocked,
   },
   props: {
-    etat: {
-      default: 'locked',
-      type: String
+    isLocked: {
+      default: true,
+      type: Boolean
     },
   },
   mounted () {
-    console.log(this.etat)
+    console.log(this.isLocked)
   }
 }
 </script>
-<style>
+<style scoped lang="scss">
+@import '~assets/scss/mixins';
+@import '~assets/scss/variables';
 
+.help {
+  margin-top: auto
+}
+.avril-tag {
+  color: palette(default, text)
+}
+.card-edit{
+  margin-top: auto;
+}
 </style>

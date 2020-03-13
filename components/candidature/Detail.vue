@@ -15,20 +15,30 @@
 
       <div class="columns">
         <div class="column has-equal-height">
+
           <!-- identité -->
           <Identite/>
+          <!-- Pour indiquer que l'identité est remplie -->
+          <!-- <Identite v-bind:is-filled="true"/> -->
+
           <!-- synthèse -->
-          <Synthese etat="locked"/>
+          <Synthese/>
+          <!-- Pour indiquer que la synthèse est disponible -->
+          <!-- <Synthese v-bind:is-locked="false"/> -->
+
         </div>
         <div class="column has-equal-height">
           <!-- recevabilité -->
           <Recevabilite/>
+          <!-- <Recevabilite v-bind:is-filled="true"/> -->
           <!-- justificatifs -->
-          <Justificatifs etat="locked"/>
+          <Justificatifs/>
+          <!-- <Justificatifs v-bind:is-locked="false"/> -->
         </div>
         <div class="column has-equal-height">
           <!-- certificateur -->
           <Certificateur/>
+          <!-- <Certificateur v-bind:is-filled="true"/> -->
         </div>
       </div>
 

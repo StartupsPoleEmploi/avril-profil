@@ -1,0 +1,3 @@
+@function palette($color: 'default', $type: 'text') {
+  @return map-get(map-get($palette, $color), $type);
+}

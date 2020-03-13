@@ -1,4 +1,8 @@
 .button {
   font-weight: 900;
   border: none;
+  &.is-avril {
+    background: palette(blue, background);
+    color: palette(blue, text);
+  }
 }

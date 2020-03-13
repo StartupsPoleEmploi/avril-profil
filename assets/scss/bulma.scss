@@ -2,41 +2,9 @@
 @import '~bulma/sass/utilities/initial-variables';
 @import '~bulma/sass/utilities/functions';
 
-$white: white;
-$black: #46484e;
-$palette: (
-  default: (
-    background: #f5f9fb,
-    text: #6C787D,
-    title: #18495e,
-  ),
-  blue: (
-    background: #c7eeff,
-    text: #357692,
-    title: #18495e
-  ),
-  green: (
-    background: #d6ffed,
-    text: #69897b,
-    title: #445c51
-  ),
-  yellow: (
-    background: #ffffa5,
-    text: #41413c,
-    title: #41413c
-  )
-);
-
-@function palette($color: 'default', $type: 'text') {
-  @return map-get(map-get($palette, $color), $type);
-}
-// Fonts
-
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
-@import url('https://use.typekit.net/zip3jhj.css');
 $family-sans-serif: Nunito, sans-serif;
 $family-serif: ff-tisa-web-pro, serif;
-$text: #6C787D;
+$text: palette(default, text);
 
 // Bulma colors
 $primary: #0e637e;
