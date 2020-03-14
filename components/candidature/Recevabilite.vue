@@ -1,8 +1,8 @@
 <template>
   <div class="candidature-card card-recevabilite" v-bind:class="{ 'card-filled': isFilled }">
     <h4 class="title is-5">Ma recevabilité</h4>
-    <a href="#" class="button is-avril" v-if="!isFilled">Compléter ma recevabilité</a>
-    <a v-if="isFilled" href="#" class="button edit-button is-small">
+    <a href="#" class="button is-avril is-rounded" v-if="!isFilled">Compléter ma recevabilité</a>
+    <a v-if="isFilled" href="#" class="button edit-button is-small is-rounded">
       <span class="icon is-small">
         <IconPencil/>
       </span>

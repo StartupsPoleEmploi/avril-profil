@@ -1,7 +1,7 @@
 <template>
   <div class="candidature-card card-certificateur" v-bind:class="{ 'card-filled': isFilled }">
-    <h4 class="title is-5"><span class="icon lock" v-if="!isFilled"><IconLocked/></span> Mon certificateur</h4>
-    <a href="#" class="button is-avril" v-if="!isFilled">Trouver mon certificateur</a>
+    <h4 class="title is-5">Mon certificateur</h4>
+    <a href="#" class="button is-avril is-rounded" v-if="!isFilled">Trouver mon certificateur</a>
 
     <div v-if="isFilled">
       <h3 class="title is-5 certificateur-title">DAVA de Versailles</h3>
@@ -10,7 +10,7 @@
       <p>45000 Marseille</p>
     </div>
 
-    <a v-if="isFilled" href="#" class="button edit-button is-small">
+    <a v-if="isFilled" href="#" class="button edit-button is-small is-rounded">
       <span class="icon is-small">
         <IconPencil/>
       </span>

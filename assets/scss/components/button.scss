@@ -1,8 +1,13 @@
 .button {
   font-weight: 900;
   border: none;
+  transition: background .2s ease-in-out, color .4s ease-in-out;
   &.is-avril {
-    background: palette(blue, background);
     color: palette(blue, text);
+    background: palette(blue, background);
+    &:hover {
+      color: darken(palette(blue, text), 10%);
+      background: darken(palette(blue, background), 10%);
+    }
   }
 }

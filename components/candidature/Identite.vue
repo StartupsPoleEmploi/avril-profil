@@ -1,10 +1,10 @@
 <template>
   <div class="candidature-card card-identite" v-bind:class="{ 'card-filled': isFilled }">
     <h4 class="title is-5">Mon identité</h4>
-    <a href="#" class="button is-avril"  v-if="!isFilled">Renseigner mon identité</a>
+    <a href="#" class="button is-avril is-rounded"  v-if="!isFilled">Renseigner mon identité</a>
     <p v-if="isFilled">Mon identité</p>
     <!-- <a v-if="isFilled" href="#" class="button is-small card-edit is-text"><span class="icon is-small"><IconPencil/></span> Éditer</a> -->
-    <a v-if="isFilled" href="#" class="button is-small edit-button">
+    <a v-if="isFilled" href="#" class="button is-small edit-button is-rounded">
       <span class="icon is-small">
         <IconPencil/>
       </span>
