@@ -26,18 +26,33 @@ const PATHS = {
   }
 }
 
-export const apiPath = (routeName, opts) => {
-  if (isArray(routeName)) {
-    return routeName.map(name => apiPath(name, opts))
-  }
-  const {isServer, ...params} = opts;
-
+export const apiPath = (routeName, params={}) => {
   const path = Object.keys(params).reduce((route, key) => {
     return route.replace(new RegExp(`:${key}`), params[key])
   }, PATHS.API_PATHS[routeName])
-  return `${isServer ? PATHS.PHOENIX_DOMAIN : ''}${PATHS.API_PREFIX_PATH}${path}`
+  return `${PATHS.API_PREFIX_PATH}${path}`
 }
 
-console.log('##############')
-console.log(apiPath('application', {id: 33, isServer: process.server}))
-console.log('##############')
+export async function fetchWithCookie(path, req){
+  const url = `${req ? PATHS.PHOENIX_DOMAIN : ''}${path}`
+  return await fetch(url, req ? ({
+    headers: {
+      cookie: req.headers.cookie,
+    }
+  }) : {})
+}
+
+export async function fetchOrRedirectToSignIn(path, req) {
+  const result = await fetchWithCookie(path, req)
+  const jsonData = await result.json();
+  if (result.ok) {
+    return jsonData;
+  } else {
+    if (result.status === 401 && get(jsonData, 'error.redirect_to')) {
+      redirect(get(jsonData, 'error.redirect_to'))
+    } else {
+      console.error('No idea what happened:')
+      console.error(result)
+    }
+  }
+}
