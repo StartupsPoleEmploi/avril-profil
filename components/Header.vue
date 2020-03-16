@@ -13,7 +13,6 @@
       <div class="navbar-item has-dropdown has-dropdown-with-icons has-divider has-user-avatar">
         <a class="navbar-link is-arrowless">
           <div class="is-user-avatar">
-            <img src="/data-sources/avatars/annie-spratt-121576-unsplash.jpg" alt="John Doe">
           </div>
           <div class="is-user-name"><span>John Doe</span></div>
           <span class="icon"><i class="mdi mdi-chevron-down default"></i></span>

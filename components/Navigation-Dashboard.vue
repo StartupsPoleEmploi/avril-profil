@@ -15,8 +15,13 @@
           </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/detail">
-            Détails
+          <nuxt-link to="/profil">
+            {{profile.firstNames}} {{profile.lastName}}
+          </nuxt-link>
+        </li>
+        <li v-for="application in applications">
+          <nuxt-link :to="`/candidatures/${application.id}`">
+            {{application.certificationLabel}}
           </nuxt-link>
         </li>
       </ul>
@@ -30,7 +35,16 @@ import AvrilLogo from '~/assets/images/avril-logo.svg';
 export default {
   components: {
     AvrilLogo,
-  }
+  },
+  computed: {
+    applications() {
+      console.log(this.$store.state.applications)
+      return this.$store.state.applications
+    },
+    profile() {
+      return this.$store.state.profile
+    },
+  },
 }
 </script>
 
