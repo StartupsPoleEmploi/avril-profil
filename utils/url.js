@@ -1,5 +1,6 @@
 import get from 'lodash.get';
 import {isArray} from './boolean';
+import {last} from './array';
 
 export const objectToQueryString = object => Object.keys(object).filter(k => object[k]).map(k => {
   return `${encodeURIComponent(k)}=${encodeURIComponent(object[k])}`
@@ -43,9 +44,22 @@ export async function fetchWithCookie(path, req){
   }) : {})
 }
 
-export async function fetchOrRedirectToSignIn(path, {req, redirect, store}) {
-  const result = await fetchWithCookie(path, req)
+export async function fetchOrRedirectToSignIn(path, {req, redirect, store, route, env}) {
+  let result;
+  try {
+    result = await fetchWithCookie(path, req)
+  } catch(err) {
+    if (err.code === 'ENOTFOUND' || err.code === 'EAI_AGAIN' || err.code === 'ECONNREFUSED') {
+      console.warn('API not available ...')
+      const storeName = last(path.split('/'));
+      const fakeURL = `http://localhost:${process.env.PORT || 3000}${process.env.NUXT_PROFIL_PATH}/json/${storeName}.json`;
+      // Fake API call to static json files
+      result = await fetchWithCookie(fakeURL)
+    }
+  }
+
   const jsonData = await result.json();
+
   if (result.ok) {
     return jsonData;
   } else {

@@ -12,18 +12,23 @@ export const mutations = {};
 
 export const actions = {
   async nuxtServerInit({ commit, dispatch }, context) {
-    try {
+    // try {
       await Promise.all(['profile', 'applications'].map(async storeName => {
         const jsonData = await fetchOrRedirectToSignIn(apiPath(storeName), context)
         const mappedData = backendToStore[storeName](jsonData.data);
         commit(`${storeName}/initState`, mappedData);
       }))
-    } catch(err) {
-      if (err.code === 'ENOTFOUND') {
-        console.warn('API not available ...')
-      } else {
-        console.error(err);
-      }
-    }
+    // } catch(err) {
+    //   if (err.code === 'ENOTFOUND') {
+    //     console.warn('API not available ...')
+    //     await Promise.all(['profile', 'applications'].map(async storeName => {
+    //       const jsonData = await fetchOrRedirectToSignIn(apiPath(storeName), context)
+    //       const mappedData = backendToStore[storeName](jsonData.data);
+    //       commit(`${storeName}/initState`, mappedData);
+    //     }))
+    //   } else {
+    //     console.error(err);
+    //   }
+    // }
   },
 };
