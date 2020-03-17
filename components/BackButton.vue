@@ -1,7 +1,7 @@
 <template>
-  <a href="#back" class="avril-back-button">
-    <span class="icon"><IconsArrowLeft/></span> retour
-  </a>
+  <nuxt-link :to="to" class="avril-back-button">
+    <span class="icon"><IconsArrowLeft/></span> {{label || 'retour'}}
+  </nuxt-link>
 </template>
 <script>
 import IconsArrowLeft from '~/components/icons/arrow-left.svg';
@@ -9,7 +9,11 @@ import IconsArrowLeft from '~/components/icons/arrow-left.svg';
 export default {
   components: {
     IconsArrowLeft,
-  }
+  },
+  props: {
+    label: {},
+    to: {},
+  },
 }
 </script>
 <style lang="scss">

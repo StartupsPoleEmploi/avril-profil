@@ -2,25 +2,27 @@
   <aside class="dashboard-navigation">
 
     <header class="dashboard-navigation-header">
-      <div class="dashboard-navigation-tools-label">
-        <a href="/"><AvrilLogo/></a>
-      </div>
+      <a href="/"><AvrilLogo/></a>
     </header>
 
     <aside class="menu">
+      <p class="menu-label">{{profile.firstNames}} {{profile.lastName}}</p>
       <ul class="menu-list">
         <li>
           <nuxt-link to="/">
-            Accueil
+            Mon espace
           </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/profil">
-            {{profile.firstNames}} {{profile.lastName}}
+          <nuxt-link to="/identite">
+            Mon identité
           </nuxt-link>
         </li>
+      </ul>
+      <p class="menu-label">Mes candidatures</p>
+      <ul class="menu-list">
         <li v-for="application in applications">
-          <nuxt-link :to="`/candidatures/${application.id}`">
+          <nuxt-link :to="`/${application.slug}`">
             {{application.certificationLabel}}
           </nuxt-link>
         </li>
@@ -38,7 +40,6 @@ export default {
   },
   computed: {
     applications() {
-      console.log(this.$store.state.applications)
       return this.$store.state.applications
     },
     profile() {
@@ -50,7 +51,8 @@ export default {
 
 <style scoped>
 .dashboard-navigation-header {
-  padding-left: 1rem;
-  padding-top: 1rem
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 </style>

@@ -5,7 +5,6 @@
       <div class="level-left has-text-left">
         <div class="level-item">
           <div>
-            <BackButton/>
             <h1 class="title h1">TP Manager d’univers marchand</h1>
             <div class="label-avril">Équivalence CAP BEP</div>
           </div>

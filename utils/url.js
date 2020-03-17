@@ -1,3 +1,4 @@
+import get from 'lodash.get';
 import {isArray} from './boolean';
 
 export const objectToQueryString = object => Object.keys(object).filter(k => object[k]).map(k => {
@@ -22,7 +23,7 @@ const PATHS = {
   API_PATHS: {
     profile: '/profile',
     applications: '/applications',
-    application: '/applications/:id'
+    application: '/applications/:slug'
   }
 }
 
@@ -42,7 +43,7 @@ export async function fetchWithCookie(path, req){
   }) : {})
 }
 
-export async function fetchOrRedirectToSignIn(path, req) {
+export async function fetchOrRedirectToSignIn(path, {req, redirect, store}) {
   const result = await fetchWithCookie(path, req)
   const jsonData = await result.json();
   if (result.ok) {

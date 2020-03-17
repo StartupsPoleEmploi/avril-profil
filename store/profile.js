@@ -36,13 +36,12 @@ export const state = () => ({
   isHandicapped: null,
 })
 
-export const getters = {}
+export const getters = {
+  isFilled: (state) => false
+}
 
 export const mutations = {
   initState(state, serverState) {
-    // console.log('COUCOU LOL', serverState.firstNames)
-    // state.firstNames = serverState.firstNames;
-    // state = serverState
     state = Object.assign(state, serverState)
   },
 }

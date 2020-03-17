@@ -6,7 +6,7 @@
           <p>{{next}} - {{time}}</p>
           <h2 class="title is-2">{{title}}</h2>
           <p>{{paragraphe}}</p>
-          <a href="#" class="button is-blue is-rounded">{{button}}</a>
+          <nuxt-link to="/identite" class="button is-blue is-rounded">{{button}}</nuxt-link>
         </div>
       </div>
     </div>

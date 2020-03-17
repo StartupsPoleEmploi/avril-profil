@@ -5,9 +5,11 @@ import { parseISODate } from '../utils/time';
 const mapClassification = data => data.label;
 
 const mapApplications = application => ({
-  id: application.id,
-  certificationLabel: application.certification_name,
-  certifierLabel: application.certifier_name,
+  // id: application.id,
+  slug: get(application, 'certification.slug'),
+  certificationLabel: get(application, 'certification.name'),
+  certificationLevel: get(application, 'certification.level'),
+  certifierLabel: get(application, 'delegate.certifier_name'),
   createdAt: parseISODate(application.created_at)
 });
 

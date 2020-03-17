@@ -25,7 +25,7 @@ module.exports = {
     crispWebsiteId: process.env.NUXT_CRISP_WEBSITE_ID,
   },
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Mon espace Avril - la VAE facile',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -65,6 +65,8 @@ module.exports = {
   ** Build configuration
   */
   router: {
+    linkActiveClass: 'is-active',
+    linkExactActiveClass: 'is-active',
     base: process.env.NUXT_PROFIL_PATH,
     // middleware: [
     //   'autosave',
