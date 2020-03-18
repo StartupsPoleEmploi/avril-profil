@@ -52,7 +52,7 @@ export async function fetchOrRedirectToSignIn(path, {req, redirect, store, route
     if (err.code === 'ENOTFOUND' || err.code === 'EAI_AGAIN' || err.code === 'ECONNREFUSED') {
       console.warn('API not available ...')
       const storeName = last(path.split('/'));
-      const fakeURL = `http://localhost:${process.env.PORT || 3000}${process.env.NUXT_PROFIL_PATH}/json/${storeName}.json`;
+      const fakeURL = `http://localhost:${process.env.PORT || 3000}${process.env.NUXT_PROFIL_PATH || ''}/json/${storeName}.json`;
       // Fake API call to static json files
       result = await fetchWithCookie(fakeURL)
     }
