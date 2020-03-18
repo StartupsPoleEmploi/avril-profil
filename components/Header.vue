@@ -1,81 +1,203 @@
 <template>
-  <nav id="navbar-main" class="navbar is-fixed-top">
-  <div class="navbar-brand">
-    <a title="Expand" class="navbar-item is-desktop-icon-only is-hidden-touch">
-      <span class="icon">
-        <i class="mdi mdi-forwardburger mdi-24px"></i>
-      </span>
-    </a>
-    <a class="navbar-item is-hidden-desktop"><span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span></a>
-  </div>
-  <div class="navbar-menu fadeIn animated faster">
-    <div class="navbar-end">
-      <div class="navbar-item has-dropdown has-dropdown-with-icons has-divider has-user-avatar">
-        <a class="navbar-link is-arrowless">
-          <div class="is-user-avatar">
-          </div>
-          <div class="is-user-name"><span>John Doe</span></div>
-          <span class="icon"><i class="mdi mdi-chevron-down default"></i></span>
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            <span class="icon"><i class="mdi mdi-account default"></i></span>
-            <span>My Profile</span>
-          </a>
-          <a class="navbar-item">
-            <span class="icon"><i class="mdi mdi-settings default"></i></span>
-            <span>Settings</span>
-          </a>
-          <a class="navbar-item">
-            <span class="icon"><i class="mdi mdi-email default"></i></span>
-            <span>Messages</span>
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            <span class="icon"><i class="mdi mdi-logout default"></i></span>
-            <span>Log Out</span>
-          </a>
-        </div>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://avril.vae">
+        Avril logo
+      </a>
+
+      <div class="navbar-burger burger" @click="toggle = !toggle" :class="{ 'is-active': toggle }">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-      <div class="navbar-item has-dropdown has-dropdown-with-icons has-divider">
-        <a class="navbar-link is-arrowless">
-          <span class="icon"><i class="mdi mdi-menu default"></i></span>
-          <span>Sample Menu</span>
-          <span class="icon"><i class="mdi mdi-chevron-down default"></i></span>
-        </a>
-        <div class="navbar-dropdown">
-          <a href="#/profile" class="navbar-item">
-            <span class="icon"><i class="mdi mdi-account default"></i></span>
-            <span>My Profile</span>
-          </a>
-          <a class="navbar-item">
-            <span class="icon"><i class="mdi mdi-settings default"></i></span>
-            <span>Settings</span>
-          </a>
-          <a class="navbar-item">
-            <span class="icon"><i class="mdi mdi-email default"></i></span>
-            <span>Messages</span>
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            <span class="icon"><i class="mdi mdi-logout default"></i></span>
-            <span>Log Out</span>
-          </a>
-        </div>
-      </div>
-      <a href="https://justboil.me/bulma-admin-template/one" title="About" class="navbar-item has-divider is-desktop-icon-only">
-        <span class="icon"><i class="mdi mdi-help-circle-outline default"></i></span>
-        <span>About</span>
-      </a>
-      <a title="Updates" class="navbar-item has-divider is-desktop-icon-only">
-        <span class="icon has-update-mark"><i class="mdi mdi-bell default"></i></span>
-        <span>Updates</span>
-      </a>
-      <a title="Log out" class="navbar-item is-desktop-icon-only">
-        <span class="icon"><i class="mdi mdi-logout default"></i></span>
-        <span>Log out</span>
-      </a>
     </div>
-  </div>
-</nav>
+    <div class="navbar-menu" :class="{ 'is-active': toggle }">
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <a href="#">C'est quoi la VAE ?</a>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable is-mega">
+          <div class="navbar-link">
+            Navigation
+          </div>
+          <div id="blogDropdown" class="navbar-dropdown">
+            <div class="container is-fluid">
+              <div class="columns">
+                <div class="column">
+                  <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
+                  <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                    <div class="navbar-content">
+                      <p>
+                        <small class="has-text-info">03 Aug 2017</small>
+                      </p>
+                      <p>New feature: list of tags</p>
+                    </div>
+                  </a>
+                  <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                    <div class="navbar-content">
+                      <p>
+                        <small class="has-text-info">03 Aug 2017</small>
+                      </p>
+                      <p>New feature: list of tags</p>
+                    </div>
+                  </a>
+                  <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                    <div class="navbar-content">
+                      <p>
+                        <small class="has-text-info">03 Aug 2017</small>
+                      </p>
+                      <p>New feature: list of tags</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="column">
+                  <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
+                  <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                    <div class="navbar-content">
+                      <p>
+                        <small class="has-text-info">03 Aug 2017</small>
+                      </p>
+                      <p>New feature: list of tags</p>
+                    </div>
+                  </a>
+                  <a class="navbar-item " href="/documentation/overview/start/">
+                    Overview
+                  </a>
+                  <a class="navbar-item " href="http://bulma.io/documentation/modifiers/syntax/">
+                    Modifiers
+                  </a>
+                  <a class="navbar-item " href="http://bulma.io/documentation/columns/basics/">
+                    Columns
+                  </a>
+                </div>
+                <div class="column">
+                  <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
+                  <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                    <div class="navbar-content">
+                      <p>
+                        <small class="has-text-info">03 Aug 2017</small>
+                      </p>
+                      <p>New feature: list of tags</p>
+                    </div>
+                  </a>
+                  <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                    <div class="navbar-content">
+                      <p>
+                        <small class="has-text-info">03 Aug 2017</small>
+                      </p>
+                      <p>New feature: list of tags</p>
+                    </div>
+                  </a>
+                  <a class="navbar-item" href="/2017/08/03/list-of-tags/">
+                    <div class="navbar-content">
+                      <p>
+                        <small class="has-text-info">03 Aug 2017</small>
+                      </p>
+                      <p>New feature: list of tags</p>
+                    </div>
+                  </a>
+
+                </div>
+                <div class="column">
+                  <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
+                  <a class="navbar-item " href="/documentation/overview/start/">
+                    Overview
+                  </a>
+                  <a class="navbar-item " href="http://bulma.io/documentation/modifiers/syntax/">
+                    Modifiers
+                  </a>
+                  <a class="navbar-item " href="http://bulma.io/documentation/columns/basics/">
+                    Columns
+                  </a>
+                  <a class="navbar-item " href="http://bulma.io/documentation/layout/container/">
+                    Layout
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <hr class="navbar-divider">
+            <div class="navbar-item">
+              <div class="navbar-content">
+                <div class="level is-mobile">
+                  <div class="level-left">
+                    <div class="level-item">
+                      <strong>Stay up to date!</strong>
+                    </div>
+                  </div>
+                  <div class="level-right">
+                    <div class="level-item">
+                      <a class="button bd-is-rss is-small" href="http://bulma.io/atom.xml">
+                        <span class="icon is-small">
+                          <i class="fa fa-rss"></i>
+                        </span>
+                        <span>Subscribe</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link  is-active" href="/documentation/overview/start/">
+            Marcel Delahouse
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item " href="/documentation/overview/start/">
+              Mon profil
+            </a>
+            <a class="navbar-item " href="/documentation/overview/start/">
+              Mes VAE
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item " href="http://bulma.io/documentation/modifiers/syntax/">
+              Déconnexion
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
+
+<script>
+// code example https://codepen.io/hunzaboy/pen/yoPKQW
+export default {
+  data(){
+    return {
+      toggle: true
+    }
+  },
+  mounted() {
+  },
+  methods: {
+    toggleNav() {
+      this.toggle ? this.toggle = false : this.toggle = true;
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+#blogDropdown {
+  min-width: calc(100% - 15rem);
+  margin-left: 15rem;
+}
+.navbar{
+  z-index: auto;
+}
+.navbar-brand {
+  width: 15rem;
+}
+.navbar-item.is-mega {
+  position: static;
+
+  .is-mega-menu-title {
+    margin-bottom: 0;
+    padding: .375rem 1rem;
+  }
+}
+</style>
