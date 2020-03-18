@@ -5,27 +5,29 @@ $gray-bike: #8A8C92; // using by back button
 $blue-avril: #365460; // using by titles
 $gray-avril: #6C787D; // using by text
 
-$white: white;
-$black: #46484e;
-$palette: (
-  default: (
-    background: #f5f9fb,
-    text: #6C787D,
-    title: #18495e,
-  ),
-  blue: (
-    background: #c7eeff,
-    text: #357692,
-    title: #18495e
-  ),
-  green: (
-    background: #d6ffed,
-    text: #69897b,
-    title: #445c51
-  ),
-  yellow: (
-    background: #ffffa5,
-    text: #41413c,
-    title: #41413c
-  )
-);
+// $white: white;
+// $black: #46484e;
+// $palette: (
+//   default: (
+//     background: #f5f9fb,
+//     text: #6C787D,
+//     title: #18495e,
+//   ),
+//   blue: (
+//     background: #c7eeff,
+//     text: #357692,
+//     title: #18495e
+//   ),
+//   green: (
+//     background: #d6ffed,
+//     text: #69897b,
+//     title: #445c51
+//   ),
+//   yellow: (
+//     background: #ffffa5,
+//     text: #41413c,
+//     title: #41413c
+//   )
+// );
+
+@import '~avril/scss/variables';

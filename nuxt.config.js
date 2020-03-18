@@ -65,7 +65,7 @@ module.exports = {
   ** Build configuration
   */
   router: {
-    linkActiveClass: 'is-active',
+    linkActiveClass: 'is-active-parent',
     linkExactActiveClass: 'is-active',
     base: process.env.NUXT_PROFIL_PATH,
     // middleware: [
