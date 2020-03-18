@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BackButton label="Mon espace" to="/" />
+    <BackButton label="Mes candidatures" to="/mes-candidatures" />
     <header class="candidature">
       <div class="level">
 
@@ -27,7 +27,7 @@
   import {
     apiPath,
     fetchOrRedirectToSignIn,
-  } from '../utils/url';
+  } from '~/utils/url';
 
 import BackButton from '~/components/BackButton.vue'
 import CandidatureHeader from '~/components/candidature/Header.vue'

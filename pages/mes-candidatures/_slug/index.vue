@@ -52,7 +52,7 @@
   import {
     apiPath,
     fetchOrRedirectToSignIn,
-  } from '../../utils/url';
+  } from '~/utils/url';
 
   import NextStep from '~/components/candidature/NextStep.vue';
   import Identite from '~/components/candidature/Identite.vue';

@@ -22,7 +22,7 @@
       <p class="menu-label">Mes candidatures</p>
       <ul class="menu-list">
         <li v-for="application in applications">
-          <nuxt-link :to="`/${application.slug}`">
+          <nuxt-link :to="`/mes-candidatures/${application.slug}`">
             {{application.certificationLabel}}
           </nuxt-link>
         </li>

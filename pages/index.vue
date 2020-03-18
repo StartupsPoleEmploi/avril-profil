@@ -1,14 +1,8 @@
 <template>
   <div>
-    <h1 class="title is-1 has-text-centered">Mes VAE</h1>
-    <ul>
-      <li v-for="application in applications" style="margin-bottom: 2rem;">
-        <div class="notification is-primary content">
-          <nuxt-link :to="`/${application.slug}`"><h3 class="title is-3">{{application.certificationLabel}}</h3></nuxt-link>
-          <p>VAE démarrée le {{formatDate(application.createdAt)}}</p>
-        </div>
-      </li>
-    </ul>
+    <h1 class="title is-1 is-spaced">Mon espace VAE</h1>
+    <p class="subtitle">Pour le moment pas grand chose.</p>
+    <nuxt-link to="/mes-candidatures" class="button is-primary is-rounded is-medium">Voir mes {{applications.length}} candidatures</nuxt-link>
   </div>
 </template>
 
