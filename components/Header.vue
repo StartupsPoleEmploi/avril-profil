@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar">
+  <nav class="navbar is-fixed-top">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://avril.vae">
         Avril logo
@@ -187,7 +187,7 @@ export default {
   margin-left: 15rem;
 }
 .navbar{
-  z-index: auto;
+  z-index: 90;
 }
 .navbar-brand {
   width: 15rem;

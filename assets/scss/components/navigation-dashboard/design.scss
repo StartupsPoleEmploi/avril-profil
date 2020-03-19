@@ -3,7 +3,8 @@ aside.dashboard-navigation {
     height: 100vh;
     padding: 0;
     box-shadow: none;
-    background-color: #E8EFF2
+    background-color: #E8EFF2;
+    z-index: 100
 }
 
 aside.dashboard-navigation .header {

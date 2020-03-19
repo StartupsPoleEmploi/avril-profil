@@ -5,7 +5,7 @@
   top: 0;
   left: -$dashboard-navigation-width;
   margin-right: 0;
-  z-index: 40;
+  z-index: 100;
   @include touch {
     left: -$dashboard-navigation-width;
   }

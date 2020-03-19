@@ -7,11 +7,22 @@ $family-serif: ff-tisa-web-pro, serif;
 $text: palette(default, text);
 
 // Bulma colors
-$primary: #0e637e;
-$primary-invert: findColorInvert($primary);
-$colors: ('primary': ($primary, $primary-invert));
+$primary: palette(default, title);
+$primary-invert: palette(blue, background);
+$link: $primary;
+$link-invert: findColorInvert($link);
+$info: palette(blue, background);
+$info-invert: palette(default, title);
+$success: palette(green, background);
+$success-invert: palette(green, title);
+$warning: palette(yellow, background);
+$warning-invert: palette(yellow, title);
+$danger: palette(red, background);
+$danger-invert: palette(red, title);
+$custom-colors: null;
+$colors: mergeColorMaps(("primary": ($primary, $primary-invert), "link": ($link, $link-invert), "info": ($info, $info-invert), "success": ($success, $success-invert), "warning": ($warning, $warning-invert), "danger": ($danger, $danger-invert)), $custom-colors);
 
-$navbar-background-color: 'transparent';
+// $navbar-background-color: 'transparent';
 $navbar-height: 5.25rem;
 $navbar-padding-vertical: 1rem;
 $navbar-padding-horizontal: 2rem;
@@ -20,8 +31,8 @@ $title-family: $family-serif;
 $text-color: palette(default, text);
 $title-color: palette(default, title);
 $scheme-main: palette(default, background);
-$footer-background-color: $white;
-$navbar-background-color: transparent;
+// $footer-background-color: $white;
+// $navbar-background-color: transparent;
 // $navbar-breakpoint: $radius-rounded;
 $radius: 5px;
 

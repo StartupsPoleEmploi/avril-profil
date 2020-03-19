@@ -12,7 +12,7 @@
     </div>
     <div class="level-right">
       <div class="level-item">
-        <img :src="`images/next-step/${illustration}.svg`" alt="Illustration de la prochaine étape" class="illustration">
+        <img :src="`/images/next-step/${illustration}.svg`" alt="Illustration de la prochaine étape" class="illustration">
       </div>
     </div>
   </div>

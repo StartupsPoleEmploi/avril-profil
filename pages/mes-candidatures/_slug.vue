@@ -19,23 +19,27 @@
       </div>
     </header>
 
+    <Message type="is-info"/>
+
     <nuxt-child :application="application"/>
   </div>
 </template>
 
 <script>
-  import {
-    apiPath,
-    fetchOrRedirectToSignIn,
-  } from '~/utils/url';
+import {
+  apiPath,
+  fetchOrRedirectToSignIn,
+} from '~/utils/url';
 
 import BackButton from '~/components/BackButton.vue'
 import CandidatureHeader from '~/components/candidature/Header.vue'
+import Message from '~/components/Message.vue'
 
   export default {
     components: {
       BackButton,
       CandidatureHeader,
+      Message
     },
     computed: {
       application() {
