@@ -14,7 +14,7 @@
           </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/identite">
+          <nuxt-link to="/mon-identite">
             Mon identité
           </nuxt-link>
         </li>

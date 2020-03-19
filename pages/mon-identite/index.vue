@@ -27,10 +27,26 @@
         </div>
       </div>
     </div>
+    <div class="columns">
+      <div class="column is-8 is-offset-4">
+        <div class="field">
+          <!-- <label class="label">Nationalité</label> -->
+          <div class="control">
+            <GeoInput :input="addNationality" :value="profile.nationality" type="country" placeholder="Nationalité" />
+          </div>
+        </div>
+      </div>
+    </div>
     <h3 class="title is-6">Informations optionnelles</h3>
     <div class="columns">
       <div class="column is-4">
-        <input class="input is-large" type="text" name="name" placeholder="Genre">
+        <div class="select is-large" style="width: 100%;">
+          <select style="padding-right: 0; width: 100%;">
+            <option>Genre</option>
+            <option value="m">Masculin</option>
+            <option value="f">Féminin</option>
+          </select>
+        </div>
       </div>
       <div class="column is-8">
         <input class="input is-large" type="text" name="name" placeholder="Nom d'usage">
@@ -70,6 +86,7 @@
       addBirthday: function(date) {
         // this.$store.commit('identity/addBirthday', date);
       },
+      addNationality: function(value) {},
     },
   }
 </script>

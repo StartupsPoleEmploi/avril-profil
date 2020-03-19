@@ -14,8 +14,12 @@ export const actions = {
   async nuxtServerInit({ commit, dispatch }, context) {
     await Promise.all(['profile', 'applications'].map(async storeName => {
       const jsonData = await fetchOrRedirectToSignIn(apiPath(storeName), context)
-      const mappedData = backendToStore[storeName](jsonData.data);
-      commit(`${storeName}/initState`, mappedData);
+      if (jsonData) {
+        const mappedData = backendToStore[storeName](jsonData.data);
+        commit(`${storeName}/initState`, mappedData);
+      } else {
+        console.error('Loading data failed')
+      }
     }))
   },
 };
