@@ -1744,11 +1744,12 @@ autoprefixer@^9.6.1:
 
 avril@StartupsPoleEmploi/avril-shared:
   version "1.0.0"
-  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/8e04ab5989738f5a56bbb7c71beea6fdf8283371"
+  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/6a030f930711940221f7e17daa3ea28539d89372"
   dependencies:
     "@trevoreyre/autocomplete-vue" "^2.1.1"
     algoliasearch "^3.35.1"
     bulma "^0.8.0"
+    date-fns "^2.11.0"
     debounce "^1.2.0"
     vue2-datepicker "^3.4.1"
 

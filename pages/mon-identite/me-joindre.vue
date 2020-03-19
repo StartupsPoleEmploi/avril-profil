@@ -28,7 +28,6 @@
 </template>
 
 <script>
-  import {formatDate} from '~/utils/time.js';
   import PhoneInput from 'avril/js/components/PhoneInput.vue';
 
   export default {
@@ -41,7 +40,6 @@
       },
     },
     methods: {
-      formatDate,
       addEmail: function(value) {},
       addCellPhoneNumber: function(value) {},
       addHomePhoneNumber: function(value) {},

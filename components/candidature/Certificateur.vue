@@ -35,9 +35,6 @@ export default {
       type: Boolean
     },
   },
-  mounted () {
-    console.log(this.isFilled)
-  }
 }
 </script>
 <style scoped lang="scss">

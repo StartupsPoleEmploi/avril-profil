@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import {formatDate} from '~/utils/time.js';
+  import {formatDate} from 'avril/js/utils/time.js';
 
   export default {
     beforeCreate() {

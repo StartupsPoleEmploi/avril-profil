@@ -7,7 +7,7 @@
         <div class="level-left has-text-left">
           <div class="level-item">
             <div>
-              <h1 class="title h1">{{application.certificationLabel}}</h1>
+              <h1 class="title is-2">{{application.certificationLabel}}</h1>
               <div class="label-avril">Équivalence {{application.certificationLevel}}</div>
             </div>
           </div>
@@ -19,15 +19,15 @@
       </div>
     </header>
 
-    <nuxt-child :application="application"/>
+    <nuxt-child :application="application" />
   </div>
 </template>
 
 <script>
-  import {
-    apiPath,
-    fetchOrRedirectToSignIn,
-  } from '~/utils/url';
+  // import {
+  //   apiPath,
+  //   fetchOrRedirectToSignIn,
+  // } from '~/utils/url';
 
 import BackButton from '~/components/BackButton.vue'
 import CandidatureHeader from '~/components/candidature/Header.vue'

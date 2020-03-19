@@ -27,8 +27,6 @@
 </template>
 
 <script>
-  import {formatDate} from '~/utils/time.js';
-
   import BackButton from '~/components/BackButton.vue'
 
   export default {
@@ -39,9 +37,6 @@
     },
     components: {
       BackButton,
-    },
-    methods: {
-      formatDate,
     },
   }
 </script>

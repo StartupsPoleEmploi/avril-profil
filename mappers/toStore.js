@@ -1,6 +1,6 @@
 import get from 'lodash.get';
-import { uuid } from '../utils/string';
-import { parseISODate } from '../utils/time';
+import { uuid } from 'avril/js/utils/string';
+import { parseISODate } from 'avril/js/utils/time';
 
 const mapClassification = data => data.label;
 
@@ -10,7 +10,10 @@ const mapApplications = application => ({
   certificationLabel: get(application, 'certification.name'),
   certificationLevel: get(application, 'certification.level'),
   certifierLabel: get(application, 'delegate.certifier_name'),
-  createdAt: parseISODate(application.created_at)
+  createdAt: parseISODate(application.created_at),
+  delegate: application.delegate || {},
+  bookletData: application.booklet_1,
+  bookletPath: `${process.env.NUXT_PATH}?hash=${application.booklet_hash}`,
 });
 
 export const backendToStore = {

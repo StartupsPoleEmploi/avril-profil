@@ -1,22 +1,6 @@
 import get from 'lodash.get';
-import {isArray} from './boolean';
-import {last} from './array';
-
-export const objectToQueryString = object => Object.keys(object).filter(k => object[k]).map(k => {
-  return `${encodeURIComponent(k)}=${encodeURIComponent(object[k])}`
-}).join('&');
-
-// export const phoenixUrl = (hash, msg) =>
-//   (process.env.clientToPhoenixUrl ? `${process.env.clientToPhoenixUrl}/candidatures?${objectToQueryString({hash, msg})}` : null);
-
-// export const redirectToPhoenix = ({path, redirect}, hash, msg) => {
-//   const phoenixUrlWithParams = phoenixUrl(hash, msg)
-//   if (phoenixUrlWithParams && path !== '/hotjar') {
-//     redirect(phoenixUrlWithParams);
-//   } else {
-//     console.log("Should redirect but env.phoenixUrl not set");
-//   }
-// };
+import {isArray} from 'avril/js/utils/boolean';
+import {last} from 'avril/js/utils/array';
 
 const PATHS = {
   PHOENIX_DOMAIN: 'http://phoenix:4000',

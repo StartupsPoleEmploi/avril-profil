@@ -3,6 +3,8 @@
   position: relative;
   display: inline;
   z-index: 0;
+  font-weight: bold;
+  color: palette(default, title);
   &::after {
     content: "";
     display: block;
