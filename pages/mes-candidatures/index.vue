@@ -1,19 +1,70 @@
 <template>
   <div>
-    <h1 class="title is-1 has-text-centered">Mes VAE</h1>
-    <ul>
-      <li v-for="application in applications" style="margin-bottom: 2rem;">
-        <div class="notification is-primary content">
-          <nuxt-link :to="`/mes-candidatures/${application.slug}`"><h3 class="title is-3">{{application.certificationLabel}}</h3></nuxt-link>
-          <p>VAE démarrée le {{formatDate(application.createdAt)}}</p>
+    <Message type="is-success">
+      <h3 class="title is-4">Renseigner votre identité est obligatoire pour toutes vos candidatures</h3>
+      <button class="button is-success is-inverted is-rounded">Renseigner mon identité</button>
+    </Message>
+
+    <div class="">
+      <div class="candidatures-card">
+        <div class="">
+
+          <div class="level">
+
+            <div class="level-left has-text-left">
+              <div class="level-item">
+                <div>
+                  <nuxt-link :to="`/mes-candidatures/${applications[0].slug}`"><h3 class="title is-3">{{applications[0].certificationLabel}}</h3></nuxt-link>
+                  <div class="label-avril">Équivalence CAP BEP</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="level-right">
+              <span class="tag is-blue">à compléter</span>
+            </div>
+          </div>
+
         </div>
-      </li>
-    </ul>
+        <p>VAE démarrée le {{formatDate(applications[0].createdAt)}}</p>
+      </div>
+    </div>
+
+    <div class="columns is-multiline">
+      <div class="column is-4" v-for="(application, idx) in applications" v-if="idx != 0">
+
+        <div class="candidatures-card">
+          <div class="">
+
+            <div class="level">
+
+              <div class="level-left has-text-left">
+                <div class="level-item">
+                  <div>
+                    <nuxt-link :to="`/mes-candidatures/${applications[0].slug}`"><h3 class="title is-3">{{applications[0].certificationLabel}}</h3></nuxt-link>
+                    <div class="label-avril">Équivalence CAP BEP</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="level-right">
+                <span class="tag is-blue">à compléter</span>
+              </div>
+            </div>
+
+          </div>
+          <p>VAE démarrée le {{formatDate(applications[0].createdAt)}}</p>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
   import {formatDate} from '~/utils/time.js';
+  import Message from '~/components/Message.vue'
 
   export default {
     beforeCreate() {
@@ -27,6 +78,7 @@
       },
     },
     components: {
+      Message
     },
     methods: {
       formatDate,

@@ -1,6 +1,6 @@
 <template>
-  <div class="notification" v-bind:class="type">
-    <button class="delete"></button>
+  <div class="notification" v-bind:class="type" ref="notification">
+    <button class="delete" @click="remove"></button>
     <slot></slot>
   </div>
 </template>
@@ -12,6 +12,11 @@ export default {
       type: String
     },
   },
+  methods: {
+    remove() {
+      this.$refs.notification.remove()
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

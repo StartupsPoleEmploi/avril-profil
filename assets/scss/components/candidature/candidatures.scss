@@ -1,0 +1,31 @@
+.candidatures-card {
+  height: 100%;
+  border-radius: 6px;
+  background: #fff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  border: 1px solid #E1E1E1;
+  position: relative;
+  margin-left: 7px;
+  box-shadow: 6px 6px 6px rgba(#333, 0.14);
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    box-shadow: 10px 10px 16px rgba(#333, 0.08);
+    transform: translate(-5px, -5px);
+  }
+  > * {
+    z-index: 99
+  }
+
+  @include tablet {
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  @include desktop {
+    align-items: flex-start;
+  }
+}
