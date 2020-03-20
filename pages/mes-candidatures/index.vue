@@ -7,7 +7,6 @@
 
     <div class="">
       <div class="candidatures-card">
-        <div class="">
 
           <div class="level">
 
@@ -15,6 +14,8 @@
               <div class="level-item">
                 <div>
                   <nuxt-link :to="`/mes-candidatures/${applications[0].slug}`"><h3 class="title is-3">{{applications[0].certificationLabel}}</h3></nuxt-link>
+                </div>
+                <div>
                   <div class="label-avril">Équivalence CAP BEP</div>
                 </div>
               </div>
@@ -23,27 +24,33 @@
             <div class="level-right">
               <span class="tag is-blue">à compléter</span>
             </div>
+
           </div>
 
-        </div>
-        <p>VAE démarrée le {{formatDate(applications[0].createdAt)}}</p>
+          <p>Candidature démarrée le {{formatDate(applications[0].createdAt)}}</p>
+
+          <nuxt-link :to="`/mes-candidatures/${applications[0].slug}`" class="button is-small edit-button is-rounded">
+            <span class="icon is-small">
+              <IconPencil/>
+            </span>
+            <span>Éditer</span>
+          </nuxt-link>
+
       </div>
     </div>
 
     <div class="columns is-multiline">
       <div class="column is-4" v-for="(application, idx) in applications" v-if="idx != 0">
 
-        <div class="candidatures-card">
+        <div class="candidatures-card small-card">
           <div class="">
 
             <div class="level">
 
               <div class="level-left has-text-left">
                 <div class="level-item">
-                  <div>
-                    <nuxt-link :to="`/mes-candidatures/${applications[0].slug}`"><h3 class="title is-3">{{applications[0].certificationLabel}}</h3></nuxt-link>
-                    <div class="label-avril">Équivalence CAP BEP</div>
-                  </div>
+                  <nuxt-link :to="`/mes-candidatures/${application.slug}`"><h3 class="title is-5">{{application.certificationLabel}}</h3></nuxt-link>
+                  <div class="label-avril">Équivalence CAP BEP</div>
                 </div>
               </div>
 
@@ -53,7 +60,14 @@
             </div>
 
           </div>
-          <p>VAE démarrée le {{formatDate(applications[0].createdAt)}}</p>
+          <p>Candidature démarrée le {{formatDate(application.createdAt)}}</p>
+
+          <nuxt-link :to="`/mes-candidatures/${application.slug}`" class="button is-small edit-button is-rounded">
+            <span class="icon is-small">
+              <IconPencil/>
+            </span>
+            <span>Éditer</span>
+          </nuxt-link>
         </div>
 
       </div>
@@ -65,6 +79,7 @@
 <script>
   import {formatDate} from '~/utils/time.js';
   import Message from '~/components/Message.vue'
+  import IconPencil from '~/components/icons/pencil.svg';
 
   export default {
     beforeCreate() {
@@ -78,10 +93,31 @@
       },
     },
     components: {
-      Message
+      Message,
+      IconPencil
     },
     methods: {
       formatDate,
     },
   }
 </script>
+<style scoped lang="scss">
+.small-card {
+  padding-bottom: 1rem;
+  .level{
+    display: block;
+    &-left, &-right {
+      display: block;
+    }
+  }
+  .tag {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+.edit-button {
+  margin-top: 2rem;
+  margin-left: auto;
+  background: transparent;
+}
+</style>
