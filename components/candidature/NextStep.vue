@@ -1,13 +1,13 @@
 <template>
-  <div class="avril-next-step level is-blue" v-if="title && button">
+  <div class="avril-next-step level notification is-info" v-if="title && button">
     <div class="level-left">
       <div class="level-item">
         <div>
           <p><span>Prochaine étape {{isOptional ? 'conseillée' : ''}}</span><span v-if="time"> - {{time}}</span></p>
           <h2 class="title is-2">{{title}}</h2>
           <p>{{description}}</p>
-          <nuxt-link v-if="to" :to="to(application)" class="button is-blue is-rounded">{{button}}</nuxt-link>
-          <a v-if="href" :href="href(application)" class="button is-blue is-rounded">{{button}}</a>
+          <nuxt-link v-if="to" :to="to(application)" class="button is-info is-inverted is-rounded">{{button}}</nuxt-link>
+          <a v-if="href" :href="href(application)" class="button is-info is-inverted is-rounded">{{button}}</a>
         </div>
       </div>
     </div>

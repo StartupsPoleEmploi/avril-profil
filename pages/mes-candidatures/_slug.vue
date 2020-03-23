@@ -14,7 +14,7 @@
         </div>
 
         <div class="level-right">
-          <span class="tag is-blue">à compléter</span>
+          <span class="tag is-info">à compléter</span>
         </div>
       </div>
     </header>
@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import {
-  apiPath,
-  fetchOrRedirectToSignIn,
-} from '~/utils/url';
+// import {
+//   apiPath,
+//   fetchOrRedirectToSignIn,
+// } from '~/utils/url';
 
 import BackButton from '~/components/BackButton.vue'
 import CandidatureHeader from '~/components/candidature/Header.vue'

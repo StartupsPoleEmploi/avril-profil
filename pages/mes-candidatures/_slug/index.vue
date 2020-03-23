@@ -86,4 +86,12 @@
       padding: 2rem;
     }
   }
+  @media screen and (max-width: 1288px){
+    .columns {
+      display: block;
+    }
+    .has-equal-height {
+      min-height: auto;
+    }
+  }
 </style>

@@ -22,7 +22,7 @@
             </div>
 
             <div class="level-right">
-              <span class="tag is-blue">à compléter</span>
+              <span class="tag is-info">à compléter</span>
             </div>
 
           </div>
@@ -55,7 +55,7 @@
               </div>
 
               <div class="level-right">
-                <span class="tag is-blue">à compléter</span>
+                <span class="tag is-info">à compléter</span>
               </div>
             </div>
 
@@ -77,7 +77,7 @@
 </template>
 
 <script>
-  import {formatDate} from 'avril/utils/time.js';
+  import {formatDate} from 'avril/js/utils/time.js';
   import Message from '~/components/Message.vue'
   import IconPencil from '~/components/icons/pencil.svg';
 
