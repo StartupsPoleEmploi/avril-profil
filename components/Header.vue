@@ -188,13 +188,12 @@ export default {
 
 <style lang="scss" scoped>
   @import '~bulma/sass/utilities/all';
-  .navbar-dropdown {
-    display: none;
-    &.is-active {
-      display: block;
-    }
-    @include mobile {
-
+  @include mobile {
+    .navbar-dropdown {
+      display: none;
+      &.is-active {
+        display: block;
+      }
     }
   }
   #blogDropdown {
