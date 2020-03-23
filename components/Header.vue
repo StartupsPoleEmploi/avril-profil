@@ -11,6 +11,7 @@
         <span></span>
       </div>
     </div>
+
     <div class="navbar-menu" :class="{ 'is-active': toggle }">
 
       <div class="navbar-end">
@@ -18,10 +19,10 @@
           <a href="#">C'est quoi la VAE ?</a>
         </div>
         <div class="navbar-item has-dropdown is-hoverable is-mega">
-          <div class="navbar-link">
+          <div class="navbar-link" @click="isActive.navigation = !isActive.navigation">
             Navigation
           </div>
-          <div id="blogDropdown" class="navbar-dropdown">
+          <div id="blogDropdown" class="navbar-dropdown" :class="{ 'is-active': isActive.navigation }">
             <div class="container is-fluid">
               <div class="columns">
                 <div class="column">
@@ -142,10 +143,10 @@
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link  is-active" href="/documentation/overview/start/">
+          <div class="navbar-link" @click="isActive.profile = !isActive.profile">
             Marcel Delahouse
-          </a>
-          <div class="navbar-dropdown">
+          </div>
+          <div class="navbar-dropdown" :class="{ 'is-active': isActive.profile }">
             <a class="navbar-item " href="/documentation/overview/start/">
               Mon profil
             </a>
@@ -168,7 +169,11 @@
 export default {
   data(){
     return {
-      toggle: true
+      toggle: false,
+      isActive: {
+        navigation: false,
+        profile: false
+      }
     }
   },
   mounted() {
@@ -182,22 +187,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#blogDropdown {
-  min-width: calc(100% - 15rem);
-  margin-left: 15rem;
-}
-.navbar{
-  z-index: 90;
-}
-.navbar-brand {
-  width: 15rem;
-}
-.navbar-item.is-mega {
-  position: static;
+  @import '~bulma/sass/utilities/all';
+  .navbar-dropdown {
+    display: none;
+    &.is-active {
+      display: block;
+    }
+    @include mobile {
 
-  .is-mega-menu-title {
-    margin-bottom: 0;
-    padding: .375rem 1rem;
+    }
   }
-}
+  #blogDropdown {
+    @include desktop {
+      min-width: calc(100% - 15rem);
+      margin-left: 15rem;
+    }
+  }
+  .navbar{
+    z-index: 90;
+  }
+  .navbar-brand {
+    @include desktop {
+      width: 15rem;
+    }
+  }
+  .navbar-item.is-mega {
+    position: static;
+
+    .is-mega-menu-title {
+      margin-bottom: 0;
+      padding: .375rem 1rem;
+    }
+  }
 </style>
