@@ -1,34 +1,32 @@
-import { backendToStore } from '../mappers/toStore';
-
-import { last } from '../utils/array';
-import { apiPath, fetchOrRedirectToSignIn } from '../utils/url';
+import { backendToStore } from '~/mappers/toStore';
+import { hasDelegate } from '~/utils/application';
+import { apiPath, fetchOrRedirectToSignIn } from '~/utils/api';
 
 export const state = () => ({});
 
 export const getters = {
+  nextApplicationStep: (state, getters) => {
+    return (application => {
+      if (!getters['profile/isFilled']) return 'profile';
+      if (!hasDelegate(application)) return 'delegate';
+      if (!hasBooklet(application)) return 'booklet';
+      return 'uploads';
+    })
+  }
 };
 
 export const mutations = {};
 
 export const actions = {
   async nuxtServerInit({ commit, dispatch }, context) {
-    // try {
-      await Promise.all(['profile', 'applications'].map(async storeName => {
-        const jsonData = await fetchOrRedirectToSignIn(apiPath(storeName), context)
+    await Promise.all(['profile', 'applications'].map(async storeName => {
+      const jsonData = await fetchOrRedirectToSignIn(apiPath(storeName), context)
+      if (jsonData) {
         const mappedData = backendToStore[storeName](jsonData.data);
         commit(`${storeName}/initState`, mappedData);
-      }))
-    // } catch(err) {
-    //   if (err.code === 'ENOTFOUND') {
-    //     console.warn('API not available ...')
-    //     await Promise.all(['profile', 'applications'].map(async storeName => {
-    //       const jsonData = await fetchOrRedirectToSignIn(apiPath(storeName), context)
-    //       const mappedData = backendToStore[storeName](jsonData.data);
-    //       commit(`${storeName}/initState`, mappedData);
-    //     }))
-    //   } else {
-    //     console.error(err);
-    //   }
-    // }
+      } else {
+        console.error('Loading data failed')
+      }
+    }))
   },
 };

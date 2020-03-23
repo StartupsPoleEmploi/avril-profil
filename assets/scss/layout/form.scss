@@ -1,0 +1,9 @@
+a, button {
+  &.box {
+    background: white;
+    &.active, &:hover, &:focus {
+      box-shadow: 0 2px 3px rgba($primary, 0.1), 0 0 0 1px $primary;
+      outline: none;
+    }
+  }
+}

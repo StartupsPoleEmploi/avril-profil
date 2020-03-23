@@ -19,9 +19,6 @@ export default {
       type: Boolean
     },
   },
-  mounted () {
-    console.log(this.isLocked)
-  }
 }
 </script>
 <style scoped lang="scss">

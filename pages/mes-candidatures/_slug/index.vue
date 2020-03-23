@@ -2,14 +2,7 @@
   <div class="candidature-detail">
 
     <!-- prochaine étape -->
-    <NextStep
-      next="Prochaine étape conseillée"
-      time="20 à 30 minutes"
-      title="Renseigner mon identité"
-      paragraphe="Elle est obligatoire pour toute demande de recevabilité"
-      illustration="man"
-      button="Renseigner mon identité..."
-    />
+    <NextStep :application="application" />
 
     <div class="candidature-composants">
 
@@ -17,7 +10,7 @@
         <div class="column has-equal-height">
 
           <!-- identité -->
-          <Identite/>
+          <Identite :is-filled="profile.birthdate" />
           <!-- Pour indiquer que l'identité est remplie -->
           <!-- <Identite v-bind:is-filled="true"/> -->
 
@@ -29,7 +22,7 @@
         </div>
         <div class="column has-equal-height">
           <!-- recevabilité -->
-          <Recevabilite/>
+          <Recevabilite :application="application"/>
           <!-- <Recevabilite v-bind:is-filled="true"/> -->
           <!-- justificatifs -->
           <Justificatifs/>
@@ -37,7 +30,7 @@
         </div>
         <div class="column has-equal-height">
           <!-- certificateur -->
-          <Certificateur/>
+          <Certificateur :is-filled="delegate"/>
           <!-- <Certificateur v-bind:is-filled="true"/> -->
         </div>
       </div>
@@ -49,10 +42,6 @@
 </template>
 
 <script>
-  import {
-    apiPath,
-    fetchOrRedirectToSignIn,
-  } from '~/utils/url';
 
   import NextStep from '~/components/candidature/NextStep.vue';
   import Identite from '~/components/candidature/Identite.vue';
@@ -70,8 +59,18 @@
       Justificatifs,
       Certificateur,
     },
+    computed: {
+      profile: function() {
+        return this.$store.state.profile
+      },
+      delegate: function() {
+        console.log(this.application)
+      },
+    },
     props: {
-      application: {}
+      application: {
+        type: Object
+      }
     },
   }
 </script>

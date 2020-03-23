@@ -7,7 +7,7 @@
         <div class="level-left has-text-left">
           <div class="level-item">
             <div>
-              <h1 class="title h1">{{application.certificationLabel}}</h1>
+              <h1 class="title is-2">{{application.certificationLabel}}</h1>
               <div class="label-avril">Équivalence {{application.certificationLevel}}</div>
             </div>
           </div>

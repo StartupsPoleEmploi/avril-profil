@@ -77,7 +77,7 @@
 </template>
 
 <script>
-  import {formatDate} from '~/utils/time.js';
+  import {formatDate} from 'avril/utils/time.js';
   import Message from '~/components/Message.vue'
   import IconPencil from '~/components/icons/pencil.svg';
 
