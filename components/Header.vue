@@ -4,7 +4,6 @@
       <a class="navbar-item" href="https://avril.vae">
         Avril logo
       </a>
-
       <div class="navbar-burger burger" @click="toggle = !toggle" :class="{ 'is-active': toggle }">
         <span></span>
         <span></span>
@@ -15,9 +14,9 @@
     <div class="navbar-menu" :class="{ 'is-active': toggle }">
 
       <div class="navbar-end">
-        <div class="navbar-item">
-          <a href="#">C'est quoi la VAE ?</a>
-        </div>
+
+        <NavItem to="/">C'est quoi la VAE ?</NavItem>
+
         <div class="navbar-item has-dropdown is-hoverable is-mega">
           <div class="navbar-link" @click="isActive.navigation = !isActive.navigation">
             Navigation
@@ -25,100 +24,46 @@
           <div id="blogDropdown" class="navbar-dropdown" :class="{ 'is-active': isActive.navigation }">
             <div class="container is-fluid">
               <div class="columns">
+
                 <div class="column">
-                  <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
-                  <a class="navbar-item" href="/2017/08/03/list-of-tags/">
-                    <div class="navbar-content">
-                      <p>
-                        <small class="has-text-info">03 Aug 2017</small>
-                      </p>
-                      <p>New feature: list of tags</p>
+
+                  <h1 class="title is-6 is-mega-menu-title">Notions essentielles</h1>
+
+                  <div class="columns">
+                    <div class="column">
+                      <NavItem to="/">C'est quoi la VAE ?</NavItem>
+                      <NavItem to="/">Bien choisir son diplôme</NavItem>
+                      <NavItem to="/">Comment financer ma VAE ?</NavItem>
                     </div>
-                  </a>
-                  <a class="navbar-item" href="/2017/08/03/list-of-tags/">
-                    <div class="navbar-content">
-                      <p>
-                        <small class="has-text-info">03 Aug 2017</small>
-                      </p>
-                      <p>New feature: list of tags</p>
+                    <div class="column">
+                      <NavItem to="/">C'est quoi un certificateur ?</NavItem>
+                      <NavItem to="/">Pourquoi une certification ?</NavItem>
+                      <NavItem to="/">Qui sont les points relais conseils ?</NavItem>
                     </div>
-                  </a>
-                  <a class="navbar-item" href="/2017/08/03/list-of-tags/">
-                    <div class="navbar-content">
-                      <p>
-                        <small class="has-text-info">03 Aug 2017</small>
-                      </p>
-                      <p>New feature: list of tags</p>
-                    </div>
-                  </a>
+                  </div>
+
                 </div>
+
                 <div class="column">
-                  <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
-                  <a class="navbar-item" href="/2017/08/03/list-of-tags/">
-                    <div class="navbar-content">
-                      <p>
-                        <small class="has-text-info">03 Aug 2017</small>
-                      </p>
-                      <p>New feature: list of tags</p>
-                    </div>
-                  </a>
-                  <a class="navbar-item " href="/documentation/overview/start/">
-                    Overview
-                  </a>
-                  <a class="navbar-item " href="http://bulma.io/documentation/modifiers/syntax/">
-                    Modifiers
-                  </a>
-                  <a class="navbar-item " href="http://bulma.io/documentation/columns/basics/">
-                    Columns
-                  </a>
-                </div>
-                <div class="column">
-                  <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
-                  <a class="navbar-item" href="/2017/08/03/list-of-tags/">
-                    <div class="navbar-content">
-                      <p>
-                        <small class="has-text-info">03 Aug 2017</small>
-                      </p>
-                      <p>New feature: list of tags</p>
-                    </div>
-                  </a>
-                  <a class="navbar-item" href="/2017/08/03/list-of-tags/">
-                    <div class="navbar-content">
-                      <p>
-                        <small class="has-text-info">03 Aug 2017</small>
-                      </p>
-                      <p>New feature: list of tags</p>
-                    </div>
-                  </a>
-                  <a class="navbar-item" href="/2017/08/03/list-of-tags/">
-                    <div class="navbar-content">
-                      <p>
-                        <small class="has-text-info">03 Aug 2017</small>
-                      </p>
-                      <p>New feature: list of tags</p>
-                    </div>
-                  </a>
+
+                  <h1 class="title is-6 is-mega-menu-title">Autres outils</h1>
+                  <NavItem to="/">Portail de la VAE</NavItem>
+                  <NavItem to="/">France VAE</NavItem>
+                  <NavItem to="/">Défi métiers</NavItem>
 
                 </div>
                 <div class="column">
-                  <h1 class="title is-6 is-mega-menu-title">Sub Menu Title</h1>
-                  <a class="navbar-item " href="/documentation/overview/start/">
-                    Overview
-                  </a>
-                  <a class="navbar-item " href="http://bulma.io/documentation/modifiers/syntax/">
-                    Modifiers
-                  </a>
-                  <a class="navbar-item " href="http://bulma.io/documentation/columns/basics/">
-                    Columns
-                  </a>
-                  <a class="navbar-item " href="http://bulma.io/documentation/layout/container/">
-                    Layout
-                  </a>
+
+                  <h1 class="title is-6 is-mega-menu-title">Aides et support</h1>
+                  <NavItem to="/">Crisp</NavItem>
+                  <NavItem to="/">Nous contacter</NavItem>
+
                 </div>
+
               </div>
             </div>
 
-            <hr class="navbar-divider">
+            <!-- <hr class="navbar-divider">
             <div class="navbar-item">
               <div class="navbar-content">
                 <div class="level is-mobile">
@@ -139,24 +84,19 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
+
         <div class="navbar-item has-dropdown is-hoverable">
           <div class="navbar-link" @click="isActive.profile = !isActive.profile">
             Marcel Delahouse
           </div>
           <div class="navbar-dropdown" :class="{ 'is-active': isActive.profile }">
-            <a class="navbar-item " href="/documentation/overview/start/">
-              Mon profil
-            </a>
-            <a class="navbar-item " href="/documentation/overview/start/">
-              Mes VAE
-            </a>
+            <NavItem to="/">Mon profil</NavItem>
+            <NavItem to="/">Mes candidatures</NavItem>
             <hr class="navbar-divider">
-            <a class="navbar-item " href="http://bulma.io/documentation/modifiers/syntax/">
-              Déconnexion
-            </a>
+            <NavItem to="/logout">Déconnexion</NavItem>
           </div>
         </div>
       </div>
@@ -165,8 +105,15 @@
 </template>
 
 <script>
+import NavItem from '~/components/navigation/NavItem.vue'
+import RichNavItem from '~/components/navigation/RichNavItem.vue'
 // code example https://codepen.io/hunzaboy/pen/yoPKQW
+
 export default {
+  components: {
+    NavItem,
+    RichNavItem
+  },
   data(){
     return {
       toggle: false,
@@ -197,6 +144,7 @@ export default {
     }
   }
   #blogDropdown {
+    padding: 2rem 0;
     @include desktop {
       min-width: calc(100% - 15rem);
       margin-left: 15rem;

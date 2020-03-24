@@ -1,16 +1,11 @@
 
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
-@import url('https://use.typekit.net/zip3jhj.css');
-
 // ########################################################################
 // Variables
 // ########################################################################
-@import '~avril/scss/variables';
-@import 'mixins';
+@import '~avril/scss/mixins';
 
 // ########################################################################
-// Bulma Customize
+// Bulma Customize (Avril variables encapsuled)
 // ########################################################################
 @import 'bulma';
 

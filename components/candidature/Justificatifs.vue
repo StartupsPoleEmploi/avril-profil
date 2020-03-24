@@ -22,7 +22,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-@import '~assets/scss/mixins';
+@import '~avril/scss/mixins';
 @import '~avril/scss/variables';
 
 .help {
