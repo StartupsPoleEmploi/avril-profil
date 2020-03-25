@@ -191,6 +191,9 @@ export default {
       padding: .375rem 1rem;
     }
   }
+  #blogDropdown .card{
+    background: #fff;
+  }
 
   #blogDropdown .has-equal-height .card {
     @include tablet {

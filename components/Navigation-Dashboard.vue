@@ -6,24 +6,20 @@
     </header>
 
     <aside class="menu">
-      <p class="menu-label">{{profile.firstNames}} {{profile.lastName}}</p>
       <ul class="menu-list">
         <li>
-          <nuxt-link to="/">
-            Mon espace
+          <nuxt-link to="/me">
+            Mon compte
           </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/mon-identite">
-            Mon identité
+          <nuxt-link to="/mes-candidatures">
+            Mes candidatures
           </nuxt-link>
         </li>
-      </ul>
-      <p class="menu-label">Mes candidatures</p>
-      <ul class="menu-list">
-        <li v-for="application in applications">
-          <nuxt-link :to="`/mes-candidatures/${application.slug}`">
-            {{application.certificationLabel}}
+        <li>
+          <nuxt-link to="/mes-rendez-vous">
+            Mes rendez-vous
           </nuxt-link>
         </li>
       </ul>
@@ -49,7 +45,21 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '~avril/scss/mixins';
+@import '~avril/scss/variables';
+.menu {
+  margin-top: 3rem;
+  &-list {
+    padding-left: 1rem;
+    line-height: 2.25;
+    a.is-active, a.is-active-parent {
+      font-weight: 600;
+      background: palette(default, background);
+      color: palette(default, text);
+    }
+  }
+}
 .dashboard-navigation-header {
   text-align: center;
   padding-top: 1rem;
