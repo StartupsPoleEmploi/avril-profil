@@ -29,11 +29,8 @@
 
           <p>Candidature démarrée le {{formatDate(applications[0].createdAt)}}</p>
 
-          <nuxt-link :to="`/mes-candidatures/${applications[0].slug}`" class="button is-small edit-button is-rounded">
-            <span class="icon is-small">
-              <IconPencil/>
-            </span>
-            <span>Éditer</span>
+          <nuxt-link :to="`/mes-candidatures/${applications[0].slug}`" class="is-small edit-button is-rounded">
+            <span>Compléter...</span>
           </nuxt-link>
 
       </div>
@@ -62,11 +59,8 @@
           </div>
           <p>Candidature démarrée le {{formatDate(application.createdAt)}}</p>
 
-          <nuxt-link :to="`/mes-candidatures/${application.slug}`" class="button is-small edit-button is-rounded">
-            <span class="icon is-small">
-              <IconPencil/>
-            </span>
-            <span>Éditer</span>
+          <nuxt-link :to="`/mes-candidatures/${application.slug}`" class="is-small edit-button is-rounded">
+            <span>Compléter...</span>
           </nuxt-link>
         </div>
 
@@ -119,5 +113,7 @@
   margin-top: 2rem;
   margin-left: auto;
   background: transparent;
+  display: block;
+  text-decoration: underline;
 }
 </style>
