@@ -3,10 +3,10 @@
     <h3 class="title is-6">Informations obligatoires</h3>
     <div class="columns">
       <div class="column is-4">
-        <input class="input is-large" type="text" name="name" placeholder="Nom" :value="profile.lastName">
+        <input class="input is-large" type="text" name="name" placeholder="Nom" :value="profile.lastName" @input="addLastName">
       </div>
       <div class="column is-8">
-        <input class="input is-large" type="text" name="name" placeholder="Prénoms" :value="profile.firstNames">
+        <input class="input is-large" type="text" name="name" placeholder="Prénoms" :value="profile.firstNames" @input="addFirstNames">
       </div>
     </div>
     <div class="columns">
@@ -41,10 +41,10 @@
     <div class="columns">
       <div class="column is-4">
         <div class="select is-large" style="width: 100%;">
-          <select style="padding-right: 0; width: 100%;">
-            <option>Genre</option>
-            <option value="m">Masculin</option>
-            <option value="f">Féminin</option>
+          <select style="padding-right: 0; width: 100%;" @change="addSex" :value="profile.sex">
+            <option :value="null">Genre</option>
+            <option value="male">Masculin</option>
+            <option value="female">Féminin</option>
           </select>
         </div>
       </div>
@@ -52,7 +52,7 @@
         <input class="input is-large" type="text" name="name" placeholder="Nom d'usage">
       </div>
     </div>
-    <button type="submit" class="button is-primary is-rounded is-medium">Enregistrer</button>
+    <SaveButton store="profile" to="/mon-compte/situation-professionnelle" />
   </div>
 </template>
 
@@ -60,6 +60,7 @@
   import {formatDate} from 'avril/js/utils/time.js';
   import GeoInput from 'avril/js/components/GeoInput.vue';
   import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
+  import SaveButton from '~/components/SaveButton.vue';
 
   export default {
     mixins: [
@@ -67,26 +68,33 @@
     ],
     computed: {
       profile() {
-        return this.$store.state.profile
+        return this.$store.state.profile;
       },
     },
     components: {
       GeoInput,
+      SaveButton,
     },
     methods: {
       formatDate,
+      addFirstNames: function(value) {
+        this.$store.commit('profile/updateState', {firstNames: value})
+      },
+      addLastName: function(value) {
+        this.$store.commit('profile/updateState', {lastName: value})
+      },
       addBirthPlace: function({country_code, ...result}) {
-        // this.$store.commit('identity/addBirthPlace', result)
-        // const nationalityFields = {
-        //   country_code: (this.$store.state.identity.nationality.country_code || country_code).toUpperCase(),
-        //   country: this.$store.state.identity.nationality.country || result.country,
-        // };
-        // this.$store.commit('identity/addNationality', nationalityFields);
+        this.$store.commit('profile/updateState', {birthPlace: result})
       },
       addBirthday: function(date) {
-        // this.$store.commit('identity/addBirthday', date);
+        this.$store.commit('profile/updateState', {birthday: date});
       },
-      addNationality: function(value) {},
+      addNationality: function(value) {
+        this.$store.commit('profile/updateState', {nationality: value});
+      },
+      addSex: function(e) {
+        this.$store.commit('profile/updateState', {sex: e.target.value});
+      },
     },
   }
 </script>

@@ -14,7 +14,7 @@
         <h3 class="title is-6">Je suis actuellement en :</h3>
         <RadioList
           key="statusQuestion"
-          :value="profile.currentSituationStatus"
+          :value="currentSituation.status"
           :options="status"
           :click="addCurrentSituationStatus"
         />
@@ -24,7 +24,7 @@
         <h3 class="title is-6">Avec quel statut ?</h3>
         <RadioList
           key="workingSubQuestion"
-          :value="profile.currentSituationEmploymentType"
+          :value="currentSituation.employmentType"
           :options="employmentType"
           :click="addCurrentSituationEmploymentType"
         />
@@ -33,18 +33,18 @@
         <h3 class="title is-6">Je suis inscrit à Pôle emploi :</h3>
         <RadioList
           key="jobseekingSubQuestion"
-          :value="profile.currentSituationRegisterToPoleEmploi"
+          :value="currentSituation.registerToPoleEmploi"
           :click="addCurrentSituationRegisterToPoleEmploi"
           boolean
           inline
         />
       </div>
-      <div v-if="isJobSeeking && currentSituationRegisterToPoleEmploi">
+      <div v-if="isJobSeeking && currentSituation.registerToPoleEmploi">
         <div class="field">
           <h3 class="title is-6">Depuis le :</h3>
           <div class="control">
             <client-only placeholder="Chargement du calendrier ...">
-              <date-picker :value="profile.currentSituationRegisterToPoleEmploiSince" @input="addCurrentSituationRegisterToPoleEmploiSince" :format="datePickerFormat" :placeholder="defaultPlaceholder" />
+              <date-picker input-class="input is-large" :value="currentSituation.registerToPoleEmploiSince" @input="addCurrentSituationRegisterToPoleEmploiSince" :format="datePickerFormat" :placeholder="defaultPlaceholder" />
             </client-only>
           </div>
         </div>
@@ -52,7 +52,7 @@
           <h3 class="title is-6">Je suis indemnisé :</h3>
           <RadioList
             key="poleEmploiSubQuestion"
-            :value="profile.currentSituationCompensationType"
+            :value="currentSituation.compensationType"
             :click="addCurrentSituationCompensationType"
             :options="compensationType"
           />
@@ -60,61 +60,71 @@
       </div>
       <div class="form-field-action field">
         <div class="control">
-          <button type="submit" class="button is-primary is-rounded is-medium">Enregistrer</button>
+          <SaveButton store="profile" to="/mon-compte/lieu-de-residence" />
         </div>
       </div>
     </div>
-
-
   </div>
 </template>
 
 <script>
   import get from 'lodash.get';
   import RadioList from 'avril/js/components/RadioList.vue';
+  import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
 
   import possibleAnswers from '~/contents/data/currentSituation';
+  import SaveButton from '~/components/SaveButton.vue';
 
   export default {
+    mixins: [
+      withDatePickerMixin,
+    ],
     components: {
       RadioList,
+      SaveButton,
     },
     computed: {
       profile() {
         return this.$store.state.profile
       },
-      currentSituationStatus() {
-        return get(this.$store.state.profile, 'currentSituation.status');
+      currentSituation() {
+        return this.profile.currentSituation
       },
       isWorking() {
-        return this.currentSituationStatus === 'working'
+        return this.currentSituation.status === 'working'
       },
       isJobSeeking() {
-        return this.currentSituationStatus === 'jobseeking'
+        return this.currentSituation.status === 'jobseeking'
       },
     },
     data() {
-      // const {
-      //   status,
-      //   employmentType,
-      //   compensationType,
-      // } = possibleAnswers;
-      // console.log(possibleAnswers)
-      // return {
-      //   status,
-      //   employmentType,
-      //   compensationType,
-      // }
-
-
       return possibleAnswers;
     },
     methods: {
-      addIsHandicapped: function(value){},
-      addCurrentSituationStatus: function(value){},
-      addCurrentSituationEmploymentType: function(value){},
-      addCurrentSituationRegisterToPoleEmploi: function(value){},
-      addCurrentSituationCompensationType: function(value){},
+      addIsHandicapped: function(value){
+        this.$store.commit('profile/updateState', {isHandicapped: value});
+      },
+      addCurrentSituationStatus: function(value){
+        this.$store.commit('profile/updateStateDeep', {currentSituation: {status: value}});
+      },
+      addCurrentSituationEmploymentType: function(value){
+        this.$store.commit('profile/updateStateDeep', {currentSituation: {employmentType: value}});
+      },
+      addCurrentSituationRegisterToPoleEmploi: function(value){
+        this.$store.commit('profile/updateStateDeep', {currentSituation: {registerToPoleEmploi: value}});
+      },
+      addCurrentSituationRegisterToPoleEmploiSince: function(date){
+        this.$store.commit('profile/updateStateDeep', {currentSituation: {registerToPoleEmploiSince: date}});
+      },
+      addCurrentSituationCompensationType: function(value){
+        this.$store.commit('profile/updateStateDeep', {currentSituation: {compensationType: value}});
+      },
     },
   }
 </script>
+
+<style type="text/css">
+  .mx-datepicker {
+    width: 100%;
+  }
+</style>

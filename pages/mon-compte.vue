@@ -3,7 +3,7 @@
     <BackButton label="Mon espace" to="/" />
     <div class="identite">
       <div class="columns">
-        <div class="column is-8">
+        <div class="column is-9">
           <h1 class="title h1 is-spaced">Mon identité</h1>
           <p class="subtitle">
             Tous ces éléments sont indispensables pour lier le diplôme à votre identité. <br />
@@ -12,12 +12,13 @@
         </div>
       </div>
       <div class="columns">
-        <div class="column is-8">
+        <div class="column is-9">
           <div class="tags">
             <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte">Profil</nuxt-link>
             <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte/situation-professionnelle">Situation professionnelle</nuxt-link>
             <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte/lieu-de-residence">Lieu de résidence</nuxt-link>
             <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte/me-joindre">Me joindre</nuxt-link>
+            <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte/mot-de-passe">Mot de passe</nuxt-link>
           </div>
           <nuxt-child />
         </div>

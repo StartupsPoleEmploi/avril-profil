@@ -1,3 +1,7 @@
+import {deepMerge} from 'avril/js/utils/object';
+
+console.log(deepMerge)
+
 export const state = () => ({
   lastName: null,
   usageName: null,
@@ -42,7 +46,16 @@ export const getters = {
 }
 
 export const mutations = {
-  initState(state, serverState) {
-    state = Object.assign(state, serverState)
+  assign(state, newValues) {
+    state = {
+      ...state,
+      ...newValues,
+    }
+  },
+  updateState(state, newState) {
+    Object.assign(state, newState);
+  },
+  updateStateDeep(state, newState) {
+    Object.assign(state, deepMerge(state, newState));
   },
 }

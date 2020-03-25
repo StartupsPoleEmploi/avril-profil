@@ -6,7 +6,7 @@ export const getters = {
 };
 
 export const mutations = {
-  initState(state, serverState) {
+  updateState(state, serverState) {
     serverState.forEach(e => state.push(e));
   },
 };

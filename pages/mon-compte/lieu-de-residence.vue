@@ -7,18 +7,21 @@
           <GeoInput :input="addAddress" :value="profile.address" placeholder="Exemple : 44 rue de dupont, 13000 Marseille" />
         </div>
       </div>
-
-      <button type="submit" class="button is-primary is-rounded is-medium">Enregistrer</button>
+      <div class="field">
+        <SaveButton store="profile" to="/mon-compte/me-joindre" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   import GeoInput from 'avril/js/components/GeoInput.vue';
+  import SaveButton from '~/components/SaveButton.vue';
 
   export default {
     components: {
       GeoInput,
+      SaveButton
     },
     computed: {
       profile() {
@@ -26,7 +29,9 @@
       },
     },
     methods: {
-      addAddress: function(){},
+      addAddress: function(value){
+        this.$store.commit('profile/updateState', {address: value})
+      },
     },
   }
 </script>

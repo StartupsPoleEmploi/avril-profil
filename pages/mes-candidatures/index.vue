@@ -1,15 +1,13 @@
 <template>
   <div>
-    <Message type="is-success">
+    <Message v-if="!hasIdentity" type="is-success">
       <h3 class="title is-4">Renseigner votre identité est obligatoire pour toutes vos candidatures</h3>
       <nuxt-link to="/mon-compte" class="button is-success is-inverted is-rounded">Renseigner mon identité</nuxt-link>
     </Message>
 
     <div class="">
       <div class="candidatures-card">
-
           <div class="level">
-
             <div class="level-left has-text-left">
               <div class="level-item">
                 <div>
@@ -82,8 +80,11 @@
       }
     },
     computed: {
+      hasIdentity() {
+        return this.$store.getters['profile/isFilled'];
+      },
       applications() {
-        return this.$store.state.applications
+        return this.$store.state.applications;
       },
     },
     components: {

@@ -23,7 +23,7 @@ export const actions = {
       const jsonData = await fetchOrRedirectToSignIn(apiPath(storeName), context)
       if (jsonData) {
         const mappedData = backendToStore[storeName](jsonData.data);
-        commit(`${storeName}/initState`, mappedData);
+        commit(`${storeName}/updateState`, mappedData);
       } else {
         console.error('Loading data failed')
       }

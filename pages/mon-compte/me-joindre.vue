@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="field">
-        <button type="submit" class="button is-primary is-rounded is-medium">Enregistrer</button>
+        <SaveButton store="profile" to="/" />
       </div>
     </div>
   </div>
@@ -29,10 +29,12 @@
 
 <script>
   import PhoneInput from 'avril/js/components/PhoneInput.vue';
+  import SaveButton from '~/components/SaveButton.vue';
 
   export default {
     components: {
       PhoneInput,
+      SaveButton,
     },
     computed: {
       profile() {
@@ -40,9 +42,15 @@
       },
     },
     methods: {
-      addEmail: function(value) {},
-      addCellPhoneNumber: function(value) {},
-      addHomePhoneNumber: function(value) {},
+      addEmail: function(value) {
+        this.$store.commit('profile/updateState', {email: value})
+      },
+      addCellPhoneNumber: function(value) {
+        this.$store.commit('profile/updateState', {cellPhoneNumber: value})
+      },
+      addHomePhoneNumber: function(value) {
+        this.$store.commit('profile/updateState', {homePhoneNumber: value})
+      },
     },
   }
 </script>
