@@ -8,7 +8,7 @@
     <aside class="menu">
       <ul class="menu-list">
         <li>
-          <nuxt-link to="/me">
+          <nuxt-link to="/mon-identite">
             Mon compte
           </nuxt-link>
         </li>

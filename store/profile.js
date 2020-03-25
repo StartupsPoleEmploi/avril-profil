@@ -37,7 +37,8 @@ export const state = () => ({
 })
 
 export const getters = {
-  isFilled: (state) => false
+  isFilled: (state) => false,
+  username: ({firstNames, lastName}) => `${firstNames} ${lastName}`,
 }
 
 export const mutations = {

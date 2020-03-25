@@ -15,7 +15,7 @@
 
       <div class="navbar-end">
 
-        <NavItem to="/">C'est quoi la VAE ?</NavItem>
+        <NavItem href="/vae">C'est quoi la VAE ?</NavItem>
 
         <div class="navbar-item has-dropdown is-hoverable is-mega">
           <div class="navbar-link" @click="isActive.navigation = !isActive.navigation">
@@ -26,26 +26,26 @@
               <div class="columns">
                 <div class="column has-equal-height">
                   <article class="card">
-                    <router-link class="card-content" to="/">
+                    <a class="card-content" href="/bien-choisir-son-diplome-vae">
                       <h3 class="title is-5">Bien choisir un diplôme</h3>
                       <p>Parce que le choix doit être une évidence, nous vous donnons des conseils pour un meilleur résultat</p>
-                    </router-link>
+                    </a>
                   </article>
                 </div>
                 <div class="column has-equal-height">
                   <article class="card">
-                    <router-link class="card-content" to="/">
+                    <a class="card-content" to="/financement-vae">
                       <h3 class="title is-5">Financer ma VAE</h3>
                       <p>Parce que le choix doit être une évidence, nous vous donnons des conseils pour un meilleur résultat</p>
-                    </router-link>
+                    </a>
                   </article>
                 </div>
                 <div class="column has-equal-height">
                   <article class="card">
-                    <router-link class="card-content" to="/">
+                    <a class="card-content" to="/">
                       <h3 class="title is-5">Bien choisir son accompagnateur</h3>
                       <p>Parce que le choix doit être une évidence, nous vous donnons des conseils pour un meilleur résultat</p>
-                    </router-link>
+                    </a>
                   </article>
                 </div>
               </div>
@@ -57,29 +57,29 @@
                   <h3 class="title is-6 is-mega-menu-title">Notions essentielles</h3>
                   <div class="columns">
                     <div class="column">
-                      <NavItem to="/">C'est quoi la VAE ?</NavItem>
-                      <NavItem to="/">Bien choisir son diplôme</NavItem>
-                      <NavItem to="/">Comment financer ma VAE ?</NavItem>
+                      <NavItem href="/vae">C'est quoi la VAE ?</NavItem>
+                      <NavItem href="/bien-choisir-son-diplome-vae">Bien choisir son diplôme</NavItem>
+                      <NavItem href="/financement-vae">Comment financer ma VAE ?</NavItem>
                     </div>
                     <div class="column">
-                      <NavItem to="/">C'est quoi un certificateur ?</NavItem>
-                      <NavItem to="/">Pourquoi une certification ?</NavItem>
-                      <NavItem to="/">Qui sont les points relais conseils ?</NavItem>
+                      <NavItem href="/certificateur-vae-definition">C'est quoi un certificateur ?</NavItem>
+                      <NavItem href="/pourquoi-une-certification">Pourquoi une certification ?</NavItem>
+                      <NavItem href="/point-relais-conseil-vae">Qui sont les points relais conseils ?</NavItem>
                     </div>
                   </div>
                 </div>
 
                 <div class="column">
                   <h3 class="title is-6 is-mega-menu-title">Autres outils</h3>
-                  <NavItem to="/">Portail de la VAE</NavItem>
-                  <NavItem to="/">France VAE</NavItem>
-                  <NavItem to="/">Défi métiers</NavItem>
+                  <NavItem href="http://www.vae.gouv.fr">Portail de la VAE</NavItem>
+                  <NavItem href="https://www.francevae.fr">France VAE</NavItem>
+                  <NavItem href="https://www.defi-metiers.fr/dossiers/vae-mode-demploi">Défi métiers</NavItem>
                 </div>
 
                 <div class="column">
                   <h3 class="title is-6 is-mega-menu-title">Aides et support</h3>
                   <NavItem to="/">Crisp</NavItem>
-                  <NavItem to="/">Nous contacter</NavItem>
+                  <NavItem href="/contact">Nous contacter</NavItem>
                 </div>
 
               </div>
@@ -112,13 +112,13 @@
 
         <div class="navbar-item has-dropdown is-hoverable">
           <div class="navbar-link" @click="isActive.profile = !isActive.profile">
-            <span class="tag is-danger is-rounded">1</span> Marcel Delahouse
+            <span class="tag is-danger is-rounded">1</span> {{username}}
           </div>
           <div class="navbar-dropdown" :class="{ 'is-active': isActive.profile }">
-            <NavItem to="/">Mon profil</NavItem>
-            <NavItem to="/"><span class="tag is-danger is-rounded">1</span> Mes candidatures</NavItem>
+            <NavItem to="/mon-identite">Mon compte</NavItem>
+            <NavItem to="/mes-candidatures"><span class="tag is-danger is-rounded">1</span> Mes candidatures</NavItem>
             <hr class="navbar-divider">
-            <NavItem to="/logout">Déconnexion</NavItem>
+            <NavItem href="/sessions">Déconnexion</NavItem>
           </div>
         </div>
       </div>
@@ -135,6 +135,11 @@ export default {
   components: {
     NavItem,
     RichNavItem
+  },
+  computed: {
+    username() {
+      return this.$store.getters['profile/username']
+    },
   },
   data(){
     return {
