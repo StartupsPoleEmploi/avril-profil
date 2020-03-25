@@ -20,12 +20,12 @@ export const apiPath = (routeName, params={}) => {
 }
 
 export async function fetchWithCookie(path, req){
-  const url = `${req ? PATHS.PHOENIX_DOMAIN : ''}${path}`
-  return await fetch(url, req ? ({
+  const url = `${PATHS.PHOENIX_DOMAIN}${path}`
+  return await fetch(url, {
     headers: {
       cookie: req.headers.cookie,
     }
-  }) : {})
+  })
 }
 
 export async function fetchOrRedirectToSignIn(path, {req, redirect, store, route, env}) {
@@ -38,7 +38,7 @@ export async function fetchOrRedirectToSignIn(path, {req, redirect, store, route
       const storeName = last(path.split('/'));
       const fakeURL = `http://localhost:${process.env.PORT || 3000}${process.env.NUXT_PROFIL_PATH || ''}/json/${storeName}.json`;
       // Fake API call to static json files
-      result = await fetchWithCookie(fakeURL)
+      result = await fetch(fakeURL)
     }
   }
 
@@ -48,7 +48,7 @@ export async function fetchOrRedirectToSignIn(path, {req, redirect, store, route
     return jsonData;
   } else {
     if (result.status === 401 && get(jsonData, 'error.redirect_to')) {
-      redirect(get(jsonData, 'error.redirect_to'))
+      return redirect(get(jsonData, 'error.redirect_to'))
     } else {
       console.error('No idea what happened:')
       console.error(result)
