@@ -22,8 +22,8 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-@import '~assets/scss/mixins';
-@import '~assets/scss/variables';
+@import '~avril/scss/mixins';
+@import '~avril/scss/variables';
 
 .help {
   margin-top: auto

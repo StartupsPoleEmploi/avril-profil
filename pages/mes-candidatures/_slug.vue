@@ -14,28 +14,36 @@
         </div>
 
         <div class="level-right">
-          <span class="tag is-blue">à compléter</span>
+          <span class="tag is-info">à compléter</span>
         </div>
       </div>
     </header>
 
-    <nuxt-child :application="application" />
+    <Message type="is-success">
+      <h3 class="title is-4">Nous avons trouvé une réunion d'information près de chez vous</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <button class="button is-success is-inverted is-rounded">Choisir une date</button>
+    </Message>
+
+    <nuxt-child :application="application"/>
   </div>
 </template>
 
 <script>
-  // import {
-  //   apiPath,
-  //   fetchOrRedirectToSignIn,
-  // } from '~/utils/url';
+// import {
+//   apiPath,
+//   fetchOrRedirectToSignIn,
+// } from '~/utils/url';
 
 import BackButton from '~/components/BackButton.vue'
 import CandidatureHeader from '~/components/candidature/Header.vue'
+import Message from '~/components/Message.vue'
 
   export default {
     components: {
       BackButton,
       CandidatureHeader,
+      Message
     },
     computed: {
       application() {

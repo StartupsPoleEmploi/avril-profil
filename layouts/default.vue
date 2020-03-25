@@ -1,8 +1,11 @@
 <template>
-  <div id="profil-avril">
-    <NavigationDashboard />
-    <div class="container avril-container">
-      <nuxt />
+  <div class="">
+    <Header/>
+    <div id="profil-avril">
+      <NavigationDashboard />
+      <div class="container avril-container">
+        <nuxt />
+      </div>
     </div>
   </div>
 </template>
@@ -13,6 +16,7 @@ import Header from '~/components/Header.vue'
 export default {
   components: {
     NavigationDashboard,
+    Header
   }
 }
 </script>

@@ -1,56 +1,8 @@
-
-nav.navbar .navbar-item.has-dropdown .navbar-link {
-  padding-right: 1.125rem;
-  padding-left: 1.125rem
+.navbar-dropdown{
+  border: none;
+  background: #fff;
+  font-size: inherit;
 }
-
-nav.navbar .navbar-item.has-divider {
-  border-right: 1px solid hsla(0,0%,85.9%,.25)
-}
-
-nav.navbar .navbar-item.no-left-space {
-  padding-left: 0
-}
-
-nav.navbar .navbar-item .icon.has-update-mark:after {
-  background-color: #ff3860
-}
-
-// https://bulma.io/documentation/overview/responsiveness/
-@include touch {
-  nav.navbar {
-    padding-right: 0
-  }
-
-  nav.navbar .navbar-menu {
-    width: 100vw;
-    padding-top: 0;
-  }
-
-  nav.navbar .navbar-menu .navbar-item .icon:first-child {
-    margin-right: .75rem
-  }
-
-  nav.navbar .navbar-menu .navbar-item.has-dropdown>.navbar-link {
-    background-color: #f5f5f5
-  }
-
-  nav.navbar .navbar-menu .navbar-item.has-user-avatar>.navbar-link {
-    align-items: center;
-    padding-top: .75rem;
-    padding-bottom: .75rem
-  }
-}
-
-
-@media screen and (min-width: 1024px) {
-  nav.navbar .navbar-item {
-    padding-right:1.125rem;
-    padding-left: 1.125rem
-  }
-
-  nav.navbar .navbar-item:not(.is-desktop-icon-only) .icon:first-child {
-    margin-right: .75rem
-  }
-
+.navbar-burger:hover {
+  background: transparent;
 }
