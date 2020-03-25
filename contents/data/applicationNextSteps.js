@@ -6,7 +6,7 @@ export default {
     title: 'Remplir mon identité',
     description: 'Elle est obligatoire pour toute demande de recevabilité',
     button: 'Renseigner mon identité',
-    to: application => '/mon-identite',
+    to: application => '/mon-compte',
   },
   delegate: {
     illustration: 'man',

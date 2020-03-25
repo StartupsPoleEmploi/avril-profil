@@ -14,10 +14,10 @@
       <div class="columns">
         <div class="column is-8">
           <div class="tags">
-            <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-identite">Profil</nuxt-link>
-            <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-identite/situation-professionnelle">Situation professionnelle</nuxt-link>
-            <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-identite/lieu-de-residence">Lieu de résidence</nuxt-link>
-            <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-identite/me-joindre">Me joindre</nuxt-link>
+            <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte">Profil</nuxt-link>
+            <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte/situation-professionnelle">Situation professionnelle</nuxt-link>
+            <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte/lieu-de-residence">Lieu de résidence</nuxt-link>
+            <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte/me-joindre">Me joindre</nuxt-link>
           </div>
           <nuxt-child />
         </div>

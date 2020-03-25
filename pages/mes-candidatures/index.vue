@@ -2,7 +2,7 @@
   <div>
     <Message type="is-success">
       <h3 class="title is-4">Renseigner votre identité est obligatoire pour toutes vos candidatures</h3>
-      <nuxt-link to="/mon-identite" class="button is-success is-inverted is-rounded">Renseigner mon identité</nuxt-link>
+      <nuxt-link to="/mon-compte" class="button is-success is-inverted is-rounded">Renseigner mon identité</nuxt-link>
     </Message>
 
     <div class="">

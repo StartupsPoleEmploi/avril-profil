@@ -115,7 +115,7 @@
             <span class="tag is-danger is-rounded">1</span> {{username}}
           </div>
           <div class="navbar-dropdown" :class="{ 'is-active': isActive.profile }">
-            <NavItem to="/mon-identite">Mon compte</NavItem>
+            <NavItem to="/mon-compte">Mon compte</NavItem>
             <NavItem to="/mes-candidatures"><span class="tag is-danger is-rounded">1</span> Mes candidatures</NavItem>
             <hr class="navbar-divider">
             <NavItem href="/sessions">Déconnexion</NavItem>
