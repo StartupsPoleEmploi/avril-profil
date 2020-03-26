@@ -1,6 +1,5 @@
+import {isPresent} from 'avril/js/utils/boolean';
 import {deepMerge} from 'avril/js/utils/object';
-
-console.log(deepMerge)
 
 export const state = () => ({
   lastName: null,
@@ -40,18 +39,24 @@ export const state = () => ({
   isHandicapped: null,
 })
 
+const OPTIONAL_FIELDS = [
+  'sex',
+  'usageName',
+  'homePhoneNumber',
+];
+
 export const getters = {
-  isFilled: (state) => false,
+  mandatoryState: state => {
+    const mstate = Object.keys(state).filter(k => !OPTIONAL_FIELDS.includes(k)).reduce((subState, k) => {
+      return Object.assign(subState, {[k]: state[k]})
+    }, {});
+    return mstate;
+  },
+  isFilled: (state, {mandatoryState}) => Object.values(mandatoryState).every(isPresent),
   username: ({firstNames, lastName}) => `${firstNames} ${lastName}`,
 }
 
 export const mutations = {
-  assign(state, newValues) {
-    state = {
-      ...state,
-      ...newValues,
-    }
-  },
   updateState(state, newState) {
     Object.assign(state, newState);
   },

@@ -46,7 +46,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~avril/scss/mixins';
 @import '~avril/scss/variables';
 .menu {
   margin-top: 3rem;

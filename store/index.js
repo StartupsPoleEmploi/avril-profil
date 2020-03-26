@@ -1,5 +1,5 @@
 import { backendToStore } from '~/mappers/toStore';
-import { hasDelegate } from '~/utils/application';
+import { hasDelegate, hasBooklet } from '~/utils/application';
 import { apiPath, fetchOrRedirectToSignIn } from '~/utils/api';
 
 export const state = () => ({});
