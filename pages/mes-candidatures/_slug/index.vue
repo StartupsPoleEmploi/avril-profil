@@ -23,7 +23,7 @@
             href="/synthese-vae"
             hasMultipleLayer
           >
-            <p slot="help">Pour débloquer votre synthèse, vous devez choisir votre <nuxt-link :to="`/candidatures/${application.slug}/mon-certificateur`">certificateur</nuxt-link>.</p>
+            <p slot="help">Pour débloquer votre synthèse, vous devez choisir votre <nuxt-link :to="`/mes-candidatures/${application.slug}/mon-certificateur`">certificateur</nuxt-link>.</p>
           </LockableCard>
         </div>
         <div class="column has-equal-height">
@@ -40,7 +40,7 @@
             :is-locked="!isDocumentsUnlocked"
             title="Mes justificatifs"
             button="Voir la liste"
-            :to="`/applications/${application.slug}/mes-justificatifs`"
+            :to="`/mes-candidatures/${application.slug}/mes-justificatifs`"
           >
             <p slot="help">Pour débloquer les justificatifs, vous devez remplir votre <a :href="application.bookletPath">recevabilité</a>.</p>
           </LockableCard>
@@ -51,7 +51,7 @@
             :is-filled="hasDelegate"
             title="Mon certificateur"
             button="Trouver mon certificateur"
-            :to="`/applications/${application.slug}/mon-certificateur`"
+            :to="`/mes-candidatures/${application.slug}/mon-certificateur`"
           >
             <h3 class="title is-5" style="margin-bottom: 0.5rem;">{{application.delegate.name}}</h3>
             <div class="label-avril" v-if="application.delegate.hasMeetings"><strong>Réunion d'information disponible</strong></div>

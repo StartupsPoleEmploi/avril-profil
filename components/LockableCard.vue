@@ -36,7 +36,6 @@
         return this.$slots['default'];
       },
       isLockable: function() {
-        console.log(this.isLocked);
         return typeof this.isLocked === `boolean`;
       },
       isActuallyFilled: function() {

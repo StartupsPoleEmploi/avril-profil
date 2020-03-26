@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BackButton label="Mes candidatures" to="/mes-candidatures" />
+    <BackButton :label=" isIndex ? 'Mes candidatures' : 'Ma candidature'" :to="`/mes-candidatures/${isIndex ? '' : application.slug}`" />
     <header class="candidature">
       <div class="level">
 
@@ -67,6 +67,9 @@
       meetings: function() {
         return get(this.application, 'delegate.meetings', [])
       },
+      isIndex: function() {
+        return this.$route.fullPath === `/mes-candidatures/${this.application.slug}`;
+      }
     },
     data: function() {
       return {
