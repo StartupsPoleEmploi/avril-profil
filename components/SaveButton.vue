@@ -20,6 +20,8 @@
         this.isSaving = false;
         if (result.ok) {
           this.$router.push(this.to);
+        } else {
+          console.log('Non authorisé');
         }
       },
     },

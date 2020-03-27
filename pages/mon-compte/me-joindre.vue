@@ -42,8 +42,8 @@
       },
     },
     methods: {
-      addEmail: function(value) {
-        this.$store.commit('profile/updateState', {email: value})
+      addEmail: function(e) {
+        this.$store.commit('profile/updateState', {email: e.target.value})
       },
       addCellPhoneNumber: function(value) {
         this.$store.commit('profile/updateState', {cellPhoneNumber: value})

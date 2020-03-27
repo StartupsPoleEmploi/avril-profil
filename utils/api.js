@@ -1,6 +1,8 @@
 import get from 'lodash.get';
 import {isArray} from 'avril/js/utils/boolean';
 import {last} from 'avril/js/utils/array';
+import {objectToQueryString} from 'avril/js/utils/url';
+import {partition} from 'avril/js/utils/object';
 
 const PATHS = {
   PHOENIX_DOMAIN: 'http://phoenix:4000',
@@ -8,15 +10,21 @@ const PATHS = {
   API_PATHS: {
     profile: '/profile',
     applications: '/applications',
-    application: '/applications/:slug'
+    application: '/applications/:slug',
+    delegates: '/applications/:slug/delegates',
   }
 }
 
 export const apiPath = (routeName, params={}) => {
-  const path = Object.keys(params).reduce((route, key) => {
+  const {pathParams, queryParams} = partition(params, (v, k) => {
+    return PATHS.API_PATHS[routeName].indexOf(`:${k}`) > -1 ? 'pathParams' : 'queryParams';
+  })
+  console.log(params)
+  console.log(pathParams, queryParams);
+  const path = Object.keys(pathParams || {}).reduce((route, key) => {
     return route.replace(new RegExp(`:${key}`), params[key])
-  }, PATHS.API_PATHS[routeName])
-  return `${PATHS.API_PREFIX_PATH}${path}`
+  }, PATHS.API_PATHS[routeName] || '')
+  return `${PATHS.API_PREFIX_PATH}${path}?${objectToQueryString(queryParams || {})}`
 }
 
 export async function fetchWithCookie(path, req){

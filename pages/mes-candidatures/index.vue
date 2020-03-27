@@ -74,9 +74,11 @@
   import IconPencil from '~/components/icons/pencil.svg';
 
   export default {
-    beforeCreate() {
-      if (this.$store.state.applications.length == 1) {
-        this.$router.push(`/mes-candidatures/${this.$store.state.applications.first().slug}`);
+    mounted() {
+      if (this.applications.length === 1) {
+        return this.$router.push({
+            path: `/mes-candidatures/${this.applications[0].slug}`
+        })
       }
     },
     computed: {

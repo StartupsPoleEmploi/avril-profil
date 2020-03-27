@@ -5,7 +5,7 @@ import { parseISODate } from 'avril/js/utils/time';
 const mapClassification = data => data.label;
 
 const mapApplications = application => ({
-  // id: application.id,
+  id: application.id,
   slug: get(application, 'certification.slug'),
   certificationLabel: get(application, 'certification.name'),
   certificationLevel: get(application, 'certification.level'),

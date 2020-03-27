@@ -53,7 +53,7 @@ export const getters = {
     return mstate;
   },
   isFilled: (state, {mandatoryState}) => Object.values(mandatoryState).every(isPresent),
-  username: ({firstNames, lastName}) => `${firstNames} ${lastName}`,
+  username: ({firstNames, lastName, email}) => [firstNames, lastName].filter(v => v).join(' ') || email,
 }
 
 export const mutations = {

@@ -77,11 +77,11 @@
     },
     methods: {
       formatDate,
-      addFirstNames: function(value) {
-        this.$store.commit('profile/updateState', {firstNames: value})
+      addFirstNames: function(e) {
+        this.$store.commit('profile/updateState', {firstNames: e.target.value})
       },
-      addLastName: function(value) {
-        this.$store.commit('profile/updateState', {lastName: value})
+      addLastName: function(e) {
+        this.$store.commit('profile/updateState', {lastName: e.target.value})
       },
       addBirthPlace: function({country_code, ...result}) {
         this.$store.commit('profile/updateState', {birthPlace: result})

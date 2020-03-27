@@ -1,62 +1,81 @@
 <template>
-  <div class="candidature-detail">
-    <NextStep :application="application" />
+  <div>
+    <header class="candidature">
+      <div class="level">
 
-    <div class="candidature-composants">
-      <div class="columns">
-        <div class="column has-equal-height">
-          <!-- <Identite :is-filled="isProfileFilled" /> -->
-          <LockableCard
-            :is-filled="isProfileFilled"
-            title="Mon identité"
-            button="Renseigner mon identité"
-            to="/mon-compte"
-          >
-            <p class="has-text-weight-bold">{{profile.firstNames}} {{profile.lastName}}</p>
-            <Address :address="profile.address" />
-          </LockableCard>
-          <!-- <Synthese :is-locked="!isSynthesisUnlocked" /> -->
-          <LockableCard
-            :is-locked="!isSynthesisUnlocked"
-            title="Ma synthèse"
-            button="Télécharger"
-            href="/synthese-vae"
-            hasMultipleLayer
-          >
-            <p slot="help">Pour débloquer votre synthèse, vous devez choisir votre <nuxt-link :to="`/mes-candidatures/${application.slug}/mon-certificateur`">certificateur</nuxt-link>.</p>
-          </LockableCard>
+        <div class="level-left has-text-left">
+          <div class="level-item">
+            <div>
+              <h1 class="title is-2">{{application.certificationLabel}}</h1>
+              <div class="label-avril">Équivalence {{application.certificationLevel}}</div>
+            </div>
+          </div>
         </div>
-        <div class="column has-equal-height">
-          <!-- <Recevabilite :is-filled="hasBookletFinished" :application="application"/> -->
-          <LockableCard
-            :is-filled="hasBookletFinished"
-            title="Ma recevabilité"
-            button="Compléter ma recevabilité"
-            :href="application.bookletPath"
-            hasMultipleLayer
-          />
-          <!-- <Justificatifs :is-locked="!isDocumentsUnlocked"/> -->
-          <LockableCard
-            :is-locked="!isDocumentsUnlocked"
-            title="Mes justificatifs"
-            button="Voir la liste"
-            :to="`/mes-candidatures/${application.slug}/mes-justificatifs`"
-          >
-            <p slot="help">Pour débloquer les justificatifs, vous devez remplir votre <a :href="application.bookletPath">recevabilité</a>.</p>
-          </LockableCard>
+
+        <div class="level-right">
+          <span class="tag is-info">à compléter</span>
         </div>
-        <div class="column has-equal-height">
-          <!-- <Certificateur :is-filled="hasDelegate"/> -->
-          <LockableCard
-            :is-filled="hasDelegate"
-            title="Mon certificateur"
-            button="Trouver mon certificateur"
-            :to="`/mes-candidatures/${application.slug}/mon-certificateur`"
-          >
-            <h3 class="title is-5" style="margin-bottom: 0.5rem;">{{application.delegate.name}}</h3>
-            <div class="label-avril" v-if="application.delegate.hasMeetings"><strong>Réunion d'information disponible</strong></div>
-            <Address :address="delegateAddress" />
-          </LockableCard>
+      </div>
+    </header>
+    <div class="candidature-detail">
+      <NextStep :application="application" />
+
+      <div class="candidature-composants">
+        <div class="columns">
+          <div class="column has-equal-height">
+            <!-- <Identite :is-filled="isProfileFilled" /> -->
+            <LockableCard
+              :is-filled="isProfileFilled"
+              title="Mon identité"
+              button="Renseigner mon identité"
+              to="/mon-compte"
+            >
+              <p class="has-text-weight-bold">{{profile.firstNames}} {{profile.lastName}}</p>
+              <Address :address="profile.address" />
+            </LockableCard>
+            <!-- <Synthese :is-locked="!isSynthesisUnlocked" /> -->
+            <LockableCard
+              :is-locked="!isSynthesisUnlocked"
+              title="Ma synthèse"
+              button="Télécharger"
+              href="/synthese-vae"
+              hasMultipleLayer
+            >
+              <p slot="help">Pour débloquer votre synthèse, vous devez choisir votre <nuxt-link :to="`/mes-candidatures/${application.slug}/mon-certificateur`">certificateur</nuxt-link>.</p>
+            </LockableCard>
+          </div>
+          <div class="column has-equal-height">
+            <!-- <Recevabilite :is-filled="hasBookletFinished" :application="application"/> -->
+            <LockableCard
+              :is-filled="hasBookletFinished"
+              title="Ma recevabilité"
+              button="Compléter ma recevabilité"
+              :href="application.bookletPath"
+              hasMultipleLayer
+            />
+            <!-- <Justificatifs :is-locked="!isDocumentsUnlocked"/> -->
+            <LockableCard
+              :is-locked="!isDocumentsUnlocked"
+              title="Mes justificatifs"
+              button="Voir la liste"
+              :to="`/mes-candidatures/${application.slug}/mes-justificatifs`"
+            >
+              <p slot="help">Pour débloquer les justificatifs, vous devez remplir votre <a :href="application.bookletPath">recevabilité</a>.</p>
+            </LockableCard>
+          </div>
+          <div class="column has-equal-height">
+            <!-- <Certificateur :is-filled="hasDelegate"/> -->
+            <LockableCard
+              :is-filled="hasDelegate"
+              title="Mon certificateur"
+              button="Trouver mon certificateur"
+              :to="`/mes-candidatures/${application.slug}/mon-certificateur`"
+            >
+              <h3 class="title is-5" style="margin-bottom: 0.5rem;">{{application.delegate.name}}</h3>
+              <div class="label-avril" v-if="application.delegate.hasMeetings"><strong>Réunion d'information disponible</strong></div>
+              <Address :address="delegateAddress" />
+            </LockableCard>
+          </div>
         </div>
       </div>
     </div>
@@ -137,5 +156,12 @@
     .has-equal-height {
       min-height: auto;
     }
+  }
+
+  .candidature {
+    margin-bottom: 2rem
+  }
+  .level-item {
+    justify-content: flex-start
   }
 </style>

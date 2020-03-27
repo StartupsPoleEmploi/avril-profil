@@ -1,9 +1,11 @@
-.column {
-  &.has-equal-height {
-    @include tablet {
-      display: flex;
-      flex-direction: column;
-      min-height: 400px;
+.columns {
+  .column {
+    &.has-equal-height {
+      @include tablet {
+        display: flex;
+        flex-direction: column;
+        min-height: 400px;
+      }
     }
   }
 }

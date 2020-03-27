@@ -1,23 +1,11 @@
 <template>
   <div>
-    <BackButton :label=" isIndex ? 'Mes candidatures' : 'Ma candidature'" :to="`/mes-candidatures/${isIndex ? '' : application.slug}`" />
-    <header class="candidature">
-      <div class="level">
-
-        <div class="level-left has-text-left">
-          <div class="level-item">
-            <div>
-              <h1 class="title is-2">{{application.certificationLabel}}</h1>
-              <div class="label-avril">Équivalence {{application.certificationLevel}}</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="level-right">
-          <span class="tag is-info">à compléter</span>
-        </div>
-      </div>
-    </header>
+    <div v-if="isIndex">
+      <BackButton v-if="applications.length > 1" label="Mes candidatures" to="/mes-candidatures" />
+    </div>
+    <div v-else>
+      <BackButton :label="`Ma candidature ${application.certificationLabel}`" :to="`/mes-candidatures/${application.slug}`" />
+    </div>
 
     <Message v-if="meetings.length" type="is-success">
       <div v-if="meetingSelect">
@@ -58,8 +46,11 @@
       Message,
     },
     computed: {
+      applications() {
+        return this.$store.state.applications
+      },
       application() {
-        return this.$store.state.applications.find(a => a.slug === this.$route.params.slug)
+        return this.applications.find(a => a.slug === this.$route.params.slug)
       },
       delegate: function() {
         return get(this.application, 'delegate', {})
@@ -86,11 +77,4 @@
   }
 </script>
 
-<style type="text/css" scoped>
-  .candidature {
-    margin-bottom: 2rem
-  }
-  .level-item {
-    justify-content: flex-start
-  }
-</style>
+
