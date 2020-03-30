@@ -3,14 +3,77 @@ import {isArray} from 'avril/js/utils/boolean';
 import {last} from 'avril/js/utils/array';
 import {objectToQueryString} from 'avril/js/utils/url';
 import {partition} from 'avril/js/utils/object';
+import { createApolloFetch } from 'apollo-fetch';
 
 const PATHS = {
   PHOENIX_DOMAIN: 'http://phoenix:4000',
-  API_PREFIX_PATH: '/api/v1',
+  API_PREFIX_PATH: '/api/v2',
+  API_QUERIES: {
+    profile: `
+      {
+        profile {
+          firstName
+          # usageName
+          lastName
+          email
+          gender
+          phoneNumber
+          # mobilePhone
+          # homePhone
+          birthday
+          # isHandicapped,
+          fullAddress{
+            street
+            city
+            postalCode
+            country
+            # lat
+            # lng
+          }
+          birthPlace{
+            city
+            #  countryCode
+          }
+          # currentSituation{
+          #   status
+          #   employmentType
+          #   registerToPoleEmploi
+          #   registerToPoleEmploiSince
+          #   compensationType
+          # }
+        }
+      }
+    `,
+    applications: `
+      {
+        applications {
+          id
+          # booklet_1
+          bookletHash
+          insertedAt
+          certification {
+            acronym
+            label
+            level
+            slug
+          }
+          delegate {
+            name
+            address
+            personName
+            email
+            telephone
+            certifier {
+              name
+            }
+          }
+        }
+      }
+    `,
+  },
   API_PATHS: {
     profile: '/profile',
     applications: '/applications',
-    application: '/applications/:slug',
     delegates: '/applications/:slug/delegates',
   }
 }
@@ -27,39 +90,43 @@ export const apiPath = (routeName, params={}) => {
   return `${PATHS.API_PREFIX_PATH}${path}?${objectToQueryString(queryParams || {})}`
 }
 
-export async function fetchWithCookie(path, req){
-  const url = `${PATHS.PHOENIX_DOMAIN}${path}`
-  return await fetch(url, {
+export async function fetchWithCookie(query, req){
+  return await fetch(`${PATHS.PHOENIX_DOMAIN}${PATHS.API_PREFIX_PATH}`, {
+    method: 'POST',
     headers: {
+      'Content-Type': 'application/json',
       cookie: req.headers.cookie,
-    }
+    },
+    body: JSON.stringify({
+      query: PATHS.API_QUERIES[query],
+    })
+
   })
 }
 
-export async function fetchOrRedirectToSignIn(path, {req, redirect, store, route, env}) {
+export async function fetchOrRedirectToSignIn(query, {req, redirect, store, route, env}) {
   let result;
   try {
-    result = await fetchWithCookie(path, req)
+    result = await fetchWithCookie(query, req)
   } catch(err) {
     if (err.code === 'ENOTFOUND' || err.code === 'EAI_AGAIN' || err.code === 'ECONNREFUSED') {
       console.warn('API not available ...')
-      const storeName = last(path.split('/'));
-      const fakeURL = `http://localhost:${process.env.PORT || 3000}${process.env.NUXT_PROFIL_PATH || ''}/json/${storeName}.json`;
       // Fake API call to static json files
-      result = await fetch(fakeURL)
+      const fakeURL = `http://localhost:${process.env.PORT || 3000}${process.env.NUXT_PROFIL_PATH || ''}/json/${query}.json`;
+      result = await fetch(fakeURL);
     }
   }
-
   const jsonData = await result.json();
 
   if (result.ok) {
+    console.log(jsonData.data)
     return jsonData;
   } else {
-    if (result.status === 401 && get(jsonData, 'error.redirect_to')) {
+    if (get(jsonData, 'error.code') === 401 && get(jsonData, 'error.redirect_to')) {
       return redirect(get(jsonData, 'error.redirect_to'))
     } else {
-      console.error('No idea what happened:')
-      console.error(result)
+      console.log('Unknown error', jsonData)
     }
   }
+
 }

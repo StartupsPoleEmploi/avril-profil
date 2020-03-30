@@ -4,7 +4,7 @@
       <BackButton v-if="applications.length > 1" label="Mes candidatures" to="/mes-candidatures" />
     </div>
     <div v-else>
-      <BackButton :label="`Ma candidature ${application.certificationLabel}`" :to="`/mes-candidatures/${application.slug}`" />
+      <BackButton :label="`Ma candidature ${application.certification.name}`" :to="`/mes-candidatures/${application.slug}`" />
     </div>
 
     <Message v-if="meetings.length" type="is-success">

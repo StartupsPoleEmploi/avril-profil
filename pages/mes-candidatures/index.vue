@@ -11,7 +11,7 @@
             <div class="level-left has-text-left">
               <div class="level-item">
                 <div>
-                  <nuxt-link :to="`/mes-candidatures/${applications[0].slug}`"><h3 class="title is-3">{{applications[0].certificationLabel}}</h3></nuxt-link>
+                  <nuxt-link :to="`/mes-candidatures/${applications[0].slug}`"><h3 class="title is-3">{{applications[0].certification.name}}</h3></nuxt-link>
                 </div>
                 <div>
                   <div class="label-avril">Équivalence CAP BEP</div>
@@ -44,7 +44,7 @@
 
               <div class="level-left has-text-left">
                 <div class="level-item">
-                  <nuxt-link :to="`/mes-candidatures/${application.slug}`"><h3 class="title is-5">{{application.certificationLabel}}</h3></nuxt-link>
+                  <nuxt-link :to="`/mes-candidatures/${application.slug}`"><h3 class="title is-5">{{application.certification.name}}</h3></nuxt-link>
                   <div class="label-avril">Équivalence CAP BEP</div>
                 </div>
               </div>

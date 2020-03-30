@@ -6,8 +6,8 @@
         <div class="level-left has-text-left">
           <div class="level-item">
             <div>
-              <h1 class="title is-2">{{application.certificationLabel}}</h1>
-              <div class="label-avril">Équivalence {{application.certificationLevel}}</div>
+              <h1 class="title is-2">{{application.certification.name}}</h1>
+              <div class="label-avril">Équivalence {{application.certification.levelLabel}}</div>
             </div>
           </div>
         </div>

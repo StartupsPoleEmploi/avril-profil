@@ -20,12 +20,13 @@ export const mutations = {};
 export const actions = {
   async nuxtServerInit({ commit, dispatch }, context) {
     await Promise.all(['profile', 'applications'].map(async storeName => {
-      const jsonData = await fetchOrRedirectToSignIn(apiPath(storeName), context)
-      if (jsonData) {
-        const mappedData = backendToStore[storeName](jsonData.data);
+      const jsonData = await fetchOrRedirectToSignIn(storeName, context)
+      if (jsonData.data[storeName]) {
+        const mappedData = backendToStore[storeName](jsonData.data[storeName]);
         commit(`${storeName}/updateState`, mappedData);
       } else {
         console.error('Loading data failed')
+        console.error(jsonData)
       }
     }))
   },
