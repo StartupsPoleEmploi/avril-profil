@@ -6,7 +6,7 @@
         <input class="input is-large" type="text" name="name" placeholder="Nom" :value="profile.lastName" @input="addLastName">
       </div>
       <div class="column is-8">
-        <input class="input is-large" type="text" name="name" placeholder="Prénoms" :value="profile.firstNames" @input="addFirstNames">
+        <input class="input is-large" type="text" name="name" placeholder="Prénoms" :value="profile.firstName" @input="addFirstName">
       </div>
     </div>
     <div class="columns">
@@ -43,8 +43,8 @@
         <div class="select is-large" style="width: 100%;">
           <select style="padding-right: 0; width: 100%;" @change="addSex" :value="profile.sex">
             <option :value="null">Genre</option>
-            <option value="male">Masculin</option>
-            <option value="female">Féminin</option>
+            <option value="m">Masculin</option>
+            <option value="f">Féminin</option>
           </select>
         </div>
       </div>
@@ -77,8 +77,8 @@
     },
     methods: {
       formatDate,
-      addFirstNames: function(e) {
-        this.$store.commit('profile/updateState', {firstNames: e.target.value})
+      addFirstName: function(e) {
+        this.$store.commit('profile/updateState', {firstName: e.target.value})
       },
       addLastName: function(e) {
         this.$store.commit('profile/updateState', {lastName: e.target.value})

@@ -24,32 +24,34 @@ const mapApplications = application => ({
 
 export const backendToStore = {
   profile: backendData => ({
-    firstNames: backendData.firstName,
-    lastName: backendData.lastName,
-    usageName: backendData.usageName,
-    email: backendData.email,
+    ...backendData,
+    // firstName: backendData.firstName,
+    // lastName: backendData.lastName,
+    // usageName: backendData.usageName,
+    // email: backendData.email,
     sex: backendData.gender,
-    cellPhoneNumber: backendData.phoneNumber,
-    homePhoneNumber: backendData.home_phone,
+    // cellPhoneNumber: backendData.phoneNumber,
+    // homePhoneNumber: backendData.home_phone,
     birthday: parseISODate(backendData.birthday),
-    isHandicapped: backendData.is_handicapped,
+    // isHandicapped: backendData.isHandicapped,
     currentSituation: {
-      status: get(backendData, 'current_situation.status', null),
-      employmentType: get(backendData, 'current_situation.employment_type', null),
-      registerToPoleEmploi: get(backendData, 'current_situation.register_to_pole_emploi', null),
+      ...backendData.currentSituation,
+      // status: get(backendData, 'current_situation.status', null),
+      // employmentType: get(backendData, 'current_situation.employment_type', null),
+      // registerToPoleEmploi: get(backendData, 'current_situation.register_to_pole_emploi', null),
       registerToPoleEmploiSince: parseISODate(
-        get(backendData, 'current_situation.register_to_pole_emploi_since', null)
+        get(backendData, 'currentSituation.registerToPoleEmploiSince', null)
       ),
-      compensationType: get(backendData, 'current_situation.compensation_type')
+      // compensationType: get(backendData, 'current_situation.compensation_type')
     },
-    birthPlace: {
-      city: get(backendData, 'birth_place.city', null),
-      county: get(backendData, 'birth_place.county', null),
-      country: get(backendData, 'birth_place.country', null),
-      lat: get(backendData, 'birth_place.lat', null),
-      lng: get(backendData, 'birth_place.lng', null),
-    },
-    nationality: Object.assign({}, backendData.nationality),
+    // birthPlace: {
+    //   city: get(backendData, 'birth_place.city', null),
+    //   county: get(backendData, 'birth_place.county', null),
+    //   country: get(backendData, 'birth_place.country', null),
+    //   lat: get(backendData, 'birth_place.lat', null),
+    //   lng: get(backendData, 'birth_place.lng', null),
+    // },
+    // nationality: Object.assign({}, backendData.nationality),
     address: backendData.fullAddress,
   }),
   applications: backendData => backendData.map(mapApplications),

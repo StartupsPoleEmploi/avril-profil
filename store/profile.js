@@ -4,7 +4,7 @@ import {deepMerge} from 'avril/js/utils/object';
 export const state = () => ({
   lastName: null,
   usageName: null,
-  firstNames: null,
+  firstName: null,
   sex: null,
   email: null,
   homePhoneNumber: null,
@@ -53,7 +53,7 @@ export const getters = {
     return mstate;
   },
   isFilled: (state, {mandatoryState}) => Object.values(mandatoryState).every(isPresent),
-  username: ({firstNames, lastName, email}) => [firstNames, lastName].filter(v => v).join(' ') || email,
+  username: ({firstName, lastName, email}) => [firstName, lastName].filter(v => v).join(' ') || email,
 }
 
 export const mutations = {

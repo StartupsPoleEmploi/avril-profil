@@ -5,44 +5,52 @@ import {objectToQueryString} from 'avril/js/utils/url';
 import {partition} from 'avril/js/utils/object';
 import { createApolloFetch } from 'apollo-fetch';
 
+const STORE_TO_QUERY = {
+  profile: 'identity',
+}
+
 const PATHS = {
   PHOENIX_DOMAIN: 'http://phoenix:4000',
   API_PREFIX_PATH: '/api/v2',
   API_QUERIES: {
-    profile: `
+    identity: `
       {
-        profile {
+        identity {
           firstName
-          # usageName
+          usageName
           lastName
           email
           gender
-          phoneNumber
-          # mobilePhone
-          # homePhone
+          mobilePhone
+          homePhone
           birthday
-          # isHandicapped,
+          isHandicapped,
           fullAddress{
             street
             city
             postalCode
             country
-            # lat
-            # lng
+            lat
+            lng
           }
           birthPlace{
             city
-            #  countryCode
+            country
           }
-          # currentSituation{
-          #   status
-          #   employmentType
-          #   registerToPoleEmploi
-          #   registerToPoleEmploiSince
-          #   compensationType
-          # }
+          nationality{
+            country
+            countryCode
+          }
+          currentSituation{
+            status
+            employmentType
+            registerToPoleEmploi
+            registerToPoleEmploiSince
+            compensationType
+          }
         }
       }
+
     `,
     applications: `
       {
@@ -104,7 +112,8 @@ export async function fetchWithCookie(query, req){
   })
 }
 
-export async function fetchOrRedirectToSignIn(query, {req, redirect, store, route, env}) {
+export async function fetchOrRedirectToSignIn(storeName, {req, redirect, store, route, env}) {
+  const query = STORE_TO_QUERY[storeName] || storeName;
   let result;
   try {
     result = await fetchWithCookie(query, req)
@@ -119,8 +128,8 @@ export async function fetchOrRedirectToSignIn(query, {req, redirect, store, rout
   const jsonData = await result.json();
 
   if (result.ok) {
-    console.log(jsonData.data)
-    return jsonData;
+    console.log(jsonData.data[query])
+    return jsonData.data[query];
   } else {
     if (get(jsonData, 'error.code') === 401 && get(jsonData, 'error.redirect_to')) {
       return redirect(get(jsonData, 'error.redirect_to'))
