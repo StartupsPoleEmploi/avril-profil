@@ -6,8 +6,8 @@
         <div class="level-left has-text-left">
           <div class="level-item">
             <div>
-              <h1 class="title is-2">{{application.certification.name}}</h1>
-              <div class="label-avril">Équivalence {{application.certification.levelLabel}}</div>
+              <h1 class="title is-2">{{certificationName}}</h1>
+              <div class="label-avril">Équivalence {{levelLabel}}</div>
             </div>
           </div>
         </div>
@@ -95,6 +95,7 @@
   import LockableCard from '~/components/LockableCard.vue';
 
   import {hasDelegate, hasBookletFinished, bookletPath} from '~/utils/application';
+  import {name, levelToLevelLabel} from '~/utils/certification';
 
   export default {
     components: {
@@ -130,9 +131,14 @@
         return get(this.application, 'delegate.address', {});
       },
       bookletPath: function() {
-        console.log(process.env.NUXT_PATH)
         return bookletPath(this.application);
       },
+      certificationName: function() {
+        return name(this.application.certification);
+      },
+      levelLabel: function() {
+        return levelToLevelLabel(this.application.certification.level);
+      }
     },
     props: {
       application: {

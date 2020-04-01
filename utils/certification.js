@@ -14,3 +14,5 @@ export const levelToLevelLabel = level => {
       return 'Sans Diplôme';
   }
 }
+
+export const name = ({acronym, label}) => `${acronym || ''} ${label}`
