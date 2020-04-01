@@ -10,6 +10,7 @@ export default {
   },
   delegate: {
     illustration: 'man',
+    isOptional: false,
     title: 'Trouver mon certificateur',
     description: 'C\'est celui qui validera votre dossier',
     button: 'Rechercher mon certificateur',
@@ -17,6 +18,7 @@ export default {
   },
   booklet: {
     illustration: 'woman',
+    isOptional: false,
     time: '1 - 2 heures',
     title: 'Remplir ma recevabilité',
     description: 'Etape essentielle de la VAE',

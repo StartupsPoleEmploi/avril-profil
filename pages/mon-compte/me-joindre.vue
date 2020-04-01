@@ -10,14 +10,14 @@
       <div class="field">
         <label class="label">Mon numéro de téléphone mobile</label>
         <div class="control">
-          <PhoneInput :value="identity.cellPhoneNumber" class="input is-large" placeholder="Exemple : 06 12 34 56 78" @input="addCellPhoneNumber" />
+          <PhoneInput :value="identity.mobilePhone" class="input is-large" placeholder="Exemple : 06 12 34 56 78" @input="addMobilePhone" />
         </div>
       </div>
 
       <div class="field">
         <label class="label">Mon numéro de téléphone à domicile</label>
         <div class="control">
-          <PhoneInput :value="identity.homePhoneNumber" class="input is-large" placeholder="Exemple : 01 99 88 77 66" @input="addHomePhoneNumber" />
+          <PhoneInput :value="identity.homePhone" class="input is-large" placeholder="Exemple : 01 99 88 77 66" @input="addHomePhone" />
         </div>
       </div>
       <div class="field">
@@ -45,11 +45,11 @@
       addEmail: function(e) {
         this.$store.commit('identity/updateState', {email: e.target.value})
       },
-      addCellPhoneNumber: function(value) {
-        this.$store.commit('identity/updateState', {cellPhoneNumber: value})
+      addMobilePhone: function(value) {
+        this.$store.commit('identity/updateState', {mobilePhone: value})
       },
-      addHomePhoneNumber: function(value) {
-        this.$store.commit('identity/updateState', {homePhoneNumber: value})
+      addHomePhone: function(value) {
+        this.$store.commit('identity/updateState', {homePhone: value})
       },
     },
   }

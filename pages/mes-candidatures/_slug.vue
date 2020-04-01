@@ -4,7 +4,7 @@
       <BackButton v-if="applications.length > 1" label="Mes candidatures" to="/mes-candidatures" />
     </div>
     <div v-else>
-      <BackButton :label="`Ma candidature ${application.certification.name}`" :to="`/mes-candidatures/${application.slug}`" />
+      <BackButton :label="`Ma candidature ${application.certification.name}`" :to="`/mes-candidatures/${certification.slug}`" />
     </div>
 
     <Message v-if="meetings.length" type="is-success">
@@ -50,7 +50,7 @@
         return this.$store.state.applications
       },
       application() {
-        return this.applications.find(a => a.slug === this.$route.params.slug)
+        return this.applications.find(a => a.certification.slug === this.$route.params.slug)
       },
       delegate: function() {
         return get(this.application, 'delegate', {})
@@ -59,7 +59,7 @@
         return get(this.application, 'delegate.meetings', [])
       },
       isIndex: function() {
-        return this.$route.fullPath === `/mes-candidatures/${this.application.slug}`;
+        return this.$route.fullPath === `/mes-candidatures/${this.application.certification.slug}`;
       }
     },
     data: function() {

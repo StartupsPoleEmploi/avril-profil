@@ -5,10 +5,10 @@ export const state = () => ({
   lastName: null,
   usageName: null,
   firstName: null,
-  sex: null,
+  gender: null,
   email: null,
-  homePhoneNumber: null,
-  cellPhoneNumber: null,
+  homePhone: null,
+  mobilePhone: null,
   birthday: null,
   birthPlace: {
     city: null,
@@ -17,7 +17,7 @@ export const state = () => ({
     lat: null,
     lng: null,
   },
-  address: {
+  fullAddress: {
     street: null,
     city: null,
     postalCode: null,
@@ -40,9 +40,9 @@ export const state = () => ({
 })
 
 const OPTIONAL_FIELDS = [
-  'sex',
+  'gender',
   'usageName',
-  'homePhoneNumber',
+  'homePhone',
 ];
 
 export const getters = {

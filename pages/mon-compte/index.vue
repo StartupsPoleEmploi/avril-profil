@@ -14,7 +14,7 @@
         <div class="field">
           <div class="control">
             <client-only placeholder="Chargement du calendrier ...">
-              <date-picker input-class="input is-large" :value="identity.birthday" @input="addBirthday" :format="datePickerFormat" placeholder="Date de naissance" default-panel="year"/>
+              <date-picker input-class="input is-large" :value="parseISODate(identity.birthday)" @input="addBirthday" :format="datePickerFormat" placeholder="Date de naissance" default-panel="year"/>
             </client-only>
           </div>
         </div>
@@ -41,7 +41,7 @@
     <div class="columns">
       <div class="column is-4">
         <div class="select is-large" style="width: 100%;">
-          <select style="padding-right: 0; width: 100%;" @change="addSex" :value="identity.sex">
+          <select style="padding-right: 0; width: 100%;" @change="addGender" :value="identity.gender">
             <option :value="null">Genre</option>
             <option value="m">Masculin</option>
             <option value="f">Féminin</option>
@@ -57,6 +57,7 @@
 </template>
 
 <script>
+  import { parseISODate, formatISODate } from 'avril/js/utils/time';
   import {formatDate} from 'avril/js/utils/time.js';
   import GeoInput from 'avril/js/components/GeoInput.vue';
   import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
@@ -76,6 +77,7 @@
       SaveButton,
     },
     methods: {
+      parseISODate,
       formatDate,
       addFirstName: function(e) {
         this.$store.commit('identity/updateState', {firstName: e.target.value})
@@ -87,13 +89,13 @@
         this.$store.commit('identity/updateState', {birthPlace: result})
       },
       addBirthday: function(date) {
-        this.$store.commit('identity/updateState', {birthday: date});
+        this.$store.commit('identity/updateState', {birthday: formatISODate(date)});
       },
       addNationality: function(value) {
         this.$store.commit('identity/updateState', {nationality: value});
       },
-      addSex: function(e) {
-        this.$store.commit('identity/updateState', {sex: e.target.value});
+      addGender: function(e) {
+        this.$store.commit('identity/updateState', {gender: e.target.value});
       },
     },
   }

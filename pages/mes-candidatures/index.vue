@@ -11,7 +11,7 @@
             <div class="level-left has-text-left">
               <div class="level-item">
                 <div>
-                  <nuxt-link :to="`/mes-candidatures/${applications[0].slug}`"><h3 class="title is-3">{{applications[0].certification.name}}</h3></nuxt-link>
+                  <nuxt-link :to="`/mes-candidatures/${applications[0].certification.slug}`"><h3 class="title is-3">{{applications[0].certification.name}}</h3></nuxt-link>
                 </div>
                 <div>
                   <div class="label-avril">Équivalence CAP BEP</div>
@@ -27,7 +27,7 @@
 
           <p>Candidature démarrée le {{formatDate(applications[0].createdAt)}}</p>
 
-          <nuxt-link :to="`/mes-candidatures/${applications[0].slug}`" class="is-small edit-button is-rounded">
+          <nuxt-link :to="`/mes-candidatures/${applications[0].certification.slug}`" class="is-small edit-button is-rounded">
             <span>Compléter...</span>
           </nuxt-link>
 
@@ -44,7 +44,7 @@
 
               <div class="level-left has-text-left">
                 <div class="level-item">
-                  <nuxt-link :to="`/mes-candidatures/${application.slug}`"><h3 class="title is-5">{{application.certification.name}}</h3></nuxt-link>
+                  <nuxt-link :to="`/mes-candidatures/${application.certification.slug}`"><h3 class="title is-5">{{application.certification.name}}</h3></nuxt-link>
                   <div class="label-avril">Équivalence CAP BEP</div>
                 </div>
               </div>
@@ -57,7 +57,7 @@
           </div>
           <p>Candidature démarrée le {{formatDate(application.createdAt)}}</p>
 
-          <nuxt-link :to="`/mes-candidatures/${application.slug}`" class="is-small edit-button is-rounded">
+          <nuxt-link :to="`/mes-candidatures/${application.certification.slug}`" class="is-small edit-button is-rounded">
             <span>Compléter...</span>
           </nuxt-link>
         </div>
@@ -77,7 +77,7 @@
     mounted() {
       if (this.applications.length === 1) {
         return this.$router.push({
-            path: `/mes-candidatures/${this.applications[0].slug}`
+            path: `/mes-candidatures/${this.applications[0].certification.slug}`
         })
       }
     },

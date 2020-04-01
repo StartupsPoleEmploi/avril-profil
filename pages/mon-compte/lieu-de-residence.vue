@@ -4,7 +4,7 @@
       <div class="field">
         <label class="label">L'adresse de votre lieu de résidence</label>
         <div class="control">
-          <GeoInput :input="addAddress" :value="identity.address" placeholder="Exemple : 44 rue de dupont, 13000 Marseille" />
+          <GeoInput :input="addFullAddress" :value="identity.fullAddress" placeholder="Exemple : 44 rue de dupont, 13000 Marseille" />
         </div>
       </div>
       <div class="field">
@@ -29,8 +29,8 @@
       },
     },
     methods: {
-      addAddress: function(value){
-        this.$store.commit('identity/updateState', {address: value})
+      addFullAddress: function(value){
+        this.$store.commit('identity/updateState', {fullAddress: value})
       },
     },
   }

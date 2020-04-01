@@ -22,7 +22,7 @@ export const actions = {
     await Promise.all(['identity', 'applications'].map(async storeName => {
       const jsonData = await queryApiOrRedirect(storeName, context)
       if (jsonData) {
-        commit(`${storeName}/updateState`, backendToStore[storeName](jsonData));
+        commit(`${storeName}/updateState`, (jsonData));
       } else {
         console.error('Loading data failed')
         console.error(jsonData)

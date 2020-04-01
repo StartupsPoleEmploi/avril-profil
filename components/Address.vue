@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="address">
     <p v-if="isString">{{address}}</p>
     <div v-else>
       <p>{{address.street}}</p>

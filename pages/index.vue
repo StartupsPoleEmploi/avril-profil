@@ -16,7 +16,7 @@
     mounted() {
       if (this.applications.length === 1) {
         return this.$router.push({
-            path: `/mes-candidatures/${this.applications[0].slug}`
+            path: `/mes-candidatures/${this.applications[0].certification.slug}`
         })
       }
     },

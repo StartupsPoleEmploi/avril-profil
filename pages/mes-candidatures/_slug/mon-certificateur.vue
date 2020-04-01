@@ -23,7 +23,7 @@
   import GeoInput from 'avril/js/components/GeoInput.vue';
   import { chunk } from 'avril/js/utils/array';
   import DelegateCard from '~/components/DelegateCard.vue';
-  import { apiPath } from '~/utils/api';
+  // import { apiPath } from '~/utils/api';
 
   console.log(chunk)
 
@@ -48,8 +48,8 @@
       chunk,
       selectDelegateCity: async function({lat, lng, postalCode}) {
         this.isSearching = true;
-        const result = await fetch(apiPath('delegates', {
-          slug: this.application.slug,
+        const result = await fetch(('delegates', {
+          slug: this.application.certification.slug,
           postal_code: postalCode,
           lat,
           lng,
@@ -61,8 +61,8 @@
         }
       },
       selectDelegate: async function(delegate) {
-        const result = await fetch(apiPath('application', {
-          slug: this.application.slug,
+        const result = await fetch(('application', {
+          slug: this.application.certification.slug,
         }), {
           method: 'PUT',
           data: {

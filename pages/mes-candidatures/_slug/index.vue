@@ -23,15 +23,15 @@
       <div class="candidature-composants">
         <div class="columns">
           <div class="column has-equal-height">
-            <!-- <Identite :is-filled="isProfileFilled" /> -->
+            <!-- <Identite :is-filled="isIdentityFilled" /> -->
             <LockableCard
-              :is-filled="isProfileFilled"
+              :is-filled="isIdentityFilled"
               title="Mon identité"
               button="Renseigner mon identité"
               to="/mon-compte"
             >
-              <p class="has-text-weight-bold">{{identity.firstNames}} {{identity.lastName}}</p>
-              <Address :address="identity.address" />
+              <p class="has-text-weight-bold">{{identity.firstName}} {{identity.lastName}}</p>
+              <Address :address="identity.fullAddress" />
             </LockableCard>
             <!-- <Synthese :is-locked="!isSynthesisUnlocked" /> -->
             <LockableCard
@@ -41,7 +41,7 @@
               href="/synthese-vae"
               hasMultipleLayer
             >
-              <p slot="help">Pour débloquer votre synthèse, vous devez choisir votre <nuxt-link :to="`/mes-candidatures/${application.slug}/mon-certificateur`">certificateur</nuxt-link>.</p>
+              <p slot="help">Pour débloquer votre synthèse, vous devez choisir votre <nuxt-link :to="`/mes-candidatures/${application.certification.slug}/mon-certificateur`">certificateur</nuxt-link>.</p>
             </LockableCard>
           </div>
           <div class="column has-equal-height">
@@ -50,7 +50,7 @@
               :is-filled="hasBookletFinished"
               title="Ma recevabilité"
               button="Compléter ma recevabilité"
-              :href="application.bookletPath"
+              :href="bookletPath"
               hasMultipleLayer
             />
             <!-- <Justificatifs :is-locked="!isDocumentsUnlocked"/> -->
@@ -58,9 +58,9 @@
               :is-locked="!isDocumentsUnlocked"
               title="Mes justificatifs"
               button="Voir la liste"
-              :to="`/mes-candidatures/${application.slug}/mes-justificatifs`"
+              :to="`/mes-candidatures/${application.certification.slug}/mes-justificatifs`"
             >
-              <p slot="help">Pour débloquer les justificatifs, vous devez remplir votre <a :href="application.bookletPath">recevabilité</a>.</p>
+              <p slot="help">Pour débloquer les justificatifs, vous devez remplir votre <a :href="bookletPath">recevabilité</a>.</p>
             </LockableCard>
           </div>
           <div class="column has-equal-height">
@@ -69,7 +69,7 @@
               :is-filled="hasDelegate"
               title="Mon certificateur"
               button="Trouver mon certificateur"
-              :to="`/mes-candidatures/${application.slug}/mon-certificateur`"
+              :to="`/mes-candidatures/${application.certification.slug}/mon-certificateur`"
             >
               <h3 class="title is-5" style="margin-bottom: 0.5rem;">{{application.delegate.name}}</h3>
               <div class="label-avril" v-if="application.delegate.hasMeetings"><strong>Réunion d'information disponible</strong></div>
@@ -94,7 +94,7 @@
   import Address from '~/components/Address.vue';
   import LockableCard from '~/components/LockableCard.vue';
 
-  import {hasDelegate, hasBookletFinished} from '~/utils/application';
+  import {hasDelegate, hasBookletFinished, bookletPath} from '~/utils/application';
 
   export default {
     components: {
@@ -118,7 +118,7 @@
         return hasDelegate(this.application);
       },
       isSynthesisUnlocked: function() {
-        return this.isProfileFilled && this.hasDelegate;
+        return this.isIdentityFilled && this.hasDelegate;
       },
       hasBookletFinished: function() {
         return hasBookletFinished(this.application)
@@ -128,6 +128,10 @@
       },
       delegateAddress: function() {
         return get(this.application, 'delegate.address', {});
+      },
+      bookletPath: function() {
+        console.log(process.env.NUXT_PATH)
+        return bookletPath(this.application);
       },
     },
     props: {
