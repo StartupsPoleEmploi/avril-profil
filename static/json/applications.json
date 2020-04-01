@@ -1,1 +1,27 @@
-{"data":[{"certification":{"level":"CAP / BEP","name":"CAP Boulanger","slug":"cap-boulanger"},"created_at":"2020-03-12T11:13:43","delegate":null},{"certification":{"level":"Bac +2 / DUT / BTS","name":"TP Développeur logiciel","slug":"tp-developpeur-logiciel"},"created_at":"2020-03-05T17:40:49","delegate":null},{"certification":{"level":"CAP / BEP","name":"CAP Accompagnant éducatif petite enfance (ex CAP Petite enfance)","slug":"cap-accompagnant-educatif-petite-enfance-ex-cap-petite-enfance"},"created_at":"2020-03-04T10:24:25","delegate":null},{"certification":{"level":"CAP / BEP","name":"CAP Chaussure","slug":"cap-chaussure"},"created_at":"2020-03-03T09:21:33","delegate":{"address":"18 rue du 14 Juillet  31100 Toulouse","certifier_name":"Ministère de l'Education Nationale","name":"DAVA Toulouse"}}],"status":"ok"}
+{
+  "data": {
+    "applications": [
+      {
+        "bookletHash": "U70oNccME4sy-4E-khGdvwl1XtnZ2MqQKttjgcJGr4x6mDJVxCpWrFU-NzBaYkfQ",
+        "certification": {
+          "acronym": "CAP",
+          "label": "Chaussure",
+          "level": "5",
+          "slug": "cap-chaussure"
+        },
+        "delegate": {
+          "address": "18 rue du 14 Juillet  31100 Toulouse",
+          "certifier": {
+            "name": "Ministère de l'Education Nationale"
+          },
+          "email": "31dava@ac-toulouse.fr",
+          "name": "DAVA Toulouse",
+          "personName": "Mon conseiller VAE",
+          "telephone": "0531083960"
+        },
+        "id": "21461",
+        "insertedAt": "2020-03-03T09:21:33"
+      }
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 import { backendToStore } from '~/mappers/toStore';
 import { hasDelegate, hasBooklet } from '~/utils/application';
-import { apiPath, fetchOrRedirectToSignIn } from '~/utils/api';
+import { queryApiOrRedirect } from '~/utils/api';
 
 export const state = () => ({});
 
@@ -20,7 +20,7 @@ export const mutations = {};
 export const actions = {
   async nuxtServerInit({ commit, dispatch }, context) {
     await Promise.all(['identity', 'applications'].map(async storeName => {
-      const jsonData = await fetchOrRedirectToSignIn(storeName, context)
+      const jsonData = await queryApiOrRedirect(storeName, context)
       if (jsonData) {
         commit(`${storeName}/updateState`, backendToStore[storeName](jsonData));
       } else {

@@ -1,0 +1,38 @@
+{
+  "data": {
+    "identity": {
+      "birthPlace": {
+        "city": "Orléans",
+        "country": "France"
+      },
+      "birthday": "1987-02-11",
+      "currentSituation": {
+        "compensationType": null,
+        "employmentType": "independant",
+        "registerToPoleEmploi": null,
+        "registerToPoleEmploiSince": null,
+        "status": "working"
+      },
+      "email": "augustin.riedinger@gmail.com",
+      "firstName": "Augustin",
+      "fullAddress": {
+        "city": "Toulouse",
+        "country": "France",
+        "lat": null,
+        "lng": null,
+        "postalCode": "31000",
+        "street": "11 boulevard Jules Michelet"
+      },
+      "gender": "m",
+      "homePhone": null,
+      "isHandicapped": false,
+      "lastName": "Riedinger",
+      "mobilePhone": "06 18 42 67 07",
+      "nationality": {
+        "country": "France",
+        "countryCode": "FR"
+      },
+      "usageName": null
+    }
+  }
+}
