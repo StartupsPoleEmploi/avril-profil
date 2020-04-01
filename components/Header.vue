@@ -138,7 +138,7 @@ export default {
   },
   computed: {
     username() {
-      return this.$store.getters['profile/username']
+      return this.$store.getters['identity/username']
     },
   },
   data(){

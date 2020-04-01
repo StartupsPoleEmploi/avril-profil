@@ -34,14 +34,6 @@ export default {
   components: {
     AvrilLogo,
   },
-  computed: {
-    applications() {
-      return this.$store.state.applications
-    },
-    profile() {
-      return this.$store.state.profile
-    },
-  },
 }
 </script>
 

@@ -3,11 +3,6 @@ import {isArray} from 'avril/js/utils/boolean';
 import {last} from 'avril/js/utils/array';
 import {objectToQueryString} from 'avril/js/utils/url';
 import {partition} from 'avril/js/utils/object';
-import { createApolloFetch } from 'apollo-fetch';
-
-const STORE_TO_QUERY = {
-  profile: 'identity',
-}
 
 const PATHS = {
   PHOENIX_DOMAIN: 'http://phoenix:4000',
@@ -50,7 +45,6 @@ const PATHS = {
           }
         }
       }
-
     `,
     applications: `
       {
@@ -78,24 +72,35 @@ const PATHS = {
         }
       }
     `,
+    delegates: `
+      query ($applicationId: ID!, $geo: GeoInput!, $postalCode: String!) {
+        delegateSearch(applicationId: $applicationId, geo: $geo, postalCode: $postalCode) {
+          name
+          address
+          email
+          personName
+          telephone
+          certifier {
+            name
+          }
+        }
+      }
+    `,
   },
+  // API_MUTATIONS: {
+  //   identity: `
+  //     mutation UpdateIdentity($input: IdentityInput!) {
+  //     updateIdentity(input: $input) {
+  //       ${PATHS.API_QUERIES.identity}
+  //     }
+  //   }
+  //   `,
+  // },
   API_PATHS: {
-    profile: '/profile',
+    identity: '/identity',
     applications: '/applications',
     delegates: '/applications/:slug/delegates',
   }
-}
-
-export const apiPath = (routeName, params={}) => {
-  const {pathParams, queryParams} = partition(params, (v, k) => {
-    return PATHS.API_PATHS[routeName].indexOf(`:${k}`) > -1 ? 'pathParams' : 'queryParams';
-  })
-  console.log(params)
-  console.log(pathParams, queryParams);
-  const path = Object.keys(pathParams || {}).reduce((route, key) => {
-    return route.replace(new RegExp(`:${key}`), params[key])
-  }, PATHS.API_PATHS[routeName] || '')
-  return `${PATHS.API_PREFIX_PATH}${path}?${objectToQueryString(queryParams || {})}`
 }
 
 export async function fetchWithCookie(query, req){
@@ -113,7 +118,7 @@ export async function fetchWithCookie(query, req){
 }
 
 export async function fetchOrRedirectToSignIn(storeName, {req, redirect, store, route, env}) {
-  const query = STORE_TO_QUERY[storeName] || storeName;
+  const query = storeName;
   let result;
   try {
     result = await fetchWithCookie(query, req)

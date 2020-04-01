@@ -30,8 +30,8 @@
               button="Renseigner mon identité"
               to="/mon-compte"
             >
-              <p class="has-text-weight-bold">{{profile.firstNames}} {{profile.lastName}}</p>
-              <Address :address="profile.address" />
+              <p class="has-text-weight-bold">{{identity.firstNames}} {{identity.lastName}}</p>
+              <Address :address="identity.address" />
             </LockableCard>
             <!-- <Synthese :is-locked="!isSynthesisUnlocked" /> -->
             <LockableCard
@@ -108,11 +108,11 @@
       LockableCard,
     },
     computed: {
-      profile: function() {
-        return this.$store.state.profile;
+      identity: function() {
+        return this.$store.state.identity;
       },
-      isProfileFilled: function() {
-        return this.$store.getters['profile/isFilled'];
+      isIdentityFilled: function() {
+        return this.$store.getters['identity/isFilled'];
       },
       hasDelegate: function() {
         return hasDelegate(this.application);

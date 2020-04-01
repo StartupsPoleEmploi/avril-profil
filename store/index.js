@@ -7,7 +7,7 @@ export const state = () => ({});
 export const getters = {
   nextApplicationStep: (state, getters) => {
     return (application => {
-      if (!getters['profile/isFilled']) return 'profile';
+      if (!getters['identity/isFilled']) return 'identity';
       if (!hasDelegate(application)) return 'delegate';
       if (!hasBooklet(application)) return 'booklet';
       return 'uploads';
@@ -19,7 +19,7 @@ export const mutations = {};
 
 export const actions = {
   async nuxtServerInit({ commit, dispatch }, context) {
-    await Promise.all(['profile', 'applications'].map(async storeName => {
+    await Promise.all(['identity', 'applications'].map(async storeName => {
       const jsonData = await fetchOrRedirectToSignIn(storeName, context)
       if (jsonData) {
         commit(`${storeName}/updateState`, backendToStore[storeName](jsonData));

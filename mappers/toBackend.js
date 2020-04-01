@@ -11,7 +11,7 @@ export const storeToBackend = {
     certification_name: state.certificationLabel,
     certifier_name: state.certifierLabel
   }),
-  profile: state => ({
+  identity: state => ({
     first_name: state.firstNames,
     last_name: state.lastName,
     usage_name: state.usageName,

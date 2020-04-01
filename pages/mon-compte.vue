@@ -31,11 +31,6 @@
   import BackButton from '~/components/BackButton.vue'
 
   export default {
-    computed: {
-      profile() {
-        return this.$store.state.profile
-      },
-    },
     components: {
       BackButton,
     },

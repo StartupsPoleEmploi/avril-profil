@@ -23,7 +23,7 @@ const mapApplications = application => ({
 });
 
 export const backendToStore = {
-  profile: backendData => ({
+  identity: backendData => ({
     ...backendData,
     // firstName: backendData.firstName,
     // lastName: backendData.lastName,

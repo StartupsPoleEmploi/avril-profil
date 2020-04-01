@@ -1,5 +1,5 @@
 export default {
-  profile: {
+  identity: {
     illustration: 'man',
     isOptional: true,
     time: '20 - 30 minutes',

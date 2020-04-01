@@ -83,7 +83,7 @@
     },
     computed: {
       hasIdentity() {
-        return this.$store.getters['profile/isFilled'];
+        return this.$store.getters['identity/isFilled'];
       },
       applications() {
         return this.$store.state.applications;

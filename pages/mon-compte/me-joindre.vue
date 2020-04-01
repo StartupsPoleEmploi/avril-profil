@@ -4,24 +4,24 @@
       <div class="field">
         <label class="label">Mon email</label>
         <div class="control">
-          <input :value="profile.email" class="input is-large" type="email" placeholder="Exemple : avril@pole-emploi.fr" @input="addEmail">
+          <input :value="identity.email" class="input is-large" type="email" placeholder="Exemple : avril@pole-emploi.fr" @input="addEmail">
         </div>
       </div>
       <div class="field">
         <label class="label">Mon numéro de téléphone mobile</label>
         <div class="control">
-          <PhoneInput :value="profile.cellPhoneNumber" class="input is-large" placeholder="Exemple : 06 12 34 56 78" @input="addCellPhoneNumber" />
+          <PhoneInput :value="identity.cellPhoneNumber" class="input is-large" placeholder="Exemple : 06 12 34 56 78" @input="addCellPhoneNumber" />
         </div>
       </div>
 
       <div class="field">
         <label class="label">Mon numéro de téléphone à domicile</label>
         <div class="control">
-          <PhoneInput :value="profile.homePhoneNumber" class="input is-large" placeholder="Exemple : 01 99 88 77 66" @input="addHomePhoneNumber" />
+          <PhoneInput :value="identity.homePhoneNumber" class="input is-large" placeholder="Exemple : 01 99 88 77 66" @input="addHomePhoneNumber" />
         </div>
       </div>
       <div class="field">
-        <SaveButton store="profile" to="/" />
+        <SaveButton store="identity" to="/" />
       </div>
     </div>
   </div>
@@ -37,19 +37,19 @@
       SaveButton,
     },
     computed: {
-      profile() {
-        return this.$store.state.profile
+      identity() {
+        return this.$store.state.identity
       },
     },
     methods: {
       addEmail: function(e) {
-        this.$store.commit('profile/updateState', {email: e.target.value})
+        this.$store.commit('identity/updateState', {email: e.target.value})
       },
       addCellPhoneNumber: function(value) {
-        this.$store.commit('profile/updateState', {cellPhoneNumber: value})
+        this.$store.commit('identity/updateState', {cellPhoneNumber: value})
       },
       addHomePhoneNumber: function(value) {
-        this.$store.commit('profile/updateState', {homePhoneNumber: value})
+        this.$store.commit('identity/updateState', {homePhoneNumber: value})
       },
     },
   }

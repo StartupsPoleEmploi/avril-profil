@@ -4,7 +4,7 @@
       <div class="field">
         <h3 class="title is-6">Je suis reconnu travailleur handicapé :</h3>
         <RadioList
-          :value="profile.isHandicapped"
+          :value="identity.isHandicapped"
           :click="addIsHandicapped"
           boolean
           inline
@@ -60,7 +60,7 @@
       </div>
       <div class="form-field-action field">
         <div class="control">
-          <SaveButton store="profile" to="/mon-compte/lieu-de-residence" />
+          <SaveButton store="identity" to="/mon-compte/lieu-de-residence" />
         </div>
       </div>
     </div>
@@ -84,11 +84,11 @@
       SaveButton,
     },
     computed: {
-      profile() {
-        return this.$store.state.profile
+      identity() {
+        return this.$store.state.identity
       },
       currentSituation() {
-        return this.profile.currentSituation
+        return this.identity.currentSituation
       },
       isWorking() {
         return this.currentSituation.status === 'working'
@@ -102,22 +102,22 @@
     },
     methods: {
       addIsHandicapped: function(value){
-        this.$store.commit('profile/updateState', {isHandicapped: value});
+        this.$store.commit('identity/updateState', {isHandicapped: value});
       },
       addCurrentSituationStatus: function(value){
-        this.$store.commit('profile/updateStateDeep', {currentSituation: {status: value}});
+        this.$store.commit('identity/updateStateDeep', {currentSituation: {status: value}});
       },
       addCurrentSituationEmploymentType: function(value){
-        this.$store.commit('profile/updateStateDeep', {currentSituation: {employmentType: value}});
+        this.$store.commit('identity/updateStateDeep', {currentSituation: {employmentType: value}});
       },
       addCurrentSituationRegisterToPoleEmploi: function(value){
-        this.$store.commit('profile/updateStateDeep', {currentSituation: {registerToPoleEmploi: value}});
+        this.$store.commit('identity/updateStateDeep', {currentSituation: {registerToPoleEmploi: value}});
       },
       addCurrentSituationRegisterToPoleEmploiSince: function(date){
-        this.$store.commit('profile/updateStateDeep', {currentSituation: {registerToPoleEmploiSince: date}});
+        this.$store.commit('identity/updateStateDeep', {currentSituation: {registerToPoleEmploiSince: date}});
       },
       addCurrentSituationCompensationType: function(value){
-        this.$store.commit('profile/updateStateDeep', {currentSituation: {compensationType: value}});
+        this.$store.commit('identity/updateStateDeep', {currentSituation: {compensationType: value}});
       },
     },
   }
