@@ -110,11 +110,14 @@
 
         <div class="navbar-item has-dropdown is-hoverable">
           <div class="navbar-link" @click="isActive.profile = !isActive.profile">
-            <span class="tag is-danger is-rounded">1</span> {{username}}
+            <span class="tag is-danger is-rounded" v-if="unfinishedApplicationsLength">{{unfinishedApplicationsLength}}</span> {{username}}
           </div>
           <div class="navbar-dropdown" :class="{ 'is-active': isActive.profile }">
             <NavItem to="/mon-compte">Mon compte</NavItem>
-            <NavItem to="/mes-candidatures"><span class="tag is-danger is-rounded">1</span> Mes candidatures</NavItem>
+            <NavItem to="/mes-candidatures">
+              <span class="tag is-danger is-rounded" v-if="unfinishedApplicationsLength">{{unfinishedApplicationsLength}}</span>
+              Mes candidatures
+            </NavItem>
             <hr class="navbar-divider">
             <NavItem href="/sessions">Déconnexion</NavItem>
           </div>
@@ -138,7 +141,10 @@
     },
     computed: {
       username() {
-        return this.$store.getters['identity/username']
+        return this.$store.getters['identity/username'];
+      },
+      unfinishedApplicationsLength() {
+        return this.$store.getters['applications/unfinishedApplications'].length;
       },
     },
     data(){
@@ -146,15 +152,13 @@
         toggle: false,
         isActive: {
           navigation: false,
-          profile: false
+          profile: false,
         }
       }
     },
-    mounted() {
-    },
     methods: {
       toggleNav() {
-        this.toggle ? this.toggle = false : this.toggle = true;
+        this.toggle = !this.toggle;
       }
     }
   }
@@ -162,6 +166,7 @@
 
 <style lang="scss" scoped>
   @import '~bulma/sass/utilities/all';
+
   @include mobile {
     .navbar-dropdown {
       display: none;
@@ -170,14 +175,7 @@
       }
     }
   }
-  #blogDropdown {
-    padding: 2rem 0;
-    @include desktop {
-      min-width: calc(100% - 15rem);
-      margin-left: 15rem;
-    }
-  }
-  .navbar{
+  .navbar {
     z-index: 90;
     &-link .tag{
       margin-right: 10px
@@ -188,42 +186,50 @@
       width: 15rem;
     }
   }
-  .navbar-item.is-mega {
-    position: static;
+  .navbar-item {
+    &.is-mega {
+      position: static;
 
-    .is-mega-menu-title {
-      margin-bottom: 0;
-      padding: .375rem 1rem;
-    }
-  }
-  #blogDropdown .card{
-    background: #fff;
-  }
-
-  #blogDropdown .has-equal-height .card {
-    @include tablet {
-      display: flex;
-      flex-direction: column;
-      min-height: 200px;
-    }
-  }
-  #blogDropdown > .container > .columns{
-    padding-bottom: 2rem;
-  }
-  #blogDropdown .column {
-    @include tablet {
-      display: flex;
-      flex-direction: column;
-      min-height: auto;
+      .is-mega-menu-title {
+        margin-bottom: 0;
+        padding: .375rem 1rem;
+      }
     }
   }
 
-  @media screen and (max-width: 1288px){
-    #blogDropdown .columns {
-      display: block;
+  #blogDropdown {
+    padding: 2rem 0;
+    @include desktop {
+      min-width: calc(100% - 15rem);
+      margin-left: 15rem;
     }
-    #blogDropdown .has-equal-height .card {
-      min-height: auto;
+
+    .card{
+      background: #fff;
+    }
+
+    .has-equal-height .card {
+      @include tablet {
+        display: flex;
+        flex-direction: column;
+        min-height: 200px;
+        @media screen and (max-width: 1288px){
+          min-height: auto;
+        }
+      }
+    }
+    & > .container > .columns{
+      padding-bottom: 2rem;
+      @media screen and (max-width: 1288px){
+        display: block;
+      }
+    }
+    .column {
+      @include tablet {
+        display: flex;
+        flex-direction: column;
+        min-height: auto;
+      }
     }
   }
 </style>

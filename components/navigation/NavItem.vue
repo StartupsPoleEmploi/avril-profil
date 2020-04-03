@@ -9,10 +9,10 @@
   </div>
 </template>
 <script>
-export default {
-  props: {
-    to: {},
-    href: {},
-  },
-}
+  export default {
+    props: {
+      to: {},
+      href: {},
+    },
+  }
 </script>

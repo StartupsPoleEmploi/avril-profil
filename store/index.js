@@ -1,5 +1,5 @@
 import { backendToStore } from '~/mappers/toStore';
-import { hasDelegate, hasBooklet } from '~/utils/application';
+import { nextStep } from '~/utils/application';
 import { queryApiOrRedirect } from '~/utils/api';
 
 export const state = () => ({});
@@ -8,9 +8,7 @@ export const getters = {
   nextApplicationStep: (state, getters) => {
     return (application => {
       if (!getters['identity/isFilled']) return 'identity';
-      if (!hasDelegate(application)) return 'delegate';
-      if (!hasBooklet(application)) return 'booklet';
-      return 'uploads';
+      return nextStep(application);
     })
   }
 };
