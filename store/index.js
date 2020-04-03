@@ -23,9 +23,7 @@ export const actions = {
       try {
         const jsonData = await queryApiOrRedirect(storeName, context);
         console.log('nuxtServerInit jsonData', jsonData)
-        if (jsonData) {
-          commit(`${storeName}/updateState`, (jsonData));
-        } else {
+        commit(`${storeName}/updateState`, (jsonData));
       } catch(jsonErr) {
         console.error('Loading data failed')
         console.error(jsonErr)
