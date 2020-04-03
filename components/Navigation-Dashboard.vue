@@ -2,7 +2,7 @@
   <aside class="dashboard-navigation">
 
     <header class="dashboard-navigation-header">
-      <a href="/"><AvrilLogo/></a>
+      <AvrilLogo/>
     </header>
 
     <aside class="menu">
@@ -28,7 +28,7 @@
   </aside>
 </template>
 <script>
-import AvrilLogo from '~/assets/images/avril-logo.svg';
+import AvrilLogo from '~/components/navigation/AvrilLogo';
 
 export default {
   components: {
@@ -53,7 +53,5 @@ export default {
 }
 .dashboard-navigation-header {
   text-align: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 </style>

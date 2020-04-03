@@ -1,9 +1,7 @@
 <template>
   <nav class="navbar is-fixed-top">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://avril.vae">
-        Avril logo
-      </a>
+      <AvrilLogo/>
       <div class="navbar-burger burger" @click="toggle = !toggle" :class="{ 'is-active': toggle }">
         <span></span>
         <span></span>
@@ -127,37 +125,39 @@
 </template>
 
 <script>
-import NavItem from '~/components/navigation/NavItem.vue'
-import RichNavItem from '~/components/navigation/RichNavItem.vue'
-// code example https://codepen.io/hunzaboy/pen/yoPKQW
+  import AvrilLogo from '~/components/navigation/AvrilLogo';
+  import NavItem from '~/components/navigation/NavItem.vue'
+  import RichNavItem from '~/components/navigation/RichNavItem.vue'
+  // code example https://codepen.io/hunzaboy/pen/yoPKQW
 
-export default {
-  components: {
-    NavItem,
-    RichNavItem
-  },
-  computed: {
-    username() {
-      return this.$store.getters['identity/username']
+  export default {
+    components: {
+      AvrilLogo,
+      NavItem,
+      RichNavItem,
     },
-  },
-  data(){
-    return {
-      toggle: false,
-      isActive: {
-        navigation: false,
-        profile: false
+    computed: {
+      username() {
+        return this.$store.getters['identity/username']
+      },
+    },
+    data(){
+      return {
+        toggle: false,
+        isActive: {
+          navigation: false,
+          profile: false
+        }
+      }
+    },
+    mounted() {
+    },
+    methods: {
+      toggleNav() {
+        this.toggle ? this.toggle = false : this.toggle = true;
       }
     }
-  },
-  mounted() {
-  },
-  methods: {
-    toggleNav() {
-      this.toggle ? this.toggle = false : this.toggle = true;
-    }
   }
-}
 </script>
 
 <style lang="scss" scoped>
