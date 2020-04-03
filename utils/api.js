@@ -5,7 +5,7 @@ import {singularize, capitalize} from 'avril/js/utils/string';
 import {objectToQueryString} from 'avril/js/utils/url';
 import {partition} from 'avril/js/utils/object';
 
-import shapes from '~/constants/apiShapes';
+import shapes from '../constants/apiShapes';
 
 const isDev = process.env.NODE_ENV !== 'production';
 
