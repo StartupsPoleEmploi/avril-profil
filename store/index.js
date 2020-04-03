@@ -18,8 +18,8 @@ export const getters = {
 export const mutations = {};
 
 export const actions = {
-  async nuxtServerInit({ commit, dispatch }, context) {
-    await Promise.all(['identity', 'applications'].map(async storeName => {
+  async nuxtServerInit({ commit }, context) {
+    return await Promise.all(['identity', 'applications'].map(async storeName => {
       try {
         const jsonData = await queryApiOrRedirect(storeName, context);
         console.log('nuxtServerInit jsonData', jsonData)
