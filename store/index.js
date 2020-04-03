@@ -20,7 +20,8 @@ export const mutations = {};
 export const actions = {
   async nuxtServerInit({ commit, dispatch }, context) {
     await Promise.all(['identity', 'applications'].map(async storeName => {
-      const jsonData = await queryApiOrRedirect(storeName, context)
+      const jsonData = await queryApiOrRedirect(storeName, context);
+      console.log('nuxtServerInit jsonData', jsonData)
       if (jsonData) {
         commit(`${storeName}/updateState`, (jsonData));
       } else {
