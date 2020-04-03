@@ -9,8 +9,15 @@ import shapes from '../constants/apiShapes';
 
 const isDev = process.env.NODE_ENV !== 'production';
 
+let fetcher;
+if (process.client) {
+  fetcher = window.fetch;
+} else {
+  fetcher = require('node-fetch');
+}
+
 export const fetchApi = async (graphQLQuery, optionalContext) => {
-  const result = await fetch(`${get(optionalContext, 'env.serverToPhoenixUrl', '')}/api/v2`, {
+  const result = await fetcher(`${get(optionalContext, 'env.serverToPhoenixUrl', '')}/api/v2`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
