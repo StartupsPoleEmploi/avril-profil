@@ -20,13 +20,15 @@ export const mutations = {};
 export const actions = {
   async nuxtServerInit({ commit, dispatch }, context) {
     await Promise.all(['identity', 'applications'].map(async storeName => {
-      const jsonData = await queryApiOrRedirect(storeName, context);
-      console.log('nuxtServerInit jsonData', jsonData)
-      if (jsonData) {
-        commit(`${storeName}/updateState`, (jsonData));
-      } else {
+      try {
+        const jsonData = await queryApiOrRedirect(storeName, context);
+        console.log('nuxtServerInit jsonData', jsonData)
+        if (jsonData) {
+          commit(`${storeName}/updateState`, (jsonData));
+        } else {
+      } catch(jsonErr) {
         console.error('Loading data failed')
-        console.error(jsonData)
+        console.error(jsonErr)
       }
     }))
   },
