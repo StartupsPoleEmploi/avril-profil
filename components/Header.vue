@@ -15,6 +15,7 @@
 
       <div class="navbar-end">
 
+        <NavItem to="/">Ajouter le menu de la sidebar dans la version mobile</NavItem>
         <NavItem to="/">C'est quoi la VAE ?</NavItem>
 
         <div class="navbar-item has-dropdown is-hoverable is-mega">
