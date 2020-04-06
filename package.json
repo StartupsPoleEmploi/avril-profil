@@ -15,6 +15,7 @@
     "@nuxtjs/google-analytics": "^2.2.2",
     "@nuxtjs/markdownit": "^1.2.7",
     "@nuxtjs/sentry": "^3.0.1",
+    "apollo-fetch": "^0.7.0",
     "avril": "StartupsPoleEmploi/avril-shared",
     "buefy": "^0.8.11",
     "bulma": "^0.8.0",

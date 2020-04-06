@@ -3,10 +3,10 @@
     <h3 class="title is-6">Informations obligatoires</h3>
     <div class="columns">
       <div class="column is-4">
-        <input class="input is-large" type="text" name="name" placeholder="Nom" :value="profile.lastName">
+        <input class="input is-large" type="text" name="name" placeholder="Nom" :value="identity.lastName" @input="addLastName">
       </div>
       <div class="column is-8">
-        <input class="input is-large" type="text" name="name" placeholder="Prénoms" :value="profile.firstNames">
+        <input class="input is-large" type="text" name="name" placeholder="Prénoms" :value="identity.firstName" @input="addFirstName">
       </div>
     </div>
     <div class="columns">
@@ -14,7 +14,7 @@
         <div class="field">
           <div class="control">
             <client-only placeholder="Chargement du calendrier ...">
-              <date-picker input-class="input is-large" :value="profile.birthday" @input="addBirthday" :format="datePickerFormat" placeholder="Date de naissance" default-panel="year"/>
+              <date-picker input-class="input is-large" :value="parseISODate(identity.birthday)" @input="addBirthday" :format="datePickerFormat" placeholder="Date de naissance" default-panel="year"/>
             </client-only>
           </div>
         </div>
@@ -22,7 +22,7 @@
       <div class="column is-8">
         <div class="field">
           <div class="control">
-            <GeoInput :input="addBirthPlace" :value="profile.birthPlace" type="city" placeholder="Lieu de naissance" />
+            <GeoInput :input="addBirthPlace" :value="identity.birthPlace" type="city" placeholder="Lieu de naissance" />
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
         <div class="field">
           <!-- <label class="label">Nationalité</label> -->
           <div class="control">
-            <GeoInput :input="addNationality" :value="profile.nationality" type="country" placeholder="Nationalité" />
+            <GeoInput :input="addNationality" :value="identity.nationality" type="country" placeholder="Nationalité" />
           </div>
         </div>
       </div>
@@ -41,8 +41,8 @@
     <div class="columns">
       <div class="column is-4">
         <div class="select is-large" style="width: 100%;">
-          <select style="padding-right: 0; width: 100%;">
-            <option>Genre</option>
+          <select style="padding-right: 0; width: 100%;" @change="addGender" :value="identity.gender">
+            <option :value="null">Genre</option>
             <option value="m">Masculin</option>
             <option value="f">Féminin</option>
           </select>
@@ -52,41 +52,51 @@
         <input class="input is-large" type="text" name="name" placeholder="Nom d'usage">
       </div>
     </div>
-    <button type="submit" class="button is-primary is-rounded is-medium">Enregistrer</button>
+    <SaveButton store="identity" to="/mon-compte/situation-professionnelle" />
   </div>
 </template>
 
 <script>
+  import { parseISODate, formatISODate } from 'avril/js/utils/time';
   import {formatDate} from 'avril/js/utils/time.js';
   import GeoInput from 'avril/js/components/GeoInput.vue';
   import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
+  import SaveButton from '~/components/SaveButton.vue';
 
   export default {
     mixins: [
       withDatePickerMixin,
     ],
     computed: {
-      profile() {
-        return this.$store.state.profile
+      identity() {
+        return this.$store.state.identity;
       },
     },
     components: {
       GeoInput,
+      SaveButton,
     },
     methods: {
+      parseISODate,
       formatDate,
+      addFirstName: function(e) {
+        this.$store.commit('identity/updateState', {firstName: e.target.value})
+      },
+      addLastName: function(e) {
+        this.$store.commit('identity/updateState', {lastName: e.target.value})
+      },
       addBirthPlace: function({country_code, ...result}) {
-        // this.$store.commit('identity/addBirthPlace', result)
-        // const nationalityFields = {
-        //   country_code: (this.$store.state.identity.nationality.country_code || country_code).toUpperCase(),
-        //   country: this.$store.state.identity.nationality.country || result.country,
-        // };
-        // this.$store.commit('identity/addNationality', nationalityFields);
+        this.$store.commit('identity/updateState', {birthPlace: result})
       },
       addBirthday: function(date) {
-        // this.$store.commit('identity/addBirthday', date);
+        this.$store.commit('identity/updateState', {birthday: formatISODate(date)});
       },
-      addNationality: function(value) {},
+      addNationality: function(value) {
+        this.$store.commit('identity/updateState', {nationality: value});
+      },
+      addGender: function(e) {
+        this.$store.commit('identity/updateState', {gender: e.target.value});
+      },
     },
   }
 </script>

@@ -2,13 +2,13 @@
   <aside class="dashboard-navigation">
 
     <header class="dashboard-navigation-header">
-      <a href="/"><AvrilLogo/></a>
+      <AvrilLogo/>
     </header>
 
     <aside class="menu">
       <ul class="menu-list">
         <li>
-          <nuxt-link to="/me">
+          <nuxt-link to="/mon-compte">
             Mon compte
           </nuxt-link>
         </li>
@@ -28,25 +28,16 @@
   </aside>
 </template>
 <script>
-import AvrilLogo from '~/assets/images/avril-logo.svg';
+import AvrilLogo from '~/components/navigation/AvrilLogo';
 
 export default {
   components: {
     AvrilLogo,
   },
-  computed: {
-    applications() {
-      return this.$store.state.applications
-    },
-    profile() {
-      return this.$store.state.profile
-    },
-  },
 }
 </script>
 
 <style scoped lang="scss">
-@import '~avril/scss/mixins';
 @import '~avril/scss/variables';
 .menu {
   margin-top: 3rem;
@@ -62,7 +53,5 @@ export default {
 }
 .dashboard-navigation-header {
   text-align: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 </style>

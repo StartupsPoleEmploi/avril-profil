@@ -1,16 +1,14 @@
 import { backendToStore } from '~/mappers/toStore';
-import { hasDelegate } from '~/utils/application';
-import { apiPath, fetchOrRedirectToSignIn } from '~/utils/api';
+import { nextStep } from '~/utils/application';
+import { queryApiOrRedirect } from '~/utils/api';
 
 export const state = () => ({});
 
 export const getters = {
   nextApplicationStep: (state, getters) => {
     return (application => {
-      if (!getters['profile/isFilled']) return 'profile';
-      if (!hasDelegate(application)) return 'delegate';
-      if (!hasBooklet(application)) return 'booklet';
-      return 'uploads';
+      if (!getters['identity/isFilled']) return 'identity';
+      return nextStep(application);
     })
   }
 };
@@ -18,14 +16,15 @@ export const getters = {
 export const mutations = {};
 
 export const actions = {
-  async nuxtServerInit({ commit, dispatch }, context) {
-    await Promise.all(['profile', 'applications'].map(async storeName => {
-      const jsonData = await fetchOrRedirectToSignIn(apiPath(storeName), context)
-      if (jsonData) {
-        const mappedData = backendToStore[storeName](jsonData.data);
-        commit(`${storeName}/initState`, mappedData);
-      } else {
+  async nuxtServerInit({ commit }, context) {
+    return await Promise.all(['identity', 'applications'].map(async storeName => {
+      try {
+        const jsonData = await queryApiOrRedirect(storeName, context);
+        console.log('nuxtServerInit jsonData', jsonData)
+        commit(`${storeName}/updateState`, (jsonData));
+      } catch(jsonErr) {
         console.error('Loading data failed')
+        console.error(jsonErr)
       }
     }))
   },

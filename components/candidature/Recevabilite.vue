@@ -1,7 +1,7 @@
 <template>
   <div class="candidature-card card-recevabilite" v-bind:class="{ 'card-filled': isFilled }">
     <h4 class="title is-5">Ma recevabilité</h4>
-    <a :href="application.bookletPath" class="button is-avril is-rounded" :class="isFilled ? 'edit-button is-small' : ''">
+    <a :href="application.bookletPath" class="button is-rounded" :class="isFilled ? 'edit-button is-small' : 'is-avril'">
       <span v-if="isFilled">
         <span class="icon is-small">
           <IconPencil/>
@@ -24,15 +24,9 @@
       IconLocked,
       IconPencil,
     },
-    computed: {
-      isFilled: function() {
-        return hasBookletFinished(this.application);
-      }
-    },
     props: {
-      application: {
-        type: Object,
-      },
+      application: {},
+      isFilled: {},
     },
   }
 </script>

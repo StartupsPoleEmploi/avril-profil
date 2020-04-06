@@ -1,14 +1,14 @@
 <template>
-  <div class="candidature-card card-identite" v-bind:class="{ 'card-filled': isFilled }">
+  <div class="candidature-card card-identite" :class="{ 'card-filled': isFilled }">
     <h4 class="title is-5">Mon identité</h4>
-    <nuxt-link to="/identite" class="button is-avril is-rounded"  v-if="!isFilled">Renseigner mon identité</nuxt-link>
-    <p v-if="isFilled">Mon identité</p>
-    <!-- <a v-if="isFilled" href="#" class="button is-small card-edit is-text"><span class="icon is-small"><IconPencil/></span> Éditer</a> -->
-    <nuxt-link v-if="isFilled" to="/identite" class="button is-small edit-button is-rounded">
-      <span class="icon is-small">
-        <IconPencil/>
+    <nuxt-link to="/mon-compte" class="button is-rounded" :class="{'edit-button': isFilled, 'is-small': isFilled, 'is-avril': !isFilled}">
+      <span v-if="isFilled">
+        <span class="icon is-small">
+          <IconPencil/>
+        </span>
+        <span>Éditer</span>
       </span>
-      <span>Éditer</span>
+      <span v-else>Renseigner mon identité</span>
     </nuxt-link>
   </div>
 </template>
@@ -22,10 +22,8 @@
       IconLocked,
       IconPencil,
     },
-    computed: {
-      isFilled() {
-        return this.$store.getters.isFilled
-      },
+    props: {
+      isFilled: {}
     },
   }
 </script>
