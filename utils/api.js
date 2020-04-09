@@ -9,6 +9,8 @@ import shapes from '../constants/apiShapes';
 
 const isDev = process.env.NODE_ENV !== 'production';
 
+const serverUrl = context => get(context, 'env.serverToPhoenixUrl', process.env.SERVER_TO_PHOENIX_URL || '');
+
 export const fetchApi = async (graphQLQuery, optionalContext) => {
   let fetcher;
   let url = '/api/v2';
@@ -16,7 +18,7 @@ export const fetchApi = async (graphQLQuery, optionalContext) => {
     fetcher = window.fetch;
   } else {
     fetcher = require('node-fetch');
-    url = `${get(optionalContext, 'env.serverToPhoenixUrl', process.env.SERVER_TO_PHOENIX_URL || '')}${url}`;
+    url = `${serverUrl(optionalContext)}${url}`;
   }
 
   const result = await fetcher(url, {
@@ -43,10 +45,11 @@ export const queryApi = async (storeName, optionalContext) => {
   try {
     jsonData = await fetchApi({query}, optionalContext);
   } catch(err) {
-    if (isDev && include(['ENOTFOUND', 'EAI_AGAIN', 'ECONNREFUSED'], err.code)) {
-      const requestDomain = `${get(optionalContext, 'req.protocol')}://${get(optionalContext, 'req.host')}`
+    if (isDev && !serverUrl(optionalContext)) {
       // Fake API call to static json files
-      console.warn('API not available ...')
+      console.warn('API not available, loading static files ...');
+
+      const requestDomain = `${get(optionalContext, 'req.protocol')}://${get(optionalContext, 'req').get('Host')}`;
       const fakeURL = `${requestDomain}${process.env.NUXT_PROFIL_PATH || ''}/json/${storeName}.json`;
       const result = await fetch(fakeURL);
       jsonData = await result.json();
