@@ -1,10 +1,10 @@
 <template>
   <div>
     <div v-if="isIndex">
-      <BackButton v-if="applications.length > 1" label="Mes candidatures" to="/mes-candidatures" />
+      <BackButton v-if="applications.length > 1" label="Mes candidatures" :to="applicationsPath" />
     </div>
     <div v-else>
-      <BackButton :label="`Ma candidature ${application.certification.name}`" :to="`/mes-candidatures/${certification.slug}`" />
+      <BackButton :label="`Ma candidature ${certificationName}`" :to="applicationPath" />
     </div>
 
     <Message v-if="meetings.length" type="is-success">
@@ -40,6 +40,9 @@
   import BackButton from '~/components/BackButton.vue';
   import Message from '~/components/Message.vue';
 
+  import {name, levelToLevelLabel} from '~/utils/certification';
+  import {path} from '~/utils/application';
+
   export default {
     components: {
       BackButton,
@@ -52,14 +55,26 @@
       application() {
         return this.applications.find(a => a.certification.slug === this.$route.params.slug)
       },
+      applicationPath() {
+        return path(this.application);
+      },
+      applicationsPath() {
+        return path();
+      },
       delegate: function() {
         return get(this.application, 'delegate', {})
+      },
+      certification: function() {
+        return get(this.application, 'certification', {})
+      },
+      certificationName: function() {
+        return name(this.certification);
       },
       meetings: function() {
         return get(this.application, 'delegate.meetings', [])
       },
       isIndex: function() {
-        return this.$route.fullPath === `/mes-candidatures/${this.application.certification.slug}`;
+        return this.$route.fullPath === this.applicationPath;
       }
     },
     data: function() {

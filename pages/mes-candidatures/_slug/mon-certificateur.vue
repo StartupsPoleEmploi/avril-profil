@@ -1,7 +1,7 @@
 <template>
   <div class="candidature-detail">
-    <h1 class="title is-1">Mon certificateur</h1>
-
+    <h1 class="title is-1 is-spaced">Mon certificateur</h1>
+    <p class="subtitle" v-if="application.delegate">Remplacer {{application.delegate.name}}</p>
     <div class="field">
       <div class="control">
         <GeoInput :input="selectDelegateCity" type="city" placeholder="A côté de quelle ville voulez-vous rechercher ?" />
@@ -23,9 +23,9 @@
   import GeoInput from 'avril/js/components/GeoInput.vue';
   import { chunk } from 'avril/js/utils/array';
   import DelegateCard from '~/components/DelegateCard.vue';
-  // import { apiPath } from '~/utils/api';
-
-  console.log(chunk)
+  import {queryApi, mutateApi} from '~/utils/api';
+  import {name} from '~/utils/certification';
+  import {path} from '~/utils/application';
 
   export default {
     computed: {},
@@ -48,27 +48,34 @@
       chunk,
       selectDelegateCity: async function({lat, lng, postalCode}) {
         this.isSearching = true;
-        const result = await fetch(('delegates', {
-          slug: this.application.certification.slug,
-          postal_code: postalCode,
-          lat,
-          lng,
-        }))
-        this.isSearching = false;
-        if (result.ok) {
-          const json = await result.json();
-          this.delegates = json.data.delegates;
-        }
-      },
-      selectDelegate: async function(delegate) {
-        const result = await fetch(('application', {
-          slug: this.application.certification.slug,
-        }), {
-          method: 'PUT',
-          data: {
-            delegate_id: delegate.id,
+        const result = await queryApi({
+          name: 'delegatesSearch',
+          type: 'delegate',
+          params: {
+            applicationId: this.application.id,
+            geo: {
+              lat,
+              lng,
+            },
+            postalCode,
           }
         })
+        this.isSearching = false;
+        this.delegates = result;
+      },
+      selectDelegate: async function(delegate) {
+        const result = await mutateApi({
+          name: 'attachDelegate',
+          type: 'application',
+          params: {
+            applicationId: this.application.id,
+            delegateId: delegate.id,
+          },
+        })
+        this.$store.commit('applications/updateApplication', result);
+        this.$router.push({
+          path: path(this.application)
+        });
       }
     }
   }

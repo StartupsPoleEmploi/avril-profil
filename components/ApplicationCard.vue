@@ -21,6 +21,7 @@
   </div>
 </template>
 <script type="text/javascript">
+  import {path} from '~/utils/application';
   import {name, levelToLevelLabel} from '~/utils/certification';
   import {isFilled} from '~/utils/application';
   import {parseAndFormat} from 'avril/js/utils/time.js';
@@ -37,7 +38,7 @@
         return parseAndFormat(this.application.insertedAt);
       },
       applicationPath: function() {
-        return `/mes-candidatures/${this.application.certification.slug}`;
+        return path(this.application);
       },
       isFilled: function() {
         return isFilled(this.application);

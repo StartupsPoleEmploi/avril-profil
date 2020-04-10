@@ -1,7 +1,9 @@
 import {isPresent} from 'avril/js/utils/boolean';
 import {deepMerge} from 'avril/js/utils/object';
+import {include} from 'avril/js/utils/array';
 
 export const state = () => ({
+  isServerData: false,
   lastName: null,
   usageName: null,
   firstName: null,
@@ -45,13 +47,19 @@ const OPTIONAL_FIELDS = [
   'homePhone',
 ];
 
+const UNSAVABLE_FIELDS = [
+  'isServerData',
+]
+
+const getSubstate = (state, filteredKeysArray) => {
+  return Object.entries(state).filter(([k, v]) => !include(filteredKeysArray, k)).reduce((object, [k, v]) => {
+    return {...object, [k]: v};
+  }, {})
+}
+
 export const getters = {
-  mandatoryState: state => {
-    const mstate = Object.keys(state).filter(k => !OPTIONAL_FIELDS.includes(k)).reduce((subState, k) => {
-      return Object.assign(subState, {[k]: state[k]})
-    }, {});
-    return mstate;
-  },
+  mandatoryState: state => getSubstate(state, OPTIONAL_FIELDS),
+  savableState: state => getSubstate(state, UNSAVABLE_FIELDS),
   isFilled: (state, {mandatoryState}) => Object.values(mandatoryState).every(isPresent),
   username: ({firstName, lastName, email}) => [firstName, lastName].filter(v => v).join(' ') || email,
 }
@@ -59,8 +67,14 @@ export const getters = {
 export const mutations = {
   updateState(state, newState) {
     Object.assign(state, newState);
+    state.isServerData = false;
   },
   updateStateDeep(state, newState) {
-    Object.assign(state, deepMerge(state, newState));
+    Object.assign(state, deepMerge(state, {isServerData: false, ...newState}));
+    state.isServerData = false;
+  },
+  updateStateFromServer(state, newState) {
+    Object.assign(state, newState);
+    state.isServerData = true;
   },
 }
