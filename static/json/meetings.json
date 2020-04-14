@@ -1,0 +1,212 @@
+{
+  "data": {
+    "meetings": [
+      {
+        "meetings": [
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "31100 TOULOUSE",
+            "endDate": "2020-05-19T16:30:00",
+            "meetingId": "204099",
+            "postalCode": "31100",
+            "remainingPlaces": 5,
+            "startDate": "2020-05-19T13:30:00"
+          },
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "31100 TOULOUSE",
+            "endDate": "2020-06-18T16:30:00",
+            "meetingId": "204100",
+            "postalCode": "31100",
+            "remainingPlaces": 12,
+            "startDate": "2020-06-18T13:30:00"
+          }
+        ],
+        "name": "DEES - DEETS - DECESF (31 - TOULOUSE), 31100 TOULOUSE"
+      },
+      {
+        "meetings": [
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "31100 TOULOUSE",
+            "endDate": "2020-05-05T16:30:00",
+            "meetingId": "205755",
+            "postalCode": "",
+            "remainingPlaces": 12,
+            "startDate": "2020-05-05T13:30:00"
+          },
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "31100 TOULOUSE",
+            "endDate": "2020-06-11T12:00:00",
+            "meetingId": "205758",
+            "postalCode": "",
+            "remainingPlaces": 11,
+            "startDate": "2020-06-11T09:00:00"
+          }
+        ],
+        "name": "DCG - DSGC (31 - TLSE), 31100 TOULOUSE"
+      },
+      {
+        "meetings": [
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "31100 TOULOUSE",
+            "endDate": "2020-04-25T12:30:00",
+            "meetingId": "205226",
+            "postalCode": "",
+            "remainingPlaces": 7,
+            "startDate": "2020-04-25T09:30:00"
+          },
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "31100 TOULOUSE",
+            "endDate": "2020-05-13T16:30:00",
+            "meetingId": "205229",
+            "postalCode": "",
+            "remainingPlaces": 7,
+            "startDate": "2020-05-13T13:30:00"
+          },
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "31100 TOULOUSE",
+            "endDate": "2020-05-30T12:30:00",
+            "meetingId": "205233",
+            "postalCode": "",
+            "remainingPlaces": 10,
+            "startDate": "2020-05-30T09:30:00"
+          },
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "31100 TOULOUSE",
+            "endDate": "2020-06-08T16:30:00",
+            "meetingId": "205237",
+            "postalCode": "",
+            "remainingPlaces": 12,
+            "startDate": "2020-06-08T13:30:00"
+          },
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "31100 TOULOUSE",
+            "endDate": "2020-06-20T12:30:00",
+            "meetingId": "205239",
+            "postalCode": "",
+            "remainingPlaces": 12,
+            "startDate": "2020-06-20T09:30:00"
+          },
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "31100 TOULOUSE",
+            "endDate": "2020-07-03T12:30:00",
+            "meetingId": "205243",
+            "postalCode": "",
+            "remainingPlaces": 12,
+            "startDate": "2020-07-03T09:30:00"
+          }
+        ],
+        "name": "CAP - BAC PRO - BP - BTS (31 - TLSE), 31100 TOULOUSE"
+      },
+      {
+        "meetings": [
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "TOULOUSE",
+            "endDate": "2020-05-19T16:30:00",
+            "meetingId": "204116",
+            "postalCode": "31100",
+            "remainingPlaces": 12,
+            "startDate": "2020-05-19T13:30:00"
+          }
+        ],
+        "name": "DEME (31 - TOULOUSE), TOULOUSE"
+      },
+      {
+        "meetings": [
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "31700 BLAGNAC",
+            "endDate": "2020-04-24T16:30:00",
+            "meetingId": "204819",
+            "postalCode": "31700",
+            "remainingPlaces": 7,
+            "startDate": "2020-04-24T13:30:00"
+          },
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "31700 BLAGNAC",
+            "endDate": "2020-05-26T16:30:00",
+            "meetingId": "204820",
+            "postalCode": "31700",
+            "remainingPlaces": 12,
+            "startDate": "2020-05-26T13:30:00"
+          },
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "31700 BLAGNAC",
+            "endDate": "2020-06-22T16:30:00",
+            "meetingId": "204821",
+            "postalCode": "31700",
+            "remainingPlaces": 12,
+            "startDate": "2020-06-22T13:30:00"
+          }
+        ],
+        "name": "CAP - BAC PRO - BP - BTS (BLAGNAC LP St Exupéry), 31700 BLAGNAC"
+      },
+      {
+        "meetings": [
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "82000 MONTAUBAN",
+            "endDate": "2020-05-11T16:30:00",
+            "meetingId": "205750",
+            "postalCode": "82000",
+            "remainingPlaces": 11,
+            "startDate": "2020-05-11T13:30:00"
+          },
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "82000 MONTAUBAN",
+            "endDate": "2020-06-12T12:00:00",
+            "meetingId": "205748",
+            "postalCode": "82000",
+            "remainingPlaces": 12,
+            "startDate": "2020-06-12T09:00:00"
+          }
+        ],
+        "name": "Diplôme d'Etat AS-AP-ME-ES-ETS-CESF-EJE-AES-AF(82), 82000 MONTAUBAN"
+      },
+      {
+        "meetings": [
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "82000 MONTAUBAN",
+            "endDate": "2020-04-27T17:00:00",
+            "meetingId": "205751",
+            "postalCode": "82000",
+            "remainingPlaces": 10,
+            "startDate": "2020-04-27T14:00:00"
+          },
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "82000 MONTAUBAN",
+            "endDate": "2020-05-20T12:00:00",
+            "meetingId": "205749",
+            "postalCode": "82000",
+            "remainingPlaces": 12,
+            "startDate": "2020-05-20T09:00:00"
+          },
+          {
+            "address": "A DISTANCE (LIEU HABITUEL FERME)",
+            "city": "82000 MONTAUBAN",
+            "endDate": "2020-06-22T12:00:00",
+            "meetingId": "205746",
+            "postalCode": "82000",
+            "remainingPlaces": 12,
+            "startDate": "2020-06-22T09:00:00"
+          }
+        ],
+        "name": "CAP - BAC PRO - BP - BTS (82), 82000 MONTAUBAN"
+      }
+    ]
+  }
+}

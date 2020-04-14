@@ -7,7 +7,7 @@
       <BackButton :label="`Ma candidature ${certificationName}`" :to="applicationPath" />
     </div>
 
-    <Message v-if="meetings.length" type="is-success">
+    <Message v-if="meetings.length" type="is-success" :onRemove="validateMeeting">
       <div v-if="meetingSelect">
         <h3 class="title is-4">Où et quand souhaitez-vous venir vous informer sur la VAE ?</h3>
         <p>
@@ -22,12 +22,17 @@
             </select>
           </div>
         </p>
-        <button class="button is-success is-inverted is-rounded">Valider le rendez-vous</button>
+        <button class="button is-success is-inverted is-rounded" @click="validateMeeting">Valider le rendez-vous</button>
       </div>
-      <div v-else>
-        <h3 class="title is-4">Nous avons trouvé une réunion d'information près de chez vous</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <button @click="selectMeeting" class="button is-success is-inverted is-rounded">Choisir une date</button>
+      <div class="columns" v-else>
+        <div class="column is-half">
+          <h3 class="title is-4">Votre certificateur vous propose une réunion d'information</h3>
+          <button @click="selectMeeting" class="button is-success is-inverted is-rounded">Choisir une date</button>
+        </div>
+        <div class="column is-half content">
+          <p>La réunion vous permettra d'obtenir des informations précises, de rencontrer votre certificateur et de prendre connaissance de ses dispositions particulières.</p>
+          <a @click="validateMeeting" >Je n'en ai pas besoin, je connais déjà la VAE</a>
+        </div>
       </div>
     </Message>
 
@@ -42,6 +47,7 @@
 
   import {name, levelToLevelLabel} from '~/utils/certification';
   import {path} from '~/utils/application';
+  import { queryApi, mutateApi } from '~/utils/api';
 
   export default {
     components: {
@@ -49,29 +55,14 @@
       Message,
     },
     computed: {
-      applications() {
-        return this.$store.state.applications
-      },
-      application() {
-        return this.applications.find(a => a.certification.slug === this.$route.params.slug)
-      },
       applicationPath() {
         return path(this.application);
       },
       applicationsPath() {
         return path();
       },
-      delegate: function() {
-        return get(this.application, 'delegate', {})
-      },
-      certification: function() {
-        return get(this.application, 'certification', {})
-      },
       certificationName: function() {
-        return name(this.certification);
-      },
-      meetings: function() {
-        return get(this.application, 'delegate.meetings', [])
+        return name(this.application, 'certification');
       },
       isIndex: function() {
         return this.$route.fullPath === this.applicationPath;
@@ -84,9 +75,31 @@
         meetingPlace: null,
       }
     },
+    asyncData: async function(context) {
+      const {store, params} = context;
+      const applications = store.state.applications;
+      const application = applications.find(a => a.certification.slug === params.slug);
+      const delegate_id = get(application, 'delegate.id');
+
+      const meetings = await queryApi({
+        name: 'meetings',
+        params: {
+          delegate_id,
+        },
+        // static: true,
+      }, context)
+      return {
+        applications,
+        application,
+        meetings,
+      }
+    },
     methods: {
       selectMeeting: function() {
         this.meetingSelect = true;
+      },
+      validateMeeting: function() {
+
       },
     },
   }

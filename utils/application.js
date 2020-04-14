@@ -11,8 +11,6 @@ export const hasBooklet = application => isPresent(application.bookletData);
 
 export const hasBookletFinished = application => !!get(application, 'bookletData.completed_at');
 
-export const hasMeeting = application => !!get(application, 'delegate.meetings', []).length;
-
 export const nextStep = application => {
   if (!hasDelegate(application)) return 'delegate';
   if (!hasBooklet(application)) return 'booklet';

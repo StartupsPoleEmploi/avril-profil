@@ -68,4 +68,22 @@ export default {
       }
     `
   },
+  meeting: `
+    {
+      name
+      meetings {
+        academyId
+        address
+        city
+        endDate
+        meetingId
+        name
+        place
+        postalCode
+        remainingPlaces
+        startDate
+        target
+      }
+    }
+  `,
 }

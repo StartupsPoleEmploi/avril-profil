@@ -47,26 +47,29 @@ export const paramsToString = params => {
 }
 
 export const buildQuery = (name, type, params) => {
+  console.log(name, type, params);
   return `{ ${name}${paramsToString(params)} ${shapes[type]} }`
 }
 
 export const queryApi = async (queryInfos, optionalContext) => {
-  const {name, type, params} = isString(queryInfos) ? {
-    name: queryInfos,
-    type: singularize(queryInfos),
-    params: null,
-  } : queryInfos;
-  const query = buildQuery(name, type, params) ;
+  const {name, type, params} = isString(queryInfos) ? {name: queryInfos} : queryInfos;
+  const query = buildQuery(name, type || singularize(name), params) ;
 
   let jsonData;
   try {
+    if (queryInfos.static && optionalContext) {
+      throw('Use static json')
+    }
+
     jsonData = await fetchApi({query}, optionalContext);
   } catch(err) {
-    if (isDev && !serverUrl(optionalContext)) {
+    if (isDev && !!optionalContext && (queryInfos.static || !serverUrl(optionalContext))) {
       // Fake API call to static json files
       console.warn('API not available, loading static files ...');
 
+      // const requestDomain = 'http://localhost:3000';
       const requestDomain = `${get(optionalContext, 'req.protocol')}://${get(optionalContext, 'req').get('Host')}`;
+
       const fakeURL = `${requestDomain}${process.env.NUXT_PROFIL_PATH || ''}/json/${name}.json`;
       const result = await fetch(fakeURL);
       jsonData = await result.json();

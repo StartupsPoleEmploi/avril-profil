@@ -2,7 +2,6 @@
   <div class="card">
     <div class="card-header">
       <h4 class="title is-4">{{delegate.name}}</h4>
-      <p class="avril-tag" v-if="delegate.hasMeetings">Réunion d'informations</p>
     </div>
     <div class="card-content">
       <Address :address="delegate.address || {}" />
