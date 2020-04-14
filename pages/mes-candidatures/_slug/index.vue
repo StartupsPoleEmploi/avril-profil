@@ -41,7 +41,7 @@
               href="/synthese-vae"
               hasMultipleLayer
             >
-              <p slot="help">Pour débloquer votre synthèse, vous devez choisir votre <nuxt-link :to="`/mes-candidatures/${application.certification.slug}/mon-certificateur`">certificateur</nuxt-link>.</p>
+              <p slot="help">Pour débloquer votre synthèse, vous devez choisir votre <nuxt-link :to="`${applicationPath}/mon-certificateur`">certificateur</nuxt-link>.</p>
             </LockableCard>
           </div>
           <div class="column has-equal-height">
@@ -58,7 +58,7 @@
               :is-locked="!isDocumentsUnlocked"
               title="Mes justificatifs"
               button="Voir la liste"
-              :to="`/mes-candidatures/${application.certification.slug}/mes-justificatifs`"
+              :to="`${applicationPath}/mes-justificatifs`"
             >
               <p slot="help">Pour débloquer les justificatifs, vous devez remplir votre <a :href="bookletPath">recevabilité</a>.</p>
             </LockableCard>
@@ -69,10 +69,10 @@
               :is-filled="hasDelegate"
               title="Mon certificateur"
               button="Trouver mon certificateur"
-              :to="`/mes-candidatures/${application.certification.slug}/mon-certificateur`"
+              :to="`${applicationPath}/mon-certificateur`"
             >
-              <h3 class="title is-5" style="margin-bottom: 0.5rem;">{{application.delegate.name}}</h3>
-              <div class="label-avril" v-if="application.delegate.hasMeetings"><strong>Réunion d'information disponible</strong></div>
+              <h3 class="title is-5" style="margin-bottom: 0.5rem;">{{delegateName}}</h3>
+              <div class="label-avril" v-if="hasMeeting"><strong>Réunion d'information disponible</strong></div>
               <Address :address="delegateAddress" />
             </LockableCard>
           </div>
@@ -94,7 +94,7 @@
   import Address from '~/components/Address.vue';
   import LockableCard from '~/components/LockableCard.vue';
 
-  import {hasDelegate, hasBookletFinished, bookletPath} from '~/utils/application';
+  import {hasDelegate, hasMeeting, hasBookletFinished, bookletPath, path} from '~/utils/application';
   import {name, levelToLevelLabel} from '~/utils/certification';
 
   export default {
@@ -112,11 +112,17 @@
       identity: function() {
         return this.$store.state.identity;
       },
+      applicationPath: function() {
+        return path(this.application);
+      },
       isIdentityFilled: function() {
         return this.$store.getters['identity/isFilled'];
       },
       hasDelegate: function() {
         return hasDelegate(this.application);
+      },
+      hasMeeting: function() {
+        hasMeeting(this.application);
       },
       isSynthesisUnlocked: function() {
         return this.isIdentityFilled && this.hasDelegate;
@@ -126,6 +132,9 @@
       },
       isDocumentsUnlocked: function() {
         return this.isSynthesisUnlocked && this.hasBookletFinished;
+      },
+      delegateName: function() {
+        return get(this.application, 'delegate.name');
       },
       delegateAddress: function() {
         return get(this.application, 'delegate.address', {});

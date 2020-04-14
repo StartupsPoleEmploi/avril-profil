@@ -25,6 +25,7 @@
 </template>
 
 <script>
+  import { mutateApi } from '~/utils/api';
 
   export default {
     data: function() {
@@ -36,9 +37,20 @@
       }
     },
     methods: {
-      save: function() {
-        console.log('Saving', this.currentPassword, this.newPassword, this.newPasswordConfirmation)
-      }
+      save: async function() {
+        this.isSaving = true;
+        const result = await mutateApi({
+          name: 'updatePassword',
+          type: 'identity',
+          params: {
+            password: this.newPassword,
+            confirmPassword: this.newPasswordConfirmation,
+            currentPassword: this.currentPassword,
+          },
+        });
+        this.isSaving = false;
+        this.$store.commit('identity/updateStateFromServer', result);
+      },
     },
   }
 </script>

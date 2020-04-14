@@ -19,15 +19,9 @@
   import Message from '~/components/Message.vue'
   import ApplicationCard from '~/components/ApplicationCard.vue'
   import IconPencil from '~/components/icons/pencil.svg';
+  import {path} from '~/utils/application';
 
   export default {
-    mounted() {
-      if (this.applications.length === 1) {
-        return this.$router.push({
-            path: `/mes-candidatures/${this.applications[0].certification.slug}`
-        })
-      }
-    },
     computed: {
       hasIdentity() {
         return this.$store.getters['identity/isFilled'];

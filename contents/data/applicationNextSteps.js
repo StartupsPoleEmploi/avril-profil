@@ -1,3 +1,5 @@
+  import {path} from '~/utils/application';
+
 export default {
   identity: {
     illustration: 'man',
@@ -14,7 +16,7 @@ export default {
     title: 'Trouver mon certificateur',
     description: 'C\'est celui qui validera votre dossier',
     button: 'Rechercher mon certificateur',
-    to: application => `/mes-candidatures/${application.id}/mon-certificateur`
+    to: application => `${path(application)}/mon-certificateur`
   },
   booklet: {
     illustration: 'woman',

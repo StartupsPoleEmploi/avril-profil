@@ -45,6 +45,7 @@ export default {
   `,
   delegate: `
     {
+      id
       name
       address
       personName

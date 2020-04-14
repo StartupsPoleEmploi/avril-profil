@@ -9,9 +9,12 @@ export const getters = {
 };
 
 export const mutations = {
-  updateState(state, serverState) {
+  updateStateFromServer(state, serverState) {
     serverState.forEach(e => state.push(e));
   },
+  updateApplication(state, newApplicationData) {
+    state[state.findIndex(a => a.id === newApplicationData.id)] = newApplicationData;
+  }
 };
 
 export const actions = {

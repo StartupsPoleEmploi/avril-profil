@@ -7,6 +7,9 @@
 </template>
 
 <script>
+  import {first} from 'avril/js/utils/array';
+  import {path} from '~/utils/application';
+
   export default {
     computed: {
       applications() {
@@ -16,7 +19,7 @@
     mounted() {
       if (this.applications.length === 1) {
         return this.$router.push({
-            path: `/mes-candidatures/${this.applications[0].certification.slug}`
+          path: path(first(this.applications))
         })
       }
     },

@@ -11,9 +11,9 @@
       </span>
       <span v-else>{{button}}</span>
     </component>
-    <p class="help" v-if="hasHelpSlot">
+    <div class="help" v-if="hasHelpSlot">
       <slot name="help"></slot>
-    </p>
+    </div>
   </div>
 </template>
 

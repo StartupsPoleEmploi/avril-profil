@@ -1,5 +1,5 @@
 import get from 'lodash.get';
-import {isArray} from 'avril/js/utils/boolean';
+import {isArray, isString} from 'avril/js/utils/boolean';
 import {last, include} from 'avril/js/utils/array';
 import {singularize, capitalize} from 'avril/js/utils/string';
 import {objectToQueryString} from 'avril/js/utils/url';
@@ -38,8 +38,25 @@ export const fetchApi = async (graphQLQuery, optionalContext) => {
   }
 }
 
-export const queryApi = async (storeName, optionalContext) => {
-  const query = `{${storeName} ${shapes[singularize(storeName)]}}`;
+export const paramsToString = params => {
+  if (!params) return '';
+  return JSON.stringify(params)
+    .replace(/"([^"]+)":/g, '$1:')
+    .replace(/^{/, '(')
+    .replace(/}$/, ')')
+}
+
+export const buildQuery = (name, type, params) => {
+  return `{ ${name}${paramsToString(params)} ${shapes[type]} }`
+}
+
+export const queryApi = async (queryInfos, optionalContext) => {
+  const {name, type, params} = isString(queryInfos) ? {
+    name: queryInfos,
+    type: singularize(queryInfos),
+    params: null,
+  } : queryInfos;
+  const query = buildQuery(name, type, params) ;
 
   let jsonData;
   try {
@@ -50,7 +67,7 @@ export const queryApi = async (storeName, optionalContext) => {
       console.warn('API not available, loading static files ...');
 
       const requestDomain = `${get(optionalContext, 'req.protocol')}://${get(optionalContext, 'req').get('Host')}`;
-      const fakeURL = `${requestDomain}${process.env.NUXT_PROFIL_PATH || ''}/json/${storeName}.json`;
+      const fakeURL = `${requestDomain}${process.env.NUXT_PROFIL_PATH || ''}/json/${name}.json`;
       const result = await fetch(fakeURL);
       jsonData = await result.json();
     } else {
@@ -58,21 +75,20 @@ export const queryApi = async (storeName, optionalContext) => {
     }
   }
   if (jsonData && jsonData.data) {
-    return jsonData.data[storeName];
+    return jsonData.data[name];
   } else {
     throw jsonData;
   }
 }
 
-export const mutateApi = async (storeName, input, optionalContext) => {
-  const query = `
-    mutation Update${capitalize(storeName)}($input: ${capitalize(storeName)}Input) {
-      ${storeName}: update${capitalize(storeName)}(input: $input) ${shapes[singularize(storeName)]}
-    }
-  `;
-  const jsonData = await fetchApi({query, variables: {input}}, optionalContext);
+export const mutateApi = async ({name, type, params}) => {
+
+  const query = `mutation ${buildQuery(name, type, {input: params})}`;
+
+  console.log(query)
+  const jsonData = await fetchApi({query});
   if (jsonData.data) {
-    return jsonData.data[storeName];
+    return jsonData.data[name];
   } else {
     throw jsonData;
   }

@@ -28,6 +28,7 @@
       return Object.assign({
         href: null,
         to: null,
+        time: null,
       }, nextStepsData[key]);
     },
     props: {
