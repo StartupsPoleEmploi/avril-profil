@@ -104,12 +104,12 @@
       const application = applications.find(a => a.certification.slug === params.slug);
       const delegate_id = get(application, 'delegate.id');
 
-      const meetings = await queryApi({
+      const meetings = delegate_id ? await queryApi({
         name: 'meetings',
         params: {
           delegate_id,
         },
-      }, context);
+      }, context) : [];
       return {
         applications,
         application,

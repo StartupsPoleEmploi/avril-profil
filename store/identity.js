@@ -70,7 +70,7 @@ export const mutations = {
     state.isServerData = false;
   },
   updateStateDeep(state, newState) {
-    Object.assign(state, deepMerge(state, {isServerData: false, ...newState}));
+    Object.assign(state, deepMerge(state, newState));
     state.isServerData = false;
   },
   updateStateFromServer(state, newState) {
