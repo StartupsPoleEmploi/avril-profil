@@ -9,7 +9,7 @@ import shapes from '../constants/apiShapes';
 
 const isDev = process.env.NODE_ENV !== 'production';
 
-const serverUrl = context => get(context, 'env.serverToPhoenixUrl', process.env.SERVER_TO_PHOENIX_URL || '');
+const serverUrl = context => get(context, 'env.serverToPhoenixUrl', '');
 
 export const fetchApi = async (graphQLQuery, optionalContext) => {
   let fetcher;
@@ -47,7 +47,6 @@ export const paramsToString = params => {
 }
 
 export const buildQuery = (name, type, params) => {
-  console.log(name, type, params);
   return `{ ${name}${paramsToString(params)} ${shapes[type]} }`
 }
 
@@ -67,10 +66,12 @@ export const queryApi = async (queryInfos, optionalContext) => {
       // Fake API call to static json files
       console.warn('API not available, loading static files ...');
 
-      // const requestDomain = 'http://localhost:3000';
-      const requestDomain = `${get(optionalContext, 'req.protocol')}://${get(optionalContext, 'req').get('Host')}`;
+      const requestDomain = (context) => {
+        const {req} = context || {};
+        return req ? `${req.protocol}://${req.get('Host')}` : '';
+      }
 
-      const fakeURL = `${requestDomain}${process.env.NUXT_PROFIL_PATH || ''}/json/${name}.json`;
+      const fakeURL = `${requestDomain(optionalContext)}${process.env.NUXT_PROFIL_PATH || ''}/json/${name}.json`;
       const result = await fetch(fakeURL);
       jsonData = await result.json();
     } else {

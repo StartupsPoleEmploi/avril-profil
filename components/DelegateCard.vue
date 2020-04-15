@@ -32,24 +32,24 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '~/assets/scss/variables.scss';
+  // @import '~/assets/scss/variables.scss';
 
-  .card {
-    background: $white;
-    border-radius: $radius;
-    .card-header {
-      padding: 1rem 1.5rem;
-      box-shadow: none;
-      display: block;
+  // .card {
+  //   background: $white;
+  //   border-radius: $radius;
+  //   .card-header {
+  //     padding: 1rem 1.5rem;
+  //     box-shadow: none;
+  //     display: block;
 
-      .title, .description {
-        color: palette(default, title);
-      }
-    }
+  //     .title, .description {
+  //       color: palette(default, title);
+  //     }
+  //   }
 
-    .card-footer {
-      padding: 1rem 1.5rem;
-      border: none;
-    }
-  }
+  //   .card-footer {
+  //     padding: 1rem 1.5rem;
+  //     border: none;
+  //   }
+  // }
 </style>
