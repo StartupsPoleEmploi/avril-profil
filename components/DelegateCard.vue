@@ -6,7 +6,7 @@
     <div class="card-content">
       <Address :address="delegate.address || {}" />
     </div>
-    <div class="card-footer">
+    <div class="card-footer has-text-centered">
       <button @click="e => onClick(delegate)" class="button is-text">Choisir ce certificateur</button>
     </div>
   </div>
@@ -30,26 +30,3 @@
     },
   }
 </script>
-
-<style lang="scss" scoped>
-  // @import '~/assets/scss/variables.scss';
-
-  // .card {
-  //   background: $white;
-  //   border-radius: $radius;
-  //   .card-header {
-  //     padding: 1rem 1.5rem;
-  //     box-shadow: none;
-  //     display: block;
-
-  //     .title, .description {
-  //       color: palette(default, title);
-  //     }
-  //   }
-
-  //   .card-footer {
-  //     padding: 1rem 1.5rem;
-  //     border: none;
-  //   }
-  // }
-</style>

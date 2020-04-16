@@ -58,21 +58,52 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~avril/scss/variables';
+  @import '~assets/scss/variables';
 
-  .candidatures-card.is-small {
-    padding-bottom: 1rem;
-    .level{
-      display: block;
-      &-left, &-right {
-        display: block;
-      }
+  .candidatures-card {
+    height: 100%;
+    border-radius: 6px;
+    background: #fff;
+    padding: 3rem;
+    flex-direction: column;
+    z-index: 2;
+    border: 1px solid #E1E1E1;
+    position: relative;
+    box-shadow: 6px 6px 6px rgba(#333, 0.14);
+    transition: all .2s ease-in-out;
+    .level-item {
+      display: block
     }
-    .tag {
-      margin-top: 1rem;
+    &:hover {
+      box-shadow: 10px 10px 16px rgba(#333, 0.08);
+      transform: translate(-5px, -5px);
+    }
+    > * {
+      z-index: 99
+    }
+
+    @include tablet {
+      // align-items: flex-start;
       margin-bottom: 1rem;
     }
+    @include desktop {
+      // align-items: flex-start;
+    }
+    &.is-small {
+      padding-bottom: 1rem;
+      .level{
+        display: block;
+        &-left, &-right {
+          display: block;
+        }
+      }
+      .tag {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+    }
   }
+
   .button.is-edit {
     margin-top: 1rem;
     margin-left: auto;

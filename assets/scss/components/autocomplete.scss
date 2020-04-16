@@ -1,10 +1,28 @@
-.autocomplete-input {
-  @extend .input;
-  @extend .is-large;
-  padding: 12px 12px 12px 48px;
+@mixin icon-left {
   background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2NjIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIvPjxwYXRoIGQ9Ik0yMSAyMWwtNC00Ii8+PC9zdmc+');
   background-repeat: no-repeat;
-  background-position: 12px center;
+  background-position: 1rem center;
+  padding-left: 3rem !important;
+  padding: 1rem;
+}
+
+.autocomplete {
+  .autocomplete-input {
+    @extend .input;
+
+    body & {
+      @extend .is-large;
+    }
+    @include icon-left;
+  }
+}
+
+.autocomplete-result {
+  cursor: default;
+  @include icon-left;
+  &:hover, &[aria-selected="true"] {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
 }
 
 .autocomplete-result-list {
@@ -32,13 +50,3 @@
   }
 }
 
-.autocomplete-result {
-  cursor: default;
-  padding: 12px 12px 12px 48px;
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2NjIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIvPjxwYXRoIGQ9Ik0yMSAyMWwtNC00Ii8+PC9zdmc+');
-  background-repeat: no-repeat;
-  background-position: 12px center;
-  &:hover, &[aria-selected="true"] {
-    background-color: rgba(0, 0, 0, 0.06);
-  }
-}

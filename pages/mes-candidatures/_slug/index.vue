@@ -1,5 +1,6 @@
 <template>
   <div>
+    <MeetingSelector :application="application" :meetings="meetings" />
     <header class="candidature">
       <div class="level">
 
@@ -78,28 +79,22 @@
 
 <script>
   import get from 'lodash.get';
-  import NextStep from '~/components/candidature/NextStep.vue';
-  import Identite from '~/components/candidature/Identite.vue';
-  import Synthese from '~/components/candidature/Synthese.vue';
-  import Recevabilite from '~/components/candidature/Recevabilite.vue';
-  import Justificatifs from '~/components/candidature/Justificatifs.vue';
-  import Certificateur from '~/components/candidature/Certificateur.vue';
 
+  import NextStep from '~/components/application/NextStep.vue';
+  import MeetingSelector from '~/components/application/MeetingSelector.vue';
   import Address from '~/components/Address.vue';
   import LockableCard from '~/components/LockableCard.vue';
 
   import {hasDelegate, hasBookletFinished, bookletPath, path} from '~/utils/application';
   import {name, levelToLevelLabel} from '~/utils/certification';
 
+  import { queryApi, mutateApi } from '~/utils/api';
+
   export default {
     components: {
       Address,
+      MeetingSelector,
       NextStep,
-      Identite,
-      Synthese,
-      Recevabilite,
-      Justificatifs,
-      Certificateur,
       LockableCard,
     },
     computed: {
@@ -140,6 +135,23 @@
         return levelToLevelLabel(this.application.certification.level);
       }
     },
+    asyncData: async function(context) {
+      const {store, params} = context;
+      const application = store.state.applications.find(a => a.certification.slug === params.slug);
+      const delegate_id = get(application, 'delegate.id');
+
+      const meetings = delegate_id ? await queryApi({
+        name: 'meetings',
+        params: {
+          delegate_id,
+        },
+        static: true,
+      }, context) : [];
+
+      return {
+        meetings,
+      }
+    },
     props: {
       application: {
         type: Object
@@ -149,7 +161,8 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~bulma/sass/utilities/all';
+  @import '~/assets/scss/variables';
+  // @import '~bulma/sass/utilities/all';
 
   .candidature-detail {
     background: #fff;

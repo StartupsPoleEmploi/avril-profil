@@ -17,4 +17,11 @@
     padding: 1rem 1.5rem;
     border: none;
   }
+  &, .card-header, .card-content, .card-footer {
+    &.has-text-centered {
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
+

@@ -10,7 +10,7 @@
     <p v-if="isSearching">Recherche en cours ...</p>
     <div v-if="delegates.length" >
       <ul v-for="delegateChunk in chunk(delegates, 4)" class="columns">
-        <li v-for="delegate in delegateChunk" class="column is-3 has-equal-height">
+        <li v-for="delegate in delegateChunk" class="column is-4 has-equal-height">
           <DelegateCard :delegate="delegate" :onClick="selectDelegate" />
         </li>
       </ul>
@@ -73,9 +73,11 @@
           },
         })
         this.$store.commit('applications/updateApplication', result);
-        this.$router.push({
-          path: path(this.application)
-        });
+        setTimeout(() => {
+          this.$router.push({
+            path: path(this.application)
+          });
+        }, 1000);
       }
     }
   }

@@ -14,6 +14,8 @@ export const mutations = {
     (serverState || []).forEach(e => state.push(e));
   },
   updateApplication(state, newApplicationData) {
+    console.log(newApplicationData)
+    console.log(state[state.findIndex(a => a.id === newApplicationData.id)])
     state[state.findIndex(a => a.id === newApplicationData.id)] = newApplicationData;
   }
 };

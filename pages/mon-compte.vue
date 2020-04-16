@@ -3,7 +3,7 @@
     <BackButton label="Mon espace" to="/" />
     <div class="identite">
       <div class="columns">
-        <div class="column is-9">
+        <div class="column is-12 is-11-desktop is-9-widescreen is-8-hd">
           <h1 class="title h1 is-spaced">Mon identité</h1>
           <p class="subtitle">
             Tous ces éléments sont indispensables pour lier le diplôme à votre identité. <br />

@@ -20,6 +20,7 @@ export default {
       }
       birthPlace{
         city
+        county
         country
       }
       nationality{
