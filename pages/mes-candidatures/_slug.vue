@@ -26,7 +26,7 @@
         return this.$store.state.applications
       },
       application() {
-        return this.applications.find(a => a.certification.slug === this.$route.params.slug);
+        return this.applications.find(a => get(a, 'certification.slug') === this.$route.params.slug);
       },
       applicationPath() {
         return path(this.application);
@@ -35,7 +35,7 @@
         return path();
       },
       certificationName: function() {
-        return name(get(this.application, 'certification'));
+        return name(get(this.application, 'certification', {}));
       },
       isIndex: function() {
         return this.$route.fullPath === this.applicationPath;

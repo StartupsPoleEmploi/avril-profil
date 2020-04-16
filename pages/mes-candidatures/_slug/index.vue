@@ -135,21 +135,31 @@
         return levelToLevelLabel(this.application.certification.level);
       }
     },
+    data: function() {
+      return {
+        meetings: [],
+      }
+    },
     asyncData: async function(context) {
       const {store, params} = context;
       const application = store.state.applications.find(a => a.certification.slug === params.slug);
       const delegate_id = get(application, 'delegate.id');
+      try {
+        const meetings = delegate_id ? await queryApi({
+          name: 'meetings',
+          params: {
+            delegate_id,
+          },
+        }, context) : [];
 
-      const meetings = delegate_id ? await queryApi({
-        name: 'meetings',
-        params: {
-          delegate_id,
-        },
-        static: true,
-      }, context) : [];
-
-      return {
-        meetings,
+        return {
+          meetings,
+        }
+      } catch(err) {
+        console.error('Could not fetch meetings', err)
+        return {
+          meetings: []
+        }
       }
     },
     props: {

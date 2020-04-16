@@ -1,4 +1,4 @@
-  import {path} from '~/utils/application';
+  import {path, bookletPath} from '~/utils/application';
 
 export default {
   identity: {
@@ -25,6 +25,6 @@ export default {
     title: 'Remplir ma recevabilité',
     description: 'Etape essentielle de la VAE',
     button: 'Remplir ma recevabilité',
-    href: application => application.bookletPath,
+    href: application => bookletPath(application),
   }
 }

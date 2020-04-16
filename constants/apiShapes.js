@@ -61,7 +61,9 @@ export default {
     return `
       {
         id
-        # booklet_1
+        booklet_1 {
+          completedAt
+        }
         bookletHash
         insertedAt
         certification ${this.certification}
