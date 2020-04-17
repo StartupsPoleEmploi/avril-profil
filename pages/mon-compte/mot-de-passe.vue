@@ -12,11 +12,11 @@
         </div>
       </div>
 
-      <div class="field">
+      <!-- <div class="field">
         <div class="control">
           <input v-model="newPasswordConfirmation" class="input is-large" type="password" placeholder="Confirmation de mon nouveau mot de passe" />
         </div>
-      </div>
+      </div> -->
       <div class="field">
         <button @click="save" type="submit" class="button is-primary is-rounded is-medium">{{isSaving ? 'Enregistrement ...' : 'Enregistrer'}}</button>
       </div>
@@ -44,7 +44,7 @@
           type: 'identity',
           params: {
             password: this.newPassword,
-            confirmPassword: this.newPasswordConfirmation,
+            confirmPassword: this.newPassword,
             currentPassword: this.currentPassword,
           },
         });

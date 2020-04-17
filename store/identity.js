@@ -4,6 +4,7 @@ import {include} from 'avril/js/utils/array';
 
 export const state = () => ({
   isServerData: false,
+  isSaved: false,
   lastName: null,
   usageName: null,
   firstName: null,
@@ -48,6 +49,7 @@ const OPTIONAL_FIELDS = [
 
 const UNSAVABLE_FIELDS = [
   'isServerData',
+  'isSaved',
 ]
 
 const getSubstate = (state, filteredKeysArray) => {
@@ -64,16 +66,26 @@ export const getters = {
 }
 
 export const mutations = {
+  setIsSaved(state, value) {
+    state.isSaved = value;
+  },
   updateState(state, newState) {
-    Object.assign(state, newState);
     state.isServerData = false;
+    Object.assign(state, newState);
   },
   updateStateDeep(state, newState) {
-    Object.assign(state, deepMerge(state, newState));
     state.isServerData = false;
+    Object.assign(state, deepMerge(state, newState));
   },
   updateStateFromServer(state, newState) {
-    Object.assign(state, newState);
     state.isServerData = true;
+    Object.assign(state, newState);
   },
+}
+
+export const actions = {
+  updateAndInform({ commit }, newState) {
+    commit('updateStateFromServer', newState)
+    commit('setIsSaved', true);
+  }
 }

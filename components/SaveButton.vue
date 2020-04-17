@@ -37,7 +37,7 @@
           params: this.$store.getters['identity/savableState'],
         });
         this.isSaving = false;
-        this.$store.commit('identity/updateStateFromServer', result);
+        this.$store.dispatch('identity/updateAndInform', result);
         this.$router.push(this.to);
       },
     },

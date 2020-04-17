@@ -1,6 +1,6 @@
 <template>
   <div class="meeting-selector">
-    <Message v-if="meetings.length" type="is-success" :onRemove="validateMeeting">
+    <Message v-if="meetings.length" type="success" size="large" :onRemove="validateMeeting">
       <div v-if="meetingSelect">
         <h3 class="title is-4">Où et quand souhaitez-vous venir vous informer sur la VAE ?</h3>
         <div class="columns is-vcentered">

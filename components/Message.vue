@@ -1,5 +1,5 @@
 <template>
-  <div class="notification" v-bind:class="type" ref="notification">
+  <div class="notification" :class="`is-${type} is-${size}`" ref="notification">
     <button class="delete" @click="remove"></button>
     <slot></slot>
   </div>
@@ -8,24 +8,32 @@
 export default {
   props: {
     type: {
-      default: 'is-primary',
-      type: String
+      default: 'primary',
+      type: String,
+    },
+    size: {
+      default: 'normal',
+      type: String,
     },
     onRemove: {
       type: Function,
-      default: () => {},
     }
   },
   methods: {
     remove() {
-      onRemove();
-      this.$refs.notification.remove();
+      if (this.onRemove) {
+        this.onRemove();
+      } else {
+        this.$refs.notification.remove();
+      }
     }
   }
 }
 </script>
 <style lang="scss" scoped>
   .notification {
-    padding: 3rem;
+    &.is-large {
+      padding: 3rem;
+    }
   }
 </style>
