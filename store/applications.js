@@ -10,6 +10,9 @@ export const getters = {
 };
 
 export const mutations = {
+  removeIsSaved(state, id) {
+    state[state.findIndex(a => a.id === id)].isSaved = false;
+  },
   updateStateFromServer(state, serverState) {
     (serverState || []).forEach(e => state.push(e));
   },
@@ -17,3 +20,9 @@ export const mutations = {
     state[state.findIndex(a => a.id === newApplicationData.id)] = newApplicationData;
   }
 };
+
+export const actions = {
+  updateAndInform({ commit }, newApplicationData) {
+    commit('updateApplication', {...newApplicationData, isSaved: true})
+  }
+}

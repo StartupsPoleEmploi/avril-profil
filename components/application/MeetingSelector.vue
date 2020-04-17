@@ -95,7 +95,7 @@
           },
           type: 'application',
         });
-        this.$store.commit('applications/updateApplication', result);
+        this.$store.dispatch('applications/updateAndInform', result);
       },
     },
     props: {

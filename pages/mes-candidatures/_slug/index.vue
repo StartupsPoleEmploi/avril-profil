@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SavedMessage :isSaved="isSaved" />
     <MeetingSelector :application="application" :meetings="meetings" />
     <header class="candidature">
       <div class="level">
@@ -84,6 +85,7 @@
   import MeetingSelector from '~/components/application/MeetingSelector.vue';
   import Address from '~/components/Address.vue';
   import LockableCard from '~/components/LockableCard.vue';
+  import SavedMessage from '~/components/SavedMessage.vue';
 
   import {hasDelegate, hasBookletFinished, bookletPath, path} from '~/utils/application';
   import {name, levelToLevelLabel} from '~/utils/certification';
@@ -96,10 +98,14 @@
       MeetingSelector,
       NextStep,
       LockableCard,
+      SavedMessage,
     },
     computed: {
       identity: function() {
         return this.$store.state.identity;
+      },
+      isSaved: function() {
+        return this.application.isSaved;
       },
       applicationPath: function() {
         return path(this.application);
@@ -139,6 +145,9 @@
       return {
         meetings: [],
       }
+    },
+    mounted: function() {
+      this.$store.commit('applications/removeIsSaved', this.application.id);
     },
     asyncData: async function(context) {
       const {store, params} = context;

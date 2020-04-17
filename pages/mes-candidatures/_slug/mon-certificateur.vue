@@ -72,12 +72,10 @@
             delegateId: delegate.id,
           },
         })
-        this.$store.commit('applications/updateApplication', result);
-        setTimeout(() => {
-          this.$router.push({
-            path: path(this.application)
-          });
-        }, 1000);
+        this.$store.dispatch('applications/updateAndInform', result);
+        this.$router.push({
+          path: path(this.application)
+        });
       }
     }
   }
