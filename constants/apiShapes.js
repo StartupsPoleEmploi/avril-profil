@@ -62,6 +62,7 @@ export default {
       {
         id
         booklet_1 {
+          insertedAt
           completedAt
         }
         bookletHash
