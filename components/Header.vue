@@ -13,6 +13,12 @@
 
       <div class="navbar-end">
 
+        <div class="navbar-profil is-hidden-desktop">
+          <NavItem href="/mon-compte">Mon compte</NavItem>
+          <NavItem href="/mes-candidatures">Mes candidatures</NavItem>
+          <NavItem href="/mes-rendez-vous">Mes rendez-vous</NavItem>
+        </div>
+
         <NavItem href="/vae">C'est quoi la VAE ?</NavItem>
 
         <div class="navbar-item has-dropdown is-hoverable is-mega">
@@ -112,7 +118,8 @@
           <div class="navbar-link" @click="isActive.profile = !isActive.profile">
             <span class="tag is-danger is-rounded" v-if="unfinishedApplicationsLength">{{unfinishedApplicationsLength}}</span> {{username}}
           </div>
-          <div class="navbar-dropdown" :class="{ 'is-active': isActive.profile }">
+          <div class="navbar-dropdown dropdown-right" :class="{ 'is-active': isActive.profile }">
+            <NavItem to="/mon-espace">Mon espace VAE</NavItem>
             <NavItem to="/mon-compte">Mon compte</NavItem>
             <NavItem to="/mes-candidatures">
               <span class="tag is-danger is-rounded" v-if="unfinishedApplicationsLength">{{unfinishedApplicationsLength}}</span>
@@ -231,5 +238,9 @@
         min-height: auto;
       }
     }
+  }
+  .dropdown-right{
+    right: 0;
+    left: inherit;
   }
 </style>
