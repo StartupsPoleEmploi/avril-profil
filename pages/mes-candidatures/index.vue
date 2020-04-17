@@ -1,12 +1,13 @@
 <template>
   <div>
+    <BackButton label="Mon espace" to="/" />
     <Message v-if="!hasIdentity" type="is-success">
       <h3 class="title is-4">Renseigner votre identité est obligatoire pour toutes vos candidatures</h3>
       <nuxt-link to="/mon-compte" class="button is-success is-inverted is-rounded">Renseigner mon identité</nuxt-link>
     </Message>
     <ApplicationCard :application="firstApplication" />
     <div class="columns is-multiline" v-if="otherApplications.length">
-      <div class="column is-4" v-for="application in otherApplications">
+      <div class="column" v-for="application in otherApplications">
         <ApplicationCard size="small" :application="application" />
       </div>
     </div>
@@ -20,6 +21,7 @@
   import ApplicationCard from '~/components/ApplicationCard.vue'
   import IconPencil from '~/components/icons/pencil.svg';
   import {path} from '~/utils/application';
+  import BackButton from '~/components/BackButton.vue';
 
   export default {
     computed: {
@@ -38,6 +40,7 @@
     },
     components: {
       ApplicationCard,
+      BackButton,
       Message,
       IconPencil,
     },

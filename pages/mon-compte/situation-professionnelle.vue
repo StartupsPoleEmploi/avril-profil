@@ -44,7 +44,7 @@
           <h3 class="title is-6">Depuis le :</h3>
           <div class="control">
             <client-only placeholder="Chargement du calendrier ...">
-              <date-picker input-class="input is-large" :value="currentSituation.registerToPoleEmploiSince" @input="addCurrentSituationRegisterToPoleEmploiSince" :format="datePickerFormat" :placeholder="defaultPlaceholder" />
+              <date-picker input-class="input is-large" :value="parseISODate(currentSituation.registerToPoleEmploiSince)" @input="addCurrentSituationRegisterToPoleEmploiSince" :format="datePickerFormat" :placeholder="defaultPlaceholder" />
             </client-only>
           </div>
         </div>
@@ -69,6 +69,7 @@
 
 <script>
   import get from 'lodash.get';
+  import { parseISODate, formatISODate } from 'avril/js/utils/time';
   import RadioList from 'avril/js/components/RadioList.vue';
   import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
 
@@ -101,6 +102,7 @@
       return possibleAnswers;
     },
     methods: {
+      parseISODate,
       addIsHandicapped: function(value){
         this.$store.commit('identity/updateState', {isHandicapped: value});
       },
@@ -114,7 +116,7 @@
         this.$store.commit('identity/updateStateDeep', {currentSituation: {registerToPoleEmploi: value}});
       },
       addCurrentSituationRegisterToPoleEmploiSince: function(date){
-        this.$store.commit('identity/updateStateDeep', {currentSituation: {registerToPoleEmploiSince: date}});
+        this.$store.commit('identity/updateStateDeep', {currentSituation: {registerToPoleEmploiSince: formatISODate(date)}});
       },
       addCurrentSituationCompensationType: function(value){
         this.$store.commit('identity/updateStateDeep', {currentSituation: {compensationType: value}});

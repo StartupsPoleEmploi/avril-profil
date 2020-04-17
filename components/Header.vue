@@ -9,15 +9,9 @@
       </div>
     </div>
 
-    <div class="navbar-menu" :class="{ 'is-active': toggle }">
+    <div class="navbar-menu" :class="{ 'is-active': toggle }" @click="closeNavOnItem">
 
       <div class="navbar-end">
-
-        <div class="navbar-profil is-hidden-desktop">
-          <NavItem to="/mon-compte">Mon compte</NavItem>
-          <NavItem to="/mes-candidatures">Mes candidatures</NavItem>
-          <NavItem to="/mes-rendez-vous">Mes rendez-vous</NavItem>
-        </div>
 
         <NavItem href="/vae">C'est quoi la VAE ?</NavItem>
 
@@ -104,6 +98,7 @@
               <span class="tag is-danger is-rounded" v-if="unfinishedApplicationsLength">{{unfinishedApplicationsLength}}</span>
               Mes candidatures
             </NavItem>
+            <NavItem to="/mes-rendez-vous">Mes rendez-vous</NavItem>
             <hr class="navbar-divider">
             <NavItem href="/sessions">Déconnexion</NavItem>
           </div>
@@ -143,7 +138,12 @@
       }
     },
     methods: {
-      toggleNav() {
+      closeNavOnItem: function(e) {
+        if (e.target.tagName === 'A') {
+          this.toggle = false;
+        }
+      },
+      toggleNav: function(e) {
         this.toggle = !this.toggle;
       }
     }
@@ -173,7 +173,14 @@
       width: $dashboard-navigation-width;
     }
   }
-  .navbar-item {
+  .navbar-item::v-deep {
+    a {
+      display: block !important;
+      &.is-active {
+        font-weight: bold;
+      }
+    }
+
     &.is-mega {
       position: static;
 
@@ -183,15 +190,15 @@
       }
     }
     .navbar-link {
-
       .tag {
         margin-right: 10px
       }
-
       &:after {
         border-color: $primary;
       }
     }
+
+
   }
 
   .is-mega-dropdown {

@@ -28,17 +28,6 @@
       </div>
     </div>
     <div class="columns">
-      <div class="column is-8 is-offset-4">
-        <div class="field">
-          <!-- <label class="label">Nationalité</label> -->
-          <div class="control">
-            <GeoInput :input="addNationality" :value="identity.nationality" type="country" placeholder="Nationalité" />
-          </div>
-        </div>
-      </div>
-    </div>
-    <h3 class="title is-6">Informations optionnelles</h3>
-    <div class="columns">
       <div class="column is-4">
         <div class="select is-large is-fullwidth">
           <select @change="addGender" :value="identity.gender">
@@ -49,7 +38,17 @@
         </div>
       </div>
       <div class="column is-8">
-        <input class="input is-large" type="text" name="name" placeholder="Nom d'usage">
+        <div class="field">
+          <div class="control">
+            <GeoInput :input="addNationality" :value="identity.nationality" type="country" placeholder="Nationalité" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <h3 class="title is-6">Informations optionnelles</h3>
+    <div class="columns">
+      <div class="column is-12">
+        <input class="input is-large" :value="identity.usageName" @input="addUsageName" type="text" name="name" placeholder="Nom d'usage">
       </div>
     </div>
     <SaveButton store="identity" to="/mon-compte/situation-professionnelle" />
@@ -58,7 +57,6 @@
 
 <script>
   import { parseISODate, formatISODate } from 'avril/js/utils/time';
-  import {formatDate} from 'avril/js/utils/time.js';
   import GeoInput from 'avril/js/components/GeoInput.vue';
   import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
   import SaveButton from '~/components/SaveButton.vue';
@@ -78,12 +76,14 @@
     },
     methods: {
       parseISODate,
-      formatDate,
       addFirstName: function(e) {
         this.$store.commit('identity/updateState', {firstName: e.target.value})
       },
       addLastName: function(e) {
         this.$store.commit('identity/updateState', {lastName: e.target.value})
+      },
+      addUsageName: function(e) {
+        this.$store.commit('identity/updateState', {usageName: e.target.value})
       },
       addBirthPlace: function({country_code, ...result}) {
         this.$store.commit('identity/updateState', {birthPlace: result})
