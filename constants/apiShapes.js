@@ -20,6 +20,7 @@ export default {
       }
       birthPlace{
         city
+        county
         country
       }
       nationality{
@@ -60,7 +61,10 @@ export default {
     return `
       {
         id
-        # booklet_1
+        booklet_1 {
+          insertedAt
+          completedAt
+        }
         bookletHash
         insertedAt
         certification ${this.certification}
@@ -68,4 +72,22 @@ export default {
       }
     `
   },
+  meeting: `
+    {
+      name
+      meetings {
+        academyId
+        address
+        city
+        endDate
+        meetingId
+        name
+        place
+        postalCode
+        remainingPlaces
+        startDate
+        target
+      }
+    }
+  `,
 }

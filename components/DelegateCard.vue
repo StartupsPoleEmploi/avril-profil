@@ -2,12 +2,11 @@
   <div class="card">
     <div class="card-header">
       <h4 class="title is-4">{{delegate.name}}</h4>
-      <p class="avril-tag" v-if="delegate.hasMeetings">Réunion d'informations</p>
     </div>
     <div class="card-content">
       <Address :address="delegate.address || {}" />
     </div>
-    <div class="card-footer">
+    <div class="card-footer has-text-centered">
       <button @click="e => onClick(delegate)" class="button is-text">Choisir ce certificateur</button>
     </div>
   </div>
@@ -31,26 +30,3 @@
     },
   }
 </script>
-
-<style lang="scss" scoped>
-  @import '~/assets/scss/variables.scss';
-
-  .card {
-    background: $white;
-    border-radius: $radius;
-    .card-header {
-      padding: 1rem 1.5rem;
-      box-shadow: none;
-      display: block;
-
-      .title, .description {
-        color: palette(default, title);
-      }
-    }
-
-    .card-footer {
-      padding: 1rem 1.5rem;
-      border: none;
-    }
-  }
-</style>

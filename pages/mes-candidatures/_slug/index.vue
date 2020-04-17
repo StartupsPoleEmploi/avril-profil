@@ -1,5 +1,6 @@
 <template>
   <div>
+    <MeetingSelector :application="application" :meetings="meetings" />
     <header class="candidature">
       <div class="level">
 
@@ -23,7 +24,6 @@
       <div class="candidature-composants">
         <div class="columns">
           <div class="column has-equal-height">
-            <!-- <Identite :is-filled="isIdentityFilled" /> -->
             <LockableCard
               :is-filled="isIdentityFilled"
               title="Mon identité"
@@ -33,7 +33,6 @@
               <p class="has-text-weight-bold">{{identity.firstName}} {{identity.lastName}}</p>
               <Address :address="identity.fullAddress" />
             </LockableCard>
-            <!-- <Synthese :is-locked="!isSynthesisUnlocked" /> -->
             <LockableCard
               :is-locked="!isSynthesisUnlocked"
               title="Ma synthèse"
@@ -45,7 +44,6 @@
             </LockableCard>
           </div>
           <div class="column has-equal-height">
-            <!-- <Recevabilite :is-filled="hasBookletFinished" :application="application"/> -->
             <LockableCard
               :is-filled="hasBookletFinished"
               title="Ma recevabilité"
@@ -53,7 +51,6 @@
               :href="bookletPath"
               hasMultipleLayer
             />
-            <!-- <Justificatifs :is-locked="!isDocumentsUnlocked"/> -->
             <LockableCard
               :is-locked="!isDocumentsUnlocked"
               title="Mes justificatifs"
@@ -64,7 +61,6 @@
             </LockableCard>
           </div>
           <div class="column has-equal-height">
-            <!-- <Certificateur :is-filled="hasDelegate"/> -->
             <LockableCard
               :is-filled="hasDelegate"
               title="Mon certificateur"
@@ -72,7 +68,6 @@
               :to="`${applicationPath}/mon-certificateur`"
             >
               <h3 class="title is-5" style="margin-bottom: 0.5rem;">{{delegateName}}</h3>
-              <div class="label-avril" v-if="hasMeeting"><strong>Réunion d'information disponible</strong></div>
               <Address :address="delegateAddress" />
             </LockableCard>
           </div>
@@ -84,28 +79,22 @@
 
 <script>
   import get from 'lodash.get';
-  import NextStep from '~/components/candidature/NextStep.vue';
-  import Identite from '~/components/candidature/Identite.vue';
-  import Synthese from '~/components/candidature/Synthese.vue';
-  import Recevabilite from '~/components/candidature/Recevabilite.vue';
-  import Justificatifs from '~/components/candidature/Justificatifs.vue';
-  import Certificateur from '~/components/candidature/Certificateur.vue';
 
+  import NextStep from '~/components/application/NextStep.vue';
+  import MeetingSelector from '~/components/application/MeetingSelector.vue';
   import Address from '~/components/Address.vue';
   import LockableCard from '~/components/LockableCard.vue';
 
-  import {hasDelegate, hasMeeting, hasBookletFinished, bookletPath, path} from '~/utils/application';
+  import {hasDelegate, hasBookletFinished, bookletPath, path} from '~/utils/application';
   import {name, levelToLevelLabel} from '~/utils/certification';
+
+  import { queryApi, mutateApi } from '~/utils/api';
 
   export default {
     components: {
       Address,
+      MeetingSelector,
       NextStep,
-      Identite,
-      Synthese,
-      Recevabilite,
-      Justificatifs,
-      Certificateur,
       LockableCard,
     },
     computed: {
@@ -120,9 +109,6 @@
       },
       hasDelegate: function() {
         return hasDelegate(this.application);
-      },
-      hasMeeting: function() {
-        hasMeeting(this.application);
       },
       isSynthesisUnlocked: function() {
         return this.isIdentityFilled && this.hasDelegate;
@@ -149,6 +135,33 @@
         return levelToLevelLabel(this.application.certification.level);
       }
     },
+    data: function() {
+      return {
+        meetings: [],
+      }
+    },
+    asyncData: async function(context) {
+      const {store, params} = context;
+      const application = store.state.applications.find(a => a.certification.slug === params.slug);
+      const delegate_id = get(application, 'delegate.id');
+      try {
+        const meetings = delegate_id ? await queryApi({
+          name: 'meetings',
+          params: {
+            delegate_id,
+          },
+        }, context) : [];
+
+        return {
+          meetings,
+        }
+      } catch(err) {
+        console.error('Could not fetch meetings', err)
+        return {
+          meetings: []
+        }
+      }
+    },
     props: {
       application: {
         type: Object
@@ -158,7 +171,8 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~bulma/sass/utilities/all';
+  @import '~/assets/scss/variables';
+  // @import '~bulma/sass/utilities/all';
 
   .candidature-detail {
     background: #fff;

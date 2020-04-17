@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import get from 'lodash.get';
 
 import {isFilled} from '~/utils/application';
 
@@ -10,9 +11,11 @@ export const getters = {
 
 export const mutations = {
   updateStateFromServer(state, serverState) {
-    serverState.forEach(e => state.push(e));
+    (serverState || []).forEach(e => state.push(e));
   },
   updateApplication(state, newApplicationData) {
+    console.log(newApplicationData)
+    console.log(state[state.findIndex(a => a.id === newApplicationData.id)])
     state[state.findIndex(a => a.id === newApplicationData.id)] = newApplicationData;
   }
 };

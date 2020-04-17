@@ -43,7 +43,7 @@
         if (this.isLockable) return !this.isLocked;
       },
       buttonClass: function() {
-        if (this.isLockable) return 'is-text';
+        if (this.isLockable) return 'is-text is-rounded';
         if (this.isFilled) return `is-rounded is-small is-edit ${this.hasDefaultSlot ? 'is-bottom-right' : ''}`;
         return 'is-rounded is-avril';
       },
@@ -113,9 +113,9 @@
         box-shadow: 10px 10px 16px rgba(#333, 0.08);
         transform: translate(-5px, -5px);
       }
-      > * {
-        z-index: 99
-      }
+      // > * {
+      //   z-index: 99
+      // }
 
       &.has-multiple-layer {
         margin-left: 7px;
@@ -129,7 +129,7 @@
           height: 100%;
           top: -7px;
           left: -7px;
-          z-index: 0;
+          z-index: -1;
           border-radius: 6px;
         }
         &:before {

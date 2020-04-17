@@ -38,7 +38,7 @@
                 </div>
                 <div class="column has-equal-height">
                   <article class="card">
-                    <a class="card-content" to="/financement-vae">
+                    <a class="card-content" href="/financement-vae">
                       <h3 class="title is-5">Financer ma VAE</h3>
                       <p>Parce que le choix doit être une évidence, nous vous donnons des conseils pour un meilleur résultat</p>
                     </a>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="column has-equal-height">
                   <article class="card">
-                    <a class="card-content" to="/">
+                    <a class="card-content" href="/">
                       <h3 class="title is-5">Bien choisir son accompagnateur</h3>
                       <p>Parce que le choix doit être une évidence, nous vous donnons des conseils pour un meilleur résultat</p>
                     </a>
@@ -118,7 +118,7 @@
           <div class="navbar-link" @click="isActive.profile = !isActive.profile">
             <span class="tag is-danger is-rounded" v-if="unfinishedApplicationsLength">{{unfinishedApplicationsLength}}</span> {{username}}
           </div>
-          <div class="navbar-dropdown dropdown-right" :class="{ 'is-active': isActive.profile }">
+          <div class="navbar-dropdown is-right" :class="{ 'is-active': isActive.profile }">
             <NavItem to="/mon-espace">Mon espace VAE</NavItem>
             <NavItem to="/mon-compte">Mon compte</NavItem>
             <NavItem to="/mes-candidatures">
@@ -172,7 +172,18 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '~bulma/sass/utilities/all';
+  // @import '~bulma/sass/utilities/all';
+  @import '~assets/scss/variables';
+
+  .navbar-dropdown{
+    border: none;
+    background: #fff;
+    font-size: inherit;
+  }
+  .navbar-burger:hover {
+    background: transparent;
+  }
+
 
   @include mobile {
     .navbar-dropdown {

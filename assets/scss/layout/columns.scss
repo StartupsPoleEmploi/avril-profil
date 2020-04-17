@@ -1,7 +1,7 @@
 .columns {
   .column {
     &.has-equal-height {
-      @include tablet {
+      @include desktop {
         display: flex;
         flex-direction: column;
         min-height: 400px;

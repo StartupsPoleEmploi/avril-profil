@@ -40,8 +40,8 @@
     <h3 class="title is-6">Informations optionnelles</h3>
     <div class="columns">
       <div class="column is-4">
-        <div class="select is-large" style="width: 100%;">
-          <select style="padding-right: 0; width: 100%;" @change="addGender" :value="identity.gender">
+        <div class="select is-large is-fullwidth">
+          <select @change="addGender" :value="identity.gender">
             <option :value="null">Genre</option>
             <option value="m">Masculin</option>
             <option value="f">Féminin</option>

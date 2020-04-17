@@ -18,7 +18,7 @@
     "apollo-fetch": "^0.7.0",
     "avril": "StartupsPoleEmploi/avril-shared",
     "buefy": "^0.8.11",
-    "bulma": "^0.8.0",
+    "bulma": "^0.8.2",
     "cookie-universal-nuxt": "^2.1.0",
     "date-fns": "^2.11.0",
     "lodash.get": "^4.4.2",

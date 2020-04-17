@@ -5,13 +5,14 @@ export const path = application => `/mes-candidatures/${get(application, 'certif
 
 export const hasDelegate = application => isPresent(application.delegate);
 
-export const bookletPath = application => `${process.env.NUXT_PATH}?hash=${application.bookletHash}`;
+export const delegateName = application => get(application, 'delegate.name');
 
-export const hasBooklet = application => isPresent(application.bookletData);
+export const bookletPath = application => `/ma-candidature-vae?hash=${application.bookletHash}`;
+// export const bookletPath = application => `${process.env.NUXT_PATH}?hash=${application.bookletHash}`;
 
-export const hasBookletFinished = application => !!get(application, 'bookletData.completed_at');
+export const hasBooklet = application => get(application, 'booklet_1.insertedAt');
 
-export const hasMeeting = application => !!get(application, 'delegate.meetings', []).length;
+export const hasBookletFinished = application => !!get(application, 'booklet_1.completedAt');
 
 export const nextStep = application => {
   if (!hasDelegate(application)) return 'delegate';
