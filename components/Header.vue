@@ -14,9 +14,9 @@
       <div class="navbar-end">
 
         <div class="navbar-profil is-hidden-desktop">
-          <NavItem href="/mon-compte">Mon compte</NavItem>
-          <NavItem href="/mes-candidatures">Mes candidatures</NavItem>
-          <NavItem href="/mes-rendez-vous">Mes rendez-vous</NavItem>
+          <NavItem to="/mon-compte">Mon compte</NavItem>
+          <NavItem to="/mes-candidatures">Mes candidatures</NavItem>
+          <NavItem to="/mes-rendez-vous">Mes rendez-vous</NavItem>
         </div>
 
         <NavItem href="/vae">C'est quoi la VAE ?</NavItem>
@@ -25,10 +25,10 @@
           <div class="navbar-link" @click="isActive.navigation = !isActive.navigation">
             Navigation
           </div>
-          <div id="blogDropdown" class="navbar-dropdown" :class="{ 'is-active': isActive.navigation }">
+          <div class="navbar-dropdown is-mega-dropdown" :class="{ 'is-active': isActive.navigation }">
             <div class="container is-fluid">
               <div class="columns">
-                <div class="column has-equal-height">
+                <div class="column is-4 has-equal-height">
                   <article class="card">
                     <a class="card-content" href="/bien-choisir-son-diplome-vae">
                       <h3 class="title is-5">Bien choisir un diplôme</h3>
@@ -36,7 +36,7 @@
                     </a>
                   </article>
                 </div>
-                <div class="column has-equal-height">
+                <div class="column is-4 has-equal-height">
                   <article class="card">
                     <a class="card-content" href="/financement-vae">
                       <h3 class="title is-5">Financer ma VAE</h3>
@@ -44,7 +44,7 @@
                     </a>
                   </article>
                 </div>
-                <div class="column has-equal-height">
+                <div class="column is-4 has-equal-height">
                   <article class="card">
                     <a class="card-content" href="/">
                       <h3 class="title is-5">Bien choisir son accompagnateur</h3>
@@ -55,7 +55,7 @@
               </div>
             </div>
             <div class="container is-fluid">
-              <div class="columns">
+              <div class="columns is-multiline">
 
                 <div class="column">
                   <h3 class="title is-6 is-mega-menu-title">Notions essentielles</h3>
@@ -74,43 +74,22 @@
                 </div>
 
                 <div class="column">
-                  <h3 class="title is-6 is-mega-menu-title">Autres outils</h3>
-                  <NavItem href="http://www.vae.gouv.fr">Portail de la VAE</NavItem>
-                  <NavItem href="https://www.francevae.fr">France VAE</NavItem>
-                  <NavItem href="https://www.defi-metiers.fr/dossiers/vae-mode-demploi">Défi métiers</NavItem>
+                  <div class="columns">
+                    <div class="column">
+                      <h3 class="title is-6 is-mega-menu-title">Autres outils</h3>
+                      <NavItem href="http://www.vae.gouv.fr">Portail de la VAE</NavItem>
+                      <NavItem href="https://www.francevae.fr">France VAE</NavItem>
+                      <NavItem href="https://www.defi-metiers.fr/dossiers/vae-mode-demploi">Défi métiers</NavItem>
+                    </div>
+                    <div class="column">
+                      <h3 class="title is-6 is-mega-menu-title">Aides et support</h3>
+                      <NavItem to="/">Crisp</NavItem>
+                      <NavItem href="/contact">Nous contacter</NavItem>
+                    </div>
+                  </div>
                 </div>
-
-                <div class="column">
-                  <h3 class="title is-6 is-mega-menu-title">Aides et support</h3>
-                  <NavItem to="/">Crisp</NavItem>
-                  <NavItem href="/contact">Nous contacter</NavItem>
-                </div>
-
               </div>
             </div>
-
-            <!-- <hr class="navbar-divider">
-            <div class="navbar-item">
-              <div class="navbar-content">
-                <div class="level is-mobile">
-                  <div class="level-left">
-                    <div class="level-item">
-                      <strong>Stay up to date!</strong>
-                    </div>
-                  </div>
-                  <div class="level-right">
-                    <div class="level-item">
-                      <a class="button bd-is-rss is-small" href="http://bulma.io/atom.xml">
-                        <span class="icon is-small">
-                          <i class="fa fa-rss"></i>
-                        </span>
-                        <span>Subscribe</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
 
@@ -119,7 +98,7 @@
             <span class="tag is-danger is-rounded" v-if="unfinishedApplicationsLength">{{unfinishedApplicationsLength}}</span> {{username}}
           </div>
           <div class="navbar-dropdown is-right" :class="{ 'is-active': isActive.profile }">
-            <NavItem to="/mon-espace">Mon espace VAE</NavItem>
+            <NavItem to="/">Mon espace VAE</NavItem>
             <NavItem to="/mon-compte">Mon compte</NavItem>
             <NavItem to="/mes-candidatures">
               <span class="tag is-danger is-rounded" v-if="unfinishedApplicationsLength">{{unfinishedApplicationsLength}}</span>
@@ -172,36 +151,26 @@
 </script>
 
 <style lang="scss" scoped>
-  // @import '~bulma/sass/utilities/all';
+
   @import '~assets/scss/variables';
 
   .navbar-dropdown{
     border: none;
     background: #fff;
     font-size: inherit;
+
+    display: none;
+    &.is-active {
+      display: block;
+    }
   }
   .navbar-burger:hover {
     background: transparent;
   }
 
-
-  @include mobile {
-    .navbar-dropdown {
-      display: none;
-      &.is-active {
-        display: block;
-      }
-    }
-  }
-  .navbar {
-    z-index: 90;
-    &-link .tag{
-      margin-right: 10px
-    }
-  }
   .navbar-brand {
     @include desktop {
-      width: 15rem;
+      width: $dashboard-navigation-width;
     }
   }
   .navbar-item {
@@ -213,45 +182,39 @@
         padding: .375rem 1rem;
       }
     }
+    .navbar-link {
+
+      .tag {
+        margin-right: 10px
+      }
+
+      &:after {
+        border-color: $primary;
+      }
+    }
   }
 
-  #blogDropdown {
+  .is-mega-dropdown {
     padding: 2rem 0;
     @include desktop {
-      min-width: calc(100% - 15rem);
-      margin-left: 15rem;
+      padding-left: $dashboard-navigation-width;
+      width: 100%;
+    }
+
+    .container:not(:last-child) {
+      padding-bottom: 2rem;
     }
 
     .card{
       background: #fff;
+      display: flex;
+      height: 100%;
     }
 
-    .has-equal-height .card {
-      @include tablet {
-        display: flex;
-        flex-direction: column;
+    @include tablet {
+      .has-equal-height {
         min-height: 200px;
-        @media screen and (max-width: 1288px){
-          min-height: auto;
-        }
       }
     }
-    & > .container > .columns{
-      padding-bottom: 2rem;
-      @media screen and (max-width: 1288px){
-        display: block;
-      }
-    }
-    .column {
-      @include tablet {
-        display: flex;
-        flex-direction: column;
-        min-height: auto;
-      }
-    }
-  }
-  .dropdown-right{
-    right: 0;
-    left: inherit;
   }
 </style>
