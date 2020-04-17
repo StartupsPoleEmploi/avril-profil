@@ -3,7 +3,7 @@
 export default {
   identity: {
     illustration: 'man',
-    isOptional: true,
+    isSuggested: true,
     time: '20 - 30 minutes',
     title: 'Remplir mon identité',
     description: 'Elle est obligatoire pour toute demande de recevabilité',
@@ -12,19 +12,29 @@ export default {
   },
   delegate: {
     illustration: 'man',
-    isOptional: false,
+    isSuggested: false,
+    time: '2 - 3 minutes',
     title: 'Trouver mon certificateur',
     description: 'C\'est celui qui validera votre dossier',
     button: 'Rechercher mon certificateur',
-    to: application => `${path(application)}/mon-certificateur`
+    to: application => `${path(application)}/mon-certificateur`,
   },
   booklet: {
     illustration: 'woman',
-    isOptional: false,
+    isSuggested: false,
     time: '1 - 2 heures',
     title: 'Remplir ma recevabilité',
-    description: 'Etape essentielle de la VAE',
+    description: 'Etape éssentielle de la VAE',
     button: 'Remplir ma recevabilité',
     href: application => bookletPath(application),
+  },
+  uploads: {
+    illustration: 'man',
+    isSuggested: false,
+    time: '1 - 2 heures',
+    title: 'Envoyer mes justificatifs',
+    description: 'Pour que votre candidature soit validée, il faut justifier des informations que vous avez saisies',
+    button: 'Envoyer mes justificatifs',
+    to: application => `${path(application)}/mes-justificatifs`,
   }
 }

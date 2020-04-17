@@ -13,7 +13,9 @@
         <span class="tag is-info">à compléter</span>
       </div>
     </div>
-    <p>Candidature démarrée le {{applicationStarted}}</p>
+    <p>
+      Candidature démarrée le {{applicationStarted}}<span v-if="delegateName"> avec pour certificateur {{delegateName}}</span>.
+    </p>
 
     <nuxt-link :to="applicationPath" class="button is-text is-edit is-rounded">
       {{isFilled ? 'Voir ma candidature' : 'Compléter ...'}}
@@ -23,16 +25,19 @@
 <script type="text/javascript">
   import {path} from '~/utils/application';
   import {name, levelToLevelLabel} from '~/utils/certification';
-  import {isFilled} from '~/utils/application';
+  import {isFilled, delegateName} from '~/utils/application';
   import {parseAndFormat} from 'avril/js/utils/time.js';
 
   export default {
     computed: {
       certificationName: function() {
-        return name(this.application.certification)
+        return name(this.application.certification);
       },
       certificationLevel: function() {
-        return levelToLevelLabel(this.application.certification.level)
+        return levelToLevelLabel(this.application.certification.level);
+      },
+      delegateName: function() {
+        return delegateName(this.application);
       },
       applicationStarted: function() {
         return parseAndFormat(this.application.insertedAt);

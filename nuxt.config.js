@@ -12,6 +12,9 @@ module.exports = {
         }
       }
     },
+    loaders: {
+      scss: { sourceMap: false },
+    },
     extend (config, ctx) {}
   },
   buildDir: process.env.NUXT_BUILD_DIR,
