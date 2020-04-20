@@ -75,7 +75,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '~/assets/scss/variables.scss';
+  @import '~avril/scss/variables';
 
   .lockable-card {
     height: 100%;

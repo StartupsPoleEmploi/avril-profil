@@ -1,2 +1,36 @@
 @import './columns';
 @import './form';
+
+html,body {
+  background: #F5F9FB;
+}
+
+.avril {
+  &-container {
+    padding: 2rem 1rem;
+    @include desktop{
+      padding: 2rem 4rem;
+    }
+  }
+}
+
+.icon svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: inherit;
+}
+
+.help {
+  font-size: 1rem;
+}
+
+.level-item {
+  .title, .subtitle {
+    margin-bottom: 1rem;
+  }
+}
+
+.tag {
+  font-weight: 900;
+  text-transform: uppercase;
+}

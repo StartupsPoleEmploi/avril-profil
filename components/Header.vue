@@ -152,7 +152,7 @@
 
 <style lang="scss" scoped>
 
-  @import '~assets/scss/variables';
+  @import '~avril/scss/variables';
 
   .navbar-dropdown{
     border: none;

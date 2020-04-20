@@ -180,8 +180,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~/assets/scss/variables';
-  // @import '~bulma/sass/utilities/all';
+  @import '~avril/scss/variables';
 
   .candidature-detail {
     background: #fff;

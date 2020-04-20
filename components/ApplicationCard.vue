@@ -63,7 +63,8 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/scss/variables';
+  @import '~avril/scss/variables';
+
 
   .candidatures-card {
     height: 100%;
