@@ -21,6 +21,10 @@ export const fetchApi = async (graphQLQuery, optionalContext) => {
     url = `${serverUrl(optionalContext)}${url}`;
   }
 
+  console.log('&&&&&&&&&&&&&&&&&&&&')
+  console.log(url)
+  console.log('&&&&&&&&&&&&&&&&&&&&')
+
   const result = await fetcher(url, {
     method: 'POST',
     headers: {
