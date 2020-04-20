@@ -78,6 +78,9 @@ export const queryApi = async (queryInfos, optionalContext) => {
       throw err;
     }
   }
+  console.log('#################')
+  console.log(jsonData)
+  console.log('#################')
   if (jsonData && jsonData.data) {
     return jsonData.data[name];
   } else {

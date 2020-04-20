@@ -16,7 +16,7 @@ export const hasBookletFinished = application => !!get(application, 'booklet_1.c
 
 export const nextStep = application => {
   if (!hasDelegate(application)) return 'delegate';
-  if (!hasBooklet(application)) return 'booklet';
+  if (!hasBookletFinished(application)) return 'booklet';
   return 'uploads';
 }
 
