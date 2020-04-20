@@ -31,6 +31,12 @@ export const fetchApi = async (graphQLQuery, optionalContext) => {
     body: JSON.stringify(graphQLQuery)
   });
   const jsonData = await result.json();
+
+  console.log('*********************')
+  console.log(result)
+  console.log(jsonData)
+  console.log('*********************')
+
   if (result.ok) {
     return jsonData;
   } else {
