@@ -1,6 +1,5 @@
-import { backendToStore } from '~/mappers/toStore';
+import { queryApiOrRedirect } from 'avril/js/utils/api';
 import { nextStep } from '~/utils/application';
-import { queryApiOrRedirect } from '~/utils/api';
 
 export const state = () => ({});
 

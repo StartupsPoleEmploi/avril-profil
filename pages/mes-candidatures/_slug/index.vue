@@ -80,6 +80,7 @@
 
 <script>
   import get from 'lodash.get';
+  import { queryApi, mutateApi } from 'avril/js/utils/api';
 
   import NextStep from '~/components/application/NextStep.vue';
   import MeetingSelector from '~/components/application/MeetingSelector.vue';
@@ -90,7 +91,6 @@
   import {hasDelegate, hasBookletFinished, bookletPath, path} from '~/utils/application';
   import {name, levelToLevelLabel} from '~/utils/certification';
 
-  import { queryApi, mutateApi } from '~/utils/api';
 
   export default {
     components: {

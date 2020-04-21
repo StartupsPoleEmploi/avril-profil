@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-  import { queryApi, mutateApi } from '~/utils/api';
+  import { queryApi, mutateApi } from 'avril/js/utils/api';
 
   export default {
     data: function() {

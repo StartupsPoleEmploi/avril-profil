@@ -22,8 +22,8 @@
 <script>
   import GeoInput from 'avril/js/components/GeoInput.vue';
   import { chunk } from 'avril/js/utils/array';
+  import {queryApi, mutateApi} from 'avril/js/utils/api';
   import DelegateCard from '~/components/DelegateCard.vue';
-  import {queryApi, mutateApi} from '~/utils/api';
   import {name} from '~/utils/certification';
   import {path} from '~/utils/application';
 

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import { mutateApi } from '~/utils/api';
+  import { mutateApi } from 'avril/js/utils/api';
 
   export default {
     data: function() {
