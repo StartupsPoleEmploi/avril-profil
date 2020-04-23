@@ -1787,7 +1787,7 @@ autoprefixer@^9.6.1:
 
 avril@StartupsPoleEmploi/avril-shared:
   version "1.0.0"
-  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/a8f7f22967577f076367b29faab8572376b8ce74"
+  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/d790265ed3dcd41e5389b4ec756f61ec99f1b9f0"
   dependencies:
     "@trevoreyre/autocomplete-vue" "^2.1.1"
     algoliasearch "^3.35.1"
@@ -8691,9 +8691,9 @@ vue-template-es2015-compiler@^1.9.0:
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
 vue2-datepicker@^3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/vue2-datepicker/-/vue2-datepicker-3.4.1.tgz#1a7456b44da54bbc0f43f26d0c7948faa1825766"
-  integrity sha512-gCPZAwIyPLeN1P3xDg/Oj/UyQTIqnoFFzXw+yfvmUDxL430u/rHq1/JqFSGISEhTvJJu0brgHHrop3A7VBW6rA==
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/vue2-datepicker/-/vue2-datepicker-3.5.0.tgz#d0dd5d74df866defda3fbaa9d666ac33a7dc609f"
+  integrity sha512-E52TUjf57Qj2ZWtwtplS+BtYfz8wQFHnjux0q2X8N+ENvL3rHjp9pwEs0ukT1rDTouLdPtvACaXXLfDEy39mlw==
   dependencies:
     date-fns "^2.0.1"
     date-format-parse "^0.2.5"

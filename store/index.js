@@ -19,7 +19,6 @@ export const actions = {
     return await Promise.all(['identity', 'applications'].map(async storeName => {
       try {
         const jsonData = await queryApiOrRedirect(storeName, context);
-        console.log('nuxtServerInit jsonData', jsonData)
         commit(`${storeName}/updateStateFromServer`, jsonData);
       } catch(jsonErr) {
         console.error('Loading data failed')

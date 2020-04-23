@@ -51,7 +51,9 @@
               button="Compléter ma recevabilité"
               :href="bookletPath"
               hasMultipleLayer
-            />
+            >
+              <p v-if="bookletStatus">{{bookletStatus}}</p>
+            </LockableCard>
             <LockableCard
               :is-locked="!isDocumentsUnlocked"
               title="Mes justificatifs"
@@ -81,6 +83,7 @@
 <script>
   import get from 'lodash.get';
   import { queryApi, mutateApi } from 'avril/js/utils/api';
+  import { parseAndFormat } from 'avril/js/utils/time';
 
   import NextStep from '~/components/application/NextStep.vue';
   import MeetingSelector from '~/components/application/MeetingSelector.vue';
@@ -121,6 +124,12 @@
       },
       hasBookletFinished: function() {
         return hasBookletFinished(this.application)
+      },
+      bookletStatus: function() {
+        if (this.application.booklet_1.completedAt)
+          return `Complétée le ${parseAndFormat(this.application.booklet_1.completedAt)}.`;
+        if (this.application.booklet_1.insertedAt)
+          return `Démarrée le ${parseAndFormat(this.application.booklet_1.insertedAt)}.`;
       },
       isDocumentsUnlocked: function() {
         return this.isSynthesisUnlocked && this.hasBookletFinished;
