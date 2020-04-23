@@ -18,8 +18,8 @@
 </template>
 
 <script>
-  import IconLocked from '~/components/icons/locked.svg';
-  import IconPencil from '~/components/icons/pencil.svg';
+  import IconLocked from 'avril/images/icons/locked.svg';
+  import IconPencil from 'avril/images/icons/pencil.svg';
 
   import {hasBookletFinished} from '~/utils/application';
 

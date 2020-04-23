@@ -3,7 +3,7 @@
 </template>
 
 <script type="text/javascript">
-  import Logo from '~/assets/images/avril-logo.svg';
+  import Logo from 'avril/images/avril-logo.svg';
 
   export default {
     components: {

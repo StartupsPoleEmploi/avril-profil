@@ -112,7 +112,6 @@
   import AvrilLogo from '~/components/navigation/AvrilLogo';
   import NavItem from '~/components/navigation/NavItem.vue'
   import RichNavItem from '~/components/navigation/RichNavItem.vue'
-  // code example https://codepen.io/hunzaboy/pen/yoPKQW
 
   export default {
     components: {

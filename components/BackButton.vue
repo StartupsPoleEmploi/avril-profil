@@ -1,14 +1,14 @@
 <template>
   <nuxt-link :to="to" class="avril-back-button">
-    <span class="icon"><IconsArrowLeft/></span> {{label || 'retour'}}
+    <span class="icon"><ArrowLeft/></span> {{label || 'retour'}}
   </nuxt-link>
 </template>
 <script>
-import IconsArrowLeft from '~/components/icons/arrow-left.svg';
+import ArrowLeft from 'avril/images/icons/arrow-left.svg';
 
 export default {
   components: {
-    IconsArrowLeft,
+    ArrowLeft,
   },
   props: {
     label: {},

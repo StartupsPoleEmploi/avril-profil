@@ -16,12 +16,9 @@
 
 <script>
   import {first} from 'avril/js/utils/array';
-  import {formatDate} from 'avril/js/utils/time.js';
-  import Message from '~/components/Message.vue'
   import ApplicationCard from '~/components/ApplicationCard.vue'
-  import IconPencil from '~/components/icons/pencil.svg';
-  import {path} from '~/utils/application';
   import BackButton from '~/components/BackButton.vue';
+  import Message from '~/components/Message.vue'
 
   export default {
     computed: {
@@ -42,10 +39,6 @@
       ApplicationCard,
       BackButton,
       Message,
-      IconPencil,
-    },
-    methods: {
-      formatDate,
     },
   }
 </script>
