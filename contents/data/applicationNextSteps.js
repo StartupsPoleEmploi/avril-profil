@@ -15,7 +15,7 @@ export default {
     isSuggested: false,
     time: '2 - 3 minutes',
     title: 'Trouver mon certificateur',
-    description: 'C\'est celui qui validera votre dossier',
+    description: 'C\'est celui qui est responsable du diplôme sélectionné',
     button: 'Rechercher mon certificateur',
     to: application => `${path(application)}/mon-certificateur`,
   },

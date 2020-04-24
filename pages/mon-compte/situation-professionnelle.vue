@@ -2,15 +2,6 @@
   <div class="form">
     <div class="form-fields fields">
       <div class="field">
-        <h3 class="title is-6">Je suis reconnu travailleur handicapé :</h3>
-        <RadioList
-          :value="identity.isHandicapped"
-          :click="addIsHandicapped"
-          boolean
-          inline
-        />
-      </div>
-      <div class="field">
         <h3 class="title is-6">Je suis actuellement en :</h3>
         <RadioList
           key="statusQuestion"
@@ -57,6 +48,15 @@
             :options="compensationType"
           />
         </div>
+      </div>
+      <div class="field">
+        <h3 class="title is-6">Je suis reconnu travailleur handicapé :</h3>
+        <RadioList
+          :value="identity.isHandicapped"
+          :click="addIsHandicapped"
+          boolean
+          inline
+        />
       </div>
       <div class="form-field-action field">
         <div class="control">

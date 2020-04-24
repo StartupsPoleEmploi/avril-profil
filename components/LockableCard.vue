@@ -7,7 +7,7 @@
         <span class="icon is-small">
           <IconPencil/>
         </span>
-        <span>Éditer</span>
+        <span>Modifier</span>
       </span>
       <span v-else>{{button}}</span>
     </component>
