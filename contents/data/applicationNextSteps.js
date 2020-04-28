@@ -11,7 +11,7 @@ export default {
     to: application => '/mon-compte',
   },
   delegate: {
-    illustration: 'man',
+    illustration: 'woman',
     isSuggested: false,
     time: '2 - 3 minutes',
     title: 'Trouver mon certificateur',
@@ -20,13 +20,32 @@ export default {
     to: application => `${path(application)}/mon-certificateur`,
   },
   booklet: {
-    illustration: 'woman',
+    illustration: 'man',
     isSuggested: false,
     time: '1 - 2 heures',
     title: 'Remplir ma recevabilité',
     description: 'Etape éssentielle de la VAE',
     button: 'Remplir ma recevabilité',
     href: application => bookletPath(application),
+  },
+  submit: {
+    illustration: 'woman',
+    isSuggested: false,
+    time: 'en 1 clic',
+    title: 'Transmettre ma candidature',
+    description: 'Vous êtes prêts à transmettre toutes ces informations à votre certificateur',
+    button: 'Envoyer',
+    api: application => ({
+      store: 'applications',
+      disableWith: 'Envoi ...',
+      query: {
+        name: 'submitApplication',
+        type: 'application',
+        params: {
+          id: application.id,
+        }
+      },
+    }),
   },
   uploads: {
     illustration: 'man',

@@ -35,3 +35,10 @@ html,body {
   font-weight: 900;
   text-transform: uppercase;
 }
+
+header.application-header {
+  margin-bottom: 2rem;
+  .title {
+    margin-bottom: 1rem;
+  }
+}

@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="field">
-        <SaveButton store="identity" to="/" />
+        <IdentitySaveButtons to="/" />
       </div>
     </div>
   </div>
@@ -29,12 +29,12 @@
 
 <script>
   import PhoneInput from 'avril/js/components/PhoneInput.vue';
-  import SaveButton from '~/components/SaveButton.vue';
+  import IdentitySaveButtons from '~/components/IdentitySaveButtons.vue';
 
   export default {
     components: {
       PhoneInput,
-      SaveButton,
+      IdentitySaveButtons,
     },
     computed: {
       identity() {

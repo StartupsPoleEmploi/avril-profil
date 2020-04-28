@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="field">
-        <SaveButton store="identity" to="/mon-compte/me-joindre" />
+        <IdentitySaveButtons to="/mon-compte/me-joindre" />
       </div>
     </div>
   </div>
@@ -15,12 +15,12 @@
 
 <script>
   import GeoInput from 'avril/js/components/GeoInput.vue';
-  import SaveButton from '~/components/SaveButton.vue';
+  import IdentitySaveButtons from '~/components/IdentitySaveButtons.vue';
 
   export default {
     components: {
       GeoInput,
-      SaveButton
+      IdentitySaveButtons
     },
     computed: {
       identity() {

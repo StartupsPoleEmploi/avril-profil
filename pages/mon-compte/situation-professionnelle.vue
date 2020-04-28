@@ -60,7 +60,7 @@
       </div>
       <div class="form-field-action field">
         <div class="control">
-          <SaveButton store="identity" to="/mon-compte/lieu-de-residence" />
+          <IdentitySaveButtons to="/mon-compte/lieu-de-residence" />
         </div>
       </div>
     </div>
@@ -74,7 +74,7 @@
   import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
 
   import possibleAnswers from '~/contents/data/currentSituation';
-  import SaveButton from '~/components/SaveButton.vue';
+  import IdentitySaveButtons from '~/components/IdentitySaveButtons.vue';
 
   export default {
     mixins: [
@@ -82,7 +82,7 @@
     ],
     components: {
       RadioList,
-      SaveButton,
+      IdentitySaveButtons,
     },
     computed: {
       identity() {

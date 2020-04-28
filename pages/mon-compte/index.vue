@@ -51,7 +51,7 @@
         <input class="input is-large" :value="identity.usageName" @input="addUsageName" type="text" name="name" placeholder="Nom d'usage">
       </div>
     </div>
-    <SaveButton store="identity" to="/mon-compte/situation-professionnelle" />
+    <IdentitySaveButtons to="/mon-compte/situation-professionnelle" />
   </div>
 </template>
 
@@ -59,7 +59,7 @@
   import { parseISODate, formatISODate } from 'avril/js/utils/time';
   import GeoInput from 'avril/js/components/GeoInput.vue';
   import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
-  import SaveButton from '~/components/SaveButton.vue';
+  import IdentitySaveButtons from '~/components/IdentitySaveButtons.vue';
 
   export default {
     mixins: [
@@ -72,7 +72,7 @@
     },
     components: {
       GeoInput,
-      SaveButton,
+      IdentitySaveButtons,
     },
     methods: {
       parseISODate,

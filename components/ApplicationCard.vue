@@ -1,18 +1,12 @@
 <template>
   <div class="candidatures-card" :class="`is-${size}`">
-    <div class="level">
-      <div class="level-left has-text-left">
-        <div class="level-item">
-          <nuxt-link :to="applicationPath">
-            <h3 class="title" :class="`is-${size === 'small' ? 5 : 3}`">{{certificationName}}</h3>
-          </nuxt-link>
-          <div class="label-avril">Équivalence {{certificationLevel}}</div>
-        </div>
-      </div>
-      <div class="level-right" v-if="!isFilled">
-        <span class="tag is-info">à compléter</span>
-      </div>
-    </div>
+    <ApplicationTag :application="application" />
+    <header class="application-header">
+      <nuxt-link :to="applicationPath">
+        <h3 class="title" :class="`is-${size === 'small' ? 5 : 3}`">{{certificationName}}</h3>
+      </nuxt-link>
+      <div class="label-avril">Équivalence {{certificationLevel}}</div>
+    </header>
     <p>
       Candidature démarrée le {{applicationStarted}}<span v-if="delegateName"> avec pour certificateur {{delegateName}}</span>.
     </p>
@@ -27,8 +21,12 @@
   import {name, levelToLevelLabel} from '~/utils/certification';
   import {isFilled, delegateName} from '~/utils/application';
   import {parseAndFormat} from 'avril/js/utils/time.js';
+  import ApplicationTag from '~/components/ApplicationTag.vue';
 
   export default {
+    components: {
+      ApplicationTag,
+    },
     computed: {
       certificationName: function() {
         return name(this.application.certification);
@@ -97,16 +95,6 @@
     }
     &.is-small {
       padding-bottom: 1rem;
-      .level{
-        display: block;
-        &-left, &-right {
-          display: block;
-        }
-      }
-      .tag {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-      }
     }
   }
 

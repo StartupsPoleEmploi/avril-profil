@@ -5,6 +5,11 @@
         <p><span>Prochaine étape {{isSuggested ? 'conseillée' : ''}}</span><span v-if="time"> - {{time}}</span></p>
         <h2 class="title is-2">{{title}}</h2>
         <p>{{description}}</p>
+        <ApiButton
+          v-if="api"
+          v-bind="api(application)"
+          class="button is-info is-inverted is-rounded"
+        >{{button}}</ApiButton>
         <nuxt-link v-if="to" :to="to(application)" class="button is-info is-inverted is-rounded">{{button}}</nuxt-link>
         <a v-if="href" :href="href(application)" class="button is-info is-inverted is-rounded">{{button}}</a>
       </div>
@@ -17,13 +22,18 @@
 
 <script>
   import nextStepsData from '~/contents/data/applicationNextSteps';
+  import ApiButton from '~/components/ApiButton';
 
   export default {
+    components: {
+      ApiButton,
+    },
     data: function() {
       const key = this.$store.getters.nextApplicationStep(this.application);
       return Object.assign({
         href: null,
         to: null,
+        api: null,
         time: null,
       }, nextStepsData[key]);
     },

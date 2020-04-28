@@ -2,22 +2,10 @@
   <div>
     <SavedMessage :isSaved="isSaved" />
     <MeetingSelector :application="application" :meetings="meetings" />
-    <header class="candidature">
-      <div class="level">
-
-        <div class="level-left has-text-left">
-          <div class="level-item">
-            <div>
-              <h1 class="title is-2">{{certificationName}}</h1>
-              <div class="label-avril">Équivalence {{levelLabel}}</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="level-right">
-          <span class="tag is-info">à compléter</span>
-        </div>
-      </div>
+    <header class="application-header">
+      <ApplicationTag :application="application" />
+      <h1 class="title is-2">{{certificationName}}</h1>
+      <div class="label-avril">Équivalence {{levelLabel}}</div>
     </header>
     <div class="candidature-detail">
       <NextStep :application="application" />
@@ -70,7 +58,7 @@
               button="Trouver mon certificateur"
               :to="`${applicationPath}/mon-certificateur`"
             >
-              <h3 class="title is-5" style="margin-bottom: 0.5rem;">{{delegateName}}</h3>
+              <p class="has-text-weight-bold">{{delegateName}}</p>
               <Address :address="delegateAddress" />
             </LockableCard>
           </div>
@@ -90,6 +78,7 @@
   import Address from '~/components/Address.vue';
   import LockableCard from '~/components/LockableCard.vue';
   import SavedMessage from '~/components/SavedMessage.vue';
+  import ApplicationTag from '~/components/ApplicationTag.vue';
 
   import {hasDelegate, hasBookletFinished, bookletPath, path} from '~/utils/application';
   import {name, levelToLevelLabel} from '~/utils/certification';
@@ -97,6 +86,7 @@
 
   export default {
     components: {
+      ApplicationTag,
       Address,
       MeetingSelector,
       NextStep,
@@ -126,9 +116,9 @@
         return hasBookletFinished(this.application)
       },
       bookletStatus: function() {
-        if (this.application.booklet_1.completedAt)
+        if (get(this.application, 'booklet_1.completedAt'))
           return `Complétée le ${parseAndFormat(this.application.booklet_1.completedAt)}.`;
-        if (this.application.booklet_1.insertedAt)
+        if (get(this.application, 'booklet_1.insertedAt'))
           return `Démarrée le ${parseAndFormat(this.application.booklet_1.insertedAt)}.`;
       },
       isDocumentsUnlocked: function() {
@@ -206,12 +196,5 @@
     .has-equal-height {
       min-height: auto;
     }
-  }
-
-  .candidature {
-    margin-bottom: 2rem
-  }
-  .level-item {
-    justify-content: flex-start
   }
 </style>
