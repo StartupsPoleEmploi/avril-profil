@@ -1,20 +1,20 @@
 <template>
-  <div class="avril-next-step notification is-info" v-if="title && button">
+  <div class="avril-next-step notification is-info" v-if="nextStep">
     <div class="columns is-mobile is-vcentered">
       <div class="column">
-        <p><span>Prochaine étape {{isSuggested ? 'conseillée' : ''}}</span><span v-if="time"> - {{time}}</span></p>
-        <h2 class="title is-2">{{title}}</h2>
-        <p>{{description}}</p>
+        <p><span>Prochaine étape {{nextStep.isSuggested ? 'conseillée' : ''}}</span><span v-if="nextStep.time"> - {{nextStep.time}}</span></p>
+        <h2 class="title is-2">{{nextStep.title}}</h2>
+        <p>{{nextStep.description}}</p>
         <ApiButton
-          v-if="api"
-          v-bind="api(application)"
+          v-if="nextStep.api"
+          v-bind="nextStep.api(application)"
           class="button is-info is-inverted is-rounded"
-        >{{button}}</ApiButton>
-        <nuxt-link v-if="to" :to="to(application)" class="button is-info is-inverted is-rounded">{{button}}</nuxt-link>
-        <a v-if="href" :href="href(application)" class="button is-info is-inverted is-rounded">{{button}}</a>
+        >{{nextStep.button}}</ApiButton>
+        <nuxt-link v-if="nextStep.to" :to="nextStep.to(application)" class="button is-info is-inverted is-rounded">{{nextStep.button}}</nuxt-link>
+        <a v-if="nextStep.href" :href="nextStep.href(application)" class="button is-info is-inverted is-rounded">{{nextStep.button}}</a>
       </div>
       <div class="column is-narrow is-hidden-mobile">
-        <img :src="`images/next-step/${illustration}.svg`" alt="Illustration de la prochaine étape" class="illustration">
+        <img :src="`images/next-step/${nextStep.illustration}.svg`" alt="Illustration de la prochaine étape" class="illustration">
       </div>
     </div>
   </div>
@@ -28,14 +28,11 @@
     components: {
       ApiButton,
     },
-    data: function() {
-      const key = this.$store.getters.nextApplicationStep(this.application);
-      return Object.assign({
-        href: null,
-        to: null,
-        api: null,
-        time: null,
-      }, nextStepsData[key]);
+    computed: {
+      nextStep: function() {
+        const key = this.$store.getters.nextApplicationStep(this.application);
+        return nextStepsData[key];
+      }
     },
     props: {
       application: {

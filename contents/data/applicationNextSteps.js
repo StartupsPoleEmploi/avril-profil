@@ -39,6 +39,8 @@ export default {
       store: 'applications',
       disableWith: 'Envoi ...',
       query: {
+        message: 'Candidature transmise avec succès.',
+        store: 'applications',
         name: 'submitApplication',
         type: 'application',
         params: {

@@ -64,15 +64,20 @@
         this.delegates = result;
       },
       selectDelegate: async function(delegate) {
-        const result = await mutateApi({
+        const application = await mutateApi({
           name: 'attachDelegate',
           type: 'application',
           params: {
-            applicationId: this.application.id,
-            delegateId: delegate.id,
+            input: {
+              applicationId: this.application.id,
+              delegateId: delegate.id,
+            }
           },
         })
-        this.$store.dispatch('applications/updateAndInform', result);
+        this.$store.dispatch('applications/updateAndInform', {
+          ...application,
+          savedMessage: 'Certificateur enregistré.'
+        });
         this.$router.push({
           path: path(this.application)
         });

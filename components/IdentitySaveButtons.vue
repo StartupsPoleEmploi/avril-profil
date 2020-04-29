@@ -3,7 +3,7 @@
     <div class="level-left">
       <ApiButton
         type="submit"
-        :query="{store: 'identity', name: 'updateIdentity', type: 'identity', params: savableState}"
+        :query="{store: 'identity', name: 'updateIdentity', type: 'identity', params: {input: savableState}}"
         disable-with="Enregistrement ..."
         class="button is-primary is-rounded is-medium"
         :to="to"

@@ -1,6 +1,6 @@
 <template>
-  <Message type="success" v-if="isSaved" :onRemove="removeIsSaved">
-    <p>Enregistré</p>
+  <Message type="success" v-if="message" :onRemove="removeMessage">
+    <p>{{message}}</p>
   </Message>
 </template>
 <script type="text/javascript">
@@ -11,12 +11,11 @@
       Message,
     },
     props: {
-      isSaved: {
-        type: Boolean,
+      message: {
+        type: String,
         isRequired: true,
-        default: false,
       },
-      removeIsSaved: {
+      removeMessage: {
         type: Function,
         isRequired: true,
       }

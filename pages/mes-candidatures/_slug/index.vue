@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SavedMessage :isSaved="isSaved" />
+    <SavedMessage :message="application.savedMessage" :removeMessage="removeSavedMessage" />
     <MeetingSelector :application="application" :meetings="meetings" />
     <header class="application-header">
       <ApplicationTag :application="application" />
@@ -70,7 +70,7 @@
 
 <script>
   import get from 'lodash.get';
-  import { queryApi, mutateApi } from 'avril/js/utils/api';
+  import { queryApi } from 'avril/js/utils/api';
   import { parseAndFormat } from 'avril/js/utils/time';
 
   import NextStep from '~/components/application/NextStep.vue';
@@ -96,9 +96,6 @@
     computed: {
       identity: function() {
         return this.$store.state.identity;
-      },
-      isSaved: function() {
-        return this.application.isSaved;
       },
       applicationPath: function() {
         return path(this.application);
@@ -145,9 +142,14 @@
         meetings: [],
       }
     },
-    mounted: function() {
-      this.$store.commit('applications/removeIsSaved', this.application.id);
+    methods: {
+      removeSavedMessage: function() {
+        this.$store.commit('applications/removeSavedMessage');
+      }
     },
+    // mounted: function() {
+    //   this.$store.commit('applications/removeSavedMessage', this.application.id);
+    // },
     asyncData: async function(context) {
       const {store, params} = context;
       const application = store.state.applications.find(a => a.certification.slug === params.slug);
@@ -172,9 +174,10 @@
     },
     props: {
       application: {
-        type: Object
+        type: Object,
+        isRequired: true,
       }
-    },
+    }
   }
 </script>
 

@@ -10,19 +10,22 @@ export const getters = {
 };
 
 export const mutations = {
-  removeIsSaved(state, id) {
-    state[state.findIndex(a => a.id === id)].isSaved = false;
+  removeSavedMessage(state) {
+    state.forEach(a => {
+      a.savedMessage = null;
+    })
+    // state[state.findIndex(a => a.id === id)].savedMessage = null;
   },
   updateStateFromServer(state, serverState) {
     (serverState || []).forEach(e => state.push(e));
   },
   updateApplication(state, newApplicationData) {
-    state[state.findIndex(a => a.id === newApplicationData.id)] = newApplicationData;
+    state.splice(state.findIndex(a => a.id === newApplicationData.id), 1, newApplicationData)
   }
 };
 
 export const actions = {
-  updateAndInform({ commit }, newApplicationData) {
-    commit('updateApplication', {...newApplicationData, isSaved: true})
+  updateAndInform({ commit }, data) {
+    commit('updateApplication', data)
   }
 }

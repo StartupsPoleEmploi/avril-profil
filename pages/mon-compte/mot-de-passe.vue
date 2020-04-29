@@ -43,13 +43,18 @@
           name: 'updatePassword',
           type: 'identity',
           params: {
-            password: this.newPassword,
-            confirmPassword: this.newPassword,
-            currentPassword: this.currentPassword,
+            input: {
+              password: this.newPassword,
+              confirmPassword: this.newPassword,
+              currentPassword: this.currentPassword,
+            }
           },
         });
         this.isSaving = false;
-        this.$store.commit('identity/updateStateFromServer', result);
+        this.$store.dispatch('identity/updateAndInform', {
+          ...result,
+          savedMessage: 'Mot de passe modifié avec succès.',
+        });
       },
     },
   }

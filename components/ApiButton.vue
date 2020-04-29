@@ -35,11 +35,15 @@
       callAction: async function() {
         const fetchApi = this.type === SUBMIT ? mutateApi : queryApi;
         const store = isString(this.query) ? this.query : this.query.store;
+        this.$store.commit(`${store}/removeSavedMessage`);
         this.isSaving = true;
         const result = await fetchApi(this.query)
         this.isSaving = false;
         if (this.type === SUBMIT) {
-          this.$store.dispatch(`${store}/updateAndInform`, result);
+          this.$store.dispatch(`${store}/updateAndInform`, {
+            ...result,
+            savedMessage: this.query.message || 'Enregistré'
+          });
         } else {
           this.$store.commit(`${store}/updateStateFromServer`, result);
         }
