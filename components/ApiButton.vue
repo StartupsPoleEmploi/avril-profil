@@ -25,6 +25,9 @@
         default: SUBMIT,
         validator: p => include([RESET, SUBMIT], p),
       },
+      to: {
+        type: String,
+      }
     },
     data: function() {
       return {
@@ -48,7 +51,7 @@
           this.$store.commit(`${store}/updateStateFromServer`, result);
         }
         if (this.to) {
-          is.$router.push(this.to);
+          this.$router.push(this.to);
         }
       }
     },

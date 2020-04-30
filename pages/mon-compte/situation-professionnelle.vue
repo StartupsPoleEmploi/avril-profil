@@ -89,7 +89,7 @@
         return this.$store.state.identity
       },
       currentSituation() {
-        return this.identity.currentSituation
+        return this.identity.currentSituation || {}
       },
       isWorking() {
         return this.currentSituation.status === 'working'

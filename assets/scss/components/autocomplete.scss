@@ -1,52 +1,8 @@
-@mixin icon-left {
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjY2NjIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIvPjxwYXRoIGQ9Ik0yMSAyMWwtNC00Ii8+PC9zdmc+');
-  background-repeat: no-repeat;
-  background-position: 1rem center;
-  padding-left: 3rem !important;
-  padding: 1rem;
-}
-
 .autocomplete {
   .autocomplete-input {
     @extend .input;
-
     body & {
       @extend .is-large;
     }
-    @include icon-left;
   }
 }
-
-.autocomplete-result {
-  cursor: default;
-  @include icon-left;
-  &:hover, &[aria-selected="true"] {
-    background-color: rgba(0, 0, 0, 0.06);
-  }
-}
-
-.autocomplete-result-list {
-  margin: 0;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  padding: 0;
-  box-sizing: border-box;
-  max-height: 296px;
-  overflow-y: auto;
-  background: #fff;
-  list-style: none;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.16);
-  [data-position="below"] & {
-    margin-top: -1px;
-    border-top-color: transparent;
-    border-radius: 0 0 8px 8px;
-    padding-bottom: 8px;
-  }
-
-  [data-position="above"] & {
-    margin-bottom: -1px;
-    border-bottom-color: transparent;
-    border-radius: 8px 8px 0 0;
-    padding-top: 8px;
-  }
-}
-
