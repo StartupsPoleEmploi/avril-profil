@@ -100,7 +100,7 @@
             </NavItem>
             <NavItem to="/mes-rendez-vous">Mes rendez-vous</NavItem>
             <hr class="navbar-divider">
-            <NavItem href="/sessions">Déconnexion</NavItem>
+            <NavItem href="/disconnect">Déconnexion</NavItem>
           </div>
         </div>
       </div>
