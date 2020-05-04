@@ -40,7 +40,7 @@
         const store = isString(this.query) ? this.query : this.query.store;
         this.$store.commit(`${store}/removeSavedMessage`);
         this.isSaving = true;
-        const result = await fetchApi(this.query)
+        const result = await fetchApi(this.query);
         this.isSaving = false;
         if (this.type === SUBMIT) {
           this.$store.dispatch(`${store}/updateAndInform`, {

@@ -7,7 +7,7 @@
       <Address :address="delegate.address || {}" />
     </div>
     <div class="card-footer has-text-centered">
-      <button @click="e => onClick(delegate)" class="button is-text">Choisir ce certificateur</button>
+      <button @click="e => onClick(delegate)" class="button is-rounded is-text">Choisir ce certificateur</button>
     </div>
   </div>
 </template>

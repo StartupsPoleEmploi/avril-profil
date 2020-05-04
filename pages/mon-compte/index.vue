@@ -3,52 +3,56 @@
     <h3 class="title is-6">Informations obligatoires</h3>
     <div class="columns">
       <div class="column is-4">
-        <input class="input is-large" type="text" name="name" placeholder="Nom" :value="identity.lastName" @input="addLastName">
+        <IdentityField
+          type="text"
+          field="lastName"
+          label="Nom" />
       </div>
       <div class="column is-8">
-        <input class="input is-large" type="text" name="name" placeholder="Prénoms" :value="identity.firstName" @input="addFirstName">
+        <IdentityField
+          type="text"
+          field="firstName"
+          label="Prénoms" />
       </div>
     </div>
     <div class="columns">
       <div class="column is-4">
-        <div class="field">
-          <div class="control">
-            <client-only placeholder="Chargement du calendrier ...">
-              <date-picker input-class="input is-large" :value="parseISODate(identity.birthday)" @input="addBirthday" :format="datePickerFormat" placeholder="Date de naissance" default-panel="year"/>
-            </client-only>
-          </div>
-        </div>
+        <IdentityField
+          type="date"
+          field="birthday"
+          label="Date de naissance" />
       </div>
       <div class="column is-8">
-        <div class="field">
-          <div class="control">
-            <GeoInput :input="addBirthPlace" :value="identity.birthPlace" type="city" placeholder="Lieu de naissance" />
-          </div>
-        </div>
+        <IdentityField
+          type="geo"
+          geotype="city"
+          field="birthPlace"
+          label="Ville de naissance" />
       </div>
     </div>
     <div class="columns">
       <div class="column is-4">
-        <div class="select is-large is-fullwidth">
-          <select @change="addGender" :value="identity.gender">
-            <option :value="null">Genre</option>
-            <option value="m">Masculin</option>
-            <option value="f">Féminin</option>
-          </select>
-        </div>
+        <IdentityField
+          type="select"
+          field="gender"
+          label="Genre"
+          :options="{m: 'Masculin', f: 'Féminin'}" />
       </div>
       <div class="column is-8">
-        <div class="field">
-          <div class="control">
-            <GeoInput :input="addNationality" :value="identity.nationality" type="country" placeholder="Nationalité" />
-          </div>
-        </div>
+        <IdentityField
+          type="geo"
+          geotype="country"
+          field="nationality"
+          label="Nationalité" />
       </div>
     </div>
     <h3 class="title is-6">Informations optionnelles</h3>
     <div class="columns">
       <div class="column is-12">
-        <input class="input is-large" :value="identity.usageName" @input="addUsageName" type="text" name="name" placeholder="Nom d'usage">
+        <IdentityField
+          type="text"
+          field="usageName"
+          label="Nom d'usage" />
       </div>
     </div>
     <IdentitySaveButtons to="/mon-compte/situation-professionnelle" />
@@ -56,47 +60,13 @@
 </template>
 
 <script>
-  import { parseISODate, formatISODate } from 'avril/js/utils/time';
-  import GeoInput from 'avril/js/components/GeoInput.vue';
-  import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
   import IdentitySaveButtons from '~/components/IdentitySaveButtons.vue';
+  import IdentityField from '~/components/IdentityField.vue';
 
   export default {
-    mixins: [
-      withDatePickerMixin,
-    ],
-    computed: {
-      identity() {
-        return this.$store.state.identity;
-      },
-    },
     components: {
-      GeoInput,
+      IdentityField,
       IdentitySaveButtons,
-    },
-    methods: {
-      parseISODate,
-      addFirstName: function(e) {
-        this.$store.commit('identity/updateState', {firstName: e.target.value})
-      },
-      addLastName: function(e) {
-        this.$store.commit('identity/updateState', {lastName: e.target.value})
-      },
-      addUsageName: function(e) {
-        this.$store.commit('identity/updateState', {usageName: e.target.value})
-      },
-      addBirthPlace: function({country_code, ...result}) {
-        this.$store.commit('identity/updateState', {birthPlace: result})
-      },
-      addBirthday: function(date) {
-        this.$store.commit('identity/updateState', {birthday: formatISODate(date)});
-      },
-      addNationality: function(value) {
-        this.$store.commit('identity/updateState', {nationality: value});
-      },
-      addGender: function(e) {
-        this.$store.commit('identity/updateState', {gender: e.target.value});
-      },
     },
   }
 </script>

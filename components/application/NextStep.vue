@@ -10,8 +10,8 @@
           v-bind="nextStep.api(application)"
           class="button is-info is-inverted is-rounded"
         >{{nextStep.button}}</ApiButton>
-        <nuxt-link v-if="nextStep.to" :to="nextStep.to(application)" class="button is-info is-inverted is-rounded">{{nextStep.button}}</nuxt-link>
-        <a v-if="nextStep.href" :href="nextStep.href(application)" class="button is-info is-inverted is-rounded">{{nextStep.button}}</a>
+        <nuxt-link v-else-if="nextStep.to" :to="nextStep.to(application)" class="button is-info is-inverted is-rounded">{{nextStep.button}}</nuxt-link>
+        <a v-else-if="nextStep.href" :href="nextStep.href(application)" class="button is-info is-inverted is-rounded">{{nextStep.button}}</a>
       </div>
       <div class="column is-narrow is-hidden-mobile">
         <img :src="`images/next-step/${nextStep.illustration}.svg`" alt="Illustration de la prochaine étape" class="illustration">

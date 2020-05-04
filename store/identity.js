@@ -4,7 +4,7 @@ import {include} from 'avril/js/utils/array';
 
 export const state = () => ({
   isServerData: false,
-  savedMessage: '',
+  savedMessage: null,
   lastName: null,
   usageName: null,
   firstName: null,

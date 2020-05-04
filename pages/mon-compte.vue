@@ -15,7 +15,6 @@
             <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte/situation-professionnelle">Situation professionnelle</nuxt-link>
             <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte/lieu-de-residence">Lieu de résidence</nuxt-link>
             <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte/me-joindre">Me joindre</nuxt-link>
-            <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte/mot-de-passe">Mot de passe</nuxt-link>
           </div>
           <nuxt-child />
         </div>

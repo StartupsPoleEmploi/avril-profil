@@ -100,6 +100,7 @@
             </NavItem>
             <NavItem to="/mes-rendez-vous">Mes rendez-vous</NavItem>
             <hr class="navbar-divider">
+            <NavItem to="/mot-de-passe">Changer de mot de passe</NavItem>
             <NavItem href="/disconnect">Déconnexion</NavItem>
           </div>
         </div>

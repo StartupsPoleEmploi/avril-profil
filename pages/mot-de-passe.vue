@@ -1,14 +1,17 @@
 <template>
   <div class="form">
+    <h1 class="title h1 is-spaced">Changer de mot de passe</h1>
     <div class="form-fields fields">
       <div class="field">
+        <label class="label">Mot de passe actuel</label>
         <div class="control">
-          <input v-model="currentPassword" class="input is-large" type="password" placeholder="Mon mot de passe actuel">
+          <input v-model="currentPassword" class="input is-large" type="password" placeholder="Mot de passe actuel">
         </div>
       </div>
       <div class="field">
+        <label class="label">Nouveau mot de passe</label>
         <div class="control">
-          <input v-model="newPassword" class="input is-large" type="password" placeholder="Mon nouveau mot de passe" />
+          <input v-model="newPassword" class="input is-large" type="password" placeholder="Nouveau mot de passe" />
         </div>
       </div>
 

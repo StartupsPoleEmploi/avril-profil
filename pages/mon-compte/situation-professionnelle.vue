@@ -58,11 +58,7 @@
           inline
         />
       </div>
-      <div class="form-field-action field">
-        <div class="control">
-          <IdentitySaveButtons to="/mon-compte/lieu-de-residence" />
-        </div>
-      </div>
+      <IdentitySaveButtons to="/mon-compte/lieu-de-residence" />
     </div>
   </div>
 </template>
