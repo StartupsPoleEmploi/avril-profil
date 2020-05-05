@@ -21,38 +21,10 @@
           </div>
           <div class="navbar-dropdown is-mega-dropdown" :class="{ 'is-active': isActive.navigation }">
             <div class="container is-fluid">
-              <div class="columns">
-                <div class="column is-4 has-equal-height">
-                  <article class="card">
-                    <a class="card-content" href="/bien-choisir-son-diplome-vae">
-                      <h3 class="title is-5">Bien choisir un diplôme</h3>
-                      <p>Parce que le choix doit être une évidence, nous vous donnons des conseils pour un meilleur résultat</p>
-                    </a>
-                  </article>
-                </div>
-                <div class="column is-4 has-equal-height">
-                  <article class="card">
-                    <a class="card-content" href="/financement-vae">
-                      <h3 class="title is-5">Financer ma VAE</h3>
-                      <p>Parce que le choix doit être une évidence, nous vous donnons des conseils pour un meilleur résultat</p>
-                    </a>
-                  </article>
-                </div>
-                <div class="column is-4 has-equal-height">
-                  <article class="card">
-                    <a class="card-content" href="/">
-                      <h3 class="title is-5">Bien choisir son accompagnateur</h3>
-                      <p>Parce que le choix doit être une évidence, nous vous donnons des conseils pour un meilleur résultat</p>
-                    </a>
-                  </article>
-                </div>
-              </div>
-            </div>
-            <div class="container is-fluid">
               <div class="columns is-multiline">
 
                 <div class="column">
-                  <h3 class="title is-6 is-mega-menu-title">Notions essentielles</h3>
+                  <h3 class="title is-6 is-mega-menu-title">Notions essentielles VAE</h3>
                   <div class="columns">
                     <div class="column">
                       <NavItem href="/vae">C'est quoi la VAE ?</NavItem>
@@ -77,7 +49,6 @@
                     </div>
                     <div class="column">
                       <h3 class="title is-6 is-mega-menu-title">Aides et support</h3>
-                      <NavItem to="/">Crisp</NavItem>
                       <NavItem href="/contact">Nous contacter</NavItem>
                     </div>
                   </div>

@@ -4,18 +4,22 @@
     <p class="subtitle" v-if="application.delegate">Remplacer {{application.delegate.name}}</p>
     <div class="field">
       <div class="control">
-        <GeoInput :input="selectDelegateCity" type="city" placeholder="A côté de quelle ville voulez-vous rechercher ?" />
+        <GeoInput :input="selectDelegateCity" type="city" placeholder="A côté de quelle ville voulez-vous rechercher ?" countries="fr" />
       </div>
     </div>
-    <p v-if="isSearching">Recherche en cours ...</p>
-    <div v-if="delegates.length" >
-      <ul v-for="delegateChunk in chunk(delegates, 4)" class="columns">
+    <div v-if="error" class="has-text-danger">
+      <p class="field">{{error}}</p>
+      <nuxt-link :to="applicationPath" class="button is-rounded is-danger">Retour</nuxt-link>
+    </div>
+    <p v-else-if="isSearching">Recherche en cours ...</p>
+    <div v-else-if="delegates" >
+      <ul v-if="delegates.length" v-for="delegateChunk in chunk(delegates, 4)" class="columns is-multiline">
         <li v-for="delegate in delegateChunk" class="column is-4 has-equal-height">
           <DelegateCard :delegate="delegate" :onClick="selectDelegate" />
         </li>
       </ul>
+      <p v-else>Aucun certificateur n'a été trouvé. :(</p>
     </div>
-
   </div>
 </template>
 
@@ -28,14 +32,19 @@
   import {path} from '~/utils/application';
 
   export default {
-    computed: {},
+    computed: {
+      applicationPath() {
+        return path(this.application);
+      },
+    },
     components: {
       DelegateCard,
       GeoInput,
     },
     data: function(){
       return {
-        delegates: [],
+        error: null,
+        delegates: null,
         isSearching: false,
       }
     },
@@ -47,40 +56,49 @@
     methods: {
       chunk,
       selectDelegateCity: async function({lat, lng, postalCode}) {
-        this.isSearching = true;
-        const result = await queryApi({
-          name: 'delegatesSearch',
-          type: 'delegate',
-          params: {
-            applicationId: this.application.id,
-            geo: {
-              lat,
-              lng,
-            },
-            postalCode,
-          }
-        })
-        this.isSearching = false;
-        this.delegates = result;
+        try {
+          this.isSearching = true;
+          const result = await queryApi({
+            name: 'delegatesSearch',
+            type: 'delegate',
+            params: {
+              applicationId: this.application.id,
+              geo: {
+                lat,
+                lng,
+              },
+              postalCode,
+            }
+          })
+          this.isSearching = false;
+          this.delegates = result;
+        } catch(err) {
+          this.isSearching = false;
+          this.error = 'Une erreur est survenue, merci de réessayer plus tard.';
+        }
       },
       selectDelegate: async function(delegate) {
-        const application = await mutateApi({
-          name: 'attachDelegate',
-          type: 'application',
-          params: {
-            input: {
-              applicationId: this.application.id,
-              delegateId: delegate.id,
-            }
-          },
-        })
-        this.$store.dispatch('applications/updateAndInform', {
-          ...application,
-          savedMessage: 'Certificateur enregistré.'
-        });
-        this.$router.push({
-          path: path(this.application)
-        });
+        try {
+          const application = await mutateApi({
+            name: 'attachDelegate',
+            type: 'application',
+            params: {
+              input: {
+                applicationId: this.application.id,
+                delegateId: delegate.id,
+              }
+            },
+          })
+          this.$store.dispatch('applications/updateAndInform', {
+            ...application,
+            savedMessage: 'Certificateur enregistré.'
+          });
+          this.$router.push({
+            path: path(this.application)
+          });
+        } catch(err) {
+          this.error = 'Une erreur est survenue, nous ne sommes pas parvenu à sélectionner ce certificateur. Merci de réessayer plus tard.';
+        }
       }
     }
   }
