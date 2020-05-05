@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BackButton label="Mon espace" to="/" />
+    <BackButton label="Mes candidatures" to="/" />
     <div class="identite">
       <div class="columns">
         <div class="column is-8">

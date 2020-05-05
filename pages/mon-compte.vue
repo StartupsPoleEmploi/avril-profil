@@ -1,10 +1,10 @@
 <template>
   <div>
-    <BackButton label="Mon espace" to="/" />
+    <BackButton label="Mes candidatures" to="/" />
     <div class="identite">
       <div class="columns">
         <div class="column is-12 is-11-desktop is-10-widescreen is-9-hd">
-          <h1 class="title h1 is-spaced">Mon identité</h1>
+          <h1 class="title h1 is-spaced">Mon compte</h1>
           <p class="subtitle">
             Tous ces éléments sont indispensables pour lier le diplôme à votre identité. <br />
             Sans elles, il est impossible de garantir votre identité.

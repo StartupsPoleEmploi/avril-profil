@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BackButton label="Mon espace" to="/" />
+    <!-- <BackButton label="Mon espace" to="/" /> -->
     <Message v-if="!hasIdentity" type="success" size="large">
       <h3 class="title is-4">Renseigner votre identité est obligatoire pour toutes vos candidatures</h3>
       <nuxt-link to="/mon-compte" class="button is-success is-inverted is-rounded">Renseigner mon identité</nuxt-link>

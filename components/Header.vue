@@ -92,7 +92,6 @@
             <span class="tag is-danger is-rounded" v-if="unfinishedApplicationsLength">{{unfinishedApplicationsLength}}</span> {{username}}
           </div>
           <div class="navbar-dropdown is-right" :class="{ 'is-active': isActive.profile }">
-            <NavItem to="/">Mon espace VAE</NavItem>
             <NavItem to="/mon-compte">Mon compte</NavItem>
             <NavItem to="/mes-candidatures">
               <span class="tag is-danger is-rounded" v-if="unfinishedApplicationsLength">{{unfinishedApplicationsLength}}</span>
