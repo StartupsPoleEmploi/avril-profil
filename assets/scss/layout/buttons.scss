@@ -1,3 +1,13 @@
 .button {
   font-weight: 900;
 }
+
+.content {
+  a {
+    text-decoration: underline;
+  }
+  strong a {
+    @extend .button;
+    @extend .is-primary;
+  }
+}

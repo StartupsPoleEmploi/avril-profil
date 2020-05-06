@@ -185,8 +185,8 @@
   @import '~avril/scss/variables';
 
   .candidature-detail {
-    background: #fff;
-    border-radius: 6px;
+    background: $white;
+    border-radius: $radius;
     padding: .5rem;
     @include tablet {
       padding: 2rem;

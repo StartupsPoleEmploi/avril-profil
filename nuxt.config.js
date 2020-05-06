@@ -53,12 +53,6 @@ module.exports = {
   ],
   plugins: [
     '~/plugins/buefy.js',
-  //   '~/plugins/filters.js',
-  //   { src: '~/plugins/datepicker', mode: 'client' },
-  //   // '~/plugins/phoenixUrl.js',
-  //   '~/plugins/hotjar.js',
-  //   { src: '~/plugins/expandable-image', mode: 'client' },
-  //   // '~/plugins/crisp.js',
   ],
   /*
   ** Nuxt.js dev-modules
