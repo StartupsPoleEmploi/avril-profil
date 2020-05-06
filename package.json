@@ -1,8 +1,8 @@
 {
   "name": "avril-profil",
   "version": "1.0.0",
-  "description": "My marvelous Nuxt.js project",
-  "author": "dmassiani",
+  "description": "Profil de suivi de candidature VAE Avril.",
+  "author": "Team Avril",
   "private": true,
   "scripts": {
     "dev": "nodemon -r esm server/index.js --watch server",
