@@ -46,7 +46,7 @@
 <script type="text/javascript">
   import get from 'lodash.get';
   import { formatInterval, parseISODate } from 'avril/js/utils/time';
-  import { queryApi, mutateApi } from 'avril/js/utils/api';
+  import { mutateApi } from 'avril/js/utils/api';
   import Message from '~/components/Message.vue';
 
   export default {

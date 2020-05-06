@@ -1,4 +1,4 @@
-import { queryApiOrRedirect } from 'avril/js/utils/api';
+import { queryApiWithContext } from 'avril/js/utils/api';
 import { nextStep } from '~/utils/application';
 
 export const state = () => ({});
@@ -18,11 +18,12 @@ export const actions = {
   async nuxtServerInit({ commit }, context) {
     return await Promise.all(['identity', 'applications'].map(async storeName => {
       try {
-        const jsonData = await queryApiOrRedirect(storeName, context);
+        const jsonData = await queryApiWithContext(context)(storeName);
         commit(`${storeName}/updateStateFromServer`, jsonData);
       } catch(jsonErr) {
         console.error('Loading data failed')
         console.error(jsonErr)
+        throw jsonErr;
       }
     }))
   },

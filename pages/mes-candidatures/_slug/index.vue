@@ -70,7 +70,7 @@
 
 <script>
   import get from 'lodash.get';
-  import { queryApi } from 'avril/js/utils/api';
+  import { queryApiWithContext } from 'avril/js/utils/api';
   import { parseAndFormat } from 'avril/js/utils/time';
 
   import NextStep from '~/components/application/NextStep.vue';
@@ -155,12 +155,12 @@
       const application = store.state.applications.find(a => a.certification.slug === params.slug);
       const delegate_id = get(application, 'delegate.id');
       try {
-        const meetings = delegate_id ? await queryApi({
+        const meetings = delegate_id ? await queryApiWithContext(context)({
           name: 'meetings',
           params: {
             delegate_id,
           },
-        }, context) : [];
+        }) : [];
 
         return {
           meetings,

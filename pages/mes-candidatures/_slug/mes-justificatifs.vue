@@ -1,13 +1,22 @@
 <template>
-  <div class="candidature-detail">
-    <h3 class="title is-3">Ajouter mes justificatifs</h3>
-    <p>Cette fonctionnalité n'est pas encore disponible.</p>
+  <div class="candidature-detail content">
+    <div v-html="content"></div>
+
   </div>
 </template>
 
 <script>
+  import content from './justificatifs.md';
+
+  console.log(content);
+
   export default {
     computed: {},
+    data: function() {
+      return {
+        content,
+      }
+    },
     props: {
       application: {
         type: Object
