@@ -1,11 +1,16 @@
 <template>
   <div>
     <!-- <BackButton label="Mon espace" to="/" /> -->
-    <Message v-if="!hasIdentity" type="success" size="large">
+    <h1 class="title is-1 is-spaced">Mes candidatures</h1>
+    <!-- <Message v-if="!hasIdentity" type="success" size="large">
       <h3 class="title is-4">Renseigner votre identité est obligatoire pour toutes vos candidatures</h3>
       <nuxt-link to="/mon-compte" class="button is-success is-inverted is-rounded">Renseigner mon identité</nuxt-link>
-    </Message>
-    <ApplicationCard :application="firstApplication" />
+    </Message> -->
+    <div v-if="!firstApplication">
+      <p class="subtitle">Vous n'avez pas encore démarré de candidatures.</p>
+      <a href="/" class="button is-rounded is-primary is-large">Chercher mon futur diplôme en VAE</a>
+    </div>
+    <ApplicationCard v-else :application="firstApplication" />
     <div class="columns is-multiline" v-if="otherApplications.length">
       <div class="column" v-for="application in otherApplications">
         <ApplicationCard size="small" :application="application" />
