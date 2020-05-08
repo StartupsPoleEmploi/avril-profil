@@ -44,7 +44,7 @@
       case INPUT_TYPES.date:
         return parseISODate;
       case INPUT_TYPES.select:
-        return s => s[0];
+        return s => s && s[0];
       default:
         return v => v;
     }
