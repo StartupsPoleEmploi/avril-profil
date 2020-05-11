@@ -13,7 +13,7 @@
         type="phone"
         field="homePhone"
         label="Numéro de téléphone fixe" />
-      <IdentitySaveButtons to="/" />
+      <IdentitySaveButtons :to="redirectTo" />
     </div>
   </div>
 </template>
@@ -21,11 +21,21 @@
 <script>
   import IdentitySaveButtons from '~/components/IdentitySaveButtons.vue';
   import IdentityField from '~/components/IdentityField.vue';
+  import {first} from 'avril/js/utils/array';
+  import {path} from '~/utils/application';
 
   export default {
     components: {
       IdentityField,
       IdentitySaveButtons,
+    },
+    computed: {
+      redirectTo: function() {
+        if (this.$store.state.applications.length === 1) {
+          return path(first(this.$store.state.applications))
+        }
+        return path();
+      },
     },
   }
 </script>
