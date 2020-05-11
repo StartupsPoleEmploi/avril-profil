@@ -1787,7 +1787,7 @@ autoprefixer@^9.6.1:
 
 avril@StartupsPoleEmploi/avril-shared:
   version "1.0.0"
-  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/1a40079f287744cba40711cebedcbcb229cc11cd"
+  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/657f3a7ce04ab4883745ec8fc2e02b193bb5550c"
   dependencies:
     "@trevoreyre/autocomplete-vue" "^2.1.1"
     algoliasearch "^3.35.1"

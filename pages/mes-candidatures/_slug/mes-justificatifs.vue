@@ -7,26 +7,30 @@
 
     <div class="files-zone">
       <h2 class="title is-2 is-spaced">Mes fichiers</h2>
-      <div class="file has-name is-boxed">
-        <label class="file-label">
-          <file-upload
-            class="file-input"
-            extensions="pdf,doc,docx"
-            :size="10 * 1024 * 1024"
-            v-model="files"
-            :multiple="true"
-            :drop="true"
-            @input="uploadFile"
-          />
-          <span class="file-cta">
-            <span class="file-icon">
-              <UploadIcon />
+      <div class="file-list">
+        <div class="file has-name is-boxed">
+          <label class="file-label">
+            <file-upload
+              class="file-input"
+              extensions="pdf,doc,docx"
+              :size="10 * 1024 * 1024"
+              v-model="uploadingFiles"
+              :multiple="true"
+              :drop="true"
+              @input="addUploadingFile"
+            />
+            <span class="file-cta">
+              <span class="file-icon">
+                <UploadIcon />
+              </span>
             </span>
-          </span>
-          <span class="file-name" style="justify-content: center;">
-            {{file ? file.name : 'Ajouter un fichier…'}}
-          </span>
-        </label>
+            <span class="file-name">
+              Ajouter un fichier…
+            </span>
+          </label>
+        </div>
+        <File v-for="file in uploadingFiles" :name="file.name" :is-uploading="true" />
+        <File v-for="file in uploadedFiles" :name="file.filename" icon="document" :id="file.id" :onRemove="removeFile" />
       </div>
     </div>
 
@@ -37,30 +41,79 @@
 
 <script>
   import FileUpload from 'vue-upload-component/dist/vue-upload-component.part.js';
+  import File from '~/components/File.vue';
   import content from '~/contents/justificatifs.md';
-  import UploadIcon from 'avril/images/icons/upload.svg';
   import {first} from 'avril/js/utils/array';
   import {mutateApi} from 'avril/js/utils/api';
+  import UploadIcon from 'avril/images/icons/upload.svg';
+  import DocumentIcon from 'avril/images/icons/document.svg';
+
+  const uploadFile = (dispatch, application) => async file => {
+    console.log(file);
+    const updatedApplication = await mutateApi({
+      name: 'uploadResume',
+      params: {
+        input: {
+          id: application.id,
+          resume: file,
+        }
+      },
+      type: 'application',
+    });
+
+    dispatch('applications/updateAndInform', {
+      ...updatedApplication,
+      savedMessage: `Le justificatif ${file.filename} a bien été enregistré.`,
+    });
+  }
 
   export default {
     computed: {
-      file: function() {
-        return first(this.files)
-      }
+      uploadedFiles: function() {
+        return this.application.resumes || [{
+          filename: 'CV.pdf',
+          url: 'http://test.com/cv.pdf',
+          id: 1,
+        }];
+      },
     },
     components: {
+      File,
       FileUpload,
+      DocumentIcon,
       UploadIcon,
     },
     data: function() {
       return {
         content,
-        files: [],
+        uploadingFiles: [],
       }
     },
     methods: {
-      uploadFile: async function(files) {
-        this.files = files;
+      progress: function(file) {
+        return `${parseInt(file.progress)}%`;
+      },
+      addUploadingFile: async function(files) {
+        this.uploadingFiles = files;
+        return await Promise.all(files.map(uploadFile(this.$store.dispatch, this.application)));
+      },
+      removeFile: async function(file) {
+        if (window.confirm(`Confirmez-vous la suppression de ${file.filename} ?`)) {
+          const application = await mutateApi({
+            name: 'removeResume',
+            params: {
+              input: {
+                applicationId: this.application.id,
+                resumeId: file.id,
+              }
+            },
+            type: 'application',
+          });
+          this.$store.dispatch('applications/updateAndInform', {
+            ...application,
+            savedMessage: 'Le justificatif a bien été supprimé.',
+          });
+        }
       }
     },
     props: {
@@ -71,26 +124,3 @@
   }
 </script>
 
-<style scoped lang="scss">
-  @import '~avril/scss/variables';
-
-  .files-zone {
-    background: $white;
-    border-radius: $radius;
-    padding: .5rem;
-    @include tablet {
-      padding: 2rem;
-    }
-  }
-
-  .file.is-boxed {
-    .file-icon {
-      height: 5rem;
-      width: 3rem;
-      svg {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-</style>
