@@ -29,13 +29,10 @@
             </span>
           </label>
         </div>
-        <File v-for="file in uploadingFiles" :name="file.name" :is-uploading="true" />
-        <File v-for="file in uploadedFiles" :name="file.filename" icon="document" :id="file.id" :onRemove="removeFile" />
+        <File v-for="file in uploadingFiles" :key="file.id" :name="file.name" :is-uploading="true" />
+        <File v-for="file in uploadedFiles" :key="file.id" :name="file.filename" icon="document" :id="file.id" :onRemove="removeFile" />
       </div>
     </div>
-
-
-
   </div>
 </template>
 
@@ -44,28 +41,26 @@
   import File from '~/components/File.vue';
   import content from '~/contents/justificatifs.md';
   import {first} from 'avril/js/utils/array';
-  import {mutateApi} from 'avril/js/utils/api';
+  import {pluralize} from 'avril/js/utils/string';
+  import {mutateApiMultipart} from 'avril/js/utils/api';
   import UploadIcon from 'avril/images/icons/upload.svg';
   import DocumentIcon from 'avril/images/icons/document.svg';
 
-  const uploadFile = (dispatch, application) => async file => {
-    console.log(file);
-    const updatedApplication = await mutateApi({
-      name: 'uploadResume',
-      params: {
-        input: {
-          id: application.id,
-          resume: file,
-        }
-      },
-      type: 'application',
-    });
+  // const uploadFile = (dispatch, application) => async file => {
+  //   const updatedApplication = await mutateApiMultipart({
+  //     name: 'uploadResume',
+  //     params: {
+  //       id: application.id,
+  //       resume: 'file',
+  //     },
+  //     type: 'application',
+  //   }, file.file);
 
-    dispatch('applications/updateAndInform', {
-      ...updatedApplication,
-      savedMessage: `Le justificatif ${file.filename} a bien été enregistré.`,
-    });
-  }
+  //   dispatch('applications/updateAndInform', {
+  //     ...updatedApplication,
+  //     savedMessage: `Le justificatif ${file.name} a bien été enregistré.`,
+  //   });
+  // }
 
   export default {
     computed: {
@@ -94,8 +89,22 @@
         return `${parseInt(file.progress)}%`;
       },
       addUploadingFile: async function(files) {
-        this.uploadingFiles = files;
-        return await Promise.all(files.map(uploadFile(this.$store.dispatch, this.application)));
+        await Promise.all(files.map(async file => {
+          this.uploadingFiles.push(file);
+          const updatedApplication = await mutateApiMultipart({
+            name: 'uploadResume',
+            params: {
+              id: this.application.id,
+              resume: 'file',
+            },
+            type: 'application',
+          }, file.file);
+          this.uploadingFiles.splice(this.uploadingFiles.findIndex(f => f.id === file.id), 1)
+          this.$store.dispatch('applications/updateAndInform', {
+            ...updatedApplication,
+            savedMessage: `Le justificatif ${file.name} a bien été envoyé.`,
+          });
+        }));
       },
       removeFile: async function(file) {
         if (window.confirm(`Confirmez-vous la suppression de ${file.filename} ?`)) {
