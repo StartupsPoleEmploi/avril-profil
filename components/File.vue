@@ -11,7 +11,7 @@
         {{name}}
       </span>
     </div>
-    <a v-if="onRemove" class="delete" @click="onRemove(id)"></a>
+    <a v-if="onRemove" class="delete" @click="remove()"></a>
   </div>
 </template>
 
@@ -30,10 +30,15 @@
         return `${capitalize(this.icon)}Icon`;
       },
     },
-    props: {
-      id: {
-        type: Number,
+    methods: {
+      remove: function() {
+        if (window.confirm(`Confirmez-vous la suppression de ${this.name} ?`)) {
+          this.onRemove(this.id);
+        }
       },
+    },
+    props: {
+      id: {},
       name: {
         type: String,
         isRequired: true

@@ -6,6 +6,7 @@
     <div v-else>
       <BackButton :label="`Ma candidature ${certificationName}`" :to="applicationPath" />
     </div>
+    <SavedMessage :message="application.savedMessage" :removeMessage="removeSavedMessage" />
     <nuxt-child :application="application"/>
   </div>
 </template>
@@ -13,6 +14,7 @@
 <script>
   import get from 'lodash.get';
   import BackButton from '~/components/BackButton.vue';
+  import SavedMessage from '~/components/SavedMessage.vue';
 
   import {name, levelToLevelLabel} from '~/utils/certification';
   import {path} from '~/utils/application';
@@ -20,6 +22,7 @@
   export default {
     components: {
       BackButton,
+      SavedMessage,
     },
     computed: {
       applications() {
@@ -40,6 +43,11 @@
       isIndex: function() {
         return this.$route.fullPath === this.applicationPath;
       },
+    },
+    methods: {
+      removeSavedMessage: function() {
+        this.$store.commit('applications/removeSavedMessage');
+      }
     },
   }
 </script>

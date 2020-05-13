@@ -10,7 +10,7 @@
       <div class="file-list">
         <div class="file has-name is-boxed">
           <label class="file-label">
-            <file-upload
+            <FileUpload
               class="file-input"
               extensions="pdf,doc,docx"
               :size="10 * 1024 * 1024"
@@ -42,40 +42,18 @@
   import content from '~/contents/justificatifs.md';
   import {first} from 'avril/js/utils/array';
   import {pluralize} from 'avril/js/utils/string';
-  import {mutateApiMultipart} from 'avril/js/utils/api';
+  import {mutateApi, mutateApiMultipart} from 'avril/js/utils/api';
   import UploadIcon from 'avril/images/icons/upload.svg';
-  import DocumentIcon from 'avril/images/icons/document.svg';
-
-  // const uploadFile = (dispatch, application) => async file => {
-  //   const updatedApplication = await mutateApiMultipart({
-  //     name: 'uploadResume',
-  //     params: {
-  //       id: application.id,
-  //       resume: 'file',
-  //     },
-  //     type: 'application',
-  //   }, file.file);
-
-  //   dispatch('applications/updateAndInform', {
-  //     ...updatedApplication,
-  //     savedMessage: `Le justificatif ${file.name} a bien été enregistré.`,
-  //   });
-  // }
 
   export default {
     computed: {
       uploadedFiles: function() {
-        return this.application.resumes || [{
-          filename: 'CV.pdf',
-          url: 'http://test.com/cv.pdf',
-          id: 1,
-        }];
+        return this.application.resumes;
       },
     },
     components: {
       File,
       FileUpload,
-      DocumentIcon,
       UploadIcon,
     },
     data: function() {
@@ -85,12 +63,8 @@
       }
     },
     methods: {
-      progress: function(file) {
-        return `${parseInt(file.progress)}%`;
-      },
       addUploadingFile: async function(files) {
         await Promise.all(files.map(async file => {
-          this.uploadingFiles.push(file);
           const updatedApplication = await mutateApiMultipart({
             name: 'uploadResume',
             params: {
@@ -99,30 +73,27 @@
             },
             type: 'application',
           }, file.file);
-          this.uploadingFiles.splice(this.uploadingFiles.findIndex(f => f.id === file.id), 1)
+          const fileIndex = this.uploadingFiles.findIndex(f => f.id === file.id);
+          this.uploadingFiles.splice(fileIndex, 1);
           this.$store.dispatch('applications/updateAndInform', {
             ...updatedApplication,
             savedMessage: `Le justificatif ${file.name} a bien été envoyé.`,
           });
         }));
       },
-      removeFile: async function(file) {
-        if (window.confirm(`Confirmez-vous la suppression de ${file.filename} ?`)) {
-          const application = await mutateApi({
-            name: 'removeResume',
-            params: {
-              input: {
-                applicationId: this.application.id,
-                resumeId: file.id,
-              }
-            },
-            type: 'application',
-          });
-          this.$store.dispatch('applications/updateAndInform', {
-            ...application,
-            savedMessage: 'Le justificatif a bien été supprimé.',
-          });
-        }
+      removeFile: async function(id) {
+        const file = await mutateApi({
+          name: 'deleteResume',
+          params: {
+            id,
+          },
+          type: 'resume',
+        });
+        this.$store.dispatch('applications/updateAndInform', {
+          ...this.application,
+          resumes: this.application.resumes.filter(r => r.id !== file.id),
+          savedMessage: 'Le justificatif a bien été supprimé.',
+        });
       }
     },
     props: {

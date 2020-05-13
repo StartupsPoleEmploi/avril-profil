@@ -1,6 +1,5 @@
 <template>
   <div>
-    <SavedMessage :message="application.savedMessage" :removeMessage="removeSavedMessage" />
     <MeetingSelector :application="application" :meetings="meetings" />
     <header class="application-header">
       <ApplicationTag :application="application" />
@@ -77,7 +76,6 @@
   import MeetingSelector from '~/components/application/MeetingSelector.vue';
   import Address from '~/components/Address.vue';
   import LockableCard from '~/components/LockableCard.vue';
-  import SavedMessage from '~/components/SavedMessage.vue';
   import ApplicationTag from '~/components/ApplicationTag.vue';
 
   import {hasDelegate, hasBookletFinished, bookletPath, path} from '~/utils/application';
@@ -91,7 +89,6 @@
       MeetingSelector,
       NextStep,
       LockableCard,
-      SavedMessage,
     },
     computed: {
       identity: function() {
@@ -140,11 +137,6 @@
     data: function() {
       return {
         meetings: [],
-      }
-    },
-    methods: {
-      removeSavedMessage: function() {
-        this.$store.commit('applications/removeSavedMessage');
       }
     },
     // mounted: function() {
