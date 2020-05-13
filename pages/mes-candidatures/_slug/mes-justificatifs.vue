@@ -6,9 +6,12 @@
     <div v-html="content" class="content" />
 
     <div class="files-zone">
-      <h2 class="title is-2 is-spaced">Mes fichiers</h2>
+      <h2 class="title is-4 is-spaced">
+        {{capitalize(pluralize(uploadedFiles.length, 'fichier déposé'))}} :</h2>
       <div class="file-list">
-        <div class="file has-name is-boxed">
+        <File v-for="file in uploadingFiles" :key="file.id" :name="file.name" :is-uploading="true" />
+        <File v-for="file in uploadedFiles" :key="file.id" :name="file.filename" :href="file.url" icon="document" :id="file.id" :onRemove="removeFile" />
+        <div class="file has-name is-boxed is-info">
           <label class="file-label">
             <FileUpload
               class="file-input"
@@ -21,7 +24,7 @@
             />
             <span class="file-cta">
               <span class="file-icon">
-                <UploadIcon />
+                <PlusIcon />
               </span>
             </span>
             <span class="file-name">
@@ -29,8 +32,14 @@
             </span>
           </label>
         </div>
-        <File v-for="file in uploadingFiles" :key="file.id" :name="file.name" :is-uploading="true" />
-        <File v-for="file in uploadedFiles" :key="file.id" :name="file.filename" icon="document" :id="file.id" :onRemove="removeFile" />
+      </div>
+      <div class="level">
+        <div class="level-left">
+          <nuxt-link :disabled="!uploadedFiles.length" :to="applicationPath" class="button is-primary is-rounded">J'ai fini d'ajouter mes justificatifs</nuxt-link>
+        </div>
+        <div class="level-right">
+          <nuxt-link :to="applicationPath" class="button is-text">{{uploadedFiles.length ? 'Je terminerai plus tard' : 'Je le ferai plus tard'}}</nuxt-link>
+        </div>
       </div>
     </div>
   </div>
@@ -41,20 +50,24 @@
   import File from '~/components/File.vue';
   import content from '~/contents/justificatifs.md';
   import {first} from 'avril/js/utils/array';
-  import {pluralize} from 'avril/js/utils/string';
+  import {pluralize, capitalize} from 'avril/js/utils/string';
   import {mutateApi, mutateApiMultipart} from 'avril/js/utils/api';
-  import UploadIcon from 'avril/images/icons/upload.svg';
+  import PlusIcon from 'avril/images/icons/plus.svg';
+  import {path} from '~/utils/application';
 
   export default {
     computed: {
       uploadedFiles: function() {
         return this.application.resumes;
       },
+      applicationPath: function() {
+        return path(this.application);
+      }
     },
     components: {
       File,
       FileUpload,
-      UploadIcon,
+      PlusIcon,
     },
     data: function() {
       return {
@@ -94,7 +107,9 @@
           resumes: this.application.resumes.filter(r => r.id !== file.id),
           savedMessage: 'Le justificatif a bien été supprimé.',
         });
-      }
+      },
+      capitalize,
+      pluralize,
     },
     props: {
       application: {
@@ -104,3 +119,8 @@
   }
 </script>
 
+<style lang="scss" scoped>
+  .level {
+    margin-top: 2rem;
+  }
+</style>

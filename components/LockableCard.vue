@@ -2,7 +2,7 @@
   <div class="lockable-card" :class="{ 'is-filled': isActuallyFilled, 'has-multiple-layer': hasMultipleLayer }">
     <h4 class="title is-5"><span class="icon" v-if="isLocked"><IconLocked/></span> {{title}}</h4>
     <slot v-if="isActuallyFilled"></slot>
-    <component v-if="!isLocked" :is="href ? 'a' : 'nuxt-link'" :href="href" :to="to" class="button" :class="buttonClass">
+    <component v-if="!isLocked" :is="href ? 'a' : 'nuxt-link'" :href="href" :to="to" class="button" :class="buttonClass" :target="target">
       <span v-if="isFilled">
         <span class="icon is-small">
           <IconPencil/>
@@ -43,8 +43,8 @@
         if (this.isLockable) return !this.isLocked;
       },
       buttonClass: function() {
-        if (this.isLockable) return 'is-text is-rounded';
         if (this.isFilled) return `is-rounded is-small is-edit ${this.hasDefaultSlot ? 'is-bottom-right' : ''}`;
+        if (this.isLockable) return 'is-text is-rounded';
         return 'is-rounded is-avril';
       },
     },
@@ -68,6 +68,9 @@
         required: true,
       },
       help: {
+        type: String,
+      },
+      target: {
         type: String,
       }
     },

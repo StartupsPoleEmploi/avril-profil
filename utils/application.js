@@ -14,6 +14,8 @@ export const hasBooklet = application => get(application, 'booklet_1.insertedAt'
 
 export const hasBookletFinished = application => !!get(application, 'booklet_1.completedAt');
 
+export const hasResumes = application => !!get(application, 'resumes', []).length;
+
 export const nextStep = application => {
   if (!hasDelegate(application)) return 'delegate';
   if (!hasBookletFinished(application)) return 'booklet';

@@ -23,9 +23,10 @@
             </LockableCard>
             <LockableCard
               :is-locked="!isSynthesisUnlocked"
-              title="Ma synthèse"
-              button="Télécharger"
+              title="Synthèse VAE"
+              button="Voir les étapes"
               href="/synthese-vae"
+              target="_blank"
               hasMultipleLayer
             >
               <p slot="help">Pour débloquer votre synthèse, vous devez choisir votre <nuxt-link :to="`${applicationPath}/mon-certificateur`">certificateur</nuxt-link>.</p>
@@ -42,11 +43,17 @@
               <p v-if="bookletStatus">{{bookletStatus}}</p>
             </LockableCard>
             <LockableCard
-              :is-locked="!isDocumentsUnlocked"
+              :is-locked="!isResumesUnlocked"
+              :is-filled="hasResumes"
               title="Mes justificatifs"
               button="Voir la liste"
               :to="`${applicationPath}/mes-justificatifs`"
             >
+              <div class="content">
+                <ul>
+                  <li v-for="resume in application.resumes" :key="resume.id">{{resume.filename}}</li>
+                </ul>
+              </div>
               <p slot="help">Pour débloquer les justificatifs, vous devez remplir votre <a :href="bookletPath">recevabilité</a>.</p>
             </LockableCard>
           </div>
@@ -78,7 +85,7 @@
   import LockableCard from '~/components/LockableCard.vue';
   import ApplicationTag from '~/components/ApplicationTag.vue';
 
-  import {hasDelegate, hasBookletFinished, bookletPath, path} from '~/utils/application';
+  import {hasDelegate, hasBookletFinished, hasResumes, bookletPath, path} from '~/utils/application';
   import {name, levelToLevelLabel} from '~/utils/certification';
 
 
@@ -103,6 +110,9 @@
       hasDelegate: function() {
         return hasDelegate(this.application);
       },
+      hasResumes: function() {
+        return hasResumes(this.application);
+      },
       isSynthesisUnlocked: function() {
         return this.isIdentityFilled && this.hasDelegate;
       },
@@ -115,7 +125,7 @@
         if (get(this.application, 'booklet_1.insertedAt'))
           return `Démarrée le ${parseAndFormat(this.application.booklet_1.insertedAt)}.`;
       },
-      isDocumentsUnlocked: function() {
+      isResumesUnlocked: function() {
         return this.isSynthesisUnlocked && this.hasBookletFinished;
       },
       delegateName: function() {

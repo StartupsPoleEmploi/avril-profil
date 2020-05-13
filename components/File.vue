@@ -1,17 +1,17 @@
 <template>
   <div class="file has-name is-boxed">
-    <div class="file-label">
+    <component :is="href ? 'a' : 'div'" :href="href" :download="name" class="file-label" :title="`Télécharger ${name}`">
       <span class="file-cta">
         <span class="file-icon has-label">
           <component :is="iconTag"></component>
         </span>
         <div v-if="isUploading" class="progress-label">Envoi en cours…</div>
       </span>
-      <span class="file-name" :title="name">
+      <span class="file-name">
         {{name}}
       </span>
-    </div>
-    <a v-if="onRemove" class="delete" @click="remove()"></a>
+    </component>
+    <a v-if="onRemove" class="delete" @click="remove()" :title="`Supprimer ${name}`"></a>
   </div>
 </template>
 
@@ -53,6 +53,9 @@
       },
       onRemove:{
         type: Function,
+      },
+      href: {
+        type: String,
       }
     }
   }
