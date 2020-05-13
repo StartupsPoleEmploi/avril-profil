@@ -1,8 +1,5 @@
 #profil-avril{
   padding-left: 0;
-  @include touch {
-    padding-left: 0
-  }
   @include desktop {
     padding-left: $dashboard-navigation-width
   }
