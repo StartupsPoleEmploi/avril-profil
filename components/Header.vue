@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar is-fixed-top">
     <div class="navbar-brand">
-      <AvrilLogo/>
+      <a href="/" class="navbar-item" title="Retour à l'accueil"><Logo/></a>
       <div class="navbar-burger burger" @click="toggle = !toggle" :class="{ 'is-active': toggle }">
         <span></span>
         <span></span>
@@ -80,13 +80,13 @@
 </template>
 
 <script>
-  import AvrilLogo from '~/components/navigation/AvrilLogo';
   import NavItem from '~/components/navigation/NavItem.vue'
   import RichNavItem from '~/components/navigation/RichNavItem.vue'
+  import Logo from 'avril/images/avril-logo.svg';
 
   export default {
     components: {
-      AvrilLogo,
+      Logo,
       NavItem,
       RichNavItem,
     },
@@ -124,6 +124,17 @@
 
   @import '~avril/scss/variables';
 
+  .navbar-brand {
+    svg {
+      height: 1.5rem;
+    }
+    @include desktop {
+      align-items: center;
+      justify-content: center;
+      width: $dashboard-navigation-width;
+    }
+  }
+
   .navbar-dropdown{
     border: none;
     background: #fff;
@@ -138,11 +149,6 @@
     background: transparent;
   }
 
-  .navbar-brand {
-    @include desktop {
-      width: $dashboard-navigation-width;
-    }
-  }
   .navbar-item::v-deep {
     a {
       display: block !important;

@@ -1,10 +1,5 @@
 <template>
   <aside class="dashboard-navigation">
-
-    <header class="dashboard-navigation-header">
-      <AvrilLogo/>
-    </header>
-
     <div class="menu">
       <ul class="menu-list">
         <li>
@@ -27,15 +22,6 @@
 
   </aside>
 </template>
-<script>
-import AvrilLogo from '~/components/navigation/AvrilLogo';
-
-export default {
-  components: {
-    AvrilLogo,
-  },
-}
-</script>
 
 <style scoped lang="scss">
 @import '~avril/scss/variables';
@@ -46,18 +32,12 @@ aside.dashboard-navigation {
   bottom: 0;
   left: 0;
   width: $dashboard-navigation-width;
-  background-color: $white;
-  z-index: 100;
-  @include touch {
+  background-color: $white;  @include touch {
     display: none;
   }
 
-  .dashboard-navigation-header {
-    text-align: center;
-  }
-
   .menu {
-    margin-top: 3rem;
+    margin-top: 7.25rem;
     .menu-list {
       line-height: 2.25;
       li a {

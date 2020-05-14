@@ -6,8 +6,8 @@ html,body {
   background: #F5F9FB;
 }
 
-.navbar {
-  background: palette(default, background);
+.navbar .navbar-menu {
+  background: rgba(palette(default, background), 0.95);
 }
 
 .avril {
