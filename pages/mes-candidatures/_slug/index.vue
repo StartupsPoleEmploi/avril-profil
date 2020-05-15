@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <MeetingSelector :application="application" :meetings="meetings" /> -->
+    <MeetingSelector v-if="!application.meeting" :application="application" :meetings="meetings" />
     <header class="application-header">
       <ApplicationTag :application="application" />
       <h1 class="title is-2">{{certificationName}}</h1>
@@ -149,9 +149,6 @@
         meetings: [],
       }
     },
-    // mounted: function() {
-    //   this.$store.commit('applications/removeSavedMessage', this.application.id);
-    // },
     asyncData: async function(context) {
       const {store, params} = context;
       const application = store.state.applications.find(a => a.certification.slug === params.slug);
@@ -159,6 +156,7 @@
       try {
         const meetings = delegate_id ? await queryApiWithContext(context)({
           name: 'meetings',
+          type: 'meetingList',
           params: {
             delegate_id,
           },
