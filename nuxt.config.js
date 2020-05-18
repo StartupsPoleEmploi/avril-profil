@@ -78,11 +78,7 @@ module.exports = {
   router: {
     linkActiveClass: 'is-active-parent',
     linkExactActiveClass: 'is-active',
-    base: process.env.NUXT_PROFIL_PATH,
-    // middleware: [
-    //   'autosave',
-    //   'store-current-path',
-    // ]
+    base: process.env.NUXT_PROFILE_PATH,
   },
   googleAnalytics: {
     id: [
@@ -92,7 +88,7 @@ module.exports = {
     dev: false,
   },
   sentry: {
-    dsn: process.env.NUXT_SENTRY_DSN,
+    dsn: process.env.NUXT_PROFILE_SENTRY_DSN,
     config: {
       environment: process.env.NODE_ENV,
       release: process.env.HEROKU_SLUG_COMMIT,
