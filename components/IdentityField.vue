@@ -80,6 +80,7 @@
       }
     },
     data: function() {
+      console.log('yo', process.env.algoliaCredentials)
       return {
         credentials: process.env.algoliaCredentials,
         types: INPUT_TYPES,
