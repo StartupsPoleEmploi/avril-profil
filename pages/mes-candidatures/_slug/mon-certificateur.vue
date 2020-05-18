@@ -4,7 +4,7 @@
     <p class="subtitle" v-if="application.delegate">Remplacer {{application.delegate.name}}</p>
     <div class="field">
       <div class="control">
-        <GeoInput :input="selectDelegateCity" type="city" placeholder="A côté de quelle ville voulez-vous rechercher ?" countries="fr" />
+        <GeoInput :input="selectDelegateCity" :credentials="credentials" type="city" placeholder="A côté de quelle ville voulez-vous rechercher ?" countries="fr" />
       </div>
     </div>
     <div v-if="error" class="has-text-danger">
@@ -43,6 +43,7 @@
     },
     data: function(){
       return {
+        credentials: process.env.algoliaCredentials,
         error: null,
         delegates: null,
         isSearching: false,

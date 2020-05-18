@@ -7,7 +7,7 @@
         <date-picker :input-class="`input is-large ${isMissingAndRequired ? 'is-danger' : ''}`" :value="value" @input="editField" :format="datePickerFormat" :placeholder="label" default-panel="year"/>
       </client-only>
 
-      <GeoInput v-else-if="type === types.geo" :input="editField" :value="value" :type="geotype" :placeholder="label" />
+      <GeoInput v-else-if="type === types.geo" :credentials="credentials" :input="editField" :value="value" :type="geotype" :placeholder="label" />
 
       <PhoneInput v-else-if="type === types.phone" class="input is-large" :class="isMissingAndRequired ? 'is-danger' : ''" :placeholder="label" :value="value" @input="editField" />
 
@@ -81,6 +81,7 @@
     },
     data: function() {
       return {
+        credentials: process.env.algoliaCredentials,
         types: INPUT_TYPES,
       }
     },

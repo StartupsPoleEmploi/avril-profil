@@ -27,6 +27,10 @@ module.exports = {
     hotjarId: process.env.NUXT_HOTJAR_ID,
     crispWebsiteId: process.env.NUXT_CRISP_WEBSITE_ID,
     serverAuthKey: process.env.SECRET_KEY_BASE,
+    algoliaCredentials: {
+      id: process.env.NUXT_ALGOLIA_PLACES_APP_ID,
+      key: process.env.NUXT_ALGOLIA_PLACES_API_KEY
+    },
   },
   head: {
     title: 'Mon espace Avril - la VAE facile',
