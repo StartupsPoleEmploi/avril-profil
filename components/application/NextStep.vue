@@ -9,6 +9,7 @@
           v-if="nextStep.api"
           v-bind="nextStep.api(application)"
           class="button is-info is-inverted is-rounded"
+          :analytics="nextStep.analytics"
         >{{nextStep.button}}</ApiButton>
         <nuxt-link v-else-if="nextStep.to" :to="nextStep.to(application)" class="button is-info is-inverted is-rounded">{{nextStep.button}}</nuxt-link>
         <a v-else-if="nextStep.href" :href="nextStep.href(application)" class="button is-info is-inverted is-rounded">{{nextStep.button}}</a>

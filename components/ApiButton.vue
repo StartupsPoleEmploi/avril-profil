@@ -8,12 +8,16 @@
   import { queryApi, mutateApi } from 'avril/js/utils/api';
   import { include } from 'avril/js/utils/array';
   import { isString } from 'avril/js/utils/boolean';
+  import { track } from 'avril/js/utils/analytics';
 
   const SUBMIT = 'submit';
   const RESET = 'reset';
 
   export default {
     props: {
+      analytics: {
+        type: String,
+      },
       disableWith: {
         type: String,
       },
@@ -49,6 +53,9 @@
           });
         } else {
           this.$store.commit(`${store}/updateStateFromServer`, result);
+        }
+        if (this.analytics) {
+          track(this, this.analytics)
         }
         if (this.to) {
           this.$router.push(this.to);

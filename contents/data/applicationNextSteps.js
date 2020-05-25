@@ -35,6 +35,7 @@ export default {
     title: 'Transmettre ma candidature',
     description: 'Vous êtes prêts à transmettre toutes ces informations à votre certificateur',
     button: 'Envoyer',
+    analytics: '?bouton=transmettre',
     api: application => ({
       store: 'applications',
       disableWith: 'Envoi ...',
