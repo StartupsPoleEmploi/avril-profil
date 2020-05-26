@@ -5,7 +5,7 @@
         <h3 class="title is-4">Où et quand souhaitez-vous venir vous informer sur la VAE ?</h3>
         <div class="columns is-vcentered">
           <div class="column is-4">
-            <div class="select is-large is-fullwidth">
+            <div class="select is-medium is-fullwidth">
               <select @change="filterMeetings">
                 <option :value="null">Le lieu</option>
                 <option v-for="m in meetings" :value="m.name">{{m.name}}</option>
@@ -13,7 +13,7 @@
             </div>
           </div>
           <div class="column is-4">
-            <div class="select is-large is-fullwidth">
+            <div class="select is-medium is-fullwidth">
               <select v-model="meetingId">
                 <option :value="null">La date</option>
                 <option v-for="m in filteredMeetings" :value="m.meetingId">{{formatInterval(m.startDate, m.endDate)}}</option>
@@ -25,8 +25,9 @@
           </div>
         </div>
         <p class="content" v-if="selectedMeeting">
-          Vous souhaitez vous inscrire à la réunion d'information {{selectedMeeting.name}} :
-          {{formatInterval(selectedMeeting.startDate, selectedMeeting.endDate)}} à {{selectedMeeting.address}} {{selectedMeeting.city}}.
+          <span>Vous souhaitez vous inscrire à la réunion d'information {{selectedMeeting.name}} :
+          {{formatInterval(selectedMeeting.startDate, selectedMeeting.endDate)}}</span>
+          <span v-if="selectedMeeting.address">à {{selectedMeeting.address}} {{selectedMeeting.city}}</span>.
         </p>
       </div>
       <div class="columns" v-else>
