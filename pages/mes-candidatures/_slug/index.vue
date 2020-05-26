@@ -54,7 +54,10 @@
                   <li v-for="resume in application.resumes" :key="resume.id">{{resume.filename}}</li>
                 </ul>
               </div>
-              <p slot="help">Pour débloquer les justificatifs, vous devez remplir votre <a :href="bookletPath">recevabilité</a>.</p>
+              <p slot="help">
+                <span v-if="hasDelegate">Pour débloquer les justificatifs, vous devez remplir votre <a :href="bookletPath">recevabilité</a>.</span>
+                <span v-else>Pour débloquer votre synthèse, vous devez choisir votre <nuxt-link :to="`${applicationPath}/mon-certificateur`">certificateur</nuxt-link>.</span>
+              </p>
             </LockableCard>
           </div>
           <div class="column has-equal-height">
