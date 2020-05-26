@@ -33,6 +33,10 @@
           </label>
         </div>
       </div>
+      <ul>
+        <li>Taille maximale : <strong>10 Mo</strong></li>
+        <li>Formats acceptés : <strong>pdf, doc, docx</strong></li>
+      </ul>
       <div class="level">
         <div class="level-left">
           <nuxt-link :disabled="!uploadedFiles.length" :to="applicationPath" class="button is-primary is-rounded">J'ai fini d'ajouter mes justificatifs</nuxt-link>
@@ -90,7 +94,7 @@
           this.uploadingFiles.splice(fileIndex, 1);
           this.$store.dispatch('applications/updateAndInform', {
             ...updatedApplication,
-            savedMessage: `Le justificatif ${file.name} a bien été envoyé.`,
+            savedMessage: `Le justificatif ${file.name} a bien été ajouté.`,
           });
         }));
       },
