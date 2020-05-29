@@ -1,3 +1,4 @@
+import get from 'lodash.get';
 import { queryApiWithContext } from 'avril/js/utils/api';
 import { nextStep } from '~/utils/application';
 
@@ -16,6 +17,7 @@ export const mutations = {};
 
 export const actions = {
   async nuxtServerInit({ commit }, context) {
+    if (get(context, 'req.path') === '/hotjar') return;
     return await Promise.all(['identity', 'applications'].map(async storeName => {
       try {
         const jsonData = await queryApiWithContext(context)(storeName);
