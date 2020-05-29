@@ -1,11 +1,10 @@
 import express from 'express'
 import consola from 'consola'
 import { Nuxt, Builder } from 'nuxt'
+import config from '../nuxt.config.js'
 
 const app = express()
 
-// Import and Set Nuxt.js options
-const config = require('../nuxt.config.js')
 config.dev = process.env.NODE_ENV !== 'production'
 
 app.get('/healthcheck', (req, res) => {
