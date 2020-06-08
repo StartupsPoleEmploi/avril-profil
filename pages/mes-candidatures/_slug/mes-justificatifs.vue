@@ -1,5 +1,8 @@
 <template>
   <div class="candidature-detail">
+    <Message type="danger" v-if="errorMessage" :onRemove="removeErrorMessage">
+      <p>{{errorMessage}}</p>
+    </Message>
     <h1 class="title is-1 is-spaced">Mes justificatifs</h1>
     <p class="subtitle">Déposez vos documents sur notre plateforme sécurisée</p>
 
@@ -15,7 +18,8 @@
           <label class="file-label">
             <FileUpload
               class="file-input"
-              extensions="pdf,doc,docx"
+              extensions="pdf,doc,docx,jpg,jpeg"
+              accept="application/pdf,application/msword,image/jpeg"
               :size="10 * 1024 * 1024"
               v-model="uploadingFiles"
               :multiple="true"
@@ -35,7 +39,7 @@
       </div>
       <ul>
         <li>Taille maximale : <strong>10 Mo</strong></li>
-        <li>Formats acceptés : <strong>pdf, doc, docx</strong></li>
+        <li>Formats acceptés : <strong>pdf, doc, docx, jpg, jpeg</strong></li>
       </ul>
       <div class="level">
         <div class="level-left">
@@ -52,6 +56,7 @@
 <script>
   import FileUpload from 'vue-upload-component/dist/vue-upload-component.part.js';
   import File from '~/components/File.vue';
+  import Message from '~/components/Message';
   import content from '~/contents/justificatifs.md';
   import {first} from 'avril/js/utils/array';
   import {pluralize, capitalize} from 'avril/js/utils/string';
@@ -71,32 +76,41 @@
     components: {
       File,
       FileUpload,
+      Message,
       PlusIcon,
     },
     data: function() {
       return {
         content,
         uploadingFiles: [],
+        errorMessage: null,
       }
     },
     methods: {
       addUploadingFile: async function(files) {
         await Promise.all(files.map(async file => {
-          const updatedApplication = await mutateApiMultipart({
-            name: 'uploadResume',
-            params: {
-              id: this.application.id,
-              resume: 'file',
-            },
-            type: 'application',
-          }, file.file);
+          try {
+            const updatedApplication = await mutateApiMultipart({
+              name: 'uploadResume',
+              params: {
+                id: this.application.id,
+                resume: 'file',
+              },
+              type: 'application',
+            }, file.file);
+            this.$store.dispatch('applications/updateAndInform', {
+              ...updatedApplication,
+              savedMessage: `Le justificatif ${file.name} a bien été ajouté.`,
+            });
+          } catch(err) {
+            this.errorMessage = `Le fichier ${file.name} n'a pas pu être envoyé. Merci de réessayer plus tard.`
+          }
           const fileIndex = this.uploadingFiles.findIndex(f => f.id === file.id);
           this.uploadingFiles.splice(fileIndex, 1);
-          this.$store.dispatch('applications/updateAndInform', {
-            ...updatedApplication,
-            savedMessage: `Le justificatif ${file.name} a bien été ajouté.`,
-          });
         }));
+      },
+      removeErrorMessage: function() {
+        this.errorMessage = null;
       },
       removeFile: async function(id) {
         const file = await mutateApi({
