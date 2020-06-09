@@ -58,5 +58,13 @@ export default {
     description: 'Pour que votre candidature soit validée, il faut justifier des informations que vous avez saisies',
     button: 'Envoyer mes justificatifs',
     to: application => `${path(application)}/mes-justificatifs`,
+  },
+  finished: {
+    isLast: true,
+    illustration: 'exam',
+    isSuggested: false,
+    title: 'Votre candidature a bien été transmise',
+    color: 'purple',
+    description: 'Votre certificateur connait maintenant votre projet et a reçu votre dossier ainsi que vos justificatifs. Contactez-le pour connaitre les suites à donner et obtenir très vite votre diplôme !',
   }
 }

@@ -21,6 +21,7 @@ export const nextStep = application => {
   if (!hasBookletFinished(application)) return 'booklet';
   if (!get(application, 'resumes', []).length) return 'uploads';
   if (!application.submittedAt) return 'submit';
+  return 'finished';
 }
 
 export const isFilled = application => application.submittedAt;
