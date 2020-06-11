@@ -75,6 +75,8 @@
             >
               <p class="has-text-weight-bold">{{delegateName}}</p>
               <Address :address="delegateAddress" />
+              <p v-if="delegateEmail"><a :href="`mailto:${delegateEmail}`">{{delegateEmail}}</a></p>
+              <p v-if="delegatePhone"><a :href="`tel:${delegatePhone}`">{{delegatePhone}}</a></p>
             </LockableCard>
           </div>
         </div>
@@ -94,7 +96,17 @@
   import LockableCard from '~/components/LockableCard.vue';
   import ApplicationTag from '~/components/ApplicationTag.vue';
 
-  import {hasDelegate, hasBookletFinished, hasResumes, bookletPath, path} from '~/utils/application';
+  import {
+    hasDelegate,
+    hasBookletFinished,
+    hasResumes,
+    bookletPath,
+    path,
+    delegateName,
+    delegateAddress,
+    delegatePhone,
+    delegateEmail,
+  } from '~/utils/application';
   import {name, levelToLevelLabel} from '~/utils/certification';
 
 
@@ -144,10 +156,16 @@
         return this.isSynthesisUnlocked && this.hasBookletFinished;
       },
       delegateName: function() {
-        return get(this.application, 'delegate.name');
+        return delegateName(this.application);
       },
       delegateAddress: function() {
-        return get(this.application, 'delegate.address', {});
+        return delegateAddress(this.application);
+      },
+      delegatePhone: function() {
+        return delegatePhone(this.application);
+      },
+      delegateEmail: function() {
+        return delegateEmail(this.application);
       },
       bookletPath: function() {
         return bookletPath(this.application);

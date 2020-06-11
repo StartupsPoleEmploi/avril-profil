@@ -6,6 +6,9 @@ export const path = application => `/mes-candidatures/${get(application, 'certif
 export const hasDelegate = application => isPresent(application.delegate);
 
 export const delegateName = application => get(application, 'delegate.name');
+export const delegateAddress = application => get(application, 'delegate.address', {});
+export const delegatePhone = application => get(application, 'delegate.telephone');
+export const delegateEmail = application => get(application, 'delegate.email');
 
 export const bookletPath = (application, path) => `/ma-candidature-vae${path || '/'}?hash=${application.bookletHash}`;
 
