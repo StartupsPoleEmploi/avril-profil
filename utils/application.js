@@ -7,8 +7,7 @@ export const hasDelegate = application => isPresent(application.delegate);
 
 export const delegateName = application => get(application, 'delegate.name');
 
-export const bookletPath = application => `/ma-candidature-vae?hash=${application.bookletHash}`;
-// export const bookletPath = application => `${process.env.NUXT_PATH}?hash=${application.bookletHash}`;
+export const bookletPath = (application, path) => `/ma-candidature-vae${path || '/'}?hash=${application.bookletHash}`;
 
 export const hasBooklet = application => get(application, 'booklet_1.insertedAt');
 

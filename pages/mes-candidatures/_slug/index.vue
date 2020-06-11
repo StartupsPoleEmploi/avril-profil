@@ -40,7 +40,13 @@
               :href="bookletPath"
               hasMultipleLayer
             >
-              <p v-if="bookletStatus">{{bookletStatus}}</p>
+              <div v-if="bookletCompletedAt">
+                <p>
+                  Complétée le {{parseAndFormat(bookletCompletedAt)}} :
+                  <a :href="cerfaPath" class="button is-rounded is-text" style="vertical-align: baseline;">Voir le CERFA</a>
+                </p>
+              </div>
+              <p v-else-if="bookletInsertedAt">Démarée le {{parseAndFormat(bookletInsertedAt)}}.</p>
             </LockableCard>
             <LockableCard
               :is-locked="!isResumesUnlocked"
@@ -122,6 +128,12 @@
       hasBookletFinished: function() {
         return hasBookletFinished(this.application)
       },
+      bookletInsertedAt: function() {
+        return get(this.application, 'booklet_1.insertedAt');
+      },
+      bookletCompletedAt: function() {
+        return get(this.application, 'booklet_1.completedAt');
+      },
       bookletStatus: function() {
         if (get(this.application, 'booklet_1.completedAt'))
           return `Complétée le ${parseAndFormat(this.application.booklet_1.completedAt)}.`;
@@ -140,6 +152,9 @@
       bookletPath: function() {
         return bookletPath(this.application);
       },
+      cerfaPath: function() {
+        return bookletPath(this.application, '/cerfa');
+      },
       certificationName: function() {
         return name(this.application.certification);
       },
@@ -151,6 +166,9 @@
       return {
         meetings: [],
       }
+    },
+    methods: {
+      parseAndFormat,
     },
     asyncData: async function(context) {
       const {store, params} = context;

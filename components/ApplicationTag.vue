@@ -18,7 +18,7 @@
       },
       level: function() {
         if (this.application.submittedAt) {
-          return 'primary';
+          return 'success';
         }
         return 'info';
       }
