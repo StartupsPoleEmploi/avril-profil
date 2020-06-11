@@ -12,7 +12,7 @@
     </div>
     <ApplicationCard v-else :application="firstApplication" />
     <div class="columns is-multiline" v-if="otherApplications.length">
-      <div class="column" v-for="application in otherApplications">
+      <div class="column is-6 is-4-fullhd" v-for="application in otherApplications">
         <ApplicationCard size="small" :application="application" />
       </div>
     </div>
