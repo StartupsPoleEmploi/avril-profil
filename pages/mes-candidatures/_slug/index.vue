@@ -4,7 +4,7 @@
     <header class="application-header">
       <ApplicationTag :application="application" />
       <h1 class="title is-2">{{certificationName}}</h1>
-      <div class="label-avril">Équivalence {{levelLabel}}</div>
+      <div class="label-avril">Équivalence {{certificationLevel}}</div>
     </header>
     <div class="candidature-detail">
       <NextStep :application="application" />
@@ -106,9 +106,9 @@
     delegateAddress,
     delegatePhone,
     delegateEmail,
+    certificationName,
+    certificationLevel,
   } from '~/utils/application';
-  import {name, levelToLevelLabel} from '~/utils/certification';
-
 
   export default {
     components: {
@@ -174,10 +174,10 @@
         return bookletPath(this.application, '/cerfa');
       },
       certificationName: function() {
-        return name(this.application.certification);
+        return certificationName(this.application);
       },
-      levelLabel: function() {
-        return levelToLevelLabel(this.application.certification.level);
+      certificationLevel: function() {
+        return certificationLevel(this.application);
       }
     },
     data: function() {

@@ -54,9 +54,9 @@ export default {
     illustration: 'man',
     isSuggested: false,
     time: '1 - 2 heures',
-    title: 'Envoyer mes justificatifs',
+    title: 'Ajouter mes justificatifs',
     description: 'Pour que votre candidature soit validée, il faut justifier des informations que vous avez saisies',
-    button: 'Envoyer mes justificatifs',
+    button: 'Ajouter mes justificatifs',
     to: application => `${path(application)}/mes-justificatifs`,
   },
   finished: {

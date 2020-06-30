@@ -28,7 +28,6 @@
   import { chunk } from 'avril/js/utils/array';
   import {queryApi, mutateApi} from 'avril/js/utils/api';
   import DelegateCard from '~/components/DelegateCard.vue';
-  import {name} from '~/utils/certification';
   import {path} from '~/utils/application';
 
   export default {

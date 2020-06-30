@@ -17,8 +17,7 @@
   </div>
 </template>
 <script type="text/javascript">
-  import {path} from '~/utils/application';
-  import {name, levelToLevelLabel} from '~/utils/certification';
+  import {path, certificationName, certificationLevel} from '~/utils/application';
   import {isFilled, delegateName} from '~/utils/application';
   import {parseAndFormat} from 'avril/js/utils/time.js';
   import ApplicationTag from '~/components/ApplicationTag.vue';
@@ -29,10 +28,10 @@
     },
     computed: {
       certificationName: function() {
-        return name(this.application.certification);
+        return certificationName(this.application);
       },
       certificationLevel: function() {
-        return levelToLevelLabel(this.application.certification.level);
+        return certificationLevel(this.application);
       },
       delegateName: function() {
         return delegateName(this.application);

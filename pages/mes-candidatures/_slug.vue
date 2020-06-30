@@ -13,11 +13,11 @@
 
 <script>
   import get from 'lodash.get';
+  import {first} from 'avril/js/utils/array';
   import BackButton from '~/components/BackButton.vue';
   import SavedMessage from '~/components/SavedMessage.vue';
 
-  import {name, levelToLevelLabel} from '~/utils/certification';
-  import {path} from '~/utils/application';
+  import {path, currentApplication, certificationName} from '~/utils/application';
 
   export default {
     components: {
@@ -29,7 +29,7 @@
         return this.$store.state.applications
       },
       application() {
-        return this.applications.find(a => get(a, 'certification.slug') === this.$route.params.slug);
+        return currentApplication(this.applications, this.$route.params.slug);
       },
       applicationPath() {
         return path(this.application);
@@ -38,7 +38,7 @@
         return path();
       },
       certificationName: function() {
-        return name(get(this.application, 'certification', {}));
+        return certificationName(this.application);
       },
       isIndex: function() {
         return this.$route.fullPath === this.applicationPath;

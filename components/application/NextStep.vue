@@ -4,9 +4,7 @@
       <div class="column">
         <p v-if="!nextStep.isLast"><span>Prochaine étape {{nextStep.isSuggested ? 'conseillée' : ''}}</span><span v-if="nextStep.time"> - {{nextStep.time}}</span></p>
         <h2 class="title is-2">{{nextStep.title}}</h2>
-        <p>
-          {{nextStep.description}}
-        </p>
+        <div class="content" v-html="description"></div>
         <div v-if="nextStep.isLast" style="margin-top: 1rem;">
           <h5 class="title is-6" style="margin: 0;">{{delegateName}}</h5>
           <Address :address="delegateAddress" />
@@ -40,6 +38,7 @@
     delegateAddress,
     delegatePhone,
     delegateEmail,
+    isAsp,
   } from '~/utils/application';
 
   export default {
@@ -50,7 +49,17 @@
     computed: {
       nextStep: function() {
         const key = this.$store.getters.nextApplicationStep(this.application);
-        return nextStepsData[key];
+        const nextStep = nextStepsData[key];
+        return {
+          ...nextStep,
+          ...(nextStep.isLast && isAsp(this.application) ? {
+            title: 'Votre candidature est bien enregistrée',
+            description: `Pour ce diplôme, l'ASP qui gère les demandes de recevabilité, a mis en place un
+              site spécifique. Conservez bien ce que vous venez de saisir et télécharger afin
+              de les transmettre directement à ce service : https://vaedem.asp-public.fr/vaedems/
+              ou bien par courrier à l'adresse ci-dessous :`,
+          } : {})
+        };
       },
       delegateName: function() {
         console.log(delegateName(this.application))
@@ -65,6 +74,10 @@
       delegateEmail: function() {
         return delegateEmail(this.application);
       },
+      description: function() {
+        console.log(this)
+        return this.$md.render(this.nextStep.description)
+      }
     },
     props: {
       application: {

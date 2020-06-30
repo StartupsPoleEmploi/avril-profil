@@ -12,12 +12,14 @@ export default deepMerge(sharedConfig, {
     },
   },
   loading: { color: 'rgb(221, 209, 209)' },
+  markdownit: {
+    injected: true,
+    linkify: true,
+  },
   plugins: [
     '~/plugins/buefy.js',
   ],
   router: {
-    linkActiveClass: 'is-active-parent',
-    linkExactActiveClass: 'is-active',
     base: process.env.NUXT_PROFILE_PATH,
   },
   sentry: {
