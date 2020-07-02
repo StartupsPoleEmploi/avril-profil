@@ -1,6 +1,6 @@
 <template>
   <div class="notification" :class="`is-${type} is-${size}`" ref="notification">
-    <button class="delete" @click="remove"></button>
+    <button v-if="removable" class="delete" @click="remove"></button>
     <slot></slot>
   </div>
 </template>
@@ -17,7 +17,11 @@ export default {
     },
     onRemove: {
       type: Function,
-    }
+    },
+    removable: {
+      type: Boolean,
+      default: true,
+    },
   },
   methods: {
     remove() {
