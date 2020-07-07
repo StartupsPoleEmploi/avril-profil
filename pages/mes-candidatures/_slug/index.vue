@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MeetingSelector v-if="!application.meeting" :application="application" :meetings="meetings" />
+    <!-- <MeetingSelector v-if="!application.meeting && meetings.length" :application="application" :meetings="meetings" /> -->
     <header class="application-header">
       <ApplicationTag :application="application" />
       <h1 class="title is-2">{{certificationName}}</h1>
@@ -108,6 +108,7 @@
     delegateEmail,
     certificationName,
     certificationLevel,
+    currentApplication,
   } from '~/utils/application';
 
   export default {
@@ -188,29 +189,31 @@
     methods: {
       parseAndFormat,
     },
-    asyncData: async function(context) {
-      const {store, params} = context;
-      const application = store.state.applications.find(a => a.certification.slug === params.slug);
-      const delegate_id = get(application, 'delegate.id');
-      try {
-        const meetings = delegate_id ? await queryApiWithContext(context)({
-          name: 'meetings',
-          type: 'meetingList',
-          params: {
-            delegate_id,
-          },
-        }) : [];
+    // asyncData: async function(context) {
+    //   const {store, params} = context;
+    //   const application = currentApplication(store.state.applications, params.slug);
+    //   const delegate_id = get(application, 'delegate.id');
+    //   if (!delegate_id) return {meetings: []};
+    //   return {meetings: []}
+    //   try {
+    //     const meetings = await queryApiWithContext(context)({
+    //       name: 'meetings',
+    //       type: 'meetingList',
+    //       params: {
+    //         delegate_id,
+    //       },
+    //     });
 
-        return {
-          meetings,
-        }
-      } catch(err) {
-        console.error('Could not fetch meetings', err)
-        return {
-          meetings: []
-        }
-      }
-    },
+    //     return {
+    //       meetings,
+    //     }
+    //   } catch(err) {
+    //     console.error('Could not fetch meetings', err)
+    //     return {
+    //       meetings: []
+    //     }
+    //   }
+    // },
     props: {
       application: {
         type: Object,

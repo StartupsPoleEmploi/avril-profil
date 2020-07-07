@@ -62,7 +62,6 @@
         };
       },
       delegateName: function() {
-        console.log(delegateName(this.application))
         return delegateName(this.application);
       },
       delegateAddress: function() {
@@ -75,7 +74,7 @@
         return delegateEmail(this.application);
       },
       description: function() {
-        console.log(this)
+        // return this.nextStep.description;
         return this.$md.render(this.nextStep.description)
       }
     },

@@ -2,10 +2,8 @@
   import {path} from '~/utils/application';
 
   export default {
-    render() {
-      return this.$router.push({
-          path: path()
-      })
+    asyncData: async function(context) {
+      context.redirect(path());
     },
   }
 </script>

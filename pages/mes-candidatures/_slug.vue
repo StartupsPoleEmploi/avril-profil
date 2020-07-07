@@ -44,6 +44,13 @@
         return this.$route.fullPath === this.applicationPath;
       },
     },
+    asyncData: async function(context) {
+      const application = currentApplication(context.store.state.applications, context.params.slug);
+      if (!application) {
+        context.redirect(path());
+      }
+      return {}
+    },
     methods: {
       removeSavedMessage: function() {
         this.$store.commit('applications/removeSavedMessage');
