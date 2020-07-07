@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <MeetingSelector v-if="!application.meeting && meetings.length" :application="application" :meetings="meetings" /> -->
+    <MeetingSelector v-if="!application.meeting && meetings.length" :application="application" :meetings="meetings" />
     <header class="application-header">
       <ApplicationTag :application="application" />
       <h1 class="title is-2">{{certificationName}}</h1>
