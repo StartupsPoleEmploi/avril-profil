@@ -43,7 +43,7 @@
               <div v-if="bookletCompletedAt">
                 <p>
                   Complétée le {{parseAndFormat(bookletCompletedAt)}} :
-                  <a :href="cerfaPath" class="button is-rounded is-text" style="vertical-align: baseline;">Voir le CERFA</a>
+                  <a :href="cerfaPath" class="button is-rounded is-text" style="vertical-align: baseline;" target="_blank">Voir le CERFA</a>
                 </p>
               </div>
               <p v-else-if="bookletInsertedAt">Démarée le {{parseAndFormat(bookletInsertedAt)}}.</p>
