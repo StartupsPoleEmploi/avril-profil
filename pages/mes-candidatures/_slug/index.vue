@@ -101,6 +101,7 @@
     hasBookletFinished,
     hasResumes,
     bookletPath,
+    avrilPath,
     path,
     delegateName,
     delegateAddress,
@@ -172,7 +173,7 @@
         return bookletPath(this.application);
       },
       cerfaPath: function() {
-        return bookletPath(this.application, '/cerfa');
+        return avrilPath(this.application, '/cerfa');
       },
       certificationName: function() {
         return certificationName(this.application);

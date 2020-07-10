@@ -15,6 +15,7 @@ export const path = application => {
   return `${path()}/${applicationSlug(application)}`;
 }
 export const bookletPath = (application, path) => `/ma-candidature-vae/${applicationSlug(application)}${path || '/'}`;
+export const avrilPath = (application, path) => `/candidatures/${applicationSlug(application)}${path || '/'}`;
 
 export const certificationName = application => `${get(application, 'certification.acronym')} ${get(application, 'certification.label')}`.trim();
 export const certificationLevel = application => {
