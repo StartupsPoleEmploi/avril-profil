@@ -18,7 +18,7 @@
         </select>
       </div>
 
-      <input v-else class="input is-large" :class="isMissingAndRequired ? 'is-danger' : ''" type="text" :placeholder="label" :value="value" @input="editField">
+      <input v-else class="input is-large" :class="isMissingAndRequired ? 'is-danger' : ''" :type="inputTextType" :placeholder="label" :value="value" @input="editField">
     </div>
   </div>
 </template>
@@ -77,7 +77,10 @@
       },
       value: function() {
         return valueMapper(this.type)(this.$store.state.identity[this.field]);
-      }
+      },
+      inputTextType: function() {
+        return this.type === INPUT_TYPES.email ? 'email' : 'text';
+      },
     },
     data: function() {
       return {
