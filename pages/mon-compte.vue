@@ -9,7 +9,6 @@
             Tous ces éléments sont indispensables pour lier le diplôme à votre identité. <br />
             Sans elles, il est impossible de garantir votre identité.
           </p>
-          <SavedMessage :message="savedMessage" :removeMessage="removeSavedMessage" />
           <div class="tags">
             <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte">Profil</nuxt-link>
             <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte/situation-professionnelle">Situation professionnelle</nuxt-link>
@@ -25,26 +24,10 @@
 
 <script>
   import BackButton from '~/components/BackButton.vue'
-  import SavedMessage from '~/components/SavedMessage.vue'
 
   export default {
     components: {
       BackButton,
-      SavedMessage,
-    },
-    computed: {
-      savedMessage: function() {
-        if (this.$store.state.identity.isServerData)
-          return this.$store.state.identity.savedMessage;
-      }
-    },
-    mounted: function() {
-      this.$store.commit('identity/removeSavedMessage');
-    },
-    methods: {
-      removeSavedMessage: function() {
-        this.$store.commit('identity/removeSavedMessage');
-      },
     },
   }
 </script>

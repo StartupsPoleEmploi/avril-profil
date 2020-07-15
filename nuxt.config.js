@@ -21,6 +21,9 @@ export default deepMerge(sharedConfig, {
   ],
   router: {
     base: process.env.NUXT_PROFILE_PATH,
+    middleware: [
+      'remove-feedback',
+    ]
   },
   sentry: {
     dsn: process.env.NUXT_PROFILE_SENTRY_DSN,

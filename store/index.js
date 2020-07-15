@@ -1,8 +1,11 @@
 import get from 'lodash.get';
-import { queryApiWithContext } from 'avril/js/utils/api';
+import { isString } from 'avril/js/utils/boolean';
+import { queryApiWithContext, formatApiError } from 'avril/js/utils/api';
 import { nextStep } from '~/utils/application';
 
-export const state = () => ({});
+export const state = () => ({
+  serverFeedback: null,
+});
 
 export const getters = {
   nextApplicationStep: (state, getters) => {
@@ -13,7 +16,25 @@ export const getters = {
   }
 };
 
-export const mutations = {};
+export const mutations = {
+  removeFeedback: function(state) {
+    state.serverFeedback = null;
+  },
+  setFeedback: function(state, {message, type}) {
+    state.serverFeedback = {
+      message,
+      type: type || 'success',
+      timestamp: Date.now(),
+    }
+  },
+  setApiErrorFeedback: function(state, {err, message}) {
+    state.serverFeedback = {
+      message: formatApiError(err, message),
+      type: 'danger',
+      timestamp: Date.now(),
+    }
+  }
+};
 
 export const actions = {
   async nuxtServerInit({ commit }, context) {

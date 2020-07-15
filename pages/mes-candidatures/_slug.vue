@@ -6,7 +6,6 @@
     <div v-else>
       <BackButton :label="`Ma candidature ${certificationName}`" :to="applicationPath" />
     </div>
-    <SavedMessage :message="application.savedMessage" :removeMessage="removeSavedMessage" />
     <nuxt-child :application="application"/>
   </div>
 </template>
@@ -15,14 +14,12 @@
   import get from 'lodash.get';
   import {first} from 'avril/js/utils/array';
   import BackButton from '~/components/BackButton.vue';
-  import SavedMessage from '~/components/SavedMessage.vue';
 
   import {path, currentApplication, certificationName} from '~/utils/application';
 
   export default {
     components: {
       BackButton,
-      SavedMessage,
     },
     computed: {
       applications() {
@@ -50,11 +47,6 @@
         context.redirect(path());
       }
       return {}
-    },
-    methods: {
-      removeSavedMessage: function() {
-        this.$store.commit('applications/removeSavedMessage');
-      }
     },
   }
 </script>

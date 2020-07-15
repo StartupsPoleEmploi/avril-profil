@@ -1,8 +1,5 @@
 <template>
   <div class="candidature-detail">
-    <Message type="danger" v-if="errorMessage" :onRemove="removeErrorMessage">
-      <p>{{errorMessage}}</p>
-    </Message>
     <h1 class="title is-1 is-spaced">Mes justificatifs</h1>
     <p class="subtitle">Déposez vos documents sur notre plateforme sécurisée</p>
 
@@ -83,7 +80,6 @@
       return {
         content,
         uploadingFiles: [],
-        errorMessage: null,
       }
     },
     methods: {
@@ -98,33 +94,35 @@
               },
               type: 'application',
             }, file.file);
-            this.$store.dispatch('applications/updateAndInform', {
-              ...updatedApplication,
-              savedMessage: `Le justificatif ${file.name} a bien été ajouté.`,
-            });
+            this.$store.commit('setFeedback', {
+              message: `Le justificatif ${file.name} a bien été ajouté.`,
+            })
           } catch(err) {
-            this.errorMessage = `Le fichier ${file.name} n'a pas pu être envoyé. Merci de réessayer plus tard.`
+            this.$store.commit('setApiErrorFeedback', {err, message: `Le justificatif ${file.name} n'a pas pu être envoyé`});
           }
           const fileIndex = this.uploadingFiles.findIndex(f => f.id === file.id);
           this.uploadingFiles.splice(fileIndex, 1);
         }));
       },
-      removeErrorMessage: function() {
-        this.errorMessage = null;
-      },
       removeFile: async function(id) {
-        const file = await mutateApi({
-          name: 'deleteResume',
-          params: {
-            id,
-          },
-          type: 'resume',
-        });
-        this.$store.dispatch('applications/updateAndInform', {
-          ...this.application,
-          resumes: this.application.resumes.filter(r => r.id !== file.id),
-          savedMessage: 'Le justificatif a bien été supprimé.',
-        });
+        try {
+          const file = await mutateApi({
+            name: 'deleteResume',
+            params: {
+              id,
+            },
+            type: 'resume',
+          });
+          this.$store.dispatch('applications/updateAndInform', {
+            ...this.application,
+            resumes: this.application.resumes.filter(r => r.id !== file.id),
+          });
+          this.$store.commit('setFeedback', {
+            message: `Le justificatif a bien été supprimé.`,
+          })
+        } catch(err) {
+          this.$store.commit('setApiErrorFeedback', {err, message: 'Le fichier n\'a pas pu être supprimé'});
+        }
       },
       capitalize,
       pluralize,

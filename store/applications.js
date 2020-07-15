@@ -10,12 +10,6 @@ export const getters = {
 };
 
 export const mutations = {
-  removeSavedMessage(state) {
-    state.forEach(a => {
-      a.savedMessage = null;
-    })
-    // state[state.findIndex(a => a.id === id)].savedMessage = null;
-  },
   updateStateFromServer(state, serverState) {
     (serverState || []).forEach(e => state.push(e));
   },

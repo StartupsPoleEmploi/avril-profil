@@ -7,11 +7,7 @@
         <GeoInput :input="selectDelegateCity" :credentials="credentials" type="city" placeholder="A côté de quelle ville voulez-vous rechercher ?" countries="fr" />
       </div>
     </div>
-    <div v-if="error" class="has-text-danger">
-      <p class="field">{{error}}</p>
-      <nuxt-link :to="applicationPath" class="button is-rounded is-danger">Retour</nuxt-link>
-    </div>
-    <p v-else-if="isSearching">Recherche en cours ...</p>
+    <p v-if="isSearching">Recherche en cours ...</p>
     <div v-else-if="delegates" >
       <ul v-if="delegates.length" v-for="delegateChunk in chunk(delegates, 4)" class="columns is-multiline">
         <li v-for="delegate in delegateChunk" class="column is-4 has-equal-height">
@@ -43,7 +39,6 @@
     data: function(){
       return {
         credentials: process.env.algoliaCredentials,
-        error: null,
         delegates: null,
         isSearching: false,
       }
@@ -70,12 +65,11 @@
               postalCode,
             }
           })
-          this.isSearching = false;
           this.delegates = result;
         } catch(err) {
-          this.isSearching = false;
-          this.error = 'Une erreur est survenue, merci de réessayer plus tard.';
+          this.$store.commit('setApiErrorFeedback', {err, message: 'La recherche de certficateur n\'a pas fonctionné'});
         }
+        this.isSearching = false;
       },
       selectDelegate: async function(delegate) {
         try {
@@ -91,13 +85,17 @@
           })
           this.$store.dispatch('applications/updateAndInform', {
             ...application,
-            savedMessage: 'Certificateur enregistré.'
           });
-          this.$router.push({
-            path: path(this.application)
+          this.$store.commit('setFeedback', {
+            message: 'Certificateur enregistré',
           });
+          setTimeout(() => {
+            this.$router.push({
+              path: path(this.application)
+            });
+          }, 0)
         } catch(err) {
-          this.error = 'Une erreur est survenue, nous ne sommes pas parvenu à sélectionner ce certificateur. Merci de réessayer plus tard.';
+          this.$store.commit('setApiErrorFeedback', {err, message: 'Le certificateur n\'a pas pu être sélectionné'});
         }
       }
     }

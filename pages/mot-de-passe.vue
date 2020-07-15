@@ -42,22 +42,26 @@
     methods: {
       save: async function() {
         this.isSaving = true;
-        const result = await mutateApi({
-          name: 'updatePassword',
-          type: 'identity',
-          params: {
-            input: {
-              password: this.newPassword,
-              confirmPassword: this.newPassword,
-              currentPassword: this.currentPassword,
-            }
-          },
-        });
+        try {
+          const result = await mutateApi({
+            name: 'updatePassword',
+            type: 'identity',
+            params: {
+              input: {
+                password: this.newPassword,
+                confirmPassword: this.newPassword,
+                currentPassword: this.currentPassword,
+              }
+            },
+          });
+          this.$store.dispatch('identity/updateAndInform', result);
+          this.$store.commit('setFeedback', {
+            message: 'Mot de passe modifié avec succès.',
+          })
+        } catch(err) {
+          this.$store.commit('setApiErrorFeedback', {err, message: 'Le mot de passe n\'a pas pu être modifié'});
+        }
         this.isSaving = false;
-        this.$store.dispatch('identity/updateAndInform', {
-          ...result,
-          savedMessage: 'Mot de passe modifié avec succès.',
-        });
       },
     },
   }

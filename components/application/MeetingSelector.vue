@@ -88,20 +88,26 @@
         }
       },
       validateMeeting: async function() {
-        const application = await mutateApi({
-          name: 'registerMeeting',
-          params: {
-            input: {
-              applicationId: this.application.id,
-              meetingId: this.meetingId,
-            }
-          },
-          type: 'application',
-        });
-        this.$store.dispatch('applications/updateAndInform', {
-          ...application,
-          savedMessage: 'Inscription à la réunion d\'information bien enregistrée.',
-        });
+        try {
+          const application = await mutateApi({
+            name: 'registerMeeting',
+            params: {
+              input: {
+                applicationId: this.application.id,
+                meetingId: this.meetingId,
+              }
+            },
+            type: 'application',
+          });
+          this.$store.dispatch('applications/updateAndInform', {
+            ...application
+          });
+          this.$store.commit('setFeedback', {
+            message: 'Inscription à la réunion d\'information bien enregistrée.',
+          })
+        } catch(err) {
+          this.$store.commit('setApiErrorFeedback', {err, message: 'L\'inscription n\'a pas fonctionné'});
+        }
       },
     },
     props: {

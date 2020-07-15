@@ -4,7 +4,6 @@ import {include} from 'avril/js/utils/array';
 
 export const state = () => ({
   isServerData: false,
-  savedMessage: null,
   lastName: null,
   usageName: null,
   firstName: null,
@@ -49,7 +48,6 @@ const OPTIONAL_FIELDS = [
 
 const UNSAVABLE_FIELDS = [
   'isServerData',
-  'savedMessage',
 ]
 
 const getSubstate = (state, filteredKeysArray) => {
@@ -66,9 +64,6 @@ export const getters = {
 }
 
 export const mutations = {
-  removeSavedMessage(state) {
-    state.savedMessage = null;
-  },
   updateState(state, newState) {
     state.isServerData = false;
     Object.assign(state, newState);
