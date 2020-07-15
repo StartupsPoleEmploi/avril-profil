@@ -94,6 +94,7 @@
               },
               type: 'application',
             }, file.file);
+            this.$store.dispatch('applications/updateAndInform', updatedApplication);
             this.$store.commit('setFeedback', {
               message: `Le justificatif ${file.name} a bien été ajouté.`,
             })

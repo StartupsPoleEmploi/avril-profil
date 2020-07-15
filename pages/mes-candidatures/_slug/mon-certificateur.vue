@@ -83,9 +83,7 @@
               }
             },
           })
-          this.$store.dispatch('applications/updateAndInform', {
-            ...application,
-          });
+          this.$store.dispatch('applications/updateAndInform', application);
           this.$store.commit('setFeedback', {
             message: 'Certificateur enregistré',
           });
