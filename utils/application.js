@@ -37,6 +37,8 @@ export const certificationLevel = application => {
 
 export const hasDelegate = application => isPresent(application.delegate);
 export const delegateName = application => get(application, 'delegate.name');
+export const certifierName = application => get(application, 'delegate.certifier.name');
+export const EDUC_NAT='Ministère de l\'Education Nationale';
 export const isAsp = application => startsWithNoCase(get(application, 'delegate.name', ''), 'ASP');
 export const delegateAddress = application => get(application, 'delegate.address', {});
 export const delegatePhone = application => get(application, 'delegate.telephone');

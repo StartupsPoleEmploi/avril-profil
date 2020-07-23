@@ -19,6 +19,9 @@
         >{{nextStep.button}}</ApiButton>
         <nuxt-link v-else-if="nextStep.to" :to="nextStep.to(application)" class="button is-info is-inverted is-rounded">{{nextStep.button}}</nuxt-link>
         <a v-else-if="nextStep.href" :href="nextStep.href(application)" class="button is-info is-inverted is-rounded">{{nextStep.button}}</a>
+        <div class="notification is-warning" v-if="isEducNatSummerBreak" style="margin-top: 2rem;">
+          <p class="has-text-weight-bold">Pour information, certains certificateurs comme le réseau DAVA ne seront en mesure d'assurer le traitement de  votre candidature qu'à compter du 1er septembre compte tenu des congés d'été.</p>
+        </div>
       </div>
       <div class="column is-narrow is-hidden-mobile">
         <img :src="`images/next-step/${nextStep.illustration}.svg`" :alt="!nextStep.isLast ? 'Illustration de la prochaine étape' : ''" class="illustration">
@@ -29,15 +32,18 @@
 
 <script>
   import get from 'lodash.get';
+  import { isWithinInterval } from 'date-fns';
   import nextStepsData from '~/contents/data/applicationNextSteps';
   import ApiButton from '~/components/ApiButton';
   import Address from '~/components/Address';
 
   import {
+    certifierName,
     delegateName,
     delegateAddress,
     delegatePhone,
     delegateEmail,
+    EDUC_NAT,
     isAsp,
   } from '~/utils/application';
 
@@ -74,8 +80,13 @@
         return delegateEmail(this.application);
       },
       description: function() {
-        // return this.nextStep.description;
         return this.$md.render(this.nextStep.description)
+      },
+      isEducNatSummerBreak: function() {
+        return certifierName(this.application) === EDUC_NAT && isWithinInterval(
+          new Date(),
+          { start: new Date(2020, 6, 13), end: new Date(2020, 7, 31) }
+        );
       }
     },
     props: {
