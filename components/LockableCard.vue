@@ -86,7 +86,7 @@
     border-radius: 6px;
     background: #fff;
     padding: 1rem;
-    display: flex;
+    display: block;
     flex-direction: column;
     position: relative;
     z-index: 2;
@@ -145,7 +145,8 @@
 
     .is-edit {
       &.is-bottom-right {
-        margin-top: auto;
+        float: right;
+        margin-top: 1rem;
         margin-left: auto;
       }
     }
