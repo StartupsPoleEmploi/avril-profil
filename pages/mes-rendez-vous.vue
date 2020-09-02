@@ -50,26 +50,6 @@
   export default {
     computed: {
       meetings: function() {
-        // return [{
-        //   name:"coucou",
-        //     "address": "A DISTANCE (LIEU HABITUEL FERME)",
-        //     "city": "31100 TOULOUSE",
-        //     "endDate": "2020-06-20T12:30:00",
-        //     "meetingId": "205239",
-        //     "postalCode": "",
-        //     "remainingPlaces": 12,
-        //     "startDate": "2020-06-20T09:30:00"
-        //   },
-        //   {
-        //   name:"youpi",
-        //     "address": "A DISTANCE (LIEU HABITUEL FERME)",
-        //     "city": "31100 TOULOUSE",
-        //     "endDate": "2020-07-03T12:30:00",
-        //     "meetingId": "205243",
-        //     "postalCode": "",
-        //     "remainingPlaces": 12,
-        //     "startDate": "2020-07-03T09:30:00"
-        //   }]
         return this.$store.state.applications.map(a => a && a.meeting).filter(m => m)
       },
     },

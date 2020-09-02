@@ -19,7 +19,7 @@
         >{{nextStep.button}}</ApiButton>
         <nuxt-link v-else-if="nextStep.to" :to="nextStep.to(application)" class="button is-info is-inverted is-rounded">{{nextStep.button}}</nuxt-link>
         <a v-else-if="nextStep.href" :href="nextStep.href(application)" class="button is-info is-inverted is-rounded">{{nextStep.button}}</a>
-        <div class="notification is-warning" v-if="isEducNatSummerBreak" style="margin-top: 2rem;">
+        <div class="notification is-warning" v-if="nextStep.isLast && isEducNatSummerBreak" style="margin-top: 2rem;">
           <p class="has-text-weight-bold">Pour information, certains certificateurs comme le réseau DAVA ne seront en mesure d'assurer le traitement de  votre candidature qu'à compter du 1er septembre compte tenu des congés d'été.</p>
         </div>
       </div>

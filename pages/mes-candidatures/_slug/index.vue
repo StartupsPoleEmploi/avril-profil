@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MeetingSelector v-if="!application.meeting && meetings.length" :application="application" :meetings="meetings" />
+    <MeetingSelector :application="application" />
     <header class="application-header">
       <ApplicationTag :application="application" />
       <h1 class="title is-2">{{certificationName}}</h1>
@@ -180,41 +180,11 @@
       },
       certificationLevel: function() {
         return certificationLevel(this.application);
-      }
-    },
-    data: function() {
-      return {
-        meetings: [],
-      }
+      },
     },
     methods: {
       parseAndFormat,
     },
-    // asyncData: async function(context) {
-    //   const {store, params} = context;
-    //   const application = currentApplication(store.state.applications, params.slug);
-    //   const delegate_id = get(application, 'delegate.id');
-    //   if (!delegate_id) return {meetings: []};
-    //   return {meetings: []}
-    //   try {
-    //     const meetings = await queryApiWithContext(context)({
-    //       name: 'meetings',
-    //       type: 'meetingList',
-    //       params: {
-    //         delegate_id,
-    //       },
-    //     });
-
-    //     return {
-    //       meetings,
-    //     }
-    //   } catch(err) {
-    //     console.error('Could not fetch meetings', err)
-    //     return {
-    //       meetings: []
-    //     }
-    //   }
-    // },
     props: {
       application: {
         type: Object,

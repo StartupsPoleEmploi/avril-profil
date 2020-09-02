@@ -1,6 +1,6 @@
 <template>
   <div class="meeting-selector">
-    <Message v-if="meetings.length" type="success" size="large" :removable="false">
+    <Message v-if="!isMeetingsDisabled && !application.meeting && meetings.length" type="success" size="large" :removable="false">
       <div v-if="meetingSelect">
         <h3 class="title is-4">Où et quand souhaitez-vous venir vous informer sur la VAE ?</h3>
         <div class="columns is-vcentered">
@@ -37,7 +37,7 @@
         </div>
         <div class="column is-half content">
           <p>La réunion vous permettra d'obtenir des informations précises, de rencontrer votre certificateur et de prendre connaissance de ses dispositions particulières.</p>
-          <a @click="validateMeeting" >Je n'en ai pas besoin, je connais déjà la VAE</a>
+          <a @click="disableMeetings" >Je n'en ai pas besoin, je connais déjà la VAE</a>
         </div>
       </div>
     </Message>
@@ -50,11 +50,18 @@
   import { mutateApi } from 'avril/js/utils/api';
   import Message from '~/components/Message.vue';
 
+  import {
+    meetings,
+  } from '~/utils/application';
+
   export default {
     components: {
       Message,
     },
     computed: {
+      meetings: function() {
+        return meetings(this.application);
+      },
       filteredMeetings: function() {
         return get(this.meetings.find(m => m.name === this.meetingName), 'meetings', null)
       },
@@ -67,12 +74,16 @@
     },
     data: function() {
       return {
+        isMeetingsDisabled: false,
         meetingSelect: false,
         meetingId: null,
         meetingName: null,
       }
     },
     methods: {
+      disableMeetings: function() {
+        this.isMeetingsDisabled = true;
+      },
       formatInterval: function(d1, d2) {
         if (!d1 || !d2) return;
         return formatInterval(parseISODate(d1), parseISODate(d2));
@@ -106,16 +117,11 @@
             message: 'Inscription à la réunion d\'information bien enregistrée.',
           })
         } catch(err) {
-          this.$store.commit('setApiErrorFeedback', {err, message: 'L\'inscription n\'a pas fonctionné'});
+          this.$store.commit('setApiErrorFeedback', {err, message: 'Une erreur est survenue'});
         }
       },
     },
     props: {
-      meetings: {
-        type: Array,
-        default: [],
-        isRequired: true,
-      },
       application: {
         type: Object,
         isRequired: true,

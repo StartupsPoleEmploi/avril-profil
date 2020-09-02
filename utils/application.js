@@ -59,3 +59,8 @@ export const nextStep = application => {
 }
 
 export const isFilled = application => application.submittedAt;
+
+export const meetings = application => get(application, 'delegate.meetingPlaces', [])
+  // .reduce((result, {name, meetings}) => {
+  //   return result.concat(meetings.map(m => Object.assign({}, m, {name})));
+  // }, []);
