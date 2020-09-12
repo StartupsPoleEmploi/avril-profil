@@ -22,7 +22,7 @@
     "cookie-universal-nuxt": "^2.1.0",
     "date-fns": "^2.11.0",
     "lodash.get": "^4.4.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
     "nuxt-svg-loader": "^1.2.0",
