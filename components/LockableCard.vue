@@ -2,7 +2,7 @@
   <div class="lockable-card" :class="{ 'is-filled': isActuallyFilled, 'has-multiple-layer': hasMultipleLayer }">
     <h4 class="title is-5"><span class="icon" v-if="isLocked"><IconLocked/></span> {{title}}</h4>
     <slot v-if="isActuallyFilled"></slot>
-    <component v-if="!isLocked" :is="href ? 'a' : 'nuxt-link'" :href="href" :to="to" class="button" :class="buttonClass" :target="target">
+    <component @click="trackClick" v-if="!isLocked" :is="href ? 'a' : 'nuxt-link'" :href="href" :to="to" class="button" :class="buttonClass" :target="target">
       <span v-if="isFilled">
         <span class="icon is-small">
           <IconPencil/>
@@ -22,6 +22,7 @@
   import IconPencil from 'avril/images/icons/pencil.svg';
 
   import {hasBookletFinished} from '~/utils/application';
+  import { track } from 'avril/js/utils/analytics';
 
   export default {
     components: {
@@ -48,6 +49,11 @@
         return 'is-rounded is-avril';
       },
     },
+    methods: {
+      trackClick: function(e) {
+        this.analytics && track(this, this.analytics);
+      },
+    },
     props: {
       title: {
         type: String,
@@ -72,7 +78,10 @@
       },
       target: {
         type: String,
-      }
+      },
+      analytics: {
+        type: String,
+      },
     },
   }
 </script>
