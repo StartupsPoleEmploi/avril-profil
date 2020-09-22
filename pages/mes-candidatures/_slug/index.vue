@@ -78,6 +78,16 @@
               <p v-if="delegateEmail"><a :href="`mailto:${delegateEmail}`">{{delegateEmail}}</a></p>
               <p v-if="delegatePhone"><a :href="`tel:${delegatePhone}`">{{delegatePhone}}</a></p>
             </LockableCard>
+            <LockableCard
+              v-if="isAfpa"
+              :is-locked="!isFilled"
+              title="Ma réunion d'information"
+              button="Voir les réunions VAE AFPA"
+              target="_blank"
+              href="https://www.afpa.fr/agenda?_rechercheevenementportlet_WAR_rechercheportlet_INSTANCE_4ONof6W5P5AJ_formDate=1599641591738&p_p_id=101_INSTANCE_agenda&_101_INSTANCE_agenda_afpa_ddm__22997__DateDebut_en_US=09%2F09%2F2020&_101_INSTANCE_agenda_afpa_ddm__22997__DateFin_en_US=&_101_INSTANCE_agenda_afpa_ddmStructureKey=EVENEMENT&_101_INSTANCE_agenda_categoryId=58334180&_101_INSTANCE_agenda_categoryId=&_rechercheevenementportlet_WAR_rechercheportlet_INSTANCE_4ONof6W5P5AJ_typeEvenement=58334180&_rechercheevenementportlet_WAR_rechercheportlet_INSTANCE_4ONof6W5P5AJ_region=&_rechercheevenementportlet_WAR_rechercheportlet_INSTANCE_4ONof6W5P5AJ_ville=&_rechercheevenementportlet_WAR_rechercheportlet_INSTANCE_4ONof6W5P5AJ_dateDebut=&_rechercheevenementportlet_WAR_rechercheportlet_INSTANCE_4ONof6W5P5AJ_dateFin="
+            >
+              <p slot="help">Pour voir les réunions d'information, vous devez transmettre votre candidature.</p>
+            </LockableCard>
           </div>
         </div>
       </div>
@@ -93,6 +103,7 @@
   import NextStep from '~/components/application/NextStep.vue';
   import MeetingSelector from '~/components/application/MeetingSelector.vue';
   import Address from '~/components/Address.vue';
+  import Message from '~/components/Message.vue';
   import LockableCard from '~/components/LockableCard.vue';
   import ApplicationTag from '~/components/ApplicationTag.vue';
 
@@ -110,6 +121,8 @@
     certificationName,
     certificationLevel,
     currentApplication,
+    isAfpa,
+    isFilled,
   } from '~/utils/application';
 
   export default {
@@ -119,6 +132,7 @@
       MeetingSelector,
       NextStep,
       LockableCard,
+      Message,
     },
     computed: {
       identity: function() {
@@ -135,6 +149,12 @@
       },
       hasResumes: function() {
         return hasResumes(this.application);
+      },
+      isAfpa: function() {
+        return isAfpa(this.application);
+      },
+      isFilled: function() {
+        return isFilled(this.application);
       },
       isSynthesisUnlocked: function() {
         return this.isIdentityFilled && this.hasDelegate;
