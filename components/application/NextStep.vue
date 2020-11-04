@@ -60,10 +60,11 @@
           ...nextStep,
           ...(nextStep.isLast && isAsp(this.application) ? {
             title: 'Votre candidature est bien enregistrée',
-            description: `Pour ce diplôme, l'ASP qui gère les demandes de recevabilité, a mis en place un
-              site spécifique. Conservez bien ce que vous venez de saisir et télécharger afin
-              de les transmettre directement à ce service : https://vaedem.asp-public.fr/vaedems/
-              ou bien par courrier à l'adresse ci-dessous :`,
+            description: `L'ASP, qui gère les demandes de recevabilité pour votre diplôme,
+            a mis en place un site spécifique. Conservez bien ce que vous venez de saisir
+            et télécharger le afin de renseigner votre dossier directement dans leur service :
+            https://vaedem.asp-public.fr/vaedems/. Vous pourrez aussi imprimer le dossier saisi
+            dans leur site et l'adresser par courrier  à l'adresse ci-dessous :`,
           } : {})
         };
       },
