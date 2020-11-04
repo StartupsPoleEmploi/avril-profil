@@ -4,7 +4,7 @@
     <header class="application-header">
       <ApplicationTag :application="application" />
       <h1 class="title is-2">{{certificationName}}</h1>
-      <div class="label-avril">Équivalence {{certificationLevel}}</div>
+      <div class="label-avril">Niveau {{certificationLevel}}</div>
     </header>
     <div class="candidature-detail">
       <NextStep :application="application" />

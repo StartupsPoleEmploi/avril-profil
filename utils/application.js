@@ -20,16 +20,18 @@ export const avrilPath = (application, path) => `/candidatures/${applicationSlug
 export const certificationName = application => `${get(application, 'certification.acronym')} ${get(application, 'certification.label')}`.trim();
 export const certificationLevel = application => {
   switch(parseInt(get(application, 'certification.level'))) {
-    case 5:
+    case 3:
       return 'CAP / BEP';
     case 4:
       return 'Bac / BP / BT';
-    case 3:
+    case 5:
       return 'Bac +2 / DUT / BTS';
-    case 2:
-      return 'Bac +3 ou +4';
-    case 1:
+    case 6:
+      return 'Bac +3 / Bac +4';
+    case 7:
       return 'Bac +5 et plus';
+    case 8:
+      return 'Bac +8';
     default:
       return 'Sans Diplôme';
   }

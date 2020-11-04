@@ -5,7 +5,7 @@
       <nuxt-link :to="applicationPath">
         <h3 class="title" :class="`is-${size === 'small' ? 5 : 3}`">{{certificationName}}</h3>
       </nuxt-link>
-      <div class="label-avril">Équivalence {{certificationLevel}}</div>
+      <div class="label-avril">Niveau {{certificationLevel}}</div>
     </header>
     <p>
       Candidature démarrée le {{applicationStarted}}<span v-if="delegateName"> avec pour certificateur {{delegateName}}</span>.
