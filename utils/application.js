@@ -2,6 +2,7 @@ import get from 'lodash.get';
 import {isPresent} from 'avril/js/utils/boolean';
 import {startsWithNoCase} from 'avril/js/utils/string';
 import {first} from 'avril/js/utils/array';
+import { isFuture, parseISO } from 'date-fns';
 
 export const applicationSlug = application => `${application.id}-${get(application, 'certification.slug', '')}`
 export const applicationSlugToId = slug => parseInt(first(slug.split('-')))
@@ -64,6 +65,9 @@ export const nextStep = application => {
 export const isFilled = application => application.submittedAt;
 
 export const meetings = application => get(application, 'delegate.meetingPlaces', [])
-  // .reduce((result, {name, meetings}) => {
-  //   return result.concat(meetings.map(m => Object.assign({}, m, {name})));
-  // }, []);
+  .map(m => {
+    return {
+      ...m,
+      meetings: get(m, 'meetings', []).filter(meeting => isFuture(parseISO(meeting.startDate)))
+    }
+  }).filter(m => get(m, 'meetings', []).length)

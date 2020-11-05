@@ -8,8 +8,13 @@ a, button {
   }
 }
 
-.select select {
-  font-size: 1em !important;
+.select {
+  select {
+    font-size: 1em !important;
+  }
+  &:after {
+    border-color: $text !important;
+  }
 }
 
 .field {
