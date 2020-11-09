@@ -9,7 +9,7 @@
     </div>
     <p v-if="isSearching">Recherche en cours ...</p>
     <div v-else-if="delegates" >
-      <ul v-if="delegates.length" v-for="delegateChunk in chunk(delegates, 4)" class="columns is-multiline">
+      <ul v-if="delegates.length" v-for="delegateChunk in chunk(delegates, 3)" class="columns">
         <li v-for="delegate in delegateChunk" class="column is-4 has-equal-height">
           <DelegateCard :delegate="delegate" :onClick="selectDelegate" />
         </li>
@@ -99,3 +99,15 @@
     }
   }
 </script>
+
+
+<style lang="scss">
+  .column.has-equal-height {
+    .card {
+      height: 100%;
+      justify-content: space-between;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+</style>
