@@ -2,7 +2,7 @@
   <div class="avril-next-step notification is-info" :class="nextStep.color ? `is-${nextStep.color}` : ''" v-if="nextStep">
     <div class="columns is-mobile is-vcentered">
       <div class="column">
-        <p v-if="!nextStep.isLast"><span>Prochaine étape {{nextStep.isSuggested ? 'conseillée' : ''}}</span><span v-if="nextStep.time"> - {{nextStep.time}}</span></p>
+        <p v-if="!nextStep.isLast"><span>Prochaine étape {{nextStep.isSuggested ? 'conseillée' : ''}}</span></p>
         <h2 class="title is-2">{{nextStep.title}}</h2>
         <div class="content" v-html="description"></div>
         <div v-if="nextStep.isLast" style="margin-top: 1rem;">
