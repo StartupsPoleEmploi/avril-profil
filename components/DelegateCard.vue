@@ -4,7 +4,7 @@
       <h4 class="title is-4">{{delegate.name}}</h4>
     </div>
     <div class="card-content">
-      <Address :address="delegate.address || {}" />
+      <Address :address="{street: delegate.address, name: delegate.addressName}" />
     </div>
     <div class="card-footer has-text-centered">
       <button @click="e => onClick(delegate)" class="button is-rounded is-text">Choisir ce certificateur</button>

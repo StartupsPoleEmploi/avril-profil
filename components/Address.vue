@@ -2,8 +2,9 @@
   <div v-if="address">
     <p v-if="isString">{{address}}</p>
     <div v-else>
+      <p v-if="address.name">{{address.name}}</p>
       <p>{{address.street}}</p>
-      <p>{{address.postalCode}} {{address.city}}</p>
+      <p v-if="address.postalCode || address.city">{{address.postalCode}} {{address.city}}</p>
     </div>
   </div>
 </template>

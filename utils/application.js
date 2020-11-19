@@ -45,7 +45,12 @@ export const certifierName = application => get(application, 'certifier.name');
 export const EDUC_NAT='Ministère de l\'Education Nationale';
 export const isAsp = application => startsWithNoCase(get(application, 'delegate.name', ''), 'ASP');
 export const isAfpa = application => startsWithNoCase(get(application, 'delegate.name', ''), 'AFPA');
-export const delegateAddress = application => get(application, 'delegate.address', {});
+export const delegateAddress = application => {
+  return {
+    name: get(application, 'delegate.addressName'),
+    street: get(application, 'delegate.address'),
+  }
+};
 export const delegatePhone = application => get(application, 'delegate.telephone');
 export const delegateEmail = application => get(application, 'delegate.email');
 
