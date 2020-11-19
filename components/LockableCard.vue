@@ -3,13 +3,13 @@
     <h4 class="title is-5"><span class="icon" v-if="isLocked"><IconLocked/></span> {{title}}</h4>
     <slot v-if="isActuallyFilled"></slot>
     <component @click="trackClick" v-if="!isLocked" :is="href ? 'a' : 'nuxt-link'" :href="href" :to="to" class="button" :class="buttonClass" :target="target">
-      <span v-if="isFilled">
+      <span v-if="isFilled && !isReadOnly">
         <span class="icon is-small">
           <IconPencil/>
         </span>
         <span>Modifier</span>
       </span>
-      <span v-else>{{button}}</span>
+      <span v-if="!isFilled && button">{{button}}</span>
     </component>
     <div class="help" v-if="hasHelpSlot">
       <slot name="help"></slot>
@@ -62,6 +62,9 @@
       href: {},
       to: {},
       isFilled: {
+        type: Boolean,
+      },
+      isReadOnly: {
         type: Boolean,
       },
       isLocked: {},

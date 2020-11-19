@@ -1,7 +1,7 @@
 import get from 'lodash.get';
 import {isPresent} from 'avril/js/utils/boolean';
 import {startsWithNoCase} from 'avril/js/utils/string';
-import {first} from 'avril/js/utils/array';
+import {first, include} from 'avril/js/utils/array';
 import { isFuture, parseISO } from 'date-fns';
 
 export const applicationSlug = application => `${application.id}-${get(application, 'certification.slug', '')}`
@@ -19,6 +19,7 @@ export const bookletPath = (application, path) => `/ma-candidature-vae/${applica
 export const avrilPath = (application, path) => `/candidatures/${applicationSlug(application)}${path || '/'}`;
 
 export const certificationName = application => `${get(application, 'certification.acronym')} ${get(application, 'certification.label')}`.trim();
+// TODO: move to the backend
 export const certificationLevel = application => {
   switch(parseInt(get(application, 'certification.level'))) {
     case 3:
@@ -40,14 +41,13 @@ export const certificationLevel = application => {
 
 export const hasDelegate = application => isPresent(application.delegate);
 export const delegateName = application => get(application, 'delegate.name');
-export const certifierName = application => get(application, 'delegate.certifier.name');
+export const certifierName = application => get(application, 'certifier.name');
 export const EDUC_NAT='Ministère de l\'Education Nationale';
 export const isAsp = application => startsWithNoCase(get(application, 'delegate.name', ''), 'ASP');
 export const isAfpa = application => startsWithNoCase(get(application, 'delegate.name', ''), 'AFPA');
 export const delegateAddress = application => get(application, 'delegate.address', {});
 export const delegatePhone = application => get(application, 'delegate.telephone');
 export const delegateEmail = application => get(application, 'delegate.email');
-
 
 export const hasBooklet = application => get(application, 'booklet_1.insertedAt');
 export const hasBookletFinished = application => !!get(application, 'booklet_1.completedAt');
@@ -62,7 +62,7 @@ export const nextStep = application => {
   return 'finished';
 }
 
-export const isFilled = application => application.submittedAt;
+export const isFilled = application => !!application.submittedAt;
 
 export const meetings = application => get(application, 'delegate.meetingPlaces', [])
   .map(m => {
@@ -71,3 +71,35 @@ export const meetings = application => get(application, 'delegate.meetingPlaces'
       meetings: get(m, 'meetings', []).filter(meeting => isFuture(parseISO(meeting.startDate)))
     }
   }).filter(m => get(m, 'meetings', []).length)
+
+export const delegateCriteria = (application, isExpandedSearch) => {
+  const certifiers = get(application, 'certification.certifiers', []).map(c => c.name.trim());
+  console.log(certifiers)
+  const isAsp = include(certifiers, 'Ministère des affaires sociales et de la santé');
+  const isDOHS = include(certifiers, 'Direction de l\'hospitalisation et de l\'organisation des soins (DHOS)');
+  const isDAVA = include(certifiers, 'Ministère de l\'Education Nationale');
+  const isAFPA = include(certifiers, 'Ministère du travail');
+
+  if (isAsp || isDOHS) {
+    return {
+      radius: null,
+      expandable: false,
+    }
+  } else if (isDAVA || isAFPA) {
+    return {
+      radius: 50000,
+      administrativeFilter: true,
+      expandable: false
+    }
+  } else if (!isExpandedSearch) {
+    return {
+      radius: 100000,
+      expandable: true
+    }
+  } else {
+    return {
+      radius: null,
+      expandable: false
+    }
+  }
+}

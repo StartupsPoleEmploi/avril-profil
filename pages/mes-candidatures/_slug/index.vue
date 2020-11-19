@@ -69,6 +69,7 @@
           <div class="column has-equal-height">
             <LockableCard
               :is-filled="hasDelegate"
+              :is-read-only="isFilled"
               title="Mon certificateur"
               button="Trouver mon certificateur"
               :to="`${applicationPath}/mon-certificateur`"
