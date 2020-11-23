@@ -3,7 +3,7 @@
     <label :class="`label ${isMissingAndRequired ? 'is-required' : ''}`">{{label}}</label>
     <div class="control">
 
-      <div v-if="type === types.date">
+      <div v-if="isClient && type === types.date">
         <client-only placeholder="Chargement du calendrier ...">
           <date-picker :input-class="`input is-large ${isMissingAndRequired ? 'is-danger' : ''}`" :value="value" @input="editField" :format="datePickerFormat" :placeholder="label" default-panel="year"/>
         </client-only>
@@ -74,6 +74,9 @@
       PhoneInput,
     },
     computed: {
+      isClient() {
+        return !!process.client;
+      },
       isMissingAndRequired: function() {
         const mandatoryState = this.$store.getters['identity/mandatoryState'];
         return include(Object.keys(mandatoryState), this.field) && isBlank(mandatoryState[this.field]);
