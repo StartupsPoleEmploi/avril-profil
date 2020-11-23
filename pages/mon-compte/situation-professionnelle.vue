@@ -33,7 +33,7 @@
       <div v-if="isJobSeeking && currentSituation.registerToPoleEmploi">
         <div class="field">
           <h3 class="title is-6">Depuis le :</h3>
-          <div class="control">
+          <div class="control" v-if="isClient">
             <client-only placeholder="Chargement du calendrier ...">
               <date-picker input-class="input is-large" :value="parseISODate(currentSituation.registerToPoleEmploiSince)" @input="addCurrentSituationRegisterToPoleEmploiSince" :format="datePickerFormat" :placeholder="defaultPlaceholder" />
             </client-only>
@@ -81,6 +81,9 @@
       IdentitySaveButtons,
     },
     computed: {
+      isClient() {
+        return !!process.client;
+      },
       identity() {
         return this.$store.state.identity
       },
