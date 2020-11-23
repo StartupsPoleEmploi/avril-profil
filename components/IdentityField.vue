@@ -3,9 +3,11 @@
     <label :class="`label ${isMissingAndRequired ? 'is-required' : ''}`">{{label}}</label>
     <div class="control">
 
-      <client-only v-if="type === types.date" placeholder="Chargement du calendrier ...">
-        <date-picker :input-class="`input is-large ${isMissingAndRequired ? 'is-danger' : ''}`" :value="value" @input="editField" :format="datePickerFormat" :placeholder="label" default-panel="year"/>
-      </client-only>
+      <div v-if="type === types.date">
+        <client-only placeholder="Chargement du calendrier ...">
+          <date-picker :input-class="`input is-large ${isMissingAndRequired ? 'is-danger' : ''}`" :value="value" @input="editField" :format="datePickerFormat" :placeholder="label" default-panel="year"/>
+        </client-only>
+      </div>
 
       <GeoInput v-else-if="type === types.geo" :credentials="credentials" :input="editField" :value="value" :type="geotype" :placeholder="label" />
 
