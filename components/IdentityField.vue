@@ -55,6 +55,7 @@
       case INPUT_TYPES.date:
         return formatISODate;
       case INPUT_TYPES.geo:
+        return v => Object.fromEntries(Object.entries(v).filter(([k, v]) => k !== 'administrative' ));
       case INPUT_TYPES.phone:
         return v => v;
       default:
