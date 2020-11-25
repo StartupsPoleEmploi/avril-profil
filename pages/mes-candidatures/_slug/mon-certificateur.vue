@@ -89,6 +89,7 @@
         try {
           const {lat, lng, administrative} = this.geoInputResult;
           this.isSearching = true;
+          this.delegates = [];
           const result = await queryApi({
             name: 'delegatesSearch',
             type: 'delegate',
@@ -104,7 +105,7 @@
           })
           this.delegates = result;
         } catch(err) {
-          this.$store.commit('setApiErrorFeedback', {err, message: 'La recherche de certficateur n\'a pas fonctionné'});
+          this.$store.commit('setApiErrorFeedback', {err, message: 'La recherche de certificateur n\'a pas fonctionné'});
         }
         this.isSearching = false;
       },
