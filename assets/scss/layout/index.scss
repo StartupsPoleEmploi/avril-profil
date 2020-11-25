@@ -1,9 +1,14 @@
 @import './buttons';
-@import './columns';
 @import './form';
 
 html,body {
-  background: #F5F9FB;
+  background: palette(default, background);
+}
+
+@include mobile {
+  .navbar {
+    background: rgba(palette(default, background), 0.95);
+  }
 }
 
 .navbar .navbar-menu {

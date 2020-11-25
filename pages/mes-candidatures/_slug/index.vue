@@ -226,6 +226,7 @@
     @include tablet {
       padding: 2rem;
     }
+
   }
   @media screen and (max-width: 1288px){
     .columns {

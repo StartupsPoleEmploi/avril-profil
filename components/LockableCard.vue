@@ -157,7 +157,9 @@
 
     .is-edit {
       &.is-bottom-right {
-        float: right;
+        @include tablet {
+          float: right;
+        }
         margin-top: 1rem;
         margin-left: auto;
       }
