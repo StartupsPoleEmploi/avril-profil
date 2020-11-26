@@ -49,6 +49,7 @@
                     </div>
                     <div class="column">
                       <h3 class="title is-6 is-mega-menu-title">Aides et support</h3>
+                      <NavItem href="/faq">FAQ</NavItem>
                       <NavItem href="/contact">Nous contacter</NavItem>
                     </div>
                   </div>
