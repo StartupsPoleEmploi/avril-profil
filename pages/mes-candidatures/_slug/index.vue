@@ -6,6 +6,7 @@
       <h1 class="title is-2">{{certificationName}}</h1>
       <div class="label-avril">Niveau {{certificationLevel}}</div>
     </header>
+    <p v-if="!isCertificationActive" class="notification is-warning">Nous avons été informés par le RNCP (Répertoire National des Certifications Professionnelles) que la certification que vous souhaitiez obtenir n'est plus accessible ni en VAE ni en formation. Sachez que la durée de vie maximale d'un diplôme est en principe de 5 ans. Rien n'est perdu pour autant car de nouveaux diplômes sont aussi créés régulièrement ! Nous vous invitons à faire une nouvelle recherche sur notre site , à sélectionner un nouveau diplôme et poursuivre votre projet de VAE !</p>
     <div class="candidature-detail">
       <NextStep :application="application" />
 
@@ -121,6 +122,7 @@
     delegatePhone,
     delegateEmail,
     certificationName,
+    isCertificationActive,
     certificationLevel,
     currentApplication,
     isAfpa,
@@ -203,6 +205,9 @@
       certificationLevel: function() {
         return certificationLevel(this.application);
       },
+      isCertificationActive: function() {
+        return isCertificationActive(this.application);
+      }
     },
     methods: {
       parseAndFormat,

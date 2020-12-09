@@ -2033,7 +2033,7 @@ available-typed-arrays@^1.0.0, available-typed-arrays@^1.0.2:
 
 avril@StartupsPoleEmploi/avril-shared:
   version "1.0.0"
-  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/19813173d58f011cb4b5034c53e59c3e4d3d6862"
+  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/46471da08aa6779d738033e2e342b9916d45bf3b"
   dependencies:
     "@trevoreyre/autocomplete-vue" "^2.1.1"
     algoliasearch "^3.35.1"
@@ -9266,9 +9266,9 @@ vue-upload-component@^2.8.20:
   integrity sha512-zrnJvULu4rnZe36Ib2/AZrI/h/mmNbUJZ+acZD652PyumzbvjCOQeYHe00sGifTdYjzzS66CwhTT+ubZ2D0Aow==
 
 vue2-datepicker@^3.4.1:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/vue2-datepicker/-/vue2-datepicker-3.8.0.tgz#aa5da2d24a312f07da49f971bfcca4ed6262ad91"
-  integrity sha512-FRofR4z0o/+gXBUdzAc/DBWTfhEvy1A7QhTI4l8GgU21+Veawpw5p7/toE+Gj9hWkYXN833SSjXSDW7+BGQ7nQ==
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/vue2-datepicker/-/vue2-datepicker-3.8.1.tgz#e5ac1d3fcf8050dcabaa99351bfda5720a1c0bf5"
+  integrity sha512-RD9X8BJy8dX3W95rWBezH7xyZ5OxCX1U7K8l5TKLSrqMrAJdjb35EeTLVop6YpSmrkjJw5S7OzExqxmSnHIIQQ==
   dependencies:
     date-format-parse "^0.2.6"
 

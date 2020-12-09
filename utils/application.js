@@ -38,6 +38,7 @@ export const certificationLevel = application => {
       return 'Sans Diplôme';
   }
 }
+export const isCertificationActive = application => get(application, 'certification.isActive');
 
 export const hasDelegate = application => isPresent(application.delegate);
 export const delegateName = application => get(application, 'delegate.name');
