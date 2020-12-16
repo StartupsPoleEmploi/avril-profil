@@ -50,7 +50,7 @@
   export default {
     computed: {
       meetings: function() {
-        return this.$store.state.applications.filter(a => a.meeting).map(a => ({
+        return this.$store.state.applications.applications.filter(a => a.meeting).map(a => ({
           ...a.meeting,
           name: a.meeting.name || a.delegate.name,
         }))

@@ -31,8 +31,8 @@
     },
     computed: {
       redirectTo: function() {
-        if (this.$store.state.applications.length === 1) {
-          return path(first(this.$store.state.applications))
+        if (this.$store.state.applications.applications.length === 1) {
+          return path(first(this.$store.state.applications.applications))
         }
         return path();
       },

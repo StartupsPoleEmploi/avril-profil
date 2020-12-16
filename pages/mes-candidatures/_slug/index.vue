@@ -94,14 +94,18 @@
           </div>
         </div>
       </div>
+      <div class="has-text-centered content" v-if="!application.submittedAt">
+        <p><button class="button is-text is-small is-rounded" @click="toggleShowDelete">Cette candidature n'est plus d'actualité ?</button></p>
+        <p><button v-if="showDelete" class="button is-rounded is-small is-danger" @click="deleteApplication">Supprimer ma candidature</button></p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   import get from 'lodash.get';
-  import { queryApiWithContext } from 'avril/js/utils/api';
   import { parseAndFormat } from 'avril/js/utils/time';
+  import { mutateApi } from 'avril/js/utils/api';
 
   import NextStep from '~/components/application/NextStep.vue';
   import MeetingSelector from '~/components/application/MeetingSelector.vue';
@@ -209,8 +213,40 @@
         return isCertificationActive(this.application);
       }
     },
+    data: function(){
+      return {
+        showDelete: false,
+      }
+    },
     methods: {
       parseAndFormat,
+      toggleShowDelete: function() {
+        this.showDelete = !this.showDelete;
+      },
+      deleteApplication: async function() {
+        if (window.confirm(`Confirmez-vous la suppression de votre candidature au ${this.certificationName} et toutes ses données associées ?`)) {
+          try {
+            const remainingApplications = await mutateApi({
+              name: 'deleteApplication',
+              params: {
+                id: this.application.id,
+              },
+              type: 'application',
+            });
+            this.$router.push({
+              path: path()
+            });
+            this.$store.commit('setFeedback', {
+              message: `La candidature a bien été supprimée.`,
+            });
+            setTimeout(() => {
+              this.$store.commit('applications/updateStateFromServer', remainingApplications);
+            }, 100);
+          } catch(err) {
+            this.$store.commit('setApiErrorFeedback', {err, message: 'La candidature n\'a pas pu être supprimée'});
+          }
+        }
+      },
     },
     props: {
       application: {

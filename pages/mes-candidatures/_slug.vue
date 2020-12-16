@@ -23,7 +23,7 @@
     },
     computed: {
       applications() {
-        return this.$store.state.applications
+        return this.$store.state.applications.applications;
       },
       application() {
         return currentApplication(this.applications, this.$route.params.slug);
@@ -42,7 +42,8 @@
       },
     },
     asyncData: async function(context) {
-      const application = currentApplication(context.store.state.applications, context.params.slug);
+      console.log('async data called')
+      const application = currentApplication(context.store.state.applications.applications, context.params.slug);
       if (!application) {
         context.redirect(path());
       }

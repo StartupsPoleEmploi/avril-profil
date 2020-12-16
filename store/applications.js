@@ -3,23 +3,23 @@ import get from 'lodash.get';
 
 import {isFilled} from '~/utils/application';
 
-export const state = () => [];
+export const state = () => ({applications: []});
 
 export const getters = {
-  unfinishedApplications: state => state.filter(a => !isFilled(a)),
+  unfinishedApplications: ({applications}) => applications.filter(a => !isFilled(a)),
 };
 
 export const mutations = {
   updateStateFromServer(state, serverState) {
-    (serverState || []).forEach(e => state.push(e));
+    state.applications = serverState;
   },
-  updateApplication(state, newApplicationData) {
-    state.splice(state.findIndex(a => a.id === newApplicationData.id), 1, newApplicationData)
+  updateApplication({applications}, newApplicationData) {
+    applications.splice(applications.findIndex(a => a.id === newApplicationData.id), 1, newApplicationData)
   }
 };
 
 export const actions = {
   updateAndInform({ commit }, data) {
     commit('updateApplication', data)
-  }
+  },
 }

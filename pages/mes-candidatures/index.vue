@@ -26,7 +26,7 @@
         return this.$store.getters['identity/isFilled'];
       },
       applications() {
-        return this.$store.state.applications;
+        return this.$store.state.applications.applications;
       },
       firstApplication() {
         return first(this.applications);
