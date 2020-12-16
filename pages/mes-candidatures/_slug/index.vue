@@ -6,9 +6,14 @@
       <h1 class="title is-2">{{certificationName}}</h1>
       <div class="label-avril">Niveau {{certificationLevel}}</div>
     </header>
-    <p v-if="!isCertificationActive" class="notification is-warning">Nous avons été informés par le RNCP (Répertoire National des Certifications Professionnelles) que la certification que vous souhaitiez obtenir n'est plus accessible ni en VAE ni en formation. Sachez que la durée de vie maximale d'un diplôme est en principe de 5 ans. Rien n'est perdu pour autant car de nouveaux diplômes sont aussi créés régulièrement ! Nous vous invitons à faire une nouvelle recherche sur notre site , à sélectionner un nouveau diplôme et poursuivre votre projet de VAE !</p>
+    <p v-if="!isCertificationActive" class="notification is-warning content">
+      Le diplôme que vous avez sélectionné n'est plus actif. Nous vous invitons à
+      <a :href="`/diplomes/${certificationId}`">sélectionner un nouveau diplôme similaire</a> ou
+      <a href="/">effectuer une nouvelle recherche</a>
+      pour démarrer une nouvelle candidature. Vous pouvez ensuite <a @click="deleteApplication">supprimer</a> celle-ci si vous le souhaitez.
+    </p>
     <div class="candidature-detail">
-      <NextStep :application="application" />
+      <NextStep v-if="isCertificationActive" :application="application" />
 
       <div class="candidature-composants">
         <div class="columns">
@@ -126,6 +131,7 @@
     delegatePhone,
     delegateEmail,
     certificationName,
+    certificationId,
     isCertificationActive,
     certificationLevel,
     currentApplication,
@@ -202,6 +208,9 @@
       },
       cerfaPath: function() {
         return avrilPath(this.application, '/cerfa');
+      },
+      certificationId: function() {
+        return certificationId(this.application);
       },
       certificationName: function() {
         return certificationName(this.application);
