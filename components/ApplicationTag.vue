@@ -3,25 +3,27 @@
 </template>
 <script type="text/javascript">
   import {parseAndFormat} from 'avril/js/utils/time.js';
-  import {nextStep} from '~/utils/application';
+  import {
+    nextStep,
+    isCertificationActive,
+  } from '~/utils/application';
 
   export default {
     computed: {
+      isCertificationActive: function() {
+        return isCertificationActive(this.application);
+      },
       label: function() {
-        if (this.application.submittedAt) {
-          return `Transmise le ${parseAndFormat(this.application.submittedAt)}`;
-        }
-        if (nextStep(this.application) === 'submit') {
-          return 'à transmettre';
-        }
+        if (!this.isCertificationActive) return 'diplôme inactif';
+        if (this.application.submittedAt) return `Transmise le ${parseAndFormat(this.application.submittedAt)}`;
+        if (nextStep(this.application) === 'submit') return 'à transmettre';
         return 'à compléter';
       },
       level: function() {
-        if (this.application.submittedAt) {
-          return 'success';
-        }
+        if (!this.isCertificationActive) return 'warning';
+        if (this.application.submittedAt) return 'success';
         return 'info';
-      }
+      },
     },
     props: {
       application: {
