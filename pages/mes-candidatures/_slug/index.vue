@@ -232,28 +232,28 @@
       toggleShowDelete: function() {
         this.showDelete = !this.showDelete;
       },
-      deleteApplication: async function() {
+      deleteApplication: function() {
         if (window.confirm(`Confirmez-vous la suppression de votre candidature au ${this.certificationName} et toutes ses données associées ?`)) {
-          try {
-            const remainingApplications = await mutateApi({
-              name: 'deleteApplication',
-              params: {
-                id: this.application.id,
-              },
-              type: 'application',
-            });
-            this.$router.push({
-              path: path()
-            });
-            this.$store.commit('setFeedback', {
-              message: `La candidature a bien été supprimée.`,
-            });
-            setTimeout(() => {
+          this.$once('hook:destroyed', async () => {
+            try {
+              const remainingApplications = await mutateApi({
+                name: 'deleteApplication',
+                params: {
+                  id: this.application.id,
+                },
+                type: 'application',
+              });
+              this.$store.commit('setFeedback', {
+                message: `La candidature a bien été supprimée.`,
+              });
               this.$store.commit('applications/updateStateFromServer', remainingApplications);
-            }, 100);
-          } catch(err) {
-            this.$store.commit('setApiErrorFeedback', {err, message: 'La candidature n\'a pas pu être supprimée'});
-          }
+            } catch(err) {
+              this.$store.commit('setApiErrorFeedback', {err, message: 'La candidature n\'a pas pu être supprimée'});
+            }
+          });
+          this.$router.push({
+            path: path()
+          });
         }
       },
     },
