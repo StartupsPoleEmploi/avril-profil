@@ -21,11 +21,11 @@
               <li class="column is-6" v-for="m in meetings">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="title is-5">{{m.name }}</h4>
+                    <h4 class="title is-5">{{m.place}}</h4>
                   </div>
                   <div class="card-content">
                     <p>
-                      {{m.address}} {{m.city}}
+                      {{m.address}} {{meeting.postalCode}} {{m.city}}
                     </p>
                   </div>
                   <div class="card-footer">
@@ -50,10 +50,7 @@
   export default {
     computed: {
       meetings: function() {
-        return this.$store.state.applications.applications.filter(a => a.meeting).map(a => ({
-          ...a.meeting,
-          name: a.meeting.name || a.delegate.name,
-        }))
+        return this.$store.state.applications.applications.filter(a => a.meeting).map(a => a.meeting)
       },
     },
     components: {

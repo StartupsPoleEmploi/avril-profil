@@ -42,7 +42,6 @@
       },
     },
     asyncData: async function(context) {
-      console.log('async data called')
       const application = currentApplication(context.store.state.applications.applications, context.params.slug);
       if (!application) {
         context.redirect(path());

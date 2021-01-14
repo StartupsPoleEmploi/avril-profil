@@ -43,6 +43,7 @@ export const isCertificationActive = application => get(application, 'certificat
 
 export const hasDelegate = application => isPresent(application.delegate);
 export const delegateName = application => get(application, 'delegate.name');
+export const delegateId = application => parseInt(get(application, 'delegate.id'));
 export const certifierName = application => get(application, 'certifier.name');
 export const EDUC_NAT='Ministère de l\'Education Nationale';
 export const isAsp = application => startsWithNoCase(get(application, 'delegate.name', ''), 'ASP');
@@ -71,17 +72,20 @@ export const nextStep = application => {
 
 export const isFilled = application => !!application.submittedAt;
 
-export const meetings = application => get(application, 'delegate.meetingPlaces', [])
-  .map(m => {
-    return {
-      ...m,
-      meetings: get(m, 'meetings', []).filter(meeting => isFuture(parseISO(meeting.startDate)))
-    }
-  }).filter(m => get(m, 'meetings', []).length)
+export const meetingPlace = meeting => `${meeting.place || ''} ${meeting.address || ''} ${meeting.postalCode || ''} ${meeting.city || ''}`;
+
+export const meeting = application => get(application, 'meeting');
+
+// export const meetings = application => get(application, 'delegate.meetingPlaces', [])
+//   .map(m => {
+//     return {
+//       ...m,
+//       meetings: get(m, 'meetings', []).filter(meeting => isFuture(parseISO(meeting.startDate)))
+//     }
+//   }).filter(m => get(m, 'meetings', []).length)
 
 export const delegateCriteria = (application, isExpandedSearch) => {
   const certifiers = get(application, 'certification.certifiers', []).map(c => c.name.trim());
-  console.log(certifiers)
   const isAsp = include(certifiers, 'Ministère des affaires sociales et de la santé');
   const isDOHS = include(certifiers, 'Direction de l\'hospitalisation et de l\'organisation des soins (DHOS)');
   const isDAVA = include(certifiers, 'Ministère de l\'Education Nationale');

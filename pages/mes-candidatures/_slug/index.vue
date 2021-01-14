@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MeetingSelector :application="application" />
+    <MeetingSelector v-if="isFilled" :application="application" />
     <header class="application-header">
       <ApplicationTag :application="application" />
       <h1 class="title is-2">{{certificationName}}</h1>
@@ -96,6 +96,17 @@
             >
               <p slot="help">Pour voir les réunions d'information, vous devez transmettre votre candidature.</p>
             </LockableCard>
+            <LockableCard
+              v-if="meeting"
+              title="Ma réunion d'information"
+              to="Voir mes rendez-vous"
+              target="/mes-rendez-vous"
+              :is-filled="true"
+            >
+              <p>Vous êtes inscrit {{formatInterval(meeting.startDate, meeting.endDate)}} à <strong>{{meeting.place}}</strong>.</p>
+              <p>Adresse : {{meeting.address}} {{meeting.postalCode}} {{meeting.city}}</p>
+              <p slot="help">Pour voir les réunions d'information, vous devez transmettre votre candidature.</p>
+            </LockableCard>
           </div>
         </div>
       </div>
@@ -109,7 +120,8 @@
 
 <script>
   import get from 'lodash.get';
-  import { parseAndFormat } from 'avril/js/utils/time';
+  import { parseAndFormat, formatInterval, parseISODate } from 'avril/js/utils/time';
+  import {capitalize} from 'avril/js/utils/string';
   import { mutateApi } from 'avril/js/utils/api';
 
   import NextStep from '~/components/application/NextStep.vue';
@@ -137,6 +149,7 @@
     currentApplication,
     isAfpa,
     isFilled,
+    meeting,
   } from '~/utils/application';
 
   export default {
@@ -151,6 +164,9 @@
     computed: {
       identity: function() {
         return this.$store.state.identity;
+      },
+      meeting: function() {
+        return meeting(this.application);
       },
       applicationPath: function() {
         return path(this.application);
@@ -228,6 +244,11 @@
       }
     },
     methods: {
+      capitalize,
+      formatInterval: function(d1, d2) {
+        if (!d1 || !d2) return;
+        return formatInterval(parseISODate(d1), parseISODate(d2));
+      },
       parseAndFormat,
       toggleShowDelete: function() {
         this.showDelete = !this.showDelete;

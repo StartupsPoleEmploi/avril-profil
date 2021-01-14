@@ -6,9 +6,9 @@
         <div class="columns is-vcentered">
           <div class="column is-4">
             <div class="select is-medium is-fullwidth">
-              <select @change="filterMeetings">
+              <select v-model="meetingPlace">
                 <option :value="null">Le lieu</option>
-                <option v-for="m in meetings" :value="m.name">{{m.name}}</option>
+                <option v-for="p in meetingPlaces" :value="p">{{p}}</option>
               </select>
             </div>
           </div>
@@ -25,9 +25,9 @@
           </div>
         </div>
         <p class="content" v-if="selectedMeeting">
-          <span>Vous souhaitez vous inscrire à la réunion d'information {{selectedMeeting.name}} :
+          <span>Vous souhaitez vous inscrire à la réunion d'information organisée par {{selectedMeeting.place}} :
           {{formatInterval(selectedMeeting.startDate, selectedMeeting.endDate)}}</span>
-          <span v-if="selectedMeeting.address">à {{selectedMeeting.address}} {{selectedMeeting.city}}</span>.
+          <span v-if="selectedMeeting.address">à {{selectedMeeting.address}} {{selectedMeeting.postalCode}} {{selectedMeeting.city}}</span>.
         </p>
       </div>
       <div class="columns" v-else>
@@ -47,37 +47,37 @@
 <script type="text/javascript">
   import get from 'lodash.get';
   import { formatInterval, parseISODate } from 'avril/js/utils/time';
-  import { mutateApi } from 'avril/js/utils/api';
+  import { queryApi, mutateApi } from 'avril/js/utils/api';
   import Message from '~/components/Message.vue';
-
-  import {
-    meetings,
-  } from '~/utils/application';
-
+  import { delegateId, meetingPlace } from '~/utils/application';
   export default {
     components: {
       Message,
     },
     computed: {
-      meetings: function() {
-        return meetings(this.application);
+      meetingPlaces: function() {
+        return this.meetings.map(meetingPlace).reduce((places, place) => {
+          const existing = places.find(p => p === place)
+          return places.concat(existing ? [] : [place]);
+        }, []);
       },
       filteredMeetings: function() {
-        return get(this.meetings.find(m => m.name === this.meetingName), 'meetings', null)
+        return this.meetings
+          .filter(m => meetingPlace(m) === this.meetingPlace)
+          .sort((m1, m2) => parseISODate(m1.startDate) > parseISODate(m2.startDate) ? 1 : -1)
       },
       selectedMeeting: function() {
-        return this.meetings.reduce((found, {name, meetings}) => {
-          const justFound = meetings.find(_m => _m.meetingId === this.meetingId)
-          return found || (justFound ? {name, ...justFound} : null)
-        }, null);
+        return this.meetings.find(m => m.meetingId === this.meetingId)
       },
     },
     data: function() {
       return {
+        meetings: [],
         isMeetingsDisabled: false,
         meetingSelect: false,
         meetingId: null,
         meetingName: null,
+        meetingPlace: null,
       }
     },
     methods: {
@@ -91,13 +91,13 @@
       selectMeeting: function() {
         this.meetingSelect = true;
       },
-      filterMeetings: function(e) {
-        const value = e.target.value;
-        if (value !== this.meetingName) {
-          this.meetingName = value;
-          this.meetingId = null;
-        }
-      },
+      // filteredMeetings: function(e) {
+      //   const value = e.target.value;
+      //   if (value !== this.meetingName) {
+      //     this.meetingName = value;
+      //     this.meetingId = null;
+      //   }
+      // },
       validateMeeting: async function() {
         try {
           const application = await mutateApi({
@@ -120,6 +120,15 @@
           this.$store.commit('setApiErrorFeedback', {err, message: 'Une erreur est survenue'});
         }
       },
+    },
+    mounted: async function() {
+      this.meetings = await queryApi({
+        name: 'meetingsSearch',
+        params: {
+          delegateId: delegateId(this.application),
+        },
+        type: 'meeting',
+      });
     },
     props: {
       application: {

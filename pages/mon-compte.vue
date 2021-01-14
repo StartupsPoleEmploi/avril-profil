@@ -6,8 +6,7 @@
         <div class="column is-12 is-11-desktop is-10-widescreen is-9-hd">
           <h1 class="title h1 is-spaced">Mon compte</h1>
           <p class="subtitle">
-            Tous ces éléments sont indispensables pour lier le diplôme à votre identité. <br />
-            Sans elles, il est impossible de garantir votre identité.
+            Tous ces éléments sont indispensables pour votre candidature.
           </p>
           <div class="tags">
             <nuxt-link class="tag is-rounded is-primary is-medium is-togglable" to="/mon-compte">Profil</nuxt-link>
