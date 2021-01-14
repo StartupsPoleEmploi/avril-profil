@@ -13,6 +13,7 @@
       pour démarrer une nouvelle candidature. Vous pouvez ensuite <a @click="deleteApplication">supprimer</a> celle-ci si vous le souhaitez.
     </p>
     <div class="candidature-detail">
+      <Breadcrumb  v-if="isCertificationActive" :application="application" />
       <NextStep v-if="isCertificationActive" :application="application" />
 
       <div class="candidature-composants">
@@ -99,8 +100,8 @@
             <LockableCard
               v-if="meeting"
               title="Ma réunion d'information"
-              to="Voir mes rendez-vous"
-              target="/mes-rendez-vous"
+              button="Voir mes rendez-vous"
+              to="/mes-rendez-vous"
               :is-filled="true"
             >
               <p>Vous êtes inscrit {{formatInterval(meeting.startDate, meeting.endDate)}} à <strong>{{meeting.place}}</strong>.</p>
@@ -125,6 +126,7 @@
   import { mutateApi } from 'avril/js/utils/api';
 
   import NextStep from '~/components/application/NextStep.vue';
+  import Breadcrumb from '~/components/application/Breadcrumb.vue';
   import MeetingSelector from '~/components/application/MeetingSelector.vue';
   import Address from '~/components/Address.vue';
   import Message from '~/components/Message.vue';
@@ -156,6 +158,7 @@
     components: {
       ApplicationTag,
       Address,
+      Breadcrumb,
       MeetingSelector,
       NextStep,
       LockableCard,
