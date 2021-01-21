@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MeetingSelector v-if="isFilled" :application="application" />
+    <MeetingSelector v-if="isFilled && isCertificationActive" :application="application" />
     <header class="application-header">
       <ApplicationTag :application="application" />
       <h1 class="title is-2">{{certificationName}}</h1>
@@ -111,7 +111,7 @@
           </div>
         </div>
       </div>
-      <div class="has-text-centered content" v-if="!application.submittedAt">
+      <div class="has-text-centered content">
         <p><button class="button is-text is-small is-rounded" @click="toggleShowDelete">Cette candidature n'est plus d'actualité ?</button></p>
         <p><button v-if="showDelete" class="button is-rounded is-small is-danger" @click="deleteApplication">Supprimer ma candidature</button></p>
       </div>
