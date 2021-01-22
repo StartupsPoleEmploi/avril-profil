@@ -12,6 +12,16 @@
       <a href="/">effectuer une nouvelle recherche</a>
       pour démarrer une nouvelle candidature. Vous pouvez ensuite <a @click="deleteApplication">supprimer</a> celle-ci si vous le souhaitez.
     </p>
+    <p v-if="isUniversity && hasDelegate" class="notification is-warning content">
+      <strong>Conseil d'Avril :</strong> Vous avez sélectionné un diplôme universitaire. Ce diplôme peut présenter
+      des « variantes » d'une Université à l'autre selon la discipline, la mention ou le parcours.
+      Nous vous invitons donc, avant de confirmer votre candidature, à consulter sur
+      <a v-if="delegateWebsite" :href="delegateWebsite" target="_blank">le site de l'Université</a>
+      <span v-else>le site de l'Université</span>
+      retenue le descriptif du diplôme sélectionné. Vous pourrez ainsi vérifier qu'il
+      correspond bien à votre projet et aux compétences que vous avez acquises.
+    </p>
+
     <div class="candidature-detail">
       <Breadcrumb  v-if="isCertificationActive" :application="application" />
       <NextStep v-if="isCertificationActive" :application="application" />
@@ -144,6 +154,7 @@
     delegateAddress,
     delegatePhone,
     delegateEmail,
+    delegateWebsite,
     certificationName,
     certificationId,
     isCertificationActive,
@@ -151,6 +162,7 @@
     currentApplication,
     isAfpa,
     isFilled,
+    isUniversity,
     meeting,
   } from '~/utils/application';
 
@@ -239,6 +251,13 @@
       },
       isCertificationActive: function() {
         return isCertificationActive(this.application);
+      },
+      isUniversity: function() {
+        console.log(isUniversity(this.application))
+        return isUniversity(this.application);
+      },
+      delegateWebsite: function() {
+        return delegateWebsite(this.application);
       }
     },
     data: function(){
