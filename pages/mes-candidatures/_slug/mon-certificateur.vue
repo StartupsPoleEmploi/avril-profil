@@ -62,7 +62,6 @@
     },
     data: function(){
       return {
-        credentials: process.env.algoliaCredentials,
         delegates: null,
         isSearching: false,
         isExpandedSearch: false,

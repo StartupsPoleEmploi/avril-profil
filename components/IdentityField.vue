@@ -95,7 +95,6 @@
     },
     data: function() {
       return {
-        credentials: process.env.algoliaCredentials,
         types: INPUT_TYPES,
       }
     },
