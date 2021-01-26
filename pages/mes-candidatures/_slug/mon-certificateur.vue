@@ -25,7 +25,7 @@
         </ul>
       </div>
       <div class="section content has-text-centered" v-else>
-        <p class="is-size-5">Aucun certificateur n'a été trouvé<span v-if="searchCriteria.radius"> dans un rayon de {{searchCriteria.radius/1000}}km autour de {{geoInputResult.city}}</span> pour le diplôme {{certificationName}}. 😔</p>
+        <p class="is-size-5">Aucun certificateur n'a été trouvé<span v-if="searchCriteria.radius && geoInputResult"> dans un rayon de {{searchCriteria.radius/1000}}km autour de {{geoInputResult.city}}</span> pour le diplôme {{certificationName}}. 😔</p>
         <div v-if="!isExpandedSearch && searchCriteria.expandable">
           <p><button class="button is-primary is-rounded is-medium" @click="toggleExpandRadiusAndSearch">Elargir le périmètre de recherche</button></p>
           <blockquote><strong>NB</strong> Avril vous donne un conseil : Il est d'usage de sélectionner le certificateur le plus proche de chez vous ou de votre lieu de travail</blockquote>
