@@ -9,7 +9,7 @@
         </client-only>
       </div>
 
-      <GeoInput v-else-if="type === types.geo" :credentials="credentials" :input="editField" :value="value" :type="geotype" :placeholder="label" />
+      <BanGeoInput v-else-if="type === types.geo" :input="editField" :value="value" :type="geotype" :placeholder="label" :inputclass="`input is-large ${isMissingAndRequired ? 'is-danger' : ''}`" />
 
       <PhoneInput v-else-if="type === types.phone" class="input is-large" :class="isMissingAndRequired ? 'is-danger' : ''" :placeholder="label" :value="value" @input="editField" />
 
@@ -30,6 +30,7 @@
   import {include} from 'avril/js/utils/array';
   import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
   import GeoInput from 'avril/js/components/GeoInput.vue';
+  import BanGeoInput from 'avril/js/components/BanGeoInput.vue';
   import PhoneInput from 'avril/js/components/PhoneInput.vue';
 
   const INPUT_TYPES = {
@@ -70,6 +71,7 @@
       withDatePickerMixin,
     ],
     components: {
+      BanGeoInput,
       GeoInput,
       PhoneInput,
     },
