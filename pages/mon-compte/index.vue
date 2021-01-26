@@ -40,8 +40,7 @@
       </div>
       <div class="column is-8">
         <IdentityField
-          type="geo"
-          geotype="country"
+          type="country"
           field="nationality"
           label="Nationalité" />
       </div>

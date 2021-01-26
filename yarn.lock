@@ -2033,7 +2033,7 @@ available-typed-arrays@^1.0.0, available-typed-arrays@^1.0.2:
 
 avril@StartupsPoleEmploi/avril-shared:
   version "1.0.0"
-  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/af36f792aba7307d1e92d38818018a8bd3eb02ca"
+  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/1066265073a8777732bb9757df5192a61cca6498"
   dependencies:
     "@trevoreyre/autocomplete-vue" "^2.1.1"
     algoliasearch "^3.35.1"
@@ -2041,6 +2041,7 @@ avril@StartupsPoleEmploi/avril-shared:
     date-fns "^2.11.0"
     debounce "^1.2.0"
     lodash.get "^4.4.2"
+    lodash.sortby "^4.7.0"
     vue "^2.6.11"
     vue2-datepicker "^3.4.1"
 
@@ -5522,6 +5523,11 @@ lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
+
+lodash.sortby@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
+  integrity sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=
 
 lodash.template@^4.5.0:
   version "4.5.0"

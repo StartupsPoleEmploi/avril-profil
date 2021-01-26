@@ -4,7 +4,7 @@
     <p class="subtitle" v-if="application.delegate">Remplacer {{application.delegate.name}}</p>
     <div class="field">
       <div class="control">
-        <GeoInput :input="selectDelegateCityAndSearch" :credentials="credentials" type="city" placeholder="A côté de quelle ville voulez-vous rechercher ?" countries="fr" />
+        <BanGeoInput :input="selectDelegateCityAndSearch" type="city" placeholder="A côté de quelle ville voulez-vous rechercher ?" disable-manual-input />
       </div>
     </div>
     <h3 class="title is-3 has-text-centered" v-if="isSearching">Recherche en cours ...</h3>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-  import GeoInput from 'avril/js/components/GeoInput.vue';
+  import BanGeoInput from 'avril/js/components/BanGeoInput.vue';
   import { chunk } from 'avril/js/utils/array';
   import {queryApi, mutateApi} from 'avril/js/utils/api';
   import DelegateCard from '~/components/DelegateCard.vue';
@@ -58,7 +58,7 @@
     components: {
       ArrowLeft,
       DelegateCard,
-      GeoInput,
+      BanGeoInput,
     },
     data: function(){
       return {

@@ -253,7 +253,6 @@
         return isCertificationActive(this.application);
       },
       isUniversity: function() {
-        console.log(isUniversity(this.application))
         return isUniversity(this.application);
       },
       delegateWebsite: function() {

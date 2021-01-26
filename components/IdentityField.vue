@@ -9,6 +9,7 @@
         </client-only>
       </div>
 
+      <CountrySelect v-else-if="type === types.country" :input="editField" :value="value" :placeholder="label" />
       <BanGeoInput v-else-if="type === types.geo" :input="editField" :value="value" :type="geotype" :placeholder="label" :inputclass="`input is-large ${isMissingAndRequired ? 'is-danger' : ''}`" />
 
       <PhoneInput v-else-if="type === types.phone" class="input is-large" :class="isMissingAndRequired ? 'is-danger' : ''" :placeholder="label" :value="value" @input="editField" />
@@ -29,7 +30,7 @@
   import {isBlank} from 'avril/js/utils/boolean';
   import {include} from 'avril/js/utils/array';
   import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
-  import GeoInput from 'avril/js/components/GeoInput.vue';
+  import CountrySelect from 'avril/js/components/CountrySelect.vue';
   import BanGeoInput from 'avril/js/components/BanGeoInput.vue';
   import PhoneInput from 'avril/js/components/PhoneInput.vue';
 
@@ -38,6 +39,7 @@
     select: 'select',
     date: 'date',
     geo: 'geo',
+    country: 'country',
     phone: 'phone',
     email: 'email',
   }
@@ -60,6 +62,7 @@
       case INPUT_TYPES.geo:
         return v => Object.fromEntries(Object.entries(v).filter(([k, v]) => k !== 'administrative' ));
       case INPUT_TYPES.phone:
+      case INPUT_TYPES.country:
         return v => v;
       default:
         return e => e.target.value;
@@ -72,7 +75,7 @@
     ],
     components: {
       BanGeoInput,
-      GeoInput,
+      CountrySelect,
       PhoneInput,
     },
     computed: {
