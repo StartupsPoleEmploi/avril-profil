@@ -5,6 +5,7 @@
   </button>
 </template>
 <script>
+  import get from 'lodash.get';
   import { queryApi, mutateApi } from 'avril/js/utils/api';
   import { include, first } from 'avril/js/utils/array';
   import { isString } from 'avril/js/utils/boolean';
@@ -48,7 +49,7 @@
           if (this.type === SUBMIT) {
             this.$store.dispatch(`${store}/updateAndInform`, result);
             this.$store.commit('setFeedback', {
-              message: this.query.message || 'Enregistré',
+              message: get(this, 'query.message', 'Enregistré'),
             })
           } else {
             this.$store.commit(`${store}/updateStateFromServer`, result);

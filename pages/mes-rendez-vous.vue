@@ -25,7 +25,7 @@
                   </div>
                   <div class="card-content">
                     <p>
-                      {{m.address}} {{meeting.postalCode}} {{m.city}}
+                      {{m.address}} {{m.postalCode}} {{m.city}}
                     </p>
                   </div>
                   <div class="card-footer">
