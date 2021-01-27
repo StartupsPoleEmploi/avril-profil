@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MeetingSelector v-if="isFilled && isCertificationActive" :application="application" />
+    <MeetingSelector v-if="hasDelegate && isCertificationActive" :application="application" />
     <header class="application-header">
       <ApplicationTag :application="application" />
       <h1 class="title is-2">{{certificationName}}</h1>
@@ -86,7 +86,6 @@
           <div class="column has-equal-height">
             <LockableCard
               :is-filled="hasDelegate"
-              :is-read-only="isFilled"
               title="Mon certificateur"
               button="Trouver mon certificateur"
               :to="`${applicationPath}/mon-certificateur`"

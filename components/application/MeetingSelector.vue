@@ -25,7 +25,7 @@
           </div>
         </div>
         <p class="content" v-if="selectedMeeting">
-          <span>Vous souhaitez vous inscrire à la réunion d'information organisée par {{selectedMeeting.place}} :
+          <span>Vous souhaitez vous inscrire à la réunion d'information {{selectedMeeting.place}} :
           {{formatInterval(selectedMeeting.startDate, selectedMeeting.endDate)}}</span>
           <span v-if="selectedMeeting.address">à {{selectedMeeting.address}} {{selectedMeeting.postalCode}} {{selectedMeeting.city}}</span>.
         </p>
@@ -91,13 +91,6 @@
       selectMeeting: function() {
         this.meetingSelect = true;
       },
-      // filteredMeetings: function(e) {
-      //   const value = e.target.value;
-      //   if (value !== this.meetingName) {
-      //     this.meetingName = value;
-      //     this.meetingId = null;
-      //   }
-      // },
       validateMeeting: async function() {
         try {
           const application = await mutateApi({

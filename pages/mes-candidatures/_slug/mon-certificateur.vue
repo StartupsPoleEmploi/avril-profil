@@ -40,7 +40,13 @@
   import { chunk } from 'avril/js/utils/array';
   import {queryApi, mutateApi} from 'avril/js/utils/api';
   import DelegateCard from '~/components/DelegateCard.vue';
-  import {path, delegateCriteria, certificationName} from '~/utils/application';
+  import {
+    path,
+    delegateCriteria,
+    delegateName,
+    certificationName,
+    isFilled
+  } from '~/utils/application';
   import ArrowLeft from 'avril/images/icons/arrow-left.svg';
 
   export default {
@@ -53,7 +59,13 @@
       },
       certificationName() {
         return certificationName(this.application);
-      }
+      },
+      delegateName() {
+        return delegateName(this.application);
+      },
+      isFilled: function() {
+        return isFilled(this.application);
+      },
     },
     components: {
       ArrowLeft,
@@ -109,6 +121,10 @@
         this.isSearching = false;
       },
       selectDelegate: async function(delegate) {
+        if (this.isFilled && this.delegateName && !window.confirm(`En changeant de certificateur, vous annulez votre candidature et le certificateur ${this.delegateName} en sera informé.
+
+Confirmez-vous ?
+        `)) return;
         try {
           const application = await mutateApi({
             name: 'attachDelegate',
