@@ -98,21 +98,10 @@ export const delegateCriteria = (application, isExpandedSearch) => {
       radius: null,
       expandable: false,
     }
-  } else if (isDAVA || isAFPA) {
-    return {
-      radius: 50000,
-      administrativeFilter: true,
-      expandable: false
-    }
-  } else if (!isExpandedSearch) {
-    return {
-      radius: 100000,
-      expandable: true
-    }
-  } else {
-    return {
-      radius: null,
-      expandable: false
-    }
+  }
+  return {
+    radius: isExpandedSearch ? null : 100000,
+    administrativeFilter: isDAVA || isAFPA,
+    expandable: !isExpandedSearch,
   }
 }
