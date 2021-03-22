@@ -13,7 +13,7 @@
         type="phone"
         field="homePhone"
         label="Numéro de téléphone fixe" />
-      <IdentitySaveButtons :to="redirectTo" />
+      <IdentitySaveButtons />
     </div>
   </div>
 </template>
