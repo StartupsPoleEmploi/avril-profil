@@ -1,5 +1,5 @@
 <template>
-  <button @click="callAction" type="submit" v-bind="$attrs" :disabled="isSaving">
+  <button @click="callAction" type="submit" :disabled="isDisabled" v-bind="$attrs">
     <span v-if="isSaving && disableWith">{{disableWith}}</span>
     <slot v-else></slot>
   </button>
@@ -15,9 +15,17 @@
   const RESET = 'reset';
 
   export default {
+    computed: {
+      isDisabled: function() {
+        return this.disabled || this.isSaving;
+      }
+    },
     props: {
       analytics: {
         type: String,
+      },
+      disabled: {
+        type: Boolean,
       },
       disableWith: {
         type: String,

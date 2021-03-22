@@ -12,6 +12,10 @@
       <a href="/">effectuer une nouvelle recherche</a>
       pour démarrer une nouvelle candidature. Vous pouvez ensuite <a @click="deleteApplication">supprimer</a> celle-ci si vous le souhaitez.
     </p>
+    <p v-if="!isDelegateActive" class="notification is-warning content">
+      Le certificateur que vous avez sélectionné n'est plus actif ou ne propose plus le diplôme pour lequel vous candidatez. Nous vous invitons à
+      <nuxt-link :to="`${applicationPath}/mon-certificateur`">sélectionner un nouveau certificateur</nuxt-link> avant de pouvoir transmettre votre candidature.
+    </p>
     <p v-if="isUniversity && hasDelegate" class="notification is-warning content">
       <strong>Conseil d'Avril :</strong> Vous avez sélectionné un diplôme universitaire. Ce diplôme peut présenter
       des « variantes » d'une Université à l'autre selon la discipline, la mention ou le parcours.
@@ -159,6 +163,7 @@
     certificationName,
     certificationId,
     isCertificationActive,
+    isDelegateActive,
     certificationLevel,
     currentApplication,
     isAfpa,
@@ -255,6 +260,9 @@
       },
       isCertificationActive: function() {
         return isCertificationActive(this.application);
+      },
+      isDelegateActive: function() {
+        return isDelegateActive(this.application);
       },
       isUniversity: function() {
         return isUniversity(this.application);

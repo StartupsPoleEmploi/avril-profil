@@ -16,9 +16,18 @@
           v-bind="nextStep.api(application)"
           class="button is-info is-inverted is-rounded"
           :analytics="nextStep.analytics"
+          :disabled="actionDisabled"
         >{{nextStep.button}}</ApiButton>
-        <nuxt-link v-else-if="nextStep.to" :to="nextStep.to(application)" class="button is-info is-inverted is-rounded">{{nextStep.button}}</nuxt-link>
-        <a v-else-if="nextStep.href" :href="nextStep.href(application)" class="button is-info is-inverted is-rounded">{{nextStep.button}}</a>
+        <nuxt-link
+          v-else-if="nextStep.to"
+          :to="nextStep.to(application)"
+          class="button is-info is-inverted is-rounded"
+        >{{nextStep.button}}</nuxt-link>
+        <a
+          v-else-if="nextStep.href"
+          :href="nextStep.href(application)"
+          class="button is-info is-inverted is-rounded"
+        >{{nextStep.button}}</a>
         <div class="notification is-warning" v-if="nextStep.isLast && isEducNatSummerBreak" style="margin-top: 2rem;">
           <p class="has-text-weight-bold">Pour information, certains certificateurs comme le réseau DAVA ne seront en mesure d'assurer le traitement de  votre candidature qu'à compter du 1er septembre compte tenu des congés d'été.</p>
         </div>
@@ -88,6 +97,9 @@
           new Date(),
           { start: new Date(2020, 6, 13), end: new Date(2020, 7, 31) }
         );
+      },
+      actionDisabled: function() {
+        return this.nextStep.disabledAction && this.nextStep.disabledAction(this.application);
       }
     },
     props: {

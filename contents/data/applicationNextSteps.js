@@ -1,4 +1,9 @@
-  import {path, bookletPath} from '~/utils/application';
+import {
+  path,
+  bookletPath,
+  isCertificationActive,
+  isDelegateActive,
+} from '~/utils/application';
 
 export default {
   identity: {
@@ -55,6 +60,7 @@ export default {
     description: 'Vous êtes prêts à transmettre toutes ces informations à votre certificateur',
     button: 'Envoyer',
     analytics: '?bouton=transmettre',
+    disabledAction: application =>  !isCertificationActive(application) || !isDelegateActive(application),
     api: application => ({
       store: 'applications',
       disableWith: 'Envoi ...',
