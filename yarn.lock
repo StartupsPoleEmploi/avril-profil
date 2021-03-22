@@ -9214,9 +9214,9 @@ vue-upload-component@^2.8.20:
   integrity sha512-zrnJvULu4rnZe36Ib2/AZrI/h/mmNbUJZ+acZD652PyumzbvjCOQeYHe00sGifTdYjzzS66CwhTT+ubZ2D0Aow==
 
 vue2-datepicker@^3.4.1:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/vue2-datepicker/-/vue2-datepicker-3.9.0.tgz#239a251960bcff22d2a14b7e5fe0b1038cad9473"
-  integrity sha512-nRqIZx5Ks0TDHFyzyHYIlfmuszEsEvRhwJ6HGuGGHQpjOfrIgkJ9B0pnEEJaVS3LKX6IWCVQMUq0H7I2UKmHqA==
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/vue2-datepicker/-/vue2-datepicker-3.8.2.tgz#5bba391d39eda949ae1f68cd9adab0037a32b417"
+  integrity sha512-GUoNLyzPl3Xi7ruSQFF59BzMXWuflxzP9yM3P4ARz9GfhzLLFgYVLAEkJi6DNQU7zozBMzz+VNIQDwPaDNMo6Q==
   dependencies:
     date-format-parse "^0.2.6"
 
