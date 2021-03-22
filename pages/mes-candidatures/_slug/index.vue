@@ -92,8 +92,10 @@
             >
               <p class="has-text-weight-bold">{{delegateName}}</p>
               <Address :address="delegateAddress" />
-              <p v-if="delegateEmail"><a :href="`mailto:${delegateEmail}`">{{delegateEmail}}</a></p>
-              <p v-if="delegatePhone"><a :href="`tel:${delegatePhone}`">{{delegatePhone}}</a></p>
+              <br />
+              <p v-if="delegateEmail">Email : <a :href="`mailto:${delegateEmail}`">{{delegateEmail}}</a></p>
+              <p v-if="delegatePhone">Tél : <a :href="`tel:${delegatePhone}`">{{delegatePhone}}</a></p>
+              <p v-if="delegateWebsite">Site internet : <a :href="delegateWebsite">{{delegateWebsite}}</a></p>
             </LockableCard>
             <LockableCard
               v-if="isAfpa"
@@ -232,6 +234,9 @@
       },
       delegateEmail: function() {
         return delegateEmail(this.application);
+      },
+      delegateWebsite: function() {
+        return delegateWebsite(this.application);
       },
       bookletPath: function() {
         return bookletPath(this.application);
