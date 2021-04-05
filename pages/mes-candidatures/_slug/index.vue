@@ -25,6 +25,13 @@
       retenue le descriptif du diplôme sélectionné. Vous pourrez ainsi vérifier qu'il
       correspond bien à votre projet et aux compétences que vous avez acquises.
     </p>
+    <p v-if="isCnam && hasDelegate" class="notification is-info content">
+      Le CNAM vous invitera à créer un dossier sur leur plate-forme
+      <a href="https://sdnf.cnam.fr/diva/" target="_blank">https://sdnf.cnam.fr/diva</a>.
+      Le CNAM pourra aussi vous proposer un rdv pour confirmer que le diplôme retenu est celui
+      qui vous correspond le mieux ou le cas échéant vous faire une proposition mieux ciblée au
+      regard de votre projet et de votre profil.
+    </p>
 
     <div class="candidature-detail">
       <Breadcrumb  v-if="isCertificationActive" :application="application" />
@@ -167,6 +174,7 @@
     certificationLevel,
     currentApplication,
     isAfpa,
+    isCnam,
     isFilled,
     isUniversity,
     meeting,
@@ -203,6 +211,9 @@
       },
       isAfpa: function() {
         return isAfpa(this.application);
+      },
+      isCnam: function() {
+        return isCnam(this.application);
       },
       isFilled: function() {
         return isFilled(this.application);

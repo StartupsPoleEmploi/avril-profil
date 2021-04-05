@@ -81,20 +81,16 @@ export const meetingPlace = meeting => `${meeting.place || ''} ${meeting.address
 
 export const meeting = application => get(application, 'meeting');
 
-// export const meetings = application => get(application, 'delegate.meetingPlaces', [])
-//   .map(m => {
-//     return {
-//       ...m,
-//       meetings: get(m, 'meetings', []).filter(meeting => isFuture(parseISO(meeting.startDate)))
-//     }
-//   }).filter(m => get(m, 'meetings', []).length)
+export const hasCertificationCertifier = (application, certifierName) =>
+  include(get(application, 'certification.certifiers', []).map(c => c.name.trim()), certifierName);
+
+export const isCnam = application => hasCertificationCertifier(application, 'CNAM');
 
 export const delegateCriteria = (application, isExpandedSearch) => {
-  const certifiers = get(application, 'certification.certifiers', []).map(c => c.name.trim());
-  const isAsp = include(certifiers, 'Ministère des affaires sociales et de la santé');
-  const isDOHS = include(certifiers, 'Direction de l\'hospitalisation et de l\'organisation des soins (DHOS)');
-  const isDAVA = include(certifiers, 'Ministère de l\'Education Nationale');
-  const isAFPA = include(certifiers, 'Ministère du travail');
+  const isAsp = hasCertificationCertifier(application, 'Ministère des affaires sociales et de la santé');
+  const isDOHS = hasCertificationCertifier(application, 'Direction de l\'hospitalisation et de l\'organisation des soins (DHOS)');
+  const isDAVA = hasCertificationCertifier(application, 'Ministère de l\'Education Nationale');
+  const isAFPA = hasCertificationCertifier(application, 'Ministère du travail');
 
   if (isAsp || isDOHS) {
     return {
