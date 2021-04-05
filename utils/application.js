@@ -41,10 +41,9 @@ export const certificationLevel = application => {
   }
 }
 export const isCertificationActive = application => get(application, 'certification.isActive');
-export const isDelegateActive = application => true;
-// export const isDelegateActive = application => {
-//   return get(application, 'isCertificationDelegateAvailable') && get(application, 'delegate.isActive');
-// }
+export const isDelegateActive = application => {
+  return get(application, 'isCertificationDelegateAvailable') && get(application, 'delegate.isActive');
+}
 
 export const hasDelegate = application => isPresent(application.delegate);
 export const delegateName = application => get(application, 'delegate.name');
