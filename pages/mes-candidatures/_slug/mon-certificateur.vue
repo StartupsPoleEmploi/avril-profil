@@ -164,7 +164,13 @@ Confirmez-vous ?
     }
   }
 
-  .candidature-detail .results .button span.icon {
-    margin: 0;
+
+  .candidature-detail .field {
+    z-index: 30;
+    position: relative;
+    .results .button span.icon {
+      margin: 0;
+    }
   }
+
 </style>

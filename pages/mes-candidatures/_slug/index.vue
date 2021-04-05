@@ -29,7 +29,7 @@
       Le CNAM vous invitera à créer un dossier sur leur plate-forme
       <a href="https://sdnf.cnam.fr/diva/" target="_blank">https://sdnf.cnam.fr/diva</a>.
       Le CNAM pourra aussi vous proposer un rdv pour confirmer que le diplôme retenu est celui
-      qui vous correspond le mieux ou le cas échéant vous faire une proposition mieux ciblée au
+      qui vous correspond le mieux ou, le cas échéant, vous faire une proposition mieux ciblée au
       regard de votre projet et de votre profil.
     </p>
 
