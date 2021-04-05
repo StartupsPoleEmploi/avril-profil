@@ -12,7 +12,7 @@
       <a href="/">effectuer une nouvelle recherche</a>
       pour démarrer une nouvelle candidature. Vous pouvez ensuite <a @click="deleteApplication">supprimer</a> celle-ci si vous le souhaitez.
     </p>
-    <p v-if="!isDelegateActive" class="notification is-warning content">
+    <p v-if="isDelegateInactive" class="notification is-warning content">
       Le certificateur que vous avez sélectionné n'est plus actif ou ne propose plus le diplôme pour lequel vous candidatez. Nous vous invitons à
       <nuxt-link :to="`${applicationPath}/mon-certificateur`">sélectionner un nouveau certificateur</nuxt-link> avant de pouvoir transmettre votre candidature.
     </p>
@@ -163,7 +163,7 @@
     certificationName,
     certificationId,
     isCertificationActive,
-    isDelegateActive,
+    isDelegateInactive,
     certificationLevel,
     currentApplication,
     isAfpa,
@@ -261,8 +261,8 @@
       isCertificationActive: function() {
         return isCertificationActive(this.application);
       },
-      isDelegateActive: function() {
-        return isDelegateActive(this.application);
+      isDelegateInactive: function() {
+        return isDelegateInactive(this.application);
       },
       isUniversity: function() {
         return isUniversity(this.application);

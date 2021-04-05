@@ -6,6 +6,8 @@
   import {
     nextStep,
     isCertificationActive,
+    isDelegateInactive,
+    hasDelegate,
   } from '~/utils/application';
 
   export default {
@@ -13,14 +15,19 @@
       isCertificationActive: function() {
         return isCertificationActive(this.application);
       },
+      isDelegateInactive: function() {
+        return isDelegateInactive(this.application);
+      },
       label: function() {
-        if (!this.isCertificationActive) return 'diplôme inactif';
+        if (!this.isCertificationActive) return 'Diplôme inactif';
+        if (this.isDelegateInactive) return 'Certificateur inactif';
         if (this.application.submittedAt) return `Transmise le ${parseAndFormat(this.application.submittedAt)}`;
         if (nextStep(this.application) === 'submit') return 'à transmettre';
         return 'à compléter';
       },
       level: function() {
         if (!this.isCertificationActive) return 'warning';
+        if (this.isDelegateInactive) return 'warning';
         if (this.application.submittedAt) return 'success';
         return 'info';
       },

@@ -2,7 +2,7 @@ import {
   path,
   bookletPath,
   isCertificationActive,
-  isDelegateActive,
+  isDelegateInactive,
 } from '~/utils/application';
 
 export default {
@@ -60,7 +60,7 @@ export default {
     description: 'Vous êtes prêts à transmettre toutes ces informations à votre certificateur',
     button: 'Envoyer',
     analytics: '?bouton=transmettre',
-    disabledAction: application =>  !isCertificationActive(application) || !isDelegateActive(application),
+    disabledAction: application =>  !isCertificationActive(application) || isDelegateInactive(application),
     api: application => ({
       store: 'applications',
       disableWith: 'Envoi ...',
