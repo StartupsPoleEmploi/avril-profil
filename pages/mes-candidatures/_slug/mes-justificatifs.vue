@@ -5,6 +5,11 @@
 
     <div v-html="content" class="content" />
 
+    <div class="notification is-info">
+      <p><strong>Avril vous donne un conseil</strong> :</p>
+      Avril vous invite à fournir votre CV aussi. Pourquoi ? Parce que votre CV viendra compléter votre candidature et apportera des informations utiles au certificateur pour étudier votre candidature.
+    </div>
+
     <div class="files-zone">
       <h2 class="title is-4 is-spaced">
         {{capitalize(pluralize(uploadedFiles.length, 'fichier déposé'))}} :</h2>
