@@ -107,6 +107,14 @@
               <p v-if="delegateEmail">Email : <a :href="`mailto:${delegateEmail}`">{{delegateEmail}}</a></p>
               <p v-if="delegatePhone">Tél : <a :href="`tel:${delegatePhone}`">{{delegatePhone}}</a></p>
               <p v-if="delegateWebsite">Site internet : <a :href="delegateWebsite">{{delegateWebsite}}</a></p>
+              <nuxt-link
+                v-if="delegateInfos || certifierInfos"
+                :to="`${applicationPath}/informations-specifiques`"
+                class="button is-avril is-rounded is-small"
+                style="margin-top: 1rem;"
+              >
+                En savoir plus
+              </nuxt-link>
             </LockableCard>
             <LockableCard
               v-if="isAfpa"
@@ -167,6 +175,8 @@
     delegatePhone,
     delegateEmail,
     delegateWebsite,
+    delegateInfos,
+    certifierInfos,
     certificationName,
     certificationId,
     isCertificationActive,
@@ -280,7 +290,13 @@
       },
       delegateWebsite: function() {
         return delegateWebsite(this.application);
-      }
+      },
+      delegateInfos() {
+        return delegateInfos(this.application);
+      },
+      certifierInfos() {
+        return certifierInfos(this.application);
+      },
     },
     data: function(){
       return {

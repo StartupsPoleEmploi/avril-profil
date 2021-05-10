@@ -47,9 +47,11 @@ export const isDelegateInactive = application => {
 
 export const hasDelegate = application => isPresent(application.delegate);
 export const delegateName = application => get(application, 'delegate.name');
+export const delegateInfos = application => get(application, 'delegate.externalNotes');
 export const delegateWebsite = application => get(application, 'delegate.website');
 export const delegateId = application => parseInt(get(application, 'delegate.id'));
 export const certifierName = application => get(application, 'certifier.name');
+export const certifierInfos = application => get(application, 'certifier.externalNotes');
 export const EDUC_NAT='Ministère de l\'Education Nationale';
 export const isAsp = application => startsWithNoCase(get(application, 'delegate.name', ''), 'ASP');
 export const isAfpa = application => startsWithNoCase(get(application, 'delegate.name', ''), 'AFPA');
