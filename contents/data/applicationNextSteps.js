@@ -59,7 +59,6 @@ export default {
     title: 'Transmettre ma candidature',
     description: 'Vous êtes prêts à transmettre toutes ces informations à votre certificateur',
     button: 'Envoyer',
-    analytics: '?bouton=transmettre',
     disabledAction: application =>  !isCertificationActive(application) || isDelegateInactive(application),
     api: application => ({
       store: 'applications',

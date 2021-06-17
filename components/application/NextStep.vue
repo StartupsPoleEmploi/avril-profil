@@ -15,7 +15,6 @@
           v-if="nextStep.api"
           v-bind="nextStep.api(application)"
           class="button is-info is-inverted is-rounded"
-          :analytics="nextStep.analytics"
           :disabled="actionDisabled"
         >{{nextStep.button}}</ApiButton>
         <nuxt-link

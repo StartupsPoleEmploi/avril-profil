@@ -9,7 +9,6 @@
   import { queryApi, mutateApi } from 'avril/js/utils/api';
   import { include, first } from 'avril/js/utils/array';
   import { isString } from 'avril/js/utils/boolean';
-  import { track } from 'avril/js/utils/analytics';
 
   const SUBMIT = 'submit';
   const RESET = 'reset';
@@ -21,9 +20,6 @@
       }
     },
     props: {
-      analytics: {
-        type: String,
-      },
       disabled: {
         type: Boolean,
       },
@@ -61,9 +57,6 @@
             })
           } else {
             this.$store.commit(`${store}/updateStateFromServer`, result);
-          }
-          if (this.analytics) {
-            track(this, this.analytics)
           }
           if (this.to) {
             setTimeout(() => {
