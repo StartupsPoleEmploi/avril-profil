@@ -15,7 +15,7 @@
 
   .file {
     position: relative;
-    width: 10rem;
+    width: 12rem;
     margin-bottom: 1rem;
     &:not(:last-child) {
       margin-right: 1rem;
@@ -25,6 +25,10 @@
       height: 8rem;
       display: flex;
       justify-content: space-around;
+
+      .file-type {
+        text-align: center;
+      }
     }
 
     .file-icon {
@@ -49,12 +53,37 @@
         justify-content: center;
         display: block;
         text-align: center;
+        white-space: normal;
+        height: auto;
+      }
+    }
+    .edit {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      border: none;
+      border-radius: 1rem;
+      cursor: pointer;
+      width: 1.5rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      font-size: 0;
+      span {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        font-size: 0.8rem;
       }
     }
     .delete {
       position: absolute;
       top: 0.5rem;
       right: 0.5rem;
+      &:after {
+        content: '\2807';
+      }
     }
   }
 }

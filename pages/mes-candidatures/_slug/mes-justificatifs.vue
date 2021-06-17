@@ -15,7 +15,7 @@
         {{capitalize(pluralize(uploadedFiles.length, 'fichier déposé'))}} :</h2>
       <div class="file-list">
         <File v-for="file in uploadingFiles" :key="file.id" :name="file.name" :is-uploading="true" />
-        <File v-for="file in uploadedFiles" :key="file.id" :name="file.filename" :href="file.url" icon="document" :id="file.id" :onRemove="removeFile" />
+        <File v-for="file in uploadedFiles" :key="file.id" :name="file.name || file.filename" :category="file.category"  :href="file.url" icon="document" :id="file.id" :onRemove="removeFile" :onEdit="editFile" />
         <div class="file has-name is-boxed is-info">
           <label class="file-label">
             <FileUpload
@@ -109,6 +109,26 @@
           const fileIndex = this.uploadingFiles.findIndex(f => f.id === file.id);
           this.uploadingFiles.splice(fileIndex, 1);
         }));
+      },
+      editFile: async function(id) {
+        try {
+          const file = await mutateApi({
+            name: 'editResume',
+            params: {
+              id,
+            },
+            type: 'resume',
+          });
+          this.$store.dispatch('applications/updateAndInform', {
+            ...this.application,
+            resumes: this.application.resumes.filter(r => r.id !== file.id),
+          });
+          this.$store.commit('setFeedback', {
+            message: `Le justificatif a bien été modifié.`,
+          })
+        } catch(err) {
+          this.$store.commit('setApiErrorFeedback', {err, message: 'Le fichier n\'a pas pu être modifié'});
+        }
       },
       removeFile: async function(id) {
         try {
