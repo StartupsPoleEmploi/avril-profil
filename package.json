@@ -27,6 +27,7 @@
     "nuxt-svg-loader": "^1.2.0",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "2.6.12",
+    "vue-textarea-autosize": "^1.1.1",
     "vue-upload-component": "^2.8.20"
   },
   "devDependencies": {

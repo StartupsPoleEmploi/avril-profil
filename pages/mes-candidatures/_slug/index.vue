@@ -85,7 +85,11 @@
             >
               <div class="content">
                 <ul>
-                  <li v-for="resume in application.resumes" :key="resume.id">{{resume.filename}}</li>
+                  <li v-for="resume in application.resumes" :key="resume.id">
+                    <span v-if="resume.category" class="tag is-info">{{resumeCategory(resume.category)}}</span>
+                    <span v-else class="tag is-warning">Type inconnu</span>
+                    {{resume.name || resume.filename}}
+                  </li>
                 </ul>
               </div>
               <p slot="help">
@@ -187,6 +191,7 @@
     isFilled,
     isUniversity,
     meeting,
+    resumeCategory,
   } from '~/utils/application';
 
   export default {
@@ -312,6 +317,7 @@
       toggleShowDelete: function() {
         this.showDelete = !this.showDelete;
       },
+      resumeCategory,
       deleteApplication: function() {
         if (window.confirm(`Confirmez-vous la suppression de votre candidature au ${this.certificationName} et toutes ses données associées ?`)) {
           this.$once('hook:destroyed', async () => {

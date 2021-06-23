@@ -69,6 +69,21 @@ export const hasBookletFinished = application => !!get(application, 'booklet_1.c
 
 export const hasResumes = application => !!get(application, 'resumes', []).length;
 
+export const resumeCategories = {
+  self_employed: 'Activité non salariée',
+  employment_certification: 'Attestation employeur',
+  volunteering: 'Bénévolat',
+  job_certification: 'Contrat de travail',
+  resume: 'CV',
+  certification: 'Diplôme',
+  payslip: 'Fiche de paie',
+  id: 'Pièce d\'identité',
+  other: 'Autre',
+};
+export const resumeCategory = category => {
+  return resumeCategories[category] || 'Inconnu';
+}
+
 export const nextStep = application => {
   if (!hasDelegate(application)) return 'delegate';
   if (!hasBookletFinished(application)) return 'booklet';

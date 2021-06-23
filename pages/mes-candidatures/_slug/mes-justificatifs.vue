@@ -34,7 +34,7 @@
               </span>
             </span>
             <span class="file-name">
-              Ajouter un fichier…
+              Ajouter un ou plusieurs fichiers …
             </span>
           </label>
         </div>
@@ -110,18 +110,19 @@
           this.uploadingFiles.splice(fileIndex, 1);
         }));
       },
-      editFile: async function(id) {
+      editFile: async function(id, params) {
         try {
           const file = await mutateApi({
             name: 'editResume',
             params: {
               id,
+              params,
             },
             type: 'resume',
           });
           this.$store.dispatch('applications/updateAndInform', {
             ...this.application,
-            resumes: this.application.resumes.filter(r => r.id !== file.id),
+            resumes: this.application.resumes.map(r => (r.id === id ? file : r)),
           });
           this.$store.commit('setFeedback', {
             message: `Le justificatif a bien été modifié.`,

@@ -18,6 +18,7 @@ export default deepMerge(sharedConfig, {
   },
   plugins: [
     '~/plugins/buefy.js',
+    '~/plugins/vue-auto-size.js',
   ],
   router: {
     base: process.env.NUXT_PROFILE_PATH,

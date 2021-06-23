@@ -22,12 +22,15 @@
     }
 
     .file-cta {
-      height: 8rem;
+      height: 10rem;
       display: flex;
       justify-content: space-around;
 
       .file-type {
         text-align: center;
+        select {
+          font-size: 0.9rem;
+        }
       }
     }
 
@@ -55,9 +58,12 @@
         text-align: center;
         white-space: normal;
         height: auto;
+        textarea {
+          text-align: center;
+        }
       }
     }
-    .edit {
+    .is-edit, .is-delete {
       position: absolute;
       top: 0.5rem;
       left: 0.5rem;
@@ -77,13 +83,10 @@
         font-size: 0.8rem;
       }
     }
-    .delete {
-      position: absolute;
+    .is-delete {
       top: 0.5rem;
       right: 0.5rem;
-      &:after {
-        content: '\2807';
-      }
+      left: auto;
     }
   }
 }
