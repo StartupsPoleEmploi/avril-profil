@@ -14,8 +14,8 @@
       <h2 class="title is-4 is-spaced">
         {{capitalize(pluralize(uploadedFiles.length, 'fichier déposé'))}} :</h2>
       <div class="file-list">
-        <File v-for="file in uploadingFiles" :key="file.id" :name="file.name" :is-uploading="true" />
-        <File v-for="file in uploadedFiles" :key="file.id" :name="file.name || file.filename" :category="file.category"  :href="file.url" icon="document" :id="file.id" :onRemove="removeFile" :onEdit="editFile" />
+        <File v-for="file in uploadingFiles" :file="file" :key="file.id" :is-uploading="true" />
+        <File v-for="file in uploadedFiles" :file="file" :key="file.id" :onRemove="removeFile" :onEdit="editFile" />
         <div class="file has-name is-boxed is-info">
           <label class="file-label">
             <FileUpload

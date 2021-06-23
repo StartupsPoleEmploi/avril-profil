@@ -1,6 +1,6 @@
 <template>
-  <div :class="`file has-name is-boxed ${!category && !isEditing && 'is-'}`">
-    <component :is="href && !isEditing ? 'a' : 'div'" :href="href" target="_blank" :download="name" class="file-label" :title="!isEditing && `Ouvrir ${name}`">
+  <div class="file has-name is-boxed">
+    <component :is="!isUploading && !isEditing ? 'a' : 'div'" :href="file.url" target="_blank" :download="name" class="file-label" :title="!isEditing && `Ouvrir ${name}`">
       <span class="file-cta">
         <span class="file-icon has-label">
           <component :is="iconTag"></component>
@@ -9,8 +9,8 @@
         <span class="file-type">
           <div v-if="isEditing">
             <div class="select is-small">
-              <select class="is-focused" v-model="editingCategory">
-                <option disabled value="">Choisissez un type ...</option>
+              <select class="is-focused" v-model="category">
+                <option disabled value="">Choisissez un type …</option>
                 <option v-for="(label, value) in categories" :value="value">{{label}}</option>
               </select>
             </div>
@@ -25,7 +25,7 @@
         <textarea-autosize
           v-if="isEditing"
           ref="myTextarea"
-          v-model="editingName"
+          v-model="name"
           :min-height="30"
           :max-height="350"
           autofocus=""
@@ -73,63 +73,50 @@
     },
     computed: {
       iconTag: function() {
-        return `${capitalize(this.icon)}Icon`;
+        if (this.isUploading) return 'UploadIcon';
+        return 'DocumentIcon';
       },
     },
     data: function() {
       return {
         isEditing: false,
-        editingName: this.name || '',
-        editingCategory: this.category || '',
+        name: this.file.name || this.file.filename,
+        category: this.file.category || '',
         categories: resumeCategories,
       };
     },
     methods: {
       remove: function() {
         if (window.confirm(`Confirmez-vous la suppression de ${this.name} ?`)) {
-          this.onRemove(this.id);
+          this.onRemove(this.file.id);
         }
       },
       setIsEditing: function(val) {
         this.isEditing = val;
       },
       doEdit: function() {
-        const extension = last(this.name.split('.'));
+        const extension = last(this.file.filename.split('.'));
         const extensionRegex = new RegExp(`\\\.${extension}$`);
-        const editingNameWithExtention = `${this.editingName.trim().replace(extensionRegex, '')}.${extension}`;
-        console.log({
-          extension,
-          extensionRegex,
-          editingNameWithExtention,
-        })
-        if (editingNameWithExtention !== this.name && this.editingCategory !== this.category) {
-          this.onEdit(this.id, {
-            name: editingNameWithExtention,
-            category: this.editingCategory,
-          });
-        }
+        const nameWithExtention = `${this.name.trim().replace(extensionRegex, '')}.${extension}`;
+        this.name = nameWithExtention;
+        this.onEdit(this.file.id, {
+          name: this.name,
+          category: this.category,
+        });
         this.isEditing = false;
       },
       listenForEnter: function(e) {
         if (e.key === 'Enter' && !e.ctrlKey) {
+          e.preventDefault();
           this.doEdit();
         }
       },
       resumeCategory,
     },
     props: {
-      id: {},
-      name: {
-        type: String,
-        isRequired: true
-      },
-      category: {
-        type: String,
-        isRequired: true
-      },
-      icon: {
-        type: String,
-        default: 'upload',
+      file: {
+        type: Object,
+        isRequired: true,
       },
       isUploading: {
         type: Boolean,
@@ -141,9 +128,6 @@
       onRemove:{
         type: Function,
       },
-      href: {
-        type: String,
-      }
     }
   }
 </script>
