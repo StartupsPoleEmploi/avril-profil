@@ -144,9 +144,8 @@
           </div>
         </div>
       </div>
-      <div class="has-text-centered content">
-        <p><button class="button is-text is-small is-rounded" @click="toggleShowDelete">Cette candidature n'est plus d'actualité ?</button></p>
-        <p><button v-if="showDelete" class="button is-rounded is-small is-danger" @click="deleteApplication">Supprimer ma candidature</button></p>
+      <div class="has-text-centered content" style="margin-top: 1rem;">
+        <p><button class="button is-rounded is-small is-text" @click="deleteApplication">Supprimer ma candidature</button></p>
       </div>
     </div>
   </div>
@@ -302,11 +301,6 @@
         return certifierInfos(this.application);
       },
     },
-    data: function(){
-      return {
-        showDelete: false,
-      }
-    },
     methods: {
       capitalize,
       formatInterval: function(d1, d2) {
@@ -314,9 +308,6 @@
         return formatInterval(parseISODate(d1), parseISODate(d2));
       },
       parseAndFormat,
-      toggleShowDelete: function() {
-        this.showDelete = !this.showDelete;
-      },
       resumeCategory,
       deleteApplication: function() {
         if (window.confirm(`Confirmez-vous la suppression de votre candidature au ${this.certificationName} et toutes ses données associées ?`)) {

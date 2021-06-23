@@ -30,22 +30,34 @@
           :max-height="350"
           autofocus=""
           class="input is-focused"
+          v-on:keyup.native="listenForEnter"
         />
         <span v-else>{{name}}</span>
       </span>
     </component>
-    <button v-if="onEdit" :class="`button is-medium is-edit ${isEditing ? 'is-primary' : 'is-default'}`" @click="toggleIsEditing()" :title="isEditing ? 'Enregistrer' : `Modifier ${name}`">
-      <span v-if="!isEditing">🖉</span>
-      <span v-else>✔</span>
-    </button>
-    <button v-if="onRemove && !isEditing" class="button is-danger is-medium is-delete" @click="remove()" :title="`Supprimer ${name}`"><span>⨯</span></button>
-    <button v-if="isEditing" class="button is-delete is-default is-medium" @click="setIsEditing(false)" title="Annuler"><span>⨯</span></button>
+    <div v-if="isEditing">
+      <button class="button is-medium is-default is-left" @click="setIsEditing(false)" title="Annuler">
+        <span>⨯</span>
+      </button>
+      <button class="button is-medium is-primary is-right" @click="doEdit()" title="Enregistrer">
+        <span>✔</span>
+      </button>
+    </div>
+    <div v-else>
+      <button v-if="onEdit" class="button is-medium is-default is-left" @click="setIsEditing(true)" :title="`Modifier ${name}`">
+        <span>🖉</span>
+      </button>
+      <button v-if="onRemove" class="button is-danger is-medium is-right" @click="remove()" :title="`Supprimer ${name}`">
+        <span>⨯</span>
+      </button>
+    </div>
   </div>
 </template>
 
 <script type="text/javascript">
   import VueTextareaAutosize from 'vue-textarea-autosize'
 
+  import {last} from 'avril/js/utils/array';
   import {capitalize} from 'avril/js/utils/string';
   import UploadIcon from 'avril/images/icons/upload.svg';
   import DocumentIcon from 'avril/images/icons/document.svg';
@@ -81,13 +93,26 @@
       setIsEditing: function(val) {
         this.isEditing = val;
       },
-      toggleIsEditing: function() {
-        this.isEditing = !this.isEditing;
-        if (!this.isEditing) {
+      doEdit: function() {
+        const extension = last(this.name.split('.'));
+        const extensionRegex = new RegExp(`\\\.${extension}$`);
+        const editingNameWithExtention = `${this.editingName.trim().replace(extensionRegex, '')}.${extension}`;
+        console.log({
+          extension,
+          extensionRegex,
+          editingNameWithExtention,
+        })
+        if (editingNameWithExtention !== this.name && this.editingCategory !== this.category) {
           this.onEdit(this.id, {
-            name: this.editingName,
+            name: editingNameWithExtention,
             category: this.editingCategory,
           });
+        }
+        this.isEditing = false;
+      },
+      listenForEnter: function(e) {
+        if (e.key === 'Enter' && !e.ctrlKey) {
+          this.doEdit();
         }
       },
       resumeCategory,
