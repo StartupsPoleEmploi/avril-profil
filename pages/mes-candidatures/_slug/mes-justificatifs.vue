@@ -15,7 +15,7 @@
         {{capitalize(pluralize(uploadedFiles.length, 'fichier déposé'))}} :</h2>
       <div class="file-list">
         <File v-for="file in uploadingFiles" :file="file" :key="file.id" :is-uploading="true" />
-        <File v-for="file in uploadedFiles" :file="file" :key="file.id" :onRemove="removeFile" :onEdit="editFile" />
+        <File v-for="file in uploadedFiles" :file="file" :key="file.id" :onRemove="removeFile" :onEdit="editFile" :isNew="isNewlyUpdate(file)" />
         <div class="file has-name is-boxed is-info">
           <label class="file-label">
             <FileUpload
@@ -85,9 +85,13 @@
       return {
         content,
         uploadingFiles: [],
+        justUploadedFiles: [],
       }
     },
     methods: {
+      isNewlyUpdate: function(file) {
+        return this.justUploadedFiles.includes(file.filename);
+      },
       addUploadingFile: async function(files) {
         await Promise.all(files.map(async file => {
           try {
@@ -103,6 +107,7 @@
             this.$store.commit('setFeedback', {
               message: `Le justificatif ${file.name} a bien été ajouté.`,
             })
+            this.justUploadedFiles.push(file.name);
           } catch(err) {
             this.$store.commit('setApiErrorFeedback', {err, message: `Le justificatif ${file.name} n'a pas pu être envoyé`});
           }

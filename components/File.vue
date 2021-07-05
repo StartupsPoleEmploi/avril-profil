@@ -79,7 +79,7 @@
     },
     data: function() {
       return {
-        isEditing: false,
+        isEditing: this.isNew,
         name: this.file.name || this.file.filename,
         category: this.file.category || '',
         categories: resumeCategories,
@@ -119,6 +119,10 @@
         isRequired: true,
       },
       isUploading: {
+        type: Boolean,
+        default: false,
+      },
+      isNew: {
         type: Boolean,
         default: false,
       },
