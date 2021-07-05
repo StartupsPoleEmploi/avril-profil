@@ -71,4 +71,8 @@
       color: $breadcrumb-item-color;
     }
   }
+
+  .breadcrumb .is-active span {
+    font-weight: bold;
+  }
 </style>
