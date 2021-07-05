@@ -2015,7 +2015,7 @@ available-typed-arrays@^1.0.0, available-typed-arrays@^1.0.2:
 
 avril@StartupsPoleEmploi/avril-shared:
   version "1.0.0"
-  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/1861a4691b635973589c32b4709a29ac4a54998d"
+  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/6944b27b969a316160e9c7ced14dc491b4b804bf"
   dependencies:
     "@trevoreyre/autocomplete-vue" "^2.1.1"
     bulma "^0.9.3"
