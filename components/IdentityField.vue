@@ -9,7 +9,7 @@
         </client-only>
       </div>
 
-      <CountrySelect v-else-if="type === types.country" :input="editField" :value="value" :placeholder="label" />
+      <CountrySelect v-else-if="type === types.country" :input="editField" :value="value" :placeholder="label" :isMissingAndRequired="isMissingAndRequired" />
       <BanGeoInput v-else-if="type === types.geo" :input="editField" :value="value" :type="geotype" :placeholder="label" :inputclass="`input is-large ${isMissingAndRequired ? 'is-danger' : ''}`" />
 
       <PhoneInput v-else-if="type === types.phone" class="input is-large" :class="isMissingAndRequired ? 'is-danger' : ''" :placeholder="label" :value="value" @input="editField" />

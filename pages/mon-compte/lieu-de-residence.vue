@@ -6,7 +6,7 @@
         field="fullAddress"
         label="Adresse" />
 
-      <IdentitySaveButtons />
+      <IdentitySaveButtons to="/mon-compte/me-joindre" />
     </div>
   </div>
 </template>

@@ -4,5 +4,8 @@
     body & {
       @extend .is-large;
     }
+    .autocomplete-parent.is-danger & {
+      @extend .is-danger;
+    }
   }
 }

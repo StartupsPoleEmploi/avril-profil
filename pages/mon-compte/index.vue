@@ -54,7 +54,7 @@
           label="Nom d'usage" />
       </div>
     </div>
-    <IdentitySaveButtons />
+    <IdentitySaveButtons to="/mon-compte/situation-professionnelle" />
   </div>
 </template>
 

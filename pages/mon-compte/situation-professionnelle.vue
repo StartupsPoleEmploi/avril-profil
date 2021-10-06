@@ -61,7 +61,7 @@
           />
         </div>
       </div>
-      <IdentitySaveButtons />
+      <IdentitySaveButtons to="/mon-compte/lieu-de-residence" />
     </div>
   </div>
 </template>

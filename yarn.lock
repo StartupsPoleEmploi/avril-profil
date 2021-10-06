@@ -2015,7 +2015,7 @@ available-typed-arrays@^1.0.0, available-typed-arrays@^1.0.2:
 
 avril@StartupsPoleEmploi/avril-shared:
   version "1.0.0"
-  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/6944b27b969a316160e9c7ced14dc491b4b804bf"
+  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/563ab30a49e1107b3a3d1fc9a7053099f5f08929"
   dependencies:
     "@trevoreyre/autocomplete-vue" "^2.1.1"
     bulma "^0.9.3"
@@ -2024,7 +2024,7 @@ avril@StartupsPoleEmploi/avril-shared:
     lodash.get "^4.4.2"
     lodash.sortby "^4.7.0"
     vue "^2.6.11"
-    vue2-datepicker "^3.4.1"
+    vue2-datepicker "^3.10.2"
 
 aws-sign2@~0.7.0:
   version "0.7.0"
@@ -3309,10 +3309,10 @@ date-fns@^2.11.0:
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.14.0.tgz#359a87a265bb34ef2e38f93ecf63ac453f9bc7ba"
   integrity sha512-1zD+68jhFgDIM0rF05rcwYO8cExdNqxjq4xP1QKM60Q45mnO6zaMWB4tOzrIr4M4GSLntsKeE4c9Bdl2jhL/yw==
 
-date-format-parse@^0.2.6:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/date-format-parse/-/date-format-parse-0.2.6.tgz#7ed42817efb6ec39532169eada9670ae3c627aa7"
-  integrity sha512-sdxnYAWmLopeb+6Hmw+vo3or4OCJOnh4+YoJ9p+Id3o2EnNP0INpTqx7wr8UregfMpgaSZAH473R/ytiaB3gVg==
+date-format-parse@^0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/date-format-parse/-/date-format-parse-0.2.7.tgz#a2f78bca857a821785b48abedd4426c65aa7b918"
+  integrity sha512-/+lyMUKoRogMuTeOVii6lUwjbVlesN9YRYLzZT/g3TEZ3uD9QnpjResujeEqUW+OSNbT7T1+SYdyEkTcRv+KDQ==
 
 de-indent@^1.0.2:
   version "1.0.2"
@@ -9209,12 +9209,12 @@ vue-upload-component@^2.8.20:
   resolved "https://registry.yarnpkg.com/vue-upload-component/-/vue-upload-component-2.8.20.tgz#60824d3f20f3216dca90d8c86a5c980851b04ea0"
   integrity sha512-zrnJvULu4rnZe36Ib2/AZrI/h/mmNbUJZ+acZD652PyumzbvjCOQeYHe00sGifTdYjzzS66CwhTT+ubZ2D0Aow==
 
-vue2-datepicker@^3.4.1:
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/vue2-datepicker/-/vue2-datepicker-3.9.1.tgz#00d11cf30942e850f8b1a397af3c15c7465f248e"
-  integrity sha512-LuvcgGR+sDYKcih0z+cyvYufGyBwUtIiwzJPwxE63C8gOsAWiE09KuGtZ3OxdQXJEQM2MGQ9t9t1t7382FiFOg==
+vue2-datepicker@^3.10.2:
+  version "3.10.2"
+  resolved "https://registry.yarnpkg.com/vue2-datepicker/-/vue2-datepicker-3.10.2.tgz#7e5e83f38c273764ef26db5cd48dc79e38f58198"
+  integrity sha512-9loqYDKGLLreueUhAlnW6U07XQHFlO+WdqDzGszcHwciHpBiJivrmr73Cu8RCfciBbHxUoJR8TWfoxKWLGk8YA==
   dependencies:
-    date-format-parse "^0.2.6"
+    date-format-parse "^0.2.7"
 
 vue@^2.6.11:
   version "2.6.14"
