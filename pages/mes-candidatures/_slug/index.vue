@@ -5,6 +5,8 @@
       <ApplicationTag :application="application" />
       <h1 class="title is-2">{{certificationName}}</h1>
       <div class="label-avril">Niveau {{certificationLevel}}</div>
+      -
+      <a class="is-underlined" :href="`/diplomes/${certificationId}`">consulter la fiche du diplôme</a>
     </header>
     <p v-if="!isCertificationActive" class="notification is-warning content">
       Le diplôme que vous avez sélectionné n'est plus actif. Nous vous invitons à
