@@ -3,7 +3,7 @@
     <h1 class="title is-1 is-spaced">Mes candidatures</h1>
     <div class="notification is-warning" v-if="applications.length >= 3">
       <p>
-        Attention, vous avez initié ou transmis {{applications.length}} candidatures. La loi autorise le dépôt de 3 dossiers de recevabilité maximum par an, et sur des certifications différentes.
+        Attention, vous avez initié ou transmis {{applications.length}} candidatures. La loi autorise la poursuite de 3 démarches VAE maximum par an, et ce sur des certifications différentes.
       </p>
     </div>
     <div v-if="!firstApplication">
