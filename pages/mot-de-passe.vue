@@ -5,13 +5,13 @@
       <div class="field">
         <label class="label">Mot de passe actuel</label>
         <div class="control">
-          <input v-model="currentPassword" class="input is-large" type="password" placeholder="Mot de passe actuel">
+          <input v-model="currentPassword" class="input is-large" type="password" placeholder="Mot de passe actuel" minlength="8" required>
         </div>
       </div>
       <div class="field">
         <label class="label">Nouveau mot de passe</label>
         <div class="control">
-          <input v-model="newPassword" class="input is-large" type="password" placeholder="Nouveau mot de passe" />
+          <input v-model="newPassword" class="input is-large" type="password" placeholder="Nouveau mot de passe" minlength="8" required />
         </div>
       </div>
 
@@ -59,7 +59,7 @@
             message: 'Mot de passe modifié avec succès.',
           })
         } catch(err) {
-          this.$store.commit('setApiErrorFeedback', {err, message: 'Le mot de passe n\'a pas pu être modifié'});
+          this.$store.commit('setApiErrorFeedback', {err});
         }
         this.isSaving = false;
       },
