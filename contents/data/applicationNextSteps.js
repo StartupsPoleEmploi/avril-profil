@@ -82,6 +82,6 @@ export default {
     shortTitle: 'Terminé',
     title: 'Votre candidature a bien été transmise',
     color: 'purple',
-    description: 'Votre certificateur connait maintenant votre projet et a reçu votre dossier ainsi que vos justificatifs. Contactez-le pour connaitre les suites à donner et obtenir très vite votre diplôme !',
+    description: 'Votre certificateur connait maintenant votre projet et a reçu votre dossier ainsi que vos pièces jointes. Contactez-le pour connaitre les suites à donner et obtenir très vite votre diplôme !',
   }
 }
