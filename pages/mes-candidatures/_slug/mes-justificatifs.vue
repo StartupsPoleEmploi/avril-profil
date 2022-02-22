@@ -1,9 +1,9 @@
 <template>
   <div class="candidature-detail">
-    <h1 class="title is-1 is-spaced">Mes justificatifs</h1>
+    <h1 class="title is-1 is-spaced">Mes pièces jointes</h1>
     <p class="subtitle">Déposez vos documents sur notre plateforme sécurisée</p>
 
-    <div v-html="content" class="content" />
+    <div v-html="content" class="content" v-if="hasBookletFinished" />
 
     <div class="notification is-info">
       <p><strong>Avril vous donne un conseil</strong> :</p>
@@ -45,10 +45,10 @@
       </ul>
       <div class="level">
         <div class="level-left">
-          <nuxt-link :disabled="!uploadedFiles.length" :to="applicationPath" class="button is-primary is-rounded">J'ai fini d'ajouter mes justificatifs</nuxt-link>
+          <nuxt-link :disabled="!uploadedFiles.length" :to="applicationPath" class="button is-primary is-rounded">J'ai fini d'ajouter des pièces jointes</nuxt-link>
         </div>
         <div class="level-right">
-          <nuxt-link :to="applicationPath" class="button is-text">{{uploadedFiles.length ? 'Je terminerai plus tard' : 'Je le ferai plus tard'}}</nuxt-link>
+          <nuxt-link :to="applicationPath" class="button is-text is-rounded">{{uploadedFiles.length ? 'Je terminerai plus tard' : 'Je le ferai plus tard'}}</nuxt-link>
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@
   import {pluralize, capitalize} from 'avril/js/utils/string';
   import {mutateApi, mutateApiMultipart} from 'avril/js/utils/api';
   import PlusIcon from 'avril/images/icons/plus.svg';
-  import {path} from '~/utils/application';
+  import {path, hasBookletFinished} from '~/utils/application';
 
   export default {
     computed: {
@@ -73,7 +73,10 @@
       },
       applicationPath: function() {
         return path(this.application);
-      }
+      },
+      hasBookletFinished: function() {
+        return hasBookletFinished(this.application)
+      },
     },
     components: {
       File,

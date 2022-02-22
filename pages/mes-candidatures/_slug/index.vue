@@ -64,9 +64,9 @@
           </div>
           <div class="column has-equal-height">
             <LockableCard
-              :is-filled="hasBookletFinished"
+              :is-locked="!hasDelegate"
               title="Ma recevabilité"
-              button="Compléter ma recevabilité"
+              :button="`${bookletInsertedAt ? 'Poursuivre' : 'Compléter'} ma recevabilité`"
               :href="bookletPath"
               hasMultipleLayer
             >
@@ -76,16 +76,24 @@
                   <a :href="cerfaPath" class="button is-rounded is-text" style="vertical-align: baseline;">Voir le CERFA</a>
                 </p>
               </div>
-              <p v-else-if="bookletInsertedAt">Démarée le {{parseAndFormat(bookletInsertedAt)}}.</p>
+              <div class="content" v-else>
+                <p><small>Cette étape est facultative car la plupart des certificateurs vous demanderont de remplir ce formulaire directement sur leur site web.</small></p>
+                <p v-if="bookletInsertedAt">Démarée le {{parseAndFormat(bookletInsertedAt)}}.</p>
+              </div>
+
+              <p slot="help">
+                Pour débloquer le formulaire de recevabilité, vous devez d'abord choisir votre <nuxt-link :to="`${applicationPath}/mon-certificateur`">certificateur</nuxt-link>.
+              </p>
+
             </LockableCard>
             <LockableCard
               :is-locked="!isResumesUnlocked"
               :is-filled="hasResumes"
-              title="Mes justificatifs"
-              button="Voir la liste"
+              title="Mes pièces jointes"
+              :button="bookletCompletedAt ? 'Voir la liste des documents attendus' : 'Transmettre un document à votre certificateur'"
               :to="`${applicationPath}/mes-justificatifs`"
             >
-              <div class="content">
+              <div class="content" v-if="application.resumes.length">
                 <ul>
                   <li v-for="resume in application.resumes" :key="resume.id">
                     <span v-if="resume.category" class="tag is-info">{{resumeCategory(resume.category)}}</span>
@@ -252,7 +260,7 @@
           return `Démarrée le ${parseAndFormat(this.application.booklet_1.insertedAt)}.`;
       },
       isResumesUnlocked: function() {
-        return this.isSynthesisUnlocked && this.hasBookletFinished;
+        return this.isSynthesisUnlocked;
       },
       delegateName: function() {
         return delegateName(this.application);

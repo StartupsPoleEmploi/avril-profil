@@ -44,7 +44,7 @@
       },
       buttonClass: function() {
         if (this.isFilled) return `is-rounded is-small is-edit ${this.hasDefaultSlot ? 'is-bottom-right' : ''}`;
-        if (this.isLockable) return 'is-text is-rounded';
+        if (this.isLockable) return 'is-text is-true-link';
         return 'is-rounded is-avril';
       },
     },
@@ -143,6 +143,18 @@
           top: -3px;
           border: 1px solid #E1E1E1;
         }
+      }
+    }
+
+    .button.is-true-link {
+      padding-left: 0;
+      padding-right: 0;
+      white-space: initial;
+      text-align: left;
+      &:hover {
+        background: none;
+        text-decoration: none;
+        opacity: 0.8;
       }
     }
 
