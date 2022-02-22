@@ -65,6 +65,7 @@
           <div class="column has-equal-height">
             <LockableCard
               :is-locked="!hasDelegate"
+              :is-optional="true"
               title="Ma recevabilité"
               :button="`${bookletInsertedAt ? 'Poursuivre' : 'Compléter'} ma recevabilité`"
               :href="bookletPath"

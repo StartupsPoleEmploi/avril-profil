@@ -1,6 +1,6 @@
 <template>
   <div class="lockable-card" :class="{ 'is-filled': isActuallyFilled, 'has-multiple-layer': hasMultipleLayer }">
-    <h4 class="title is-5"><span class="icon" v-if="isLocked"><IconLocked/></span> {{title}}</h4>
+    <h4 class="title is-5"><span class="icon" v-if="isLocked"><IconLocked/></span> {{title}} <small v-if="isOptional">(facultatif)</small></h4>
     <slot v-if="isActuallyFilled"></slot>
     <component v-if="!isLocked" :is="href ? 'a' : 'nuxt-link'" :href="href" :to="to" class="button" :class="buttonClass" :target="target">
       <span v-if="isFilled && !isReadOnly">
@@ -59,6 +59,9 @@
         type: Boolean,
       },
       isReadOnly: {
+        type: Boolean,
+      },
+      isOptional: {
         type: Boolean,
       },
       isLocked: {},
