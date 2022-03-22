@@ -31,12 +31,15 @@
     },
     computed: {
       steps: function() {
-        return Object.entries(nextStepsData).sort(d => d.index).map(([key, v]) => {
-          return {
-            key,
-            ...v
-          }
-        })
+        return Object.entries(nextStepsData)
+          .sort(d => d.index)
+          .filter(([_key, {isActive}]) => isActive(this.application))
+          .map(([key, v]) => {
+            return {
+              key,
+              ...v
+            }
+          });
       },
       nextStep: function(){
         return this.$store.getters.nextApplicationStep(this.application);

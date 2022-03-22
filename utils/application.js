@@ -84,10 +84,14 @@ export const resumeCategory = category => {
   return resumeCategories[category] || 'Inconnu';
 }
 
+export const hasMandatoryBooklet = application => get(application, 'delegate.hasMandatoryBooklet');
+
 export const nextStep = application => {
   if (!hasDelegate(application)) return 'delegate';
-  // if (!hasBookletFinished(application)) return 'booklet';
-  // if (!get(application, 'resumes', []).length) return 'uploads';
+  if (hasMandatoryBooklet(application)) {
+    if (!hasBookletFinished(application)) return 'booklet';
+    if (!get(application, 'resumes', []).length) return 'uploads';
+  }
   if (!application.submittedAt) return 'submit';
   return 'finished';
 }

@@ -65,7 +65,7 @@
           <div class="column has-equal-height">
             <LockableCard
               :is-locked="!hasDelegate"
-              :is-optional="true"
+              :is-optional="!hasMandatoryBooklet"
               title="Ma recevabilité"
               :button="`${bookletInsertedAt ? 'Poursuivre' : 'Compléter'} ma recevabilité`"
               :href="bookletPath"
@@ -78,7 +78,7 @@
                 </p>
               </div>
               <div class="content" v-else>
-                <p><small>Cette étape est facultative car la plupart des certificateurs vous demanderont de remplir ce formulaire directement sur leur site web.</small></p>
+                <p v-if="!hasMandatoryBooklet"><small>Cette étape est facultative car la plupart des certificateurs vous demanderont de remplir ce formulaire directement sur leur site web.</small></p>
                 <p v-if="bookletInsertedAt">Démarée le {{parseAndFormat(bookletInsertedAt)}}.</p>
               </div>
 
@@ -202,6 +202,7 @@
     isUniversity,
     meeting,
     resumeCategory,
+    hasMandatoryBooklet,
   } from '~/utils/application';
 
   export default {
@@ -229,6 +230,9 @@
       },
       hasDelegate: function() {
         return hasDelegate(this.application);
+      },
+      hasMandatoryBooklet: function() {
+        return hasMandatoryBooklet(this.application);
       },
       hasResumes: function() {
         return hasResumes(this.application);
