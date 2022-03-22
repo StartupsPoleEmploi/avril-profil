@@ -84,7 +84,7 @@ export const resumeCategory = category => {
   return resumeCategories[category] || 'Inconnu';
 }
 
-export const hasMandatoryBooklet = application => get(application, 'delegate.hasMandatoryBooklet');
+export const hasMandatoryBooklet = application => (!hasDelegate(application) || get(application, 'delegate.hasMandatoryBooklet'));
 
 export const nextStep = application => {
   if (!hasDelegate(application)) return 'delegate';
