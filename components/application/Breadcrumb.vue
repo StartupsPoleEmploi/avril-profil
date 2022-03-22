@@ -1,18 +1,18 @@
 <template>
   <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
   <ul>
-    <li v-for="step in steps" :class="nextStep === step.key ? 'is-active' : ''">
+    <li v-for="(step, index) in steps" :class="nextStep === step.key ? 'is-active' : ''">
       <span class="fake-a" :class="step.index < nextStepIndex ? 'is-past' : ''" v-if="step.index > nextStepIndex || step.api || step.isLast">
-        {{step.index + 1}}. {{step.shortTitle}}
+        {{index + 1}}. {{step.shortTitle}}
         <IconCheck v-if="step.index < nextStepIndex" />
       </span>
       <span v-else>
         <nuxt-link v-if="step.to" :to="step.to(application)">
-          {{step.index + 1}}. {{step.shortTitle}}
+          {{index + 1}}. {{step.shortTitle}}
           <IconCheck v-if="step.index < nextStepIndex" />
         </nuxt-link>
         <a v-if="step.href" :href="step.href(application)">
-          {{step.index + 1}}. {{step.shortTitle}}
+          {{index + 1}}. {{step.shortTitle}}
           <IconCheck v-if="step.index < nextStepIndex" />
         </a>
       </span>
