@@ -8,17 +8,22 @@
       -
       <a class="is-underlined" :href="`/diplomes/${certificationId}`">consulter la fiche du diplôme</a>
     </header>
-    <p v-if="!isCertificationActive" class="notification is-warning content">
+
+    <p v-if="isArmy" class="notification is-warning content">
+      Le Ministères des armées nous indique un changement d'organisation, aussi à compter de ce jour les candidatures non transmises ne pourront plus être finalisées.
+      Nous vous invitons à contacter leur numéro vert : <a href="tel:0800645085">0800 64 50 85</a> pour poursuivre vos démarches VAE.
+    </p>
+    <p v-else-if="!isCertificationActive" class="notification is-warning content">
       Le diplôme que vous avez sélectionné n'est plus actif. Nous vous invitons à
       <a :href="`/diplomes/${certificationId}`">sélectionner un nouveau diplôme similaire</a> ou
       <a href="/">effectuer une nouvelle recherche</a>
       pour démarrer une nouvelle candidature. Vous pouvez ensuite <a @click="deleteApplication">supprimer</a> celle-ci si vous le souhaitez.
     </p>
-    <p v-if="isDelegateInactive" class="notification is-warning content">
+    <p v-else-if="isDelegateInactive" class="notification is-warning content">
       Le certificateur que vous avez sélectionné n'est plus actif ou ne propose plus le diplôme pour lequel vous candidatez. Nous vous invitons à
       <nuxt-link :to="`${applicationPath}/mon-certificateur`">sélectionner un nouveau certificateur</nuxt-link> avant de pouvoir transmettre votre candidature.
     </p>
-    <p v-if="isUniversity && hasDelegate" class="notification is-warning content">
+    <p v-else-if="isUniversity && hasDelegate" class="notification is-warning content">
       <strong>Conseil d'Avril :</strong> Vous avez sélectionné un diplôme universitaire. Ce diplôme peut présenter
       des « variantes » d'une Université à l'autre selon la discipline, la mention ou le parcours.
       Nous vous invitons donc, avant de confirmer votre candidature, à consulter sur
@@ -27,7 +32,7 @@
       retenue le descriptif du diplôme sélectionné. Vous pourrez ainsi vérifier qu'il
       correspond bien à votre projet et aux compétences que vous avez acquises.
     </p>
-    <p v-if="isCnam && hasDelegate" class="notification is-info content">
+    <p v-else-if="isCnam && hasDelegate" class="notification is-info content">
       Le CNAM vous invitera à créer un dossier sur leur plate-forme
       <a href="https://sdnf.cnam.fr/diva/" target="_blank">https://sdnf.cnam.fr/diva</a>.
       Le CNAM pourra aussi vous proposer un rdv pour confirmer que le diplôme retenu est celui
@@ -111,6 +116,7 @@
           </div>
           <div class="column has-equal-height">
             <LockableCard
+              :disabled="!isCertificationActive"
               :is-filled="hasDelegate"
               title="Mon certificateur"
               button="Trouver mon certificateur"
@@ -198,6 +204,7 @@
     currentApplication,
     isAfpa,
     isCnam,
+    isArmy,
     isFilled,
     isUniversity,
     meeting,
@@ -242,6 +249,9 @@
       },
       isCnam: function() {
         return isCnam(this.application);
+      },
+      isArmy: function() {
+        return isArmy(this.application);
       },
       isFilled: function() {
         return isFilled(this.application);

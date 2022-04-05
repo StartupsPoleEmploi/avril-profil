@@ -106,6 +106,7 @@ export const hasCertificationCertifier = (application, certifierName) =>
   include(get(application, 'certification.certifiers', []).map(c => c.name.trim()), certifierName);
 
 export const isCnam = application => hasCertificationCertifier(application, 'CNAM');
+export const isArmy = application => hasCertificationCertifier(application, 'Ministère des Armées');
 
 export const delegateCriteria = (application, isExpandedSearch) => {
   const isAsp = hasCertificationCertifier(application, 'Ministère des affaires sociales et de la santé');
