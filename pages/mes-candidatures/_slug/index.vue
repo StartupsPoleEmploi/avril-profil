@@ -9,11 +9,7 @@
       <a class="is-underlined" :href="`/diplomes/${certificationId}`">consulter la fiche du diplôme</a>
     </header>
 
-    <p v-if="isArmy" class="notification is-warning content">
-      Le Ministères des armées nous indique un changement d'organisation, aussi à compter de ce jour les candidatures non transmises ne pourront plus être finalisées.
-      Nous vous invitons à contacter leur numéro vert : <a href="tel:0800645085">0800 64 50 85</a> pour poursuivre vos démarches VAE.
-    </p>
-    <p v-else-if="!isCertificationActive" class="notification is-warning content">
+    <p v-if="!isCertificationActive" class="notification is-warning content">
       Le diplôme que vous avez sélectionné n'est plus actif. Nous vous invitons à
       <a :href="`/diplomes/${certificationId}`">sélectionner un nouveau diplôme similaire</a> ou
       <a href="/">effectuer une nouvelle recherche</a>
@@ -23,6 +19,9 @@
       Le certificateur que vous avez sélectionné n'est plus actif ou ne propose plus le diplôme pour lequel vous candidatez. Nous vous invitons à
       <nuxt-link :to="`${applicationPath}/mon-certificateur`">sélectionner un nouveau certificateur</nuxt-link> avant de pouvoir transmettre votre candidature.
     </p>
+    <p v-else-if="specialInfos" class="notification is-warning content">
+      <strong>Information Avril :</strong> <span v-html="specialInfos" />
+    </p>
     <p v-else-if="isUniversity && hasDelegate" class="notification is-warning content">
       <strong>Conseil d'Avril :</strong> Vous avez sélectionné un diplôme universitaire. Ce diplôme peut présenter
       des « variantes » d'une Université à l'autre selon la discipline, la mention ou le parcours.
@@ -31,13 +30,6 @@
       <span v-else>le site de l'Université</span>
       retenue le descriptif du diplôme sélectionné. Vous pourrez ainsi vérifier qu'il
       correspond bien à votre projet et aux compétences que vous avez acquises.
-    </p>
-    <p v-else-if="isCnam && hasDelegate" class="notification is-info content">
-      Le CNAM vous invitera à créer un dossier sur leur plate-forme
-      <a href="https://sdnf.cnam.fr/diva/" target="_blank">https://sdnf.cnam.fr/diva</a>.
-      Le CNAM pourra aussi vous proposer un rdv pour confirmer que le diplôme retenu est celui
-      qui vous correspond le mieux ou, le cas échéant, vous faire une proposition mieux ciblée au
-      regard de votre projet et de votre profil.
     </p>
 
     <div class="candidature-detail">
@@ -128,14 +120,6 @@
               <p v-if="delegateEmail">Email : <a :href="`mailto:${delegateEmail}`">{{delegateEmail}}</a></p>
               <p v-if="delegatePhone">Tél : <a :href="`tel:${delegatePhone}`">{{delegatePhone}}</a></p>
               <p v-if="delegateWebsite">Site internet : <a :href="delegateWebsite">{{delegateWebsite}}</a></p>
-              <nuxt-link
-                v-if="delegateInfos || certifierInfos"
-                :to="`${applicationPath}/informations-specifiques`"
-                class="button is-avril is-rounded is-small"
-                style="margin-top: 1rem;"
-              >
-                En savoir plus
-              </nuxt-link>
             </LockableCard>
             <LockableCard
               v-if="isAfpa"
@@ -196,6 +180,7 @@
     delegateWebsite,
     delegateInfos,
     certifierInfos,
+    certificationInfos,
     certificationName,
     certificationId,
     isCertificationActive,
@@ -203,8 +188,6 @@
     certificationLevel,
     currentApplication,
     isAfpa,
-    isCnam,
-    isArmy,
     isFilled,
     isUniversity,
     meeting,
@@ -246,12 +229,6 @@
       },
       isAfpa: function() {
         return isAfpa(this.application);
-      },
-      isCnam: function() {
-        return isCnam(this.application);
-      },
-      isArmy: function() {
-        return isArmy(this.application);
       },
       isFilled: function() {
         return isFilled(this.application);
@@ -319,11 +296,8 @@
       delegateWebsite: function() {
         return delegateWebsite(this.application);
       },
-      delegateInfos() {
-        return delegateInfos(this.application);
-      },
-      certifierInfos() {
-        return certifierInfos(this.application);
+      specialInfos() {
+        return certificationInfos(this.application) || delegateInfos(this.application) || certifierInfos(this.application)
       },
     },
     methods: {

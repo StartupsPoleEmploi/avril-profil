@@ -52,6 +52,7 @@ export const delegateWebsite = application => get(application, 'delegate.website
 export const delegateId = application => parseInt(get(application, 'delegate.id'));
 export const certifierName = application => get(application, 'certifier.name');
 export const certifierInfos = application => get(application, 'certifier.externalNotes');
+export const certificationInfos = application => get(application, 'certification.externalNotes');
 export const EDUC_NAT='Ministère de l\'Education Nationale';
 export const isAsp = application => startsWithNoCase(get(application, 'delegate.name', ''), 'ASP');
 export const isAfpa = application => startsWithNoCase(get(application, 'delegate.name', ''), 'AFPA');
@@ -104,9 +105,6 @@ export const meeting = application => get(application, 'meeting');
 
 export const hasCertificationCertifier = (application, certifierName) =>
   include(get(application, 'certification.certifiers', []).map(c => c.name.trim()), certifierName);
-
-export const isCnam = application => hasCertificationCertifier(application, 'CNAM');
-export const isArmy = application => hasCertificationCertifier(application, 'Ministère des Armées');
 
 export const delegateCriteria = (application, isExpandedSearch) => {
   const isAsp = hasCertificationCertifier(application, 'Ministère des affaires sociales et de la santé');
