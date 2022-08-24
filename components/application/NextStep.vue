@@ -10,6 +10,24 @@
           <Address :address="delegateAddress" />
           <p v-if="delegateEmail"><a :href="`mailto:${delegateEmail}`">{{delegateEmail}}</a></p>
           <p v-if="delegatePhone"><a :href="`tel:${delegatePhone}`">{{delegatePhone}}</a></p>
+          <div v-if="isRaisable">
+            <hr />
+            <h3 class="title is-4">Pas de nouvelles de votre certificateur ?</h3>
+            <p>Il s'agit peut-être d'une erreur de traitement. Vous pouvez relancer votre certificateur.</p>
+            <ApiButton
+              class="button is-primary is-rounded"
+              disable-with="Relance en cours ..."
+              :query="{
+                message: 'Certificateur relancé avec succès.',
+                store: 'applications',
+                name: 'raiseApplication',
+                type: 'application',
+                params: {
+                  id: application.id,
+                }
+              }"
+            >Relancer le certificateur par email</ApiButton>
+          </div>
         </div>
         <ApiButton
           v-if="nextStep.api"
@@ -53,6 +71,7 @@
     delegateEmail,
     EDUC_NAT,
     isAsp,
+    isRaisable,
   } from '~/utils/application';
 
   export default {
@@ -92,14 +111,23 @@
         return this.$md.render(this.nextStep.description)
       },
       isEducNatSummerBreak: function() {
+        const currentYear = (new Date()).getFullYear();
         return certifierName(this.application) === EDUC_NAT && isWithinInterval(
           new Date(),
-          { start: new Date(2020, 6, 13), end: new Date(2020, 7, 31) }
+          { start: new Date(currentYear, 6, 13), end: new Date(currentYear, 7, 31) }
         );
       },
       actionDisabled: function() {
         return this.nextStep.disabledAction && this.nextStep.disabledAction(this.application);
-      }
+      },
+      isRaisable: function() {
+        return isRaisable(this.application);
+      },
+    },
+    methods: {
+      raiseDelegate() {
+
+      },
     },
     props: {
       application: {

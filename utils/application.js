@@ -2,7 +2,7 @@ import get from 'lodash.get';
 import {isPresent} from 'avril/js/utils/boolean';
 import {startsWithNoCase} from 'avril/js/utils/string';
 import {first, include} from 'avril/js/utils/array';
-import { isFuture, parseISO } from 'date-fns';
+import { isFuture, parseISO, differenceInDays } from 'date-fns';
 
 export const applicationSlug = application => `${application.id}-${get(application, 'certification.slug', '')}`
 export const applicationSlugToId = slug => parseInt(first(slug.split('-')))
@@ -98,6 +98,8 @@ export const nextStep = application => {
 }
 
 export const isFilled = application => !!application.submittedAt;
+
+export const isRaisable = application => application.submittedAt && differenceInDays(new Date(), new Date(application.raisedAt || application.submittedAt)) > 21;
 
 export const meetingPlace = meeting => `${meeting.place || ''} ${meeting.address || ''} ${meeting.postalCode || ''} ${meeting.city || ''}`;
 

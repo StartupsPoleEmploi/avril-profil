@@ -21,6 +21,7 @@
       label: function() {
         if (!this.isCertificationActive) return 'Diplôme inactif';
         if (this.isDelegateInactive) return 'Certificateur inactif';
+        if (this.application.raisedAt) return `Relancée le ${parseAndFormat(this.application.raisedAt)}`;
         if (this.application.submittedAt) return `Transmise le ${parseAndFormat(this.application.submittedAt)}`;
         if (nextStep(this.application) === 'submit') return 'à transmettre';
         return 'à compléter';
