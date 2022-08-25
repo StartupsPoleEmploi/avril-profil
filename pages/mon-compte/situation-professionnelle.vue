@@ -66,7 +66,7 @@
               :class="`input is-large ${isMissingAndRequired('currentSituation.registerToPoleEmploiSince') ? 'is-danger' : ''}`"
               :value="parseISODate(currentSituation.registerToPoleEmploiSince)"
               @input="addCurrentSituationRegisterToPoleEmploiSince"
-              :placeholder="defaultPlaceholder"
+              placeholder="Date"
             />
           </div>
         </div>
