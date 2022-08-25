@@ -61,10 +61,13 @@
             Depuis le :
             <span v-if="isMissingAndRequired('currentSituation.registerToPoleEmploiSince')" class="has-text-danger">(requis)</span>
           </h3>
-          <div class="control" v-if="isClient">
-            <client-only placeholder="Chargement du calendrier ...">
-              <date-picker input-class="`input is-large ${isMissingAndRequired('currentSituation.registerToPoleEmploiSince') ? 'is-danger' : ''}`" :value="parseISODate(currentSituation.registerToPoleEmploiSince)" @input="addCurrentSituationRegisterToPoleEmploiSince" :format="datePickerFormat" :placeholder="defaultPlaceholder" />
-            </client-only>
+          <div class="control">
+            <DatePicker
+              :class="`input is-large ${isMissingAndRequired('currentSituation.registerToPoleEmploiSince') ? 'is-danger' : ''}`"
+              :value="parseISODate(currentSituation.registerToPoleEmploiSince)"
+              @input="addCurrentSituationRegisterToPoleEmploiSince"
+              :placeholder="defaultPlaceholder"
+            />
           </div>
         </div>
         <div class="field">
@@ -92,23 +95,18 @@
   import {isBlank} from 'avril/js/utils/boolean';
   import { parseISODate, formatISODate } from 'avril/js/utils/time';
   import RadioList from 'avril/js/components/RadioList.vue';
-  import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
 
   import possibleAnswers from '~/contents/data/currentSituation';
   import IdentitySaveButtons from '~/components/IdentitySaveButtons.vue';
+  import DatePicker from 'avril/js/components/DatePicker.vue';
 
   export default {
-    mixins: [
-      withDatePickerMixin,
-    ],
     components: {
       RadioList,
       IdentitySaveButtons,
+      DatePicker,
     },
     computed: {
-      isClient() {
-        return !!process.client;
-      },
       identity() {
         return this.$store.state.identity
       },
@@ -152,9 +150,3 @@
     },
   }
 </script>
-
-<style type="text/css">
-  .mx-datepicker {
-    width: 100%;
-  }
-</style>

@@ -99,7 +99,7 @@ export const nextStep = application => {
 
 export const isFilled = application => !!application.submittedAt;
 
-export const isRaisable = application => application.submittedAt && differenceInDays(new Date(), new Date(application.raisedAt || application.submittedAt)) > 21;
+export const isRaisable = application => application.submittedAt && differenceInDays(new Date(), new Date(application.raisedAt || application.submittedAt)) > 1;
 
 export const meetingPlace = meeting => `${meeting.place || ''} ${meeting.address || ''} ${meeting.postalCode || ''} ${meeting.city || ''}`;
 

@@ -2009,7 +2009,7 @@ available-typed-arrays@^1.0.0, available-typed-arrays@^1.0.2:
 
 avril@StartupsPoleEmploi/avril-shared:
   version "1.0.0"
-  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/4c13a6dc78cc2fa8a4febe4789077cd3017e1772"
+  resolved "https://codeload.github.com/StartupsPoleEmploi/avril-shared/tar.gz/f9d0908359c8ec8dcfead39d5e35e0d453eefd5a"
   dependencies:
     "@trevoreyre/autocomplete-vue" "^2.1.1"
     bulma "^0.9.4"
@@ -2019,7 +2019,6 @@ avril@StartupsPoleEmploi/avril-shared:
     lodash.sortby "^4.7.0"
     node-fetch "^2.6.7"
     vue "^2.6.11"
-    vue2-datepicker "^3.10.2"
 
 aws-sign2@~0.7.0:
   version "0.7.0"
@@ -3308,11 +3307,6 @@ date-fns@^2.28.0:
   version "2.29.2"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.29.2.tgz#0d4b3d0f3dff0f920820a070920f0d9662c51931"
   integrity sha512-0VNbwmWJDS/G3ySwFSJA3ayhbURMTJLtwM2DTxf9CWondCnh6DTNlO9JgRSq6ibf4eD0lfMJNBxUdEAHHix+bA==
-
-date-format-parse@^0.2.7:
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/date-format-parse/-/date-format-parse-0.2.7.tgz#a2f78bca857a821785b48abedd4426c65aa7b918"
-  integrity sha512-/+lyMUKoRogMuTeOVii6lUwjbVlesN9YRYLzZT/g3TEZ3uD9QnpjResujeEqUW+OSNbT7T1+SYdyEkTcRv+KDQ==
 
 de-indent@^1.0.2:
   version "1.0.2"
@@ -9244,13 +9238,6 @@ vue-upload-component@^2.8.20:
   version "2.8.20"
   resolved "https://registry.yarnpkg.com/vue-upload-component/-/vue-upload-component-2.8.20.tgz#60824d3f20f3216dca90d8c86a5c980851b04ea0"
   integrity sha512-zrnJvULu4rnZe36Ib2/AZrI/h/mmNbUJZ+acZD652PyumzbvjCOQeYHe00sGifTdYjzzS66CwhTT+ubZ2D0Aow==
-
-vue2-datepicker@^3.10.2:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/vue2-datepicker/-/vue2-datepicker-3.11.0.tgz#a9436f94bbb7ed6dbc44f8246b75b364cc91d553"
-  integrity sha512-zbMkAjYwDTXZozZtkpSwqxq7nEeBt7zoHL+oQcdjEXAqzJHhmatE6sl6JSr58PMIx2WOK0c6QBXozSqT32iQAQ==
-  dependencies:
-    date-format-parse "^0.2.7"
 
 vue@^2.6.11:
   version "2.7.10"

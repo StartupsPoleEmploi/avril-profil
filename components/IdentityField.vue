@@ -3,25 +3,61 @@
     <label :class="`label ${isMissingAndRequired ? 'is-required' : ''}`">{{label}}</label>
     <div class="control">
 
-      <div v-if="isClient && type === types.date">
-        <client-only placeholder="Chargement du calendrier ...">
-          <date-picker :input-class="`input is-large ${isMissingAndRequired ? 'is-danger' : ''}`" :value="value" @input="editField" :format="datePickerFormat" :placeholder="label" default-panel="year"/>
-        </client-only>
+      <div v-if="type === types.date">
+        <DatePicker
+          :class="`input is-large ${isMissingAndRequired ? 'is-danger' : ''}`"
+          :value="value"
+          @input="editField"
+          :placeholder="label"
+          default-panel="year"
+        />
       </div>
 
-      <CountrySelect v-else-if="type === types.country" :input="editField" :value="value" :placeholder="label" :isMissingAndRequired="isMissingAndRequired" />
-      <BanGeoInput v-else-if="type === types.geo" :input="editField" :value="value" :type="geotype" :placeholder="label" :inputclass="`input is-large ${isMissingAndRequired ? 'is-danger' : ''}`" />
+      <CountrySelect
+        v-else-if="type === types.country"
+        :input="editField"
+        :value="value"
+        :placeholder="label"
+        :isMissingAndRequired="isMissingAndRequired"
+      />
+      <BanGeoInput
+        v-else-if="type === types.geo"
+        :input="editField"
+        :value="value"
+        :type="geotype"
+        :placeholder="label"
+        :inputclass="`input is-large ${isMissingAndRequired ? 'is-danger' : ''}`"
+      />
 
-      <PhoneInput v-else-if="type === types.phone" class="input is-large" :class="isMissingAndRequired ? 'is-danger' : ''" :placeholder="label" :value="value" @input="editField" />
+      <PhoneInput
+        v-else-if="type === types.phone"
+        class="input is-large"
+        :class="isMissingAndRequired ? 'is-danger' : ''"
+        :placeholder="label"
+        :value="value"
+        @input="editField"
+      />
 
-      <div v-else-if="type === types.select" class="select is-large is-fullwidth" :class="isMissingAndRequired ? 'is-danger' : ''">
+      <div
+        v-else-if="type === types.select"
+        class="select is-large is-fullwidth"
+        :class="isMissingAndRequired ? 'is-danger' : ''"
+      >
         <select @change="editField" :value="value">
           <option :value="null">{{label}}</option>
           <option v-for="(v, k) in options" :value="k">{{v}}</option>
         </select>
       </div>
 
-      <input v-else class="input is-large" :class="isMissingAndRequired ? 'is-danger' : ''" :type="inputTextType" :placeholder="label" :value="value" @input="editField">
+      <input
+        v-else
+        class="input is-large"
+        :class="isMissingAndRequired ? 'is-danger' : ''"
+        :type="inputTextType"
+        :placeholder="label"
+        :value="value"
+        @input="editField"
+      />
     </div>
   </div>
 </template>
@@ -29,10 +65,10 @@
   import { parseISODate, formatISODate } from 'avril/js/utils/time';
   import {isBlank} from 'avril/js/utils/boolean';
   import {include} from 'avril/js/utils/array';
-  import withDatePickerMixin from 'avril/js/mixins/withDatePicker.js';
   import CountrySelect from 'avril/js/components/CountrySelect.vue';
   import BanGeoInput from 'avril/js/components/BanGeoInput.vue';
   import PhoneInput from 'avril/js/components/PhoneInput.vue';
+  import DatePicker from 'avril/js/components/DatePicker.vue';
 
   const INPUT_TYPES = {
     text: 'text',
@@ -70,18 +106,13 @@
   }
 
   export default {
-    mixins: [
-      withDatePickerMixin,
-    ],
     components: {
       BanGeoInput,
       CountrySelect,
       PhoneInput,
+      DatePicker,
     },
     computed: {
-      isClient() {
-        return !!process.client;
-      },
       isMissingAndRequired: function() {
         const mandatoryState = this.$store.getters['identity/mandatoryState'];
         return include(Object.keys(mandatoryState), this.field) && isBlank(mandatoryState[this.field]);
