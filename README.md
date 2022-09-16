@@ -2,10 +2,6 @@
 
 > My marvelous Nuxt.js project
 
-## Using
-
-- https://buefy.org/
-
 ## Build Setup
 
 ``` bash

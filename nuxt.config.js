@@ -17,7 +17,6 @@ export default deepMerge(sharedConfig, {
     linkify: true,
   },
   plugins: [
-    '~/plugins/buefy.js',
     '~/plugins/vue-auto-size.js',
   ],
   router: {

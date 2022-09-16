@@ -16,7 +16,6 @@
     "@nuxtjs/sentry": "^3.0.1",
     "apollo-fetch": "^0.7.0",
     "avril": "StartupsPoleEmploi/avril-shared",
-    "buefy": "^0.8.11",
     "cookie-universal-nuxt": "^2.1.0",
     "nuxt": "^2.0.0",
     "nuxt-svg-loader": "^1.2.0",
