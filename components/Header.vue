@@ -150,7 +150,7 @@
     background: transparent;
   }
 
-  .navbar-item::v-deep {
+  :deep(.navbar-item) {
     a {
       display: block !important;
       &.is-active {

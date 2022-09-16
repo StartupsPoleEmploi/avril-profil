@@ -4,12 +4,13 @@
   "description": "Profil de suivi de candidature VAE Avril.",
   "author": "Team Avril",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "nodemon -r esm server/index.js --watch server",
+    "dev": "nuxt",
     "build": "nuxt build",
-    "start": "node -r esm server/index.js",
+    "start": "nuxt start",
     "generate": "nuxt generate",
-    "setup": "yarn install && yarn upgrade avril && yarn build && yarn start"
+    "setup": "yarn install && yarn upgrade avril && yarn start"
   },
   "dependencies": {
     "@nuxtjs/markdownit": "^1.2.10",
@@ -17,14 +18,12 @@
     "apollo-fetch": "^0.7.0",
     "avril": "StartupsPoleEmploi/avril-shared",
     "cookie-universal-nuxt": "^2.1.0",
-    "nuxt": "^2.0.0",
     "nuxt-svg-loader": "^1.2.0",
     "vue-template-compiler": "2.6.12",
     "vue-textarea-autosize": "^1.1.1",
     "vue-upload-component": "^2.8.20"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9",
     "nuxt-sass-resources-loader": "^2.0.5",
     "vue-style-loader": "^4.1.2"
   }
