@@ -18,10 +18,8 @@
     "avril": "StartupsPoleEmploi/avril-shared",
     "buefy": "^0.8.11",
     "cookie-universal-nuxt": "^2.1.0",
-    "node-sass": "^7.0.0",
     "nuxt": "^2.0.0",
     "nuxt-svg-loader": "^1.2.0",
-    "sass-loader": "^10.3.1",
     "vue-template-compiler": "2.6.12",
     "vue-textarea-autosize": "^1.1.1",
     "vue-upload-component": "^2.8.20"
