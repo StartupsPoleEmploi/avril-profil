@@ -15,8 +15,7 @@
             <h3 class="title is-4">Pas de nouvelles de votre certificateur ?</h3>
             <p>
               Cela fait quelque temps que vous avez envoyé votre candidature et vous n'avez
-              pas été recontacté ? Il s'agit peut-être d'une erreur de traitement. Vous pouvez
-              relancer votre certificateur.
+              pas été recontacté ? Vous pouvez relancer votre certificateur.
             </p>
             <ApiButton
               class="button is-primary is-rounded"
