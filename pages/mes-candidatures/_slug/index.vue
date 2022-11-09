@@ -36,7 +36,7 @@
       <div class="columns">
         <div class="column is-9">
           <div class="content">
-            <p>Hé ! Ce diplôme fait partie du dispositif REVA : une expérimentation de VAE simplifiée, financée, soutenue par le Ministère du Travail.</p>
+            <p>Hé, vous avez de la chance : ce diplôme est accessible en VAE simplifiée !  Obtenez votre diplôme par la VAE en 4 à 6 mois grâce à un nouveau dispositif financé par le Ministère du Travail. <br /><br />Ça s'appelle REVA !</p>
           </div>
           <p><a href="https://reva.beta.gouv.fr/" target="_blank" class="button is-primary is-rounded">En savoir plus</a></p>
         </div>
