@@ -126,3 +126,5 @@ export const delegateCriteria = (application, isExpandedSearch) => {
     expandable: !isExpandedSearch,
   }
 }
+
+export const isReva = application => application.certification?.internalNotes.includes?.('REVA') && !isFilled(application);

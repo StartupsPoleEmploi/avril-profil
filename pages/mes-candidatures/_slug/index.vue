@@ -32,6 +32,20 @@
       correspond bien à votre projet et aux compétences que vous avez acquises.
     </p>
 
+    <div v-if="isReva" class="notification is-success">
+      <div class="columns">
+        <div class="column is-9">
+          <div class="content">
+            <p>Hé ! Ce diplôme fait partie du dispositif REVA : une expérimentation de VAE simplifiée, financée, soutenue par le Ministère du Travail.</p>
+          </div>
+          <p><a href="https://reva.beta.gouv.fr/" target="_blank" class="button is-primary is-rounded">En savoir plus</a></p>
+        </div>
+        <div class="column is-3 is-hidden-mobile is-flex">
+          <img src="/images/Reva-logo-experimentation.svg">
+        </div>
+      </div>
+    </div>
+
     <div class="candidature-detail">
       <Breadcrumb  v-if="isCertificationActive" :application="application" />
       <NextStep v-if="isCertificationActive" :application="application" />
@@ -193,6 +207,7 @@
     meeting,
     resumeCategory,
     hasMandatoryBooklet,
+    isReva,
   } from '~/utils/application';
 
   export default {
@@ -298,6 +313,9 @@
       },
       specialInfos() {
         return certificationInfos(this.application) || delegateInfos(this.application) || certifierInfos(this.application)
+      },
+      isReva() {
+        return isReva(this.application);
       },
     },
     methods: {
