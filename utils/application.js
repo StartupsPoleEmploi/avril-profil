@@ -29,7 +29,7 @@ export const certificationLevel = application => {
     case 4:
       return 'Bac / BP / BT';
     case 5:
-      return 'Bac +2 / DUT / BTS';
+      return 'Bac +2 / BTS';
     case 6:
       return 'Bac +3 / Bac +4';
     case 7:
