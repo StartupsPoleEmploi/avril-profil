@@ -36,7 +36,10 @@
       },
       to: {
         type: String,
-      }
+      },
+      onClick: {
+        type: Function,
+      },
     },
     data: function() {
       return {
@@ -57,6 +60,9 @@
             })
           } else {
             this.$store.commit(`${store}/updateStateFromServer`, result);
+          }
+          if (this.onClick) {
+            this.onClick();
           }
           if (this.to) {
             setTimeout(() => {

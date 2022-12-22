@@ -144,8 +144,8 @@
         this.$store.commit('identity/updateStateDeep', {currentSituation: {compensationType: value}});
       },
       isMissingAndRequired: function(field) {
-        const mandatoryState = this.$store.getters['identity/mandatoryState'];
-        return isBlank(get(mandatoryState, field));
+        const missingFields = this.$store.getters['identity/missingFields'];
+        return missingFields.includes(field);
       },
     },
   }

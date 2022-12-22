@@ -9,6 +9,7 @@
           disable-with="Enregistrement ..."
           class="button is-primary is-rounded is-medium"
           :to="to"
+          :onClick="onClick"
         >{{canUndo ? 'Enregistrer' : 'Continuer'}}</ApiButton>
       </div>
       <div class="level-right">
@@ -50,6 +51,7 @@ Pour poursuivre n'oubliez pas d'enregistrer
     },
     props: {
       to: {},
+      onClick: {},
     },
   }
 </script>

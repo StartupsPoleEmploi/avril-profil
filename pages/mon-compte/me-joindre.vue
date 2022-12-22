@@ -13,7 +13,7 @@
         type="phone"
         field="homePhone"
         label="Numéro de téléphone fixe" />
-      <IdentitySaveButtons :to="redirectTo" />
+      <IdentitySaveButtons :to="redirectTo" :onClick="onClick" />
     </div>
   </div>
 </template>
@@ -30,12 +30,26 @@
       IdentitySaveButtons,
     },
     computed: {
+      willRedirect: function() {
+        return this.$store.getters['identity/isFilled'];
+      },
       redirectTo: function() {
+        if (!this.willRedirect) {
+          return
+        }
+
         if (this.$store.state.applications.applications.length === 1) {
           return path(first(this.$store.state.applications.applications))
         }
         return path();
       },
+    },
+    methods: {
+      onClick() {
+        if (!this.willRedirect) {
+          this.$emit('showWarning');
+        }
+      }
     },
   }
 </script>

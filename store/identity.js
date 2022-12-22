@@ -1,6 +1,7 @@
-import {isPresent} from 'avril/js/utils/boolean';
-import {deepMerge} from 'avril/js/utils/object';
-import {include} from 'avril/js/utils/array';
+import get from 'lodash.get';
+import {isPresent, isBlank} from 'avril/js/utils/boolean';
+import {deepMerge, getKeysDeep, exceptKeys} from 'avril/js/utils/object';
+import {include, deduce} from 'avril/js/utils/array';
 
 export const state = () => ({
   isServerData: false,
@@ -44,22 +45,31 @@ export const state = () => ({
 const OPTIONAL_FIELDS = [
   'usageName',
   'homePhone',
+  'birthPlace.street',
+  'birthPlace.postalCode',
+  'birthPlace.county',
+  'birthPlace.countryCode',
+  'birthPlace.lat',
+  'birthPlace.lng',
+  'fullAddress.lat',
+  'fullAddress.lng',
+  'currentSituation.status',
+  'currentSituation.registerToPoleEmploiSince',
+  'currentSituation.registerToPoleEmploi',
+  'currentSituation.compensationType',
+  'fullAddress.postalCode',
 ];
 
 const UNSAVABLE_FIELDS = [
   'isServerData',
-]
+];
 
-const getSubstate = (state, filteredKeysArray) => {
-  return Object.entries(state).filter(([k, v]) => !include(filteredKeysArray, k)).reduce((object, [k, v]) => {
-    return {...object, [k]: v};
-  }, {})
-}
+const MANDATORY_FIELDS = deduce(getKeysDeep(state()), OPTIONAL_FIELDS.concat(UNSAVABLE_FIELDS));
 
 export const getters = {
-  mandatoryState: state => getSubstate(state, OPTIONAL_FIELDS.concat(UNSAVABLE_FIELDS)),
-  savableState: state => getSubstate(state, UNSAVABLE_FIELDS),
-  isFilled: (state, {mandatoryState}) => Object.values(mandatoryState).every(isPresent),
+  savableState: state => exceptKeys(state, UNSAVABLE_FIELDS),
+  missingFields: state => MANDATORY_FIELDS.filter(k => isBlank(get(state, k))),
+  isFilled: (state, {missingFields}) => missingFields.length === 0,
   username: ({firstName, lastName, email}) => [firstName, lastName].filter(v => v).join(' ') || email,
 }
 

@@ -114,8 +114,8 @@
     },
     computed: {
       isMissingAndRequired: function() {
-        const mandatoryState = this.$store.getters['identity/mandatoryState'];
-        return include(Object.keys(mandatoryState), this.field) && isBlank(mandatoryState[this.field]);
+        const missingFields = this.$store.getters['identity/missingFields'];
+        return missingFields.some(f => f.startsWith(this.field));
       },
       value: function() {
         return valueMapper(this.type)(this.$store.state.identity[this.field]);
