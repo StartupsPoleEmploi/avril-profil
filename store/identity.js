@@ -53,7 +53,7 @@ const OPTIONAL_FIELDS = [
   'birthPlace.lng',
   'fullAddress.lat',
   'fullAddress.lng',
-  'currentSituation.status',
+  'currentSituation.employmentType',
   'currentSituation.registerToPoleEmploiSince',
   'currentSituation.registerToPoleEmploi',
   'currentSituation.compensationType',
