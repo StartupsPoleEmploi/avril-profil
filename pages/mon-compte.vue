@@ -78,7 +78,7 @@
             return 'Rue de résidence';
           case 'fullAddress.city':
             return 'Ville de résidence';
-          case 'currentSituation.employmentType':
+          case 'currentSituation.status':
             return 'Situation d\'emploi';
           default:
             return field.split('.').join(' > ');
