@@ -64,14 +64,14 @@
             <span class="tag is-danger is-rounded" v-if="unfinishedApplicationsLength">{{unfinishedApplicationsLength}}</span> {{username}}
           </div>
           <div class="navbar-dropdown is-right" :class="{ 'is-active': isActive.profile }">
-            <NavItem to="/mon-compte">Mon compte</NavItem>
+            <NavItem to="/mon-compte">Mon identité</NavItem>
             <NavItem to="/mes-candidatures">
               <span class="tag is-danger is-rounded" v-if="unfinishedApplicationsLength">{{unfinishedApplicationsLength}}</span>
               Mes candidatures
             </NavItem>
             <NavItem to="/mes-rendez-vous">Mes rendez-vous</NavItem>
             <hr class="navbar-divider">
-            <NavItem to="/mot-de-passe">Changer de mot de passe</NavItem>
+            <NavItem to="/gestion-du-compte">Gestion de mon compte</NavItem>
             <NavItem href="/disconnect">Déconnexion</NavItem>
           </div>
         </div>
