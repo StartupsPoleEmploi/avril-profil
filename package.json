@@ -22,9 +22,5 @@
     "vue-template-compiler": "2.6.12",
     "vue-textarea-autosize": "^1.1.1",
     "vue-upload-component": "^2.8.20"
-  },
-  "devDependencies": {
-    "nuxt-sass-resources-loader": "^2.0.5",
-    "vue-style-loader": "^4.1.2"
   }
 }

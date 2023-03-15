@@ -2,9 +2,9 @@ import {deepMerge} from 'avril/js/utils/object.js';
 import sharedConfig from 'avril/js/nuxt.config.js';
 
 export default deepMerge(sharedConfig, {
-  css: [
-    { src: '~/assets/scss/app.scss', lang: 'scss' }
-  ],
+  // css: [
+  //   { src: '~/assets/scss/app.scss', lang: 'scss' }
+  // ],
   head: {
     title: 'Mon espace Avril - la VAE facile',
     htmlAttrs: {
