@@ -20,7 +20,7 @@ export const avrilPath = (application, path) => `/candidatures/${applicationSlug
 
 export const certificationId = application => get(application, 'certification.id');
 export const certificationName = application => `${get(application, 'certification.acronym')} ${get(application, 'certification.label')}`.trim();
-export const isUniversity = application => include(['master', 'doctorat', 'licence', 'licence professionnelle'], get(application, 'certification.acronym', '').toLowerCase())
+export const isUniversity = application => application.delegate?.name?.toLowerCase()?.includes?.('univ');
 // TODO: move to the backend
 export const certificationLevel = application => {
   switch(parseInt(get(application, 'certification.level'))) {

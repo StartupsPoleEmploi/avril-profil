@@ -22,7 +22,7 @@
     <p v-else-if="specialInfos" class="notification is-warning content">
       <strong>Information Avril :</strong> <span v-html="specialInfos" />
     </p>
-    <p v-else-if="isUniversity && hasDelegate" class="notification is-warning content">
+    <p v-else-if="isUniversity" class="notification is-warning content">
       <strong>Conseil d'Avril :</strong> Vous avez sélectionné un diplôme universitaire. Ce diplôme peut présenter
       des « variantes » d'une Université à l'autre selon la discipline, la mention ou le parcours.
       Nous vous invitons donc, avant de confirmer votre candidature, à consulter sur
